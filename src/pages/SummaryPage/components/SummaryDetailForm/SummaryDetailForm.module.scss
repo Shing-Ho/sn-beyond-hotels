@@ -1,0 +1,75 @@
+@import "styles";
+
+.collapseContainer {
+  margin-top: 10px;
+  border-top: 1px solid $borderGrayColor;
+}
+.collapseMain {
+  .confirmationRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @media (max-width: $bp-mobile) {
+      flex-direction: column;
+    }
+    .confirmation {
+      margin-left: 40px;
+      font-size: 16px;
+      color: $primaryColor;
+      @media (max-width: $bp-mobile) {
+        margin-left: 0px;
+        margin: 20px 0px;
+      }
+    }
+  }
+  .dateRow {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 5px;
+    @media (max-width: $bp-mobile) {
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .endDate {
+      margin-left: 40px;
+      @media (max-width: $bp-mobile) {
+        margin-left: 0px;
+      }
+    }
+    .dateText {
+      font-weight: 600;
+      margin-left: 20px;
+    }
+  }
+  .otherRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 5px;
+    .leftRow {
+      display: flex;
+      .label {
+        font-weight: 600;
+        margin-left: 20px;
+      }
+    }
+    .rightText {
+      color: $primaryColor;
+      font-weight: 600;
+    }
+  }
+}
+
+.modalHeader {
+  font-size: 30px;
+  color: gray;
+}
+.modalBoldText {
+  font-size: 16px;
+  font-weight: bold;
+  color: gray;
+}
+.modalText {
+  font-size: 16px;
+  color: gray; 
+}

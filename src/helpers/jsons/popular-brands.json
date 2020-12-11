@@ -1,0 +1,248 @@
+{
+  "Choice Hotels": [
+    {
+      "chainCode": "cc",
+      "chainName": "Clarion"
+    },
+    {
+      "chainCode": "ci",
+      "chainName": "Comfort Inn"
+    },
+    {
+      "chainCode": "ri",
+      "chainName": "Rodeway Inn"
+    }
+  ],
+  "Four Seasons": [
+    {
+      "chainCode": "fs",
+      "chainName": "Four Seasons"
+    }
+  ],
+  "Hilton": [
+    {
+      "chainCode": "dt",
+      "chainName": "DoubleTree by Hilton"
+    },
+    {
+      "chainCode": "ge",
+      "chainName": "Hilton Garden Inn"
+    },
+    {
+      "chainCode": "hh",
+      "chainName": "Hilton Hotels & Resorts"
+    },
+    {
+      "chainCode": "hx",
+      "chainName": "Hampton by Hilton"
+    }
+  ],
+  "Hyatt": [
+    {
+      "chainCode": "hy",
+      "chainName": "Hyatt (Parent)"
+    }
+  ],
+  "IHG": [
+    {
+      "chainCode": "ic",
+      "chainName": "InterContinental Hotels & Resorts"
+    },
+    {
+      "chainCode": "re",
+      "chainName": "Regent Hotels & Resorts"
+    },
+    {
+      "chainCode": "cp",
+      "chainName": "Crowne Plaza"
+    },
+    {
+      "chainCode": "hi",
+      "chainName": "Holiday Inn"
+    }
+  ],
+  "Marriott": [
+    {
+      "chainCode": "ar",
+      "chainName": "AC HOTELS MARRIOTT"
+    },
+    {
+      "chainCode": "al",
+      "chainName": "Aloft Hotels"
+    },
+    {
+      "chainCode": "mc",
+      "chainName": "Marriott Bonvoy (Parent)"
+    },
+    {
+      "chainCode": "rz",
+      "chainName": "The Ritz-Carlton"
+    },
+    {
+      "chainCode": "wi",
+      "chainName": "Westin Hotels & Resorts"
+    },
+    {
+      "chainCode": "si",
+      "chainName": "Sheraton"
+    },
+    {
+      "chainCode": "md",
+      "chainName": "Le MERIDIEN"
+    }
+  ],
+  "Swissôtel": [
+    {
+      "chainCode": "sl",
+      "chainName": "Swissôtel Hotels & Resorts"
+    }
+  ],
+  "Wyndham": [
+    {
+      "chainCode": "aa",
+      "chainName": "AmericInn by Wyndham"
+    },
+    {
+      "chainCode": "wy",
+      "chainName": "Wyndham Hotels & Resorts"
+    },
+    {
+      "chainCode": "oz",
+      "chainName": "Super 8 by Wyndham"
+    }
+  ],
+  "Other": [
+    {
+      "chainCode": "ab",
+      "chainName": "Abba hotels"
+    },
+    {
+      "chainCode": "ap",
+      "chainName": "Astron Resorts"
+    },
+    {
+      "chainCode": "bn",
+      "chainName": "Barceló Hotels & Resorts"
+    },
+    {
+      "chainCode": "di",
+      "chainName": "Days Inn"
+    },
+    {
+      "chainCode": "bw",
+      "chainName": "Best Western Hotels & Resorts"
+    },
+    {
+      "chainCode": "do",
+      "chainName": "Dorint Hotels & Resorts"
+    },
+    {
+      "chainCode": "DR",
+      "chainName": "Drury Hotels"
+    },
+    {
+      "chainCode": "gt",
+      "chainName": "Golden Tulip"
+    },
+    {
+      "chainCode": "00",
+      "chainName": "Hard Rock Hotel"
+    },
+    {
+      "chainCode": "jh",
+      "chainName": "Jolly Hotels"
+    },
+    {
+      "chainCode": "ki",
+      "chainName": "Kempinski Hotels"
+    },
+    {
+      "chainCode": "mm",
+      "chainName": "Maritim Hotels"
+    },
+    {
+      "chainCode": "me",
+      "chainName": "MELIÁ Hotels & Resorts"
+    },
+    {
+      "chainCode": "mk",
+      "chainName": "Mövenpick Hotels & Resorts"
+    },
+    {
+      "chainCode": "ns",
+      "chainName": "NH Hotels"
+    },
+    {
+      "chainCode": "ob",
+      "chainName": "Oberoi Hotels & Resorts"
+    },
+    {
+      "chainCode": "pd",
+      "chainName": "Park Inn by Radisson"
+    },
+    {
+      "chainCode": "pr",
+      "chainName": "Protea Hotels by Marriott"
+    },
+    {
+      "chainCode": "rd",
+      "chainName": "Radisson"
+    },
+    {
+      "chainCode": "rl",
+      "chainName": "Red Lion Hotels"
+    },
+    {
+      "chainCode": "wb",
+      "chainName": "Relais & Chateaux"
+    },
+    {
+      "chainCode": "rx",
+      "chainName": "Ringhotels"
+    },
+    {
+      "chainCode": "rm",
+      "chainName": "Romantik Hotels"
+    },
+    {
+      "chainCode": "rg",
+      "chainName": "RYDGES"
+    },
+    {
+      "chainCode": "sh",
+      "chainName": "Scandic Hotels"
+    },
+    {
+      "chainCode": "ek",
+      "chainName": "Sercotel"
+    },
+    {
+      "chainCode": "me",
+      "chainName": "Sol by Meliá"
+    },
+    {
+      "chainCode": "st",
+      "chainName": "Sorat Hotels"
+    },
+    {
+      "chainCode": "sr",
+      "chainName": "Steigenberger Hotels & Resorts"
+    },
+    {
+      "chainCode": "pn",
+      "chainName": "The Peninsula Hotels"
+    },
+    {
+      "chainCode": "ti",
+      "chainName": "thistle"
+    },
+    {
+      "chainCode": "tp",
+      "chainName": "TOP INTERNATIONAL"
+    },
+    {
+      "chainCode": "tx",
+      "chainName": "Treff Hotels"
+    }
+  ]
+}
