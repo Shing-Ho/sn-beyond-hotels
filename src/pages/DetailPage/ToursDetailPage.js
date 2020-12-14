@@ -18,7 +18,13 @@ const images = Array(7).fill(0).map((_, i) => ({
 const ToursDetailPage = () => {
   return (
     <Page>
-      <Carousel image={images} />
+      <div className={styles.carousel}>
+        <Carousel image={images} />
+        <DetailHeader
+          className={styles.detailHeader}
+          details={{ name: 'ATV Riding Tours' }}
+        />
+      </div>
       <div className={styles.root}>
         <div className={styles.content}>
           <Row justify='center'>

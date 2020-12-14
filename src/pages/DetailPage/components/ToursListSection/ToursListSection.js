@@ -19,7 +19,6 @@ export default function ToursListSection(props) {
             className={styles.title}
             header='Fun For The Whole Family'
             type='large'
-            
           >
             <TicketsItem type='TOUR' />
             <TicketsItem type='TOUR' />

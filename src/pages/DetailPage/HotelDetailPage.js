@@ -10,6 +10,7 @@ import Page from "components/Page/Page";
 import Carousel from "components/Carousel/Carousel";
 import RoomListSection from "./components/RoomListSection/RoomListSection";
 import BookingSection from "./components/BookingSection/BookingSection";
+import DetailHeader from "./components/DetailHeader/DetailHeader";
 // import OtherSection from './components/OtherSection/OtherSection';
 import history from "store/history";
 import hotelActions from "store/hotel/actions";
@@ -214,7 +215,13 @@ const DetailPage = () => {
         </div>
       )}
       <>
-        <Carousel image={hotel?.hotel_details?.photos || []} />
+        <div className={styles.carousel}>
+          <Carousel image={hotel?.hotel_details?.photos || []} />
+          <DetailHeader
+            className={styles.detailHeader}
+            details={hotel.hotel_details}
+          />
+        </div>
         <div className={styles.root}>
           <div className={styles.content}>
             <div className={styles.detail}>

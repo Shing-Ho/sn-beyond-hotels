@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Tabs, TabPane } from "components/Tab/Tab";
 import GoogleMap from "components/GoogleMap/GoogleMap";
 import DetailItem from "../DetailItem/DetailItem";
-import DetailHeader from "../DetailHeader/DetailHeader";
 import { getCurrency } from "store/core/selectors";
 import styles from "./RoomListSection.module.scss";
 
@@ -18,11 +17,6 @@ export default function RoomListSection(props) {
 
   return (
     <div className={cx(styles.root, className)}>
-      <DetailHeader
-        className={styles.detailHeader}
-        details={hotel.hotel_details}
-        headerOnly
-      />
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Rooms" key="1">
           {hotel.room_types.map((item, i) => (

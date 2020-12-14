@@ -47,5 +47,9 @@
 @media screen and (max-width: $bp-mobile) {
   .root {
     max-width: unset;
+
+    .content {
+      padding: 20px 10px 0 10px;
+    }
   }
 }

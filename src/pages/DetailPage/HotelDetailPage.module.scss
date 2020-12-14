@@ -56,3 +56,32 @@
     }
   }
 }
+
+.carousel {
+  width: 100%;
+  position: relative;
+
+  .detailHeader {
+    display: none;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .root {
+    .content {
+      .detail {
+        padding-left: 0;
+      }
+      .detailHeader {
+        display: none;
+      }
+    }
+  }
+  .carousel {
+    .detailHeader {
+      display: block;  
+    }
+  }
+}

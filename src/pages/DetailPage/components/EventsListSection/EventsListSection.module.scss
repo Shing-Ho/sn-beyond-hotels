@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .root {
   width: 100%;
@@ -15,9 +15,6 @@
     margin: 10px 0;
   }
   .tabPane {
-    @media (max-width: $bp-mobile) {
-      padding: 10px;
-    }
     .title {
       font-family: Lato;
       font-size: 24px;
@@ -26,11 +23,10 @@
       text-align: left;
       color: #7b7c7e;
       margin-bottom: 26px;
-    ;
     }
     .googleMapContainer {
       .googleMap {
-        height: 320px;;
+        height: 320px;
       }
     }
   }

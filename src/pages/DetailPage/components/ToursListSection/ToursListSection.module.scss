@@ -15,9 +15,6 @@
     margin: 10px 0;
   }
   .tabPane {
-    @media (max-width: $bp-mobile) {
-      padding: 10px;
-    }
     .title {
       font-family: Lato;
       font-size: 24px;
