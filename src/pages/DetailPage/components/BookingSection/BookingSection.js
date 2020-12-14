@@ -11,7 +11,7 @@ import Divider from "components/Divider/Divider";
 import { ReactComponent as CloseIcon } from "icons/close-fill.svg";
 import hotelActions from "store/hotel/actions";
 import { getCurrency } from "store/core/selectors";
-import { commaFormat } from "utils/helperMethods";
+import { commaFormat } from "helpers/utils";
 import styles from "./BookingSection.module.scss";
 import { Currencies } from "helpers/constants";
 

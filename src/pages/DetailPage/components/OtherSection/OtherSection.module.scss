@@ -3,8 +3,10 @@
     margin-bottom: 50px;
   }
   .content {
-    display: grid;
-    grid-column-gap: 30px;
-    grid-template-columns: auto auto auto;
+    width: 100%;
+
+    > div {
+      margin-bottom: 30px;
+    }
   }
 }

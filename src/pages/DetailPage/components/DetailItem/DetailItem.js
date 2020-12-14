@@ -5,9 +5,9 @@ import { ReactComponent as InfoIcon } from "icons/info.svg";
 import { FormattedMessage } from "react-intl";
 import { Button, Popover, Tooltip } from "antd";
 import Divider from "components/Divider/Divider";
-import { commaFormat } from "../../../../utils/helperMethods";
-import styles from "./DetailItem.module.scss";
+import { commaFormat } from "helpers/utils";
 import { Currencies } from "helpers/constants";
+import styles from "./DetailItem.module.scss";
 
 const PopOverContent = (data) => {
   return (

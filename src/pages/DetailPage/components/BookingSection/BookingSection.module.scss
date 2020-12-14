@@ -97,6 +97,10 @@
             > svg {
               margin-left: 15px;
               cursor: pointer;
+
+              > path {
+                fill: $brownColor;
+              }
             }
           }
         }

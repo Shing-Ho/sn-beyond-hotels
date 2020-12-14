@@ -11,7 +11,7 @@ import { ReactComponent as BedIcon } from "icons/bed3.svg";
 import { ReactComponent as InfoIcon } from "icons/info.svg";
 import GoogleMap from "components/GoogleMap/GoogleMap";
 import hotelActions from "store/hotel/actions";
-import { commaFormat } from "../../utils/helperMethods";
+import { commaFormat } from "helpers/utils";
 import styles from "./ResultItem.module.scss";
 // import { ReactComponent as UserIcon } from "../../icons/user.svg";
 // import { ReactComponent as WifiIcon } from "../../icons/wifi.svg";
