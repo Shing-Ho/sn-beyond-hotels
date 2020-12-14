@@ -26,7 +26,7 @@ const DetailHeader = ({ className, details, headerOnly }) => {
         <p>{get(details, "address.address1")}</p>
         <p>
           {get(details, "address.city")}
-          {details.address.province
+          {details.address?.province
             ? `, ${details.address.province}`
             : ""}, {get(details, "address.country")}
         </p>

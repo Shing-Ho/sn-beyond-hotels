@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import DatePicker from "components/DatePicker/DatePicker";
 import Divider from "components/Divider/Divider";
 import styles from "./EventBookingSection.module.scss";
-import {ReactComponent as CloseIcon} from "../../../icons/close-fill.svg";
+import {ReactComponent as CloseIcon} from "icons/close-fill.svg";
 
 const showTimings = ['ALL', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM'];
 

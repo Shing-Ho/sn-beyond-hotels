@@ -1,10 +1,10 @@
 import React from "react";
 import cx from "classnames";
 import { Tabs, TabPane } from "components/Tab/Tab";
-import styles from "./eventsListSection.module.scss";
+import GoogleMap from "components/GoogleMap/GoogleMap";
 import TicketsItem from "../TicketsItem/TicketsItem";
-import GoogleMap from "../../../components/GoogleMap/GoogleMap";
 import SeatingItem from "../SeatingItem/SeatingItem";
+import styles from "./EventsListSection.module.scss";
 
 const location = {
   lat: 27.2046,

@@ -15,7 +15,7 @@ import history from "store/history";
 import hotelActions from "store/hotel/actions";
 import bookingActions from "store/booking/actions";
 import { getLoading } from "store/hotel/selectors";
-import styles from "./DetailPage.module.scss";
+import styles from "./HotelDetailPage.module.scss";
 import {
   getBookingPayload,
   getSelectedHotel,
