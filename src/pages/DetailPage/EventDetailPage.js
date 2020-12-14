@@ -40,7 +40,7 @@ const images = [
   },
 ];
 
-const ShowEventsDetailPage = () => {
+const EventsDetailPage = () => {
   return (
     <Page>
       <Carousel image={images} />
@@ -70,4 +70,4 @@ const ShowEventsDetailPage = () => {
   );
 };
 
-export default ShowEventsDetailPage;
+export default EventsDetailPage;
