@@ -1,7 +1,6 @@
 import React from "react";
 import cx from "classnames";
 import { useSelector } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { Tabs, TabPane } from "components/Tab/Tab";
 import GoogleMap from "components/GoogleMap/GoogleMap";
 import DetailItem from "../DetailItem/DetailItem";

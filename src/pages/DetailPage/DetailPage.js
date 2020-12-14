@@ -125,11 +125,12 @@ const DetailPage = () => {
 
   const handleRoomItemClick = (code, isDeselect) => (e) => {
     e.stopPropagation();
-    const newSelectedRooms = selectedRooms.filter((v) => code !== v);
+    let newSelectedRooms = selectedRooms.filter((v) => code !== v);
     if (!isDeselect) {
-      newSelectedRooms.push(code);
+      // newSelectedRooms.push(code);
+      newSelectedRooms = [code];
     }
-    setSelectedRooms([code]);
+    setSelectedRooms(newSelectedRooms);
   };
 
   const selectedRoomObjs = useMemo(

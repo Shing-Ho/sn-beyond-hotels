@@ -8,6 +8,7 @@ import ConfirmationPage from "pages/ConfirmationPage/ConfirmationPage";
 import SummaryPage from "pages/SummaryPage/SummaryPage";
 import GuestPage from "pages/GuestPage/GuestPage";
 import OrderLookup from "pages/OrderLookup/OrderLookup";
+import ShowEventsDetailPage from "pages/ShowEventsDetailPage";
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -17,6 +18,7 @@ export default function Routes() {
       <Switch>
         <Route path={BASE_ROUTE + "/hotels"} exact component={SearchPage} />
         <Route path={BASE_ROUTE + "/hotels/:id"} exact component={DetailPage} />
+        <Route path={BASE_ROUTE + "/events/:id"} exact component={ShowEventsDetailPage} />
         <Route path={BASE_ROUTE + "/payments"} exact component={PaymentsPage} />
         <Route path={BASE_ROUTE + "/confirmation"} exact component={ConfirmationPage} />
         <Route path={BASE_ROUTE + "/orderSummary"} exact component={SummaryPage} />

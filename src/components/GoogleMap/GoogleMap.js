@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import cx from 'classnames';
 import styles from './GoogleMap.module.scss';
 
 const MarkerComponent = (props) => (
@@ -9,9 +10,9 @@ const MarkerComponent = (props) => (
 );
 
 const GoogleMap = (props) => {
-  const { center, coords } = props;
+  const { center, coords, className } = props;
   return (
-    <div className={styles.mapContainer} style={{height: props.height}}>
+    <div className={cx(styles.mapContainer, className)} style={{height: props.height}}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: window.REACT_APP_GOOGLE_MAP_KEY }}
         defaultCenter={center}

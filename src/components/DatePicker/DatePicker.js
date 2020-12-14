@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { DatePicker } from 'antd';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 import { ReactComponent as CloseIcon } from 'icons/close-fill-large.svg';
@@ -9,7 +10,7 @@ const CustomDatePicker = ({ className, ...other }) => {
     <DatePicker
       {...other}
       suffixIcon={<CalendarIcon width={20} height={20} />}
-      className={styles.root}
+      className={cx(styles.root, className)}
       clearIcon={<CloseIcon />}
     />
   );
