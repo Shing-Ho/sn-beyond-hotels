@@ -23,9 +23,9 @@
         min-width: 93px;
         margin: 0;
         padding: 6px 10px;
-        border: 1px solid #dedede;
+        border: 2px solid #dedede;
+        border-radius: 3px;
         background: #fff;
-        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
         color: #7b7c7e;
         font-family: Lato;
         font-size: 16px;
@@ -37,6 +37,7 @@
         text-align: center;
         &.selected {
           background-color: $primaryColor;
+          border-color: $primaryColor;
           color: #fff;
         }
         //@media (max-width: 992px) {
@@ -69,6 +70,10 @@
           > svg {
             margin-left: 15px;
             cursor: pointer;
+
+            > path {
+              fill: $brownColor;
+            }
           }
         }
       }

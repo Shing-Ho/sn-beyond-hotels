@@ -18,7 +18,7 @@ const TicketsItem = ({ type = 'EVENT' }) => {
         <div className={styles.title}>
           <div className={styles.header}>Right</div>
           <div className={styles.time}>
-            12:00 PM, 3.00 PM, <span> +2</span>
+            12:00 PM, 3:00 PM, <span> + 2</span>
           </div>
         </div>
         <div className={styles.priceDiv}>

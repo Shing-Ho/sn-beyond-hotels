@@ -25,15 +25,19 @@ const DetailHeader = ({ className, details, icon, headerOnly }) => {
               score={details?.star_rating}
               className={styles.rating}
             />
-            <p>{get(details, 'address.address1')}</p>
-            <p>
-              {get(details, 'address.city')}
-              {details?.address?.province
-                ? `, ${details.address.province}`
-                : ''}
-              , {get(details, 'address.country')}
-            </p>
-            <p>{get(details, 'address.postal_code')}</p>
+            {details?.address &&
+              <>
+                <p>{get(details, 'address.address1')}</p>
+                <p>
+                  {get(details, 'address.city')}
+                  {details?.address?.province
+                    ? `, ${details.address.province}`
+                    : ''}
+                  , {get(details, 'address.country')}
+                </p>
+                <p>{get(details, 'address.postal_code')}</p>
+              </>
+            }
           </div>
           <div className={styles.tags}>
             <div className={styles.left}>
