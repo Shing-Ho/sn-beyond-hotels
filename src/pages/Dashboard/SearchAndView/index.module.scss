@@ -1,0 +1,69 @@
+@import "styles";
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 31px;
+  .searchBar {
+    display: flex;
+    width: 35%;
+    margin:12px 0;
+  }
+  .filterBar {
+    display: flex;
+    width: 65%;
+    justify-content: flex-end;
+    padding: 12px 0;
+    .filter {
+      display: flex;
+      width: 24%;
+      .dropdown{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 11px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        margin-right: 20px;
+        span {
+          color: #003398;
+        }
+      }
+    }
+    .sort {
+      display: flex;
+      width: 24%;
+      .dropdown{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 11px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        margin-right: 20px;
+        span {
+          color: #003398;
+        }
+      }
+    }
+  }
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #dedede;
+    border-left: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    span {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      border-right: 1px solid #dedede;
+      align-items: center;
+      color: #003398;
+      padding: 9px;
+    }
+  }
+}

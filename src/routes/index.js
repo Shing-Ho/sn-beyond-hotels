@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import HotelSearchPage from "pages/SearchPage/HotelSearchPage";
+import DashboardPage from "pages/Dashboard";
 import TransportSearchPage from 'pages/SearchPage/TransportSearchPage';
 import DetailPage from "pages/DetailPage/HotelDetailPage";
 import PaymentsPage from "pages/PaymentsPage/PaymentsPage";
@@ -18,7 +18,7 @@ export default function Routes() {
   return (
     <>
       <Switch>
-        <Route path={BASE_ROUTE + "/hotels"} exact component={HotelSearchPage} />
+        <Route path={BASE_ROUTE + "/"} exact component={DashboardPage} />
         <Route path={BASE_ROUTE + "/hotels/:id"} exact component={DetailPage} />
         <Route path={BASE_ROUTE + "/events/:id"} exact component={EventDetailPage} />
         <Route path={BASE_ROUTE + "/tours/:id"} exact component={ToursDetailPage} />
