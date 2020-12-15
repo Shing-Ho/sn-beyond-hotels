@@ -11,7 +11,7 @@ const GridView = ({ items= [], onPageChange }) => {
   return(
     <div className={styles.gridContainer}>
       <Row gutter={24} className={styles.row}>
-        { items.map(item => ( <Col lg={8} className={styles.column}><Item item={item}/></Col>) ) }
+        { items.map(item => ( <Col lg={24} className={styles.column}><Item item={item}/></Col>) ) }
       </Row>
       <Row className={styles.buttonWrap}>
         <Button className={styles.btn}>

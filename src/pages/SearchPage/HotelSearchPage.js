@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { Spin, Drawer } from "antd";
 import moment from "moment";
+import cx from "classnames";
 import Page from "components/Page/Page";
 import TopFilters from "components/TopFilters/TopFilters";
 import HotelLeftFilters from "./components/Filters/HotelLeftFilters";
@@ -83,20 +84,12 @@ const HotelSearchPage = ({ noHeader, noFooter, display }) => {
     }
   }, [params, dispatch]);
 
-  // useEffect(() => {
-  //   console.log('error', error)
-  //   if(error && error.status_code) {
-  //     alert(error.detail)
-  //   }
-  // }, [error])
-
   return (
     <Page noHeader noFooter >
       <div className={styles.root}>
-        <div className={styles.container}>
+        <div className={cx(styles.container, styles.childContainer)}>
           {
-            display &&
-            <TopFilters currency={currency} initialState={initialState}/>
+            display && <TopFilters currency={currency} initialState={initialState} />
           }
           <div className={styles.main}>
             <Drawer

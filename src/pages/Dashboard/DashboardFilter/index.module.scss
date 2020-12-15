@@ -8,6 +8,10 @@
   border-left: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   height: 80px;
+  @media screen and (max-width: 991px) {
+    overflow-x: auto;
+    width: 100%;
+  }
   .searchType {
     display: flex;
     flex: 1;
@@ -22,6 +26,9 @@
     line-height: 1.43;
     padding: 10px 6px;
     cursor: pointer;
+    @media screen and (max-width: 991px) {
+      min-width: 130px;
+    }
     .icon {
       margin-bottom: 12px;
       svg {
@@ -38,26 +45,7 @@
     }
   }
   .selectedSearchType {
-    display: flex;
-    flex: 1;
-    height: 80px;
-    flex-direction: column;
-    border-right: 1px solid #dedede;
-    align-items: center;
     color: #ffffff;
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.43;
-    padding: 10px 6px;
-    cursor: pointer;
     background-color: #003398;
-    .icon {
-      margin-bottom: 5px;
-      svg {
-        width: 30px;
-        height: auto;
-      }
-    }
   }
 }

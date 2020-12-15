@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from "classnames";
 
 import { ReactComponent as BedIcon } from '../../../icons/bed.svg';
 import { ReactComponent as WhiteBedIcon } from '../../../icons/bed3.svg';
@@ -12,7 +13,7 @@ const DashboardFilter = ({ searchTypeData, setSearchType, searchType }) => {
 				searchTypeData.map((item) => {
 					return (
 						<div
-							className={item.value === searchType ? (styles.selectedSearchType) : styles.searchType}
+							className={cx(styles.searchType, { [styles.selectedSearchType]: item.value === searchType })}
 							onClick={() => setSearchType(item.value)}
 						>
 							<div className={styles.icon}>
