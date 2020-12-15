@@ -1,11 +1,44 @@
 @import "styles";
 
+.gridContainer {
+  .row{
+    margin-left: 0 !important;
+    .column {
+      max-width: 360px;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin-right: 24px;
+    }
+  }
+  .buttonWrap {
+    margin-top: 40px;
+    justify-content: center;
+    .btn {
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #003398;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      line-height: 16px;
+      width: 200px;
+      max-width: 200px;
+    }
+  }
+  .pagination {
+    margin: 57px 0 17px 0;
+  }
+}
+
 .resultItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: solid 1px $borderGrayColor;
   margin-top: 30px;
+  max-width: 360px;
   .mainImage {
     flex-shrink: 0;
     overflow: hidden;
@@ -56,7 +89,7 @@
       flex-direction: column;
       align-items: center;
       height: 100%;
-      padding: 30px 40px;
+      padding: 30px;
       overflow: hidden;
       @media screen and (max-width:767px) {
         padding: 16px;
@@ -68,6 +101,10 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
+        margin-bottom: 20px;
+        span {
+          text-align: center;
+        }
         @media screen and (max-width:767px) {
           flex-direction: column;
           h3 {
@@ -80,11 +117,14 @@
         }
 
         &:not(:first-child) {
-          margin-top: 10px;
+          margin-top: 20px;
         }
         .itemName {
           font-weight: 300;
           font-size: 24px;
+          h3 {
+            margin-bottom: 0;
+          }
         }
         .description {
           font-size: 14px;
@@ -93,10 +133,6 @@
           text-overflow: ellipsis;
           max-height: 44px;
         }
-      }
-
-      .baseline {
-        align-items: flex-start;
       }
 
       .rating {

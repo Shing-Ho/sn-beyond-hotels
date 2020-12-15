@@ -3,14 +3,17 @@
 .content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top: 1px solid #dedede;
   border-left: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
+  height: 80px;
   .searchType {
     display: flex;
     flex: 1;
     flex-direction: column;
     border-right: 1px solid #dedede;
+    height: 80px;
     align-items: center;
     color: #7b7c7e;
     font-family: Lato;
@@ -20,9 +23,16 @@
     padding: 10px 6px;
     cursor: pointer;
     .icon {
-      margin-bottom: 5px;
+      margin-bottom: 12px;
       svg {
-        width: 30px;
+        width: 25px;
+        height: auto;
+      }
+    }
+    .selectedIcon {
+      margin-bottom: 12px;
+      svg {
+        width: 25px;
         height: auto;
       }
     }
@@ -30,6 +40,7 @@
   .selectedSearchType {
     display: flex;
     flex: 1;
+    height: 80px;
     flex-direction: column;
     border-right: 1px solid #dedede;
     align-items: center;

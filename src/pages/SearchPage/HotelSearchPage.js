@@ -18,7 +18,24 @@ import { getCurrency } from "store/core/selectors";
 import bookingActions from "store/booking/actions";
 import styles from "./HotelSearchPage.module.scss";
 
-const HotelSearchPage = () => {
+const initialState = {
+  location: {
+    location_id: "5128581",
+    location_name: "New York City",
+    iso_country_code: "USA",
+  },
+  start_date: moment().add(1, "day").format("YYYY-MM-DD"),
+  end_date: moment().add(2, "day").format("YYYY-MM-DD"),
+  occupancy: {
+    adults: 2,
+    children: 0,
+  },
+  nights: 1,
+  language: "en",
+  currency: "USD",
+};
+
+const HotelSearchPage = ({ noHeader, noFooter, display }) => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const fetchingRecords = useSelector(getFetchingRecords);
@@ -74,10 +91,13 @@ const HotelSearchPage = () => {
   // }, [error])
 
   return (
-    <Page>
+    <Page noHeader noFooter >
       <div className={styles.root}>
         <div className={styles.container}>
-          <TopFilters currency={currency} />
+          {
+            display &&
+            <TopFilters currency={currency} initialState={initialState}/>
+          }
           <div className={styles.main}>
             <Drawer
               className="left-filter-drawer"

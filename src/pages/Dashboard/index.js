@@ -13,12 +13,7 @@ import SearchPage from "../SearchPage/SearchPage";
 
 const menu = (click) =>
 	<Menu onClick={click}>
-		<Menu.Item key={'hotel'}>
-				Hotel
-		</Menu.Item>
-		<Menu.Item key={'vehicle'}>
-				Vehicle
-		</Menu.Item>
+		 {/*Add menu item for filter here*/}
 	</Menu>
 
 
@@ -44,6 +39,42 @@ const initialFilterData = {
 };
 
 const HotelsData = [
+	{
+		name: "Taix Restaurent",
+		start: 3,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "19.99"
+	},
+	{
+		name: "Masa of Echo Park",
+		start: 5,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "25"
+	},
+	{
+		name: "Thrill FAll Bungee",
+		start: 2,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "15.25"
+	},
+	{
+		name: "Cats Musical",
+		start: 5,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "25"
+	},
+	{
+		name: "ALTA NightClub",
+		start: 4,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "30"
+	},
+	{
+		name: "Tesla car rental",
+		start: 5,
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.",
+		from: "40"
+	},
 	{
 		name: "Taix Restaurent",
 		start: 3,
@@ -166,20 +197,42 @@ const DashboardPage = () => {
 		setSortBy(e.key)
 	};
 
+	const onPageChange = (page, size) => (current, size) => {
+		console.log("page-----");
+	};
+
 	return (
 		<Page>
 			<div className={styles.root}>
 				<div className={styles.container}>
-					{
-						searchType !== 'hotels' &&
-							<TopFilters filter={filter} setFilter={setFilter} initialState={initialState}/>
-					}
-					<DashboardFilter searchType={searchType} setSearchType={setSearchType} searchTypeData={searchTypeData}/>
-					<SearchAndView searchText={searchText} filterBy={filterBy} sortby={sortBy} itemView={itemView} setSearchText={setSearchText} filterMenu={menu(handleFilterBy)} sortMenu={sortMenu(handleSortBy)} setItemView={setItemView}/>
+					<TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount={searchType === 'hotels'} />
+					<DashboardFilter
+						searchType={searchType}
+						setSearchType={setSearchType}
+						searchTypeData={searchTypeData}
+					/>
+					<SearchAndView
+						searchText={searchText}
+						filterBy={filterBy}
+						sortby={sortBy}
+						itemView={itemView}
+						setSearchText={setSearchText}
+						filterMenu={menu(handleFilterBy)}
+						sortMenu={sortMenu(handleSortBy)}
+						setItemView={setItemView}
+					/>
 					{
 						searchType === 'hotels' ?
-							<SearchPage noHeader noFooter/> :
-							<ContainerView filterBy={filterBy} itemView={itemView} searchText={searchText} searchType={searchType} filter={filter} items={items} />
+							<SearchPage noHeader noFooter display={!searchType === 'hotels'}/> :
+							<ContainerView
+								filterBy={filterBy}
+								itemView={itemView}
+								searchText={searchText}
+								searchType={searchType}
+								filter={filter}
+								items={items}
+								onPageChange={onPageChange}
+							/>
 					}
 				</div>
 			</div>

@@ -30,7 +30,7 @@ const initialState = {
   currency: "USD",
 };
 
-const TopFilters = ({ currency }) => {
+const TopFilters = ({ currency, displayCount, initialState }) => {
   const topFilters = useSelector(getTopFilters);
   const [isEdit, toggleEdit] = useState(false);
   const [data, setData] = useState({ ...initialState, ...topFilters });
@@ -108,6 +108,7 @@ const TopFilters = ({ currency }) => {
           data={data}
           searchHotels={searchHotels}
           toggleEdit={toggleEdit}
+          displayCount={displayCount}
         />
       ) : (
         <div className={styles.display}>
@@ -128,28 +129,31 @@ const TopFilters = ({ currency }) => {
               </div>
             </div>
             <div className={styles.displayCount}>
-              <div style={{display: 'flex'}}>
-                <div className={styles.wrapper}>
-                  <img src={dad} alt="" className={styles.img} />
-                  <div className={classnames(styles.item, styles.padding5)}>
-                    {data.occupancy.adults}
+              {
+                displayCount&&
+                <div style={{display: 'flex'}}>
+                  <div className={styles.wrapper}>
+                    <img src={dad} alt="" className={styles.img} />
+                    <div className={classnames(styles.item, styles.padding5)}>
+                      {data.occupancy.adults}
+                    </div>
                   </div>
-                </div>
-                <div className={styles.wrapper}>
-                  <img src={kid} alt="" className={styles.img} />
-                  <div className={classnames(styles.item, styles.padding5)}>
-                    {data.occupancy.children}
+                  <div className={styles.wrapper}>
+                    <img src={kid} alt="" className={styles.img} />
+                    <div className={classnames(styles.item, styles.padding5)}>
+                      {data.occupancy.children}
+                    </div>
                   </div>
-                </div>
-                <div className={styles.wrapper}>
-                  <img src={bed} alt="" className={styles.img} />
-                  <div className={classnames(styles.item, styles.padding5)}>
-                    {data.nights || 1}
+                  <div className={styles.wrapper}>
+                    <img src={bed} alt="" className={styles.img} />
+                    <div className={classnames(styles.item, styles.padding5)}>
+                      {data.nights || 1}
+                    </div>
+
                   </div>
 
                 </div>
-
-              </div>
+              }
               <div className={styles.buttonWrapper}>
                 <button onClick={() => toggleEdit(true)} className={styles.btn}>
                   <FormattedMessage id="edit" defaultMessage="Edit" />

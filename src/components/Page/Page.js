@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import CartDrawer from '../CartDrawer';
 import styles from './Page.module.scss';
 
-const Page = ({ children, noHeader }) => {
+const Page = ({ children, noHeader, noFooter }) => {
   return (
     <div className={styles.root}>
       <CartDrawer />
@@ -12,7 +12,7 @@ const Page = ({ children, noHeader }) => {
       <div className={styles.content}>
         {children}
       </div>
-      <Footer />
+      {!noFooter ? <Footer/> : null}
     </div>
   );
 }

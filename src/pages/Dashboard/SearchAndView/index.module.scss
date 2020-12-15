@@ -6,17 +6,20 @@
   margin-top: 31px;
   .searchBar {
     display: flex;
-    width: 35%;
+    width: 50%;
     margin:12px 0;
+    height: 36px;
+    max-width: 570px;
   }
   .filterBar {
     display: flex;
-    width: 65%;
+    width: 50%;
     justify-content: flex-end;
-    padding: 12px 0;
+    margin: 12px 0;
+    height: 36px;
     .filter {
       display: flex;
-      width: 24%;
+      width: 30%;
       .dropdown{
         width: 100%;
         display: flex;
@@ -26,6 +29,7 @@
         border: 1px solid #d9d9d9;
         border-radius: 4px;
         margin-right: 20px;
+        max-width: 150px;
         span {
           color: #003398;
         }
@@ -33,7 +37,7 @@
     }
     .sort {
       display: flex;
-      width: 24%;
+      width: 30%;
       .dropdown{
         width: 100%;
         display: flex;
@@ -43,6 +47,7 @@
         border: 1px solid #d9d9d9;
         border-radius: 4px;
         margin-right: 20px;
+        max-width: 150px;
         span {
           color: #003398;
         }
@@ -56,14 +61,21 @@
     border-top: 1px solid #dedede;
     border-left: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
-    span {
+    .icon {
       display: flex;
       flex: 1;
       flex-direction: column;
       border-right: 1px solid #dedede;
       align-items: center;
-      color: #003398;
-      padding: 9px;
+      color: #7b7c7e;
+      padding: 10px;
+      width: 36px;
+      max-width: 36px;
+      font-size: 16px;
+    }
+    .selectedIcon {
+      background-color: #003398;
+      color: #ffffff;
     }
   }
 }

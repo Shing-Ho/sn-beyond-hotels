@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 import { ReactComponent as BedIcon } from "icons/bed3.svg";
 import {FormattedMessage} from "react-intl";
 import {useSelector} from "react-redux";
