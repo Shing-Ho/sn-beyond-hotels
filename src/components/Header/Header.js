@@ -1,11 +1,11 @@
-import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import { MenuOutlined } from "@ant-design/icons";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { MenuOutlined } from '@ant-design/icons';
 import coreActions from 'store/core/actions';
-import { getSelectedRoomItems } from "../../store/booking/selectors";
+import { getSelectedRoomItems } from '../../store/booking/selectors';
 import logo from '../../images/simplenight-logo.png';
-import CartIcon from "../../icons/cart.svg";
-import styles from "./Header.module.scss";
+import CartIcon from '../../icons/cart.svg';
+import styles from './Header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Header = () => {
 
   const handleMenuButtonClick = () => {
     // dispatch(coreActions.toggleDrawerOpen());
-  }
+  };
 
   return (
     <header className={styles.header}>

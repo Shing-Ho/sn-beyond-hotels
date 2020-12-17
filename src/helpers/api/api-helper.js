@@ -9,15 +9,13 @@ export const api = axios.create({
   },
 });
 
-async function request({
-  method = 'get', url, params, data, headers
-}) {
+async function request({ method = 'get', url, params, data, headers }) {
   const response = await api.request({
     method,
     url,
     params,
     data,
-    headers
+    headers,
   });
   return response.data;
 }
@@ -35,7 +33,7 @@ export function post(url, data, headers) {
     method: 'post',
     url,
     data,
-    headers
+    headers,
   });
 }
 

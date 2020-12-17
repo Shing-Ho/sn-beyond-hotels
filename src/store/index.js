@@ -1,25 +1,25 @@
-import { combineReducers } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import { connectRouter } from "connected-react-router";
-import storage from "redux-persist/lib/storage";
+import { combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { connectRouter } from 'connected-react-router';
+import storage from 'redux-persist/lib/storage';
 
-import configureStore from "store/config";
-import history from "store/history";
+import configureStore from 'store/config';
+import history from 'store/history';
 
-import coreReducer from "store/core/reducers";
-import hotelReducer from "store/hotel/reducers";
-import bookingReducer from "store/booking/reducers";
+import coreReducer from 'store/core/reducers';
+import hotelReducer from 'store/hotel/reducers';
+import bookingReducer from 'store/booking/reducers';
 
 const rootPersistConfig = {
-  key: "root",
+  key: 'root',
   storage,
   whitelist: [],
 };
 
 const corePersistConfig = {
-  key: "core",
+  key: 'core',
   storage,
-  whitelist: ["locale"],
+  whitelist: ['locale'],
 };
 // const authPersistConfig = {
 //   key: 'auth',
@@ -34,20 +34,20 @@ const rootReducer = persistReducer(
     // auth: persistReducer(authPersistConfig, authReducer),
     hotel: persistReducer(
       {
-        key: "hotel",
+        key: 'hotel',
         storage,
       },
-      hotelReducer
+      hotelReducer,
     ),
     booking: persistReducer(
       {
-        key: "booking",
+        key: 'booking',
         storage,
       },
-      bookingReducer
+      bookingReducer,
     ),
     router: connectRouter(history),
-  })
+  }),
 );
 
 const initialState = window.initialReduxState;

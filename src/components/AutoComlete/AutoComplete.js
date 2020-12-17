@@ -1,16 +1,14 @@
-import React, { useState, useCallback } from "react";
-import { AutoComplete } from "antd";
-import { useDispatch } from "react-redux";
-import { debounce } from "lodash";
-import hotelActions from "../../store/hotel/actions";
+import React, { useState, useCallback } from 'react';
+import { AutoComplete } from 'antd';
+import { useDispatch } from 'react-redux';
+import { debounce } from 'lodash';
+import hotelActions from '../../store/hotel/actions';
 import styles from './AutoComplete.module.scss';
-import pin from "icons/pin.png";
+
 const getLocationText = (value) =>
-  `${value.location_name}${
-    value.province !== undefined && !Number(value.province)
-      ? `, ${value.province}`
-      : ""
-  }, ${value.iso_country_code}`;
+  `${value.location_name}${value.province !== undefined && !Number(value.province) ? `, ${value.province}` : ''}, ${
+    value.iso_country_code
+  }`;
 
 const Complete = ({ onSelect, value, clearData, styles: inputStyle = {} }) => {
   const [text, setText] = useState('');

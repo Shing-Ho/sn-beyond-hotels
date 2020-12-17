@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "antd";
-import cx from "classnames";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import moment from "moment";
-import { FormattedMessage } from "react-intl";
-import NumberInput from "components/NumberInput/NumberInput";
-import DatePicker from "components/DatePicker/DatePicker";
-import Divider from "components/Divider/Divider";
-import { ReactComponent as CloseIcon } from "icons/close-fill.svg";
-import hotelActions from "store/hotel/actions";
-import { getCurrency } from "store/core/selectors";
-import { commaFormat } from "helpers/utils";
-import styles from "./BookingSection.module.scss";
-import { Currencies } from "helpers/constants";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd';
+import cx from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import { FormattedMessage } from 'react-intl';
+import NumberInput from 'components/NumberInput/NumberInput';
+import DatePicker from 'components/DatePicker/DatePicker';
+import Divider from 'components/Divider/Divider';
+import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
+import hotelActions from 'store/hotel/actions';
+import { getCurrency } from 'store/core/selectors';
+import { commaFormat } from 'helpers/utils';
+import { Currencies } from 'helpers/constants';
+import styles from './BookingSection.module.scss';
 
 export default function BookingSection({
   className,
@@ -24,7 +24,7 @@ export default function BookingSection({
   setSelectedRooms,
   occupancy,
   startDate,
-  endDate
+  endDate,
 }) {
   const [bookFormValue, setBookFormValue] = useState({});
   const [showError, toggleError] = useState(null);
@@ -32,25 +32,22 @@ export default function BookingSection({
   const params = useParams();
   const currency = useSelector(getCurrency);
   const totalCost = selectedRooms.reduce((accumulator, room) => {
-    const roomCost =
-      room.total && room.total.amount > 0 ? Number(room.total.amount) : 0;
+    const roomCost = room.total && room.total.amount > 0 ? Number(room.total.amount) : 0;
     return accumulator + roomCost * room.roomCount;
   }, 0);
-  const currencySymbol = Currencies[selectedRooms[0]?.total?.currency || 'USD']?.symbol
+  const currencySymbol = Currencies[selectedRooms[0]?.total?.currency || 'USD']?.symbol;
 
   useEffect(() => {
-    if(startDate && endDate) {
-      if(startDate !== bookFormValue.startDate && endDate !== bookFormValue.endDate) {
-        console.log('startDate', startDate)
-        console.log('endDate', endDate)
+    if (startDate && endDate) {
+      if (startDate !== bookFormValue.startDate && endDate !== bookFormValue.endDate) {
         setBookFormValue({
           ...bookFormValue,
           checkIn: startDate,
-          checkOut: endDate
-        })
+          checkOut: endDate,
+        });
       }
     }
-  }, [startDate, endDate])
+  }, [startDate, endDate]);
 
   const handleBookFormChange = (name) => (value) => {
     setBookFormValue({
@@ -60,24 +57,23 @@ export default function BookingSection({
   };
 
   const onSearch = () => {
+    const checkInDate = bookFormValue.checkIn
+      ? moment(bookFormValue.checkIn).format('YYYY-MM-DD')
+      : moment().format('YYYY-MM-DD');
 
-  const start_date = bookFormValue.checkIn
-    ? moment(bookFormValue.checkIn).format("YYYY-MM-DD")
-    : moment().format("YYYY-MM-DD");
-
-  const end_date = bookFormValue.checkOut
-    ? moment(bookFormValue.checkOut).format("YYYY-MM-DD")
-    : moment().add(1, "day").format("YYYY-MM-DD");
+    const checkOutDate = bookFormValue.checkOut
+      ? moment(bookFormValue.checkOut).format('YYYY-MM-DD')
+      : moment().add(1, 'day').format('YYYY-MM-DD');
     const payload = {
       hotel_id: params.id,
-      start_date: start_date,
-      end_date: end_date,
+      start_date: checkInDate,
+      end_date: checkOutDate,
       occupancy: {
         adults: bookFormValue.adultCount || 1,
         children: bookFormValue.childrenCount || 0,
         num_rooms: bookFormValue.roomCount || 1,
       },
-      language: "en",
+      language: 'en',
       currency: currency.value,
     };
     dispatch(hotelActions.searchHotelById(params.id, payload));
@@ -86,7 +82,7 @@ export default function BookingSection({
 
   const onBookNowClick = () => {
     if (selectedRooms.length) {
-      onBookClick && onBookClick();
+      if (onBookClick) onBookClick();
     } else {
       toggleError(true);
     }
@@ -95,7 +91,9 @@ export default function BookingSection({
   return (
     <div className={cx(styles.root, className)}>
       <div className={styles.bookContent}>
-        <h4><FormattedMessage id="detailPage.modifySearch" /></h4>
+        <h4>
+          <FormattedMessage id="detailPage.modifySearch" />
+        </h4>
         <div className={styles.adultChildWrapper}>
           <div className={styles.adult}>
             <NumberInput defaultValue={2} onChange={handleBookFormChange('adultCount')} />
@@ -112,10 +110,7 @@ export default function BookingSection({
         </div>
         <Divider margin={20} />
         <div>
-          <NumberInput
-            defaultValue={1}
-            onChange={handleBookFormChange("roomCount")}
-          />
+          <NumberInput defaultValue={1} onChange={handleBookFormChange('roomCount')} />
           <span>
             <FormattedMessage id="rooms" defaultMessage="Rooms" />
           </span>
@@ -130,7 +125,7 @@ export default function BookingSection({
               <DatePicker
                 defaultValue={bookFormValue.checkIn || moment()}
                 value={bookFormValue.checkIn}
-                onChange={handleBookFormChange("checkIn")}
+                onChange={handleBookFormChange('checkIn')}
               />
             )}
           </div>
@@ -139,9 +134,9 @@ export default function BookingSection({
               <FormattedMessage id="checkOut" defaultMessage="Check Out" />
             </span>
             <DatePicker
-              defaultValue={bookFormValue.checkOut || moment().add(1, "day")}
+              defaultValue={bookFormValue.checkOut || moment().add(1, 'day')}
               value={bookFormValue.checkOut}
-              onChange={handleBookFormChange("checkOut")}
+              onChange={handleBookFormChange('checkOut')}
             />
           </div>
         </div>
@@ -159,15 +154,9 @@ export default function BookingSection({
               {occupancy.num_rooms} {room.name}
               <span>
                 {nights > 1 ? (
-                  <FormattedMessage
-                    id="detailPage.bookingSection.nights"
-                    values={{ nights }}
-                  />
+                  <FormattedMessage id="detailPage.bookingSection.nights" values={{ nights }} />
                 ) : (
-                  <FormattedMessage
-                    id="detailPage.bookingSection.night"
-                    values={{ nights }}
-                  />
+                  <FormattedMessage id="detailPage.bookingSection.night" values={{ nights }} />
                 )}
                 <CloseIcon onClick={onRemoveRoom(room.code, true)} />
               </span>
@@ -186,10 +175,7 @@ export default function BookingSection({
       </div>
       {showError && (
         <p className={styles.errorText}>
-          <FormattedMessage
-            id="detailPage.bookingSection.noRoomsError"
-            defaultMessage="Please select a room"
-          />
+          <FormattedMessage id="detailPage.bookingSection.noRoomsError" defaultMessage="Please select a room" />
         </p>
       )}
       <Button className={styles.bookNow} onClick={onBookNowClick}>

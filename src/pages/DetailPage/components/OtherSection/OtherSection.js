@@ -2,9 +2,9 @@ import React from 'react';
 import cx from 'classnames';
 import { Row, Col } from 'antd';
 import ListTileItem from 'components/ListTileItem/ListTileItem';
+import { ReactComponent as BedIcon, ReactComponent as BalloonIcon } from 'icons/bed3.svg';
+
 import DetailHeader from '../DetailHeader/DetailHeader';
-import { ReactComponent as BedIcon } from 'icons/bed3.svg';
-import { ReactComponent as BalloonIcon } from 'icons/bed3.svg';
 import styles from './OtherSection.module.scss';
 
 export default function OtherSection({ className, type = 'HOTEL', currency }) {

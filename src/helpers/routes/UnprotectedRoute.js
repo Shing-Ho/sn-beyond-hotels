@@ -7,9 +7,7 @@ export default function UnprotectedRoute({ component, children, ...rest }) {
   const { token } = useSelector(getAuth);
 
   if (!token) {
-    return component
-      ? <Route {...rest} component={component} />
-      : <Route {...rest}>{children}</Route>;
+    return component ? <Route {...rest} component={component} /> : <Route {...rest}>{children}</Route>;
   }
 
   return <Redirect to="/" />;
