@@ -222,12 +222,7 @@ const DashboardPage = () => {
     <Page>
       <div className={styles.root}>
         <div className={styles.container}>
-          <TopFilters
-            filter={filter}
-            setFilter={setFilter}
-            initialState={initialState}
-            displayCount={searchType === 'hotels'}
-          />
+          <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
           <DashboardFilter searchType={searchType} setSearchType={setSearchType} searchTypeData={searchTypeData} />
           <SearchAndView
             searchText={searchText}
