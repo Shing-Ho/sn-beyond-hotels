@@ -82,11 +82,13 @@ const DetailPage = () => {
       if (urls.currency) {
         payload.currency = urls.currency;
       }
+      // eslint-disable-next-line no-debugger
+      debugger;
       dispatch(hotelActions.searchHotelById(params.id, payload));
       // dispatch(hotelActions.searchHotels(payload));
     } else {
       // dispatch(hotelActions.searchHotels());
-      // dispatch(bookingActions.setBookingPayload(""));
+      // dispatch(bookingActions.setBookingPayload(''));
     }
   }, [urlParams, dispatch, params.id]);
 
@@ -106,7 +108,7 @@ const DetailPage = () => {
       dispatch(hotelActions.searchHotelById(params.id, payload));
     } else {
       const maps = {};
-      hotel.room_types.forEach((type) => {
+      (hotel.room_types || []).forEach((type) => {
         const room = (preSelectedRooms ? preSelectedRooms.room_rate : []).find((r) => r.code === type.code);
         maps[type.code] = room ? room.room_count || 1 : 1;
       });
