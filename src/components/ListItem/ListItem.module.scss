@@ -1,18 +1,18 @@
-@import "styles";
+@import 'styles';
 
 .resultItem {
   display: flex;
   flex-direction: row;
   align-items: center;
   border: solid 1px $borderGrayColor;
-@media screen and (max-width: 992px) {
-  flex-direction: column;
-}
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
 
   .mainImage {
     flex-shrink: 0;
     overflow: hidden;
-    height: 260px;
+    align-self: stretch;
     width: 260px;
     background-size: cover;
     @media screen and (max-width: 767px) {
@@ -24,14 +24,11 @@
     }
   }
 
-  img{
+  img {
     height: 100%;
     width: 100%;
-    background-size: cover;
+    object-fit: cover;
   }
-
-
-
 
   .right {
     position: relative;
@@ -48,11 +45,11 @@
       border-radius: 50%;
       display: inline-block;
       border: 2px solid white;
-    @media screen and (max-width:992px) {
-      top: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+      @media screen and (max-width: 992px) {
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
       > svg {
         position: relative;
         left: 8px;
@@ -64,7 +61,7 @@
       height: 100%;
       padding: 30px 40px;
       overflow: hidden;
-      @media screen and (max-width:767px) {
+      @media screen and (max-width: 767px) {
         padding: 16px;
         margin-top: 15px;
       }
@@ -74,14 +71,13 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        @media screen and (max-width:767px) {
+        @media screen and (max-width: 767px) {
           flex-direction: column;
           h3 {
             font-size: 18px !important;
             text-align: center;
             font-weight: bold !important;
             color: #7b7c7e;
-
           }
         }
 
@@ -95,18 +91,18 @@
         .rateInfo {
           display: flex;
           flex-direction: column;
-          @media screen and (max-width: 767px){
+          @media screen and (max-width: 767px) {
             flex-direction: row;
             width: 100%;
             justify-content: space-between;
             display: flex;
             flex-wrap: wrap;
-            .flex-vertical-center,  .itemRate {
+            .flex-vertical-center,
+            .itemRate {
               font-size: 16px !important;
               color: $primaryColor !important;
             }
-            span{
-
+            span {
               color: #003398;
             }
           }
@@ -160,7 +156,7 @@
 
       .rating {
         width: 180px;
-        @media screen and (max-width: 567px){
+        @media screen and (max-width: 567px) {
           width: 137px;
         }
       }

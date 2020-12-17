@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { push } from "connected-react-router";
 import { Popover } from "antd";
+import cx from 'classnames';
 import Rating from "../Rating/Rating";
 import Button from "../Button/Button";
 import IconButton from "../IconButton/IconButton";
@@ -12,12 +13,35 @@ import { ReactComponent as InfoIcon } from "icons/info.svg";
 import GoogleMap from "components/GoogleMap/GoogleMap";
 import hotelActions from "store/hotel/actions";
 import { commaFormat } from "helpers/utils";
-import styles from "./ResultItem.module.scss";
+import styles from "./ListItem.module.scss";
 // import { ReactComponent as UserIcon } from "../../icons/user.svg";
 // import { ReactComponent as WifiIcon } from "../../icons/wifi.svg";
 // import { ReactComponent as RestaurantIcon } from "../../icons/restaurant.svg";
 
-const ResultItem = ({ hotel, currency }) => {
+const TaxFeeComponent = ({ data }) => (
+  <div>
+    <p>
+      <FormattedMessage
+        id="searchPage.filters.resultList.resultItem.rate"
+        values={{ rate: commaFormat(data.rate) }}
+      />
+    </p>
+    <p>
+      <FormattedMessage
+        id="searchPage.filters.resultList.resultItem.base"
+        values={{ base: commaFormat(data.base) }}
+      />
+    </p>
+    <p>
+      <FormattedMessage
+        id="searchPage.filters.resultList.resultItem.tax"
+        values={{ tax: commaFormat(data.tax) }}
+      />
+    </p>
+  </div>
+);
+
+const ListItem = ({ data, className, currency }) => {
   const [mapOpened, openMap] = useState(false);
   const dispatch = useDispatch();
 
@@ -26,39 +50,15 @@ const ResultItem = ({ hotel, currency }) => {
   };
 
   const onViewClick = () => {
-    dispatch(hotelActions.selectHotel(hotel));
-    dispatch(push(`${window.BASE_ROUTE || ""}/hotels/${hotel.hotel_id}`));
-    // history.push(`/hotels/${hotel.hotel_id}`);
+    dispatch(hotelActions.selectHotel(data));
+    dispatch(push(`${window.BASE_ROUTE || ""}/hotels/${data.id}`));
   };
 
-  const taxesFees = (
-    <div>
-      <p>
-        <FormattedMessage
-          id="searchPage.filters.resultList.resultItem.rate"
-          values={{ rate: commaFormat(hotel.avg_nightly_rate) }}
-        />
-      </p>
-      <p>
-        <FormattedMessage
-          id="searchPage.filters.resultList.resultItem.base"
-          values={{ base: commaFormat(hotel.avg_nightly_base) }}
-        />
-      </p>
-      <p>
-        <FormattedMessage
-          id="searchPage.filters.resultList.resultItem.tax"
-          values={{ tax: commaFormat(hotel.avg_nightly_tax) }}
-        />
-      </p>
-    </div>
-  );
-
   return (
-    <div className={styles.resultContainer}>
+    <div className={cx(styles.resultContainer, className)}>
       <div className={styles.resultItem}>
         <div className={styles.mainImage}>
-          <img src={hotel.hotel_details.thumbnail_url} alt="Result Item" />
+          <img src={data.image} alt="Result Item" />
         </div>
 
         <div className={styles.right}>
@@ -67,43 +67,45 @@ const ResultItem = ({ hotel, currency }) => {
           </div>
           <div className={styles.content}>
             <div className={styles.line}>
-              <h3 className={styles.itemName}>{hotel.hotel_details.name}</h3>
+              <h3 className={styles.itemName}>{data.name}</h3>
               <div className={styles.rateInfo}>
                 <div className="flex-vertical-center">
                   <span>
                     <FormattedMessage id="average" defaultMessage="AVERAGE" />
                   </span>
                   <span className={styles.itemRate}>
-                    {currency?.symbol + commaFormat(hotel.avg_nightly_rate)}
+                    {currency?.symbol + commaFormat(data.rate)}
                   </span>
                 </div>
-                <div className={`${styles.taxesAndFees} flex-vertical-center`}>
-                  <Popover content={taxesFees}>
-                    <InfoIcon className={styles.infoIcon} />
-                  </Popover>
-                  <span>
-                    <FormattedMessage
-                      id="taxesAndFees"
-                      defaultMessage="Taxes and Fees"
-                    />
-                  </span>
-                </div>
+                {(data.base || data.tax) &&
+                  <div className={`${styles.taxesAndFees} flex-vertical-center`}>
+                    <Popover content={<taxFeeComponent data={data} />}>
+                      <InfoIcon className={styles.infoIcon} />
+                    </Popover>
+                    <span>
+                      <FormattedMessage
+                        id="taxesAndFees"
+                        defaultMessage="Taxes and Fees"
+                      />
+                    </span>
+                  </div>
+                }
               </div>
             </div>
 
             <div>
               <Rating
                 scoreonly
-                score={hotel.hotel_details.star_rating}
+                score={data.rating}
                 className={styles.rating}
               />
             </div>
             <div className={`${styles.line} ${styles.baseline}`}>
               <span className={styles.description}>
-                {hotel.hotel_details.property_description}
+                {data.description}
               </span>
               <div className={styles.actions}>
-                <IconButton Icon={PinIcon} onClick={toggleMap} />
+                {data.geolocation && <IconButton Icon={PinIcon} onClick={toggleMap} />}
                 <Button onClick={onViewClick}>
                   <FormattedMessage id="view" defaultMessage="View" />
                 </Button>
@@ -116,14 +118,14 @@ const ResultItem = ({ hotel, currency }) => {
         <GoogleMap
           height={300}
           center={[
-            hotel.hotel_details.geolocation.latitude,
-            hotel.hotel_details.geolocation.longitude,
+            data.geolocation.latitude,
+            data.geolocation.longitude,
           ]}
-          coords={[hotel.hotel_details.geolocation]}
+          coords={[data.geolocation]}
         />
       )}
     </div>
   );
 };
 
-export default ResultItem;
+export default ListItem;

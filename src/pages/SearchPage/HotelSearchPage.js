@@ -6,7 +6,7 @@ import { Spin, Drawer } from "antd";
 import moment from "moment";
 import Page from "components/Page/Page";
 import TopFilters from "components/TopFilters/TopFilters";
-import LeftFilters from "./components/Filters/Filters";
+import HotelLeftFilters from "./components/Filters/HotelLeftFilters";
 import Results from "./components/Results/Results";
 import hotelActions from "store/hotel/actions";
 import {
@@ -16,9 +16,9 @@ import {
 } from "store/hotel/selectors";
 import { getCurrency } from "store/core/selectors";
 import bookingActions from "store/booking/actions";
-import styles from "./SearchPage.module.scss";
+import styles from "./HotelSearchPage.module.scss";
 
-const SearchPage = () => {
+const HotelSearchPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const fetchingRecords = useSelector(getFetchingRecords);
@@ -88,10 +88,10 @@ const SearchPage = () => {
               height="90%"
               width="100%"
             >
-              <LeftFilters currency={currency} />
+              <HotelLeftFilters currency={currency} />
             </Drawer>
             <div className={styles.leftFilter}>
-              <LeftFilters currency={currency} />
+              <HotelLeftFilters currency={currency} />
             </div>
             {loading || fetchingRecords ? (
               <div className={styles.loaderContainer}>
@@ -107,4 +107,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default HotelSearchPage;

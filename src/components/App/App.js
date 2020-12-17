@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './App.component.scss';
-import SearchPage from "pages/SearchPage/SearchPage";
+import SearchPage from "pages/SearchPage/HotelSearchPage";
 
 function App() {
   return (
