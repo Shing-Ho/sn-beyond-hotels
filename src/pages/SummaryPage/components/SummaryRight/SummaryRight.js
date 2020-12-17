@@ -1,21 +1,15 @@
 import React from 'react';
-import _ from 'lodash'
+import _ from 'lodash';
 
 // import FormWithHeader from 'components/FormWithHeader/FormWithHeader';
 import styles from './SummaryRight.module.scss';
 
-export default function SummaryRight({paymentPayload, bookingHotelPayload}) {
-  const getTotalPrice = () => {
-    return _.get(bookingHotelPayload, 'reservation.room_rate.total.amount')
-  }
+export default function SummaryRight({ bookingHotelPayload }) {
+  const getTotalPrice = () => _.get(bookingHotelPayload, 'reservation.room_rate.total.amount');
 
-  const getSubTotalPrice = () => {
-    return _.get(bookingHotelPayload, 'reservation.room_rate.total_base_rate.amount')
-  }
+  const getSubTotalPrice = () => _.get(bookingHotelPayload, 'reservation.room_rate.total_base_rate.amount');
 
-  const getTaxPrice = () => {
-    return _.get(bookingHotelPayload, 'reservation.room_rate.total_tax_rate.amount')
-  }
+  const getTaxPrice = () => _.get(bookingHotelPayload, 'reservation.room_rate.total_tax_rate.amount');
   return (
     <div>
       {/* <FormWithHeader left="Payments Methods" right={''}>
@@ -44,5 +38,5 @@ export default function SummaryRight({paymentPayload, bookingHotelPayload}) {
         </div>
       </div>
     </div>
-  )
+  );
 }

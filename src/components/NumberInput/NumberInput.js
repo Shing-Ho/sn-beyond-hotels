@@ -15,7 +15,7 @@ const NumberInput = ({ defaultValue = 1, className, name, onChange }) => {
       return;
     }
     setValue(newValue);
-    onChange(name)(newValue)
+    onChange(name)(newValue);
   };
 
   return (
@@ -29,6 +29,6 @@ const NumberInput = ({ defaultValue = 1, className, name, onChange }) => {
       </Button>
     </Input.Group>
   );
-}
+};
 
 export default NumberInput;

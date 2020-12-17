@@ -1,16 +1,12 @@
-import React from "react";
-import { Row, Col } from "antd";
+import React from 'react';
+import { Row, Col } from 'antd';
 
-import { ReactComponent as InfoIcon } from "icons/info.svg";
-import PrimaryContactForm from "../PrimaryContactForm/PrimaryContactForm";
-import styles from "./PrimaryContactFormContainer.module.scss";
-import { Checkbox } from "components/CheckboxGroup/CheckboxGroup";
+import { ReactComponent as InfoIcon } from 'icons/info.svg';
+import { Checkbox } from 'components/CheckboxGroup/CheckboxGroup';
+import PrimaryContactForm from '../PrimaryContactForm/PrimaryContactForm';
+import styles from './PrimaryContactFormContainer.module.scss';
 
-export default function PrimaryContactFormContainer({
-  primaryContact,
-  setPrimaryContact,
-  phoneError
-}) {
+export default function PrimaryContactFormContainer({ primaryContact, setPrimaryContact, phoneError }) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>Primary Contact</div>
@@ -32,9 +28,8 @@ export default function PrimaryContactFormContainer({
               <div className={styles.infoRight}>
                 <InfoIcon className={styles.infoIcon} />
                 <span>
-                  Primary Contact is the lead traveler going on the tour. This
-                  name needs to match the name on the voucher for the tour
-                  operator.
+                  Primary Contact is the lead traveler going on the tour. This name needs to match the name on the
+                  voucher for the tour operator.
                 </span>
               </div>
             </Col>

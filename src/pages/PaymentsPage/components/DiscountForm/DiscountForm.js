@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Form, Input } from "antd";
-import cx from "classnames";
-import FormItem from "components/FormItem/FormItem";
-import Button from "components/Button/Button";
-import { ReactComponent as CloseIcon } from "icons/close-fill.svg";
-import styles from "./DiscountForm.module.scss";
+/* eslint-disable react/no-array-index-key */
+import React, { useState } from 'react';
+import { Form, Input } from 'antd';
+import cx from 'classnames';
+
+import FormItem from 'components/FormItem/FormItem';
+import Button from 'components/Button/Button';
+import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
+import styles from './DiscountForm.module.scss';
 
 function DiscountItem({ data, total = 0, onRemove }) {
   return (
@@ -45,12 +47,7 @@ export default function DiscountForm({ className, totalAmount }) {
       </Form>
       <div>
         {items.map((item, i) => (
-          <DiscountItem
-            key={`discountItem_${i}`}
-            data={item}
-            total={totalAmount}
-            onRemove={handleRemove(i)}
-          />
+          <DiscountItem key={`discountItem_${i}`} data={item} total={totalAmount} onRemove={handleRemove(i)} />
         ))}
       </div>
     </div>

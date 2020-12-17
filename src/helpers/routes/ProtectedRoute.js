@@ -5,9 +5,7 @@ import authActions from 'store/auth/actions';
 import { getAuth } from 'store/auth/selectors';
 import { decodeJWT } from 'utils/auth';
 
-export default function ProtectedRoute({
-  component, wrapper, children, ...rest
-}) {
+export default function ProtectedRoute({ component, wrapper, children, ...rest }) {
   const { token } = useSelector(getAuth);
   const dispatch = useDispatch();
 
@@ -20,9 +18,7 @@ export default function ProtectedRoute({
         throw new Error('Token Expired');
       }
 
-      return component && !wrapper
-        ? <Route {...rest} component={component} />
-        : <Route {...rest}>{children}</Route>;
+      return component && !wrapper ? <Route {...rest} component={component} /> : <Route {...rest}>{children}</Route>;
     }
   } catch (err) {
     dispatch(authActions.logout());

@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./CategoriesMenu.module.scss";
+import React from 'react';
+import styles from './CategoriesMenu.module.scss';
 
 const CategoriesMenu = () => (
   <div className={styles.categoriesMenu}>

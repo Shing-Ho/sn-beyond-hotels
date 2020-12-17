@@ -1,9 +1,8 @@
 import React from 'react';
 
-// import Button from 'components/Button/Button';
-import styles from './SummaryHeader.module.scss'
+import styles from './SummaryHeader.module.scss';
 
-export default function SummaryHeader({items}) {
+export default function SummaryHeader() {
   return (
     <div className={styles.root}>
       <div className={styles.main}>
@@ -11,24 +10,7 @@ export default function SummaryHeader({items}) {
           <span className={styles.tick}>✓</span>
           <span>Order Confirmed</span>
         </div>
-        {/* <div className={styles.right}>
-          {
-            items.map(item => (
-              <div key={item.label} className={styles.item}>
-                <div className={styles.label}>{item.label}</div>
-                <div className={styles.value}>{item.value.toString()}</div>
-              </div>
-            ))
-          }
-          <div className={styles.button}>
-            <Button>
-              <div>
-                Share
-              </div>
-            </Button>
-          </div>
-        </div> */}
       </div>
     </div>
-  )
+  );
 }

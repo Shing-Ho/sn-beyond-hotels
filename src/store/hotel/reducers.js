@@ -1,5 +1,5 @@
-import { handleActions } from "redux-actions";
-import hotelActions from "store/hotel/actions";
+import { handleActions } from 'redux-actions';
+import hotelActions from 'store/hotel/actions';
 
 export const hotelReducer = handleActions(
   new Map([
@@ -22,7 +22,7 @@ export const hotelReducer = handleActions(
     ],
     [
       hotelActions.getHotelsDataRequest,
-      (state, action) => ({
+      (state) => ({
         ...state,
         loading: true,
         fetchingRecords: true,
@@ -88,7 +88,7 @@ export const hotelReducer = handleActions(
       hotelActions.setTopFilters,
       (state, action) => ({
         ...state,
-        topFilters: action.payload
+        topFilters: action.payload,
       }),
     ],
     [
@@ -106,8 +106,8 @@ export const hotelReducer = handleActions(
         cancelLookupResponse: {},
         loading: false,
         cancelOrderResponse: {},
-        error: ''
-      })
+        error: '',
+      }),
     ],
     [
       hotelActions.cancelLookupSuccess,
@@ -140,7 +140,7 @@ export const hotelReducer = handleActions(
     selectedHotel: null,
     cancelLookupResponse: {},
     cancelOrderResponse: {},
-  }
+  },
 );
 
 export default hotelReducer;

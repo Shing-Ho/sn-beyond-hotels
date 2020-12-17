@@ -1,17 +1,8 @@
-import React from "react";
+import React from 'react';
 import cx from 'classnames';
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
-const Button = ({
-  children,
-  size,
-  invert,
-  variant,
-  fullWidth,
-  noRound,
-  halfWidth,
-  ...otherProps
-}) => (
+const Button = ({ children, size, invert, variant, fullWidth, noRound, halfWidth, ...otherProps }) => (
   <button
     className={cx(styles.button, {
       [styles[size]]: true,

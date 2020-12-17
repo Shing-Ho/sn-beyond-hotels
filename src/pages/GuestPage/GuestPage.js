@@ -1,29 +1,23 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Form } from "antd";
-import history from "store/history";
-import ItineraryDetail from "../PaymentsPage/components/ItineraryDetail/ItineraryDetail";
-import Page from "components/Page/Page";
-import bookingActions from "store/booking/actions";
-import Button from "components/Button/Button";
-import Drawer from "components/Drawer/Drawer";
-import GuestHeader from "./components/GuestHeader/GuestHeader";
-import AdditionalForm from "./components/AdditionalForm/AdditionalForm";
-import PrimaryContactFormContainer from "./components/PrimaryContactFormContainer/PrimaryContactFormContainer";
-import {
-  getBookingPayload,
-  getSelectedHotel,
-  getSelectedRoomItems,
-  getTotalBookingAmount,
-} from "store/booking/selectors";
-import { getCurrency } from "store/core/selectors";
-import styles from "./GuestPage.module.scss";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col, Form } from 'antd';
+import history from 'store/history';
+import Page from 'components/Page/Page';
+import bookingActions from 'store/booking/actions';
+import Button from 'components/Button/Button';
+import Drawer from 'components/Drawer/Drawer';
+import { getSelectedHotel, getSelectedRoomItems, getTotalBookingAmount } from 'store/booking/selectors';
+import { getCurrency } from 'store/core/selectors';
+import GuestHeader from './components/GuestHeader/GuestHeader';
+import AdditionalForm from './components/AdditionalForm/AdditionalForm';
+import PrimaryContactFormContainer from './components/PrimaryContactFormContainer/PrimaryContactFormContainer';
+import ItineraryDetail from '../PaymentsPage/components/ItineraryDetail/ItineraryDetail';
+import styles from './GuestPage.module.scss';
 
 export default function GuestPage() {
-  const formKey = "guestInformation";
+  const formKey = 'guestInformation';
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const bookings = useSelector(getBookingPayload);
   const selectedHotel = useSelector(getSelectedHotel);
   const selectedRooms = useSelector(getSelectedRoomItems);
   const totalAmount = useSelector(getTotalBookingAmount);
@@ -31,16 +25,7 @@ export default function GuestPage() {
   const [primaryContact, setPrimaryContact] = useState({});
   const [phoneError, setPhoneError] = useState('');
   // set primary checked to true as default
-  const [items, setItems] = useState(
-    (selectedRooms || []).map((v) => {
-      v.primary = true;
-      return v;
-    })
-  );
-
-  if (!bookings) {
-    // history.push("hotels");
-  }
+  const [items, setItems] = useState((selectedRooms || []).map((v) => ({ ...v, primary: true })));
 
   const changeItem = (cItem, index) => {
     const tItem = [...items];
@@ -48,31 +33,29 @@ export default function GuestPage() {
     setItems(tItem);
   };
 
-
   const isNumber = (numberStr) => {
     let flag = true;
-    for (let i=0; i<numberStr.length; i++) {
-      if(numberStr[i] >= '0' && numberStr[i] <= '9') {}
-      else {
+    for (let i = 0; i < numberStr.length; i += 1) {
+      if (numberStr[i] < '0' && numberStr[i] > '9') {
         flag = false;
       }
     }
     return flag;
-  }
+  };
 
   const handleFormSubmit = async () => {
     try {
       await form.validateFields();
 
-      if(!isNumber(primaryContact.phone)) {
-        setPhoneError('Please input only number in this field')
+      if (!isNumber(primaryContact.phone)) {
+        setPhoneError('Please input only number in this field');
         return;
       }
 
       const allConatct = { primaryContact, items };
       dispatch(bookingActions.setGuestContactInformation(allConatct));
 
-      history.push("payments");
+      history.push('payments');
     } catch (error) {
       // console.log(error);
     }
@@ -95,10 +78,7 @@ export default function GuestPage() {
                 phoneError={phoneError}
               />
               {items.map((item, index) => (
-                <div
-                  key={`additionalForm_${index + 1}`}
-                  className={styles.detail}
-                >
+                <div key={`additionalForm_${index + 1}`} className={styles.detail}>
                   <AdditionalForm
                     item={item}
                     index={index + 1}
@@ -148,9 +128,7 @@ export default function GuestPage() {
           footer={
             <div className={styles.drawerBottom}>
               <div className={styles.drawalTotalSection}>
-                <span>
-                  {`${currency?.symbol} ${totalAmount.toFixed(2)}`}
-                </span>
+                <span>{`${currency?.symbol} ${totalAmount.toFixed(2)}`}</span>
                 <span>Total</span>
               </div>
               <Button size="large" onClick={handleFormSubmit}>
