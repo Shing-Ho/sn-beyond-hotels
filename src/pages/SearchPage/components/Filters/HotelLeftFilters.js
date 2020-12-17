@@ -14,11 +14,11 @@ import hotelActions from 'store/hotel/actions';
 import { getFilters } from 'store/hotel/selectors';
 import popularBrandsJson from 'helpers/jsons/popular-brands.json';
 
-import styles from './Filters.module.scss';
+import styles from './HotelLeftFilters.module.scss';
 
 const popularBrandOptions = Object.keys(popularBrandsJson);
 
-const Filters = ({ currency }) => {
+const HotelLeftFilters = ({ currency }) => {
 	const [ form ] = Form.useForm();
 	const intl = useIntl();
 	const dispatch = useDispatch();
@@ -173,4 +173,4 @@ const Filters = ({ currency }) => {
 	);
 };
 
-export default Filters;
+export default HotelLeftFilters;
