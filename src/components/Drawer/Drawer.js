@@ -1,19 +1,11 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Drawer } from "antd";
-import { getDrawerOpen } from "store/core/selectors";
-import coreActions from "store/core/actions";
-import styles from "./Drawer.module.scss";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Drawer } from 'antd';
+import { getDrawerOpen } from 'store/core/selectors';
+import coreActions from 'store/core/actions';
+import styles from './Drawer.module.scss';
 
-const CustomDrawer = ({
-  header,
-  footer,
-  children,
-  placement,
-  closable,
-  onClose,
-  className,
-}) => {
+const CustomDrawer = ({ header, footer, children, placement, closable, onClose, className }) => {
   const drawerOpen = useSelector(getDrawerOpen);
   const dispatch = useDispatch();
 
@@ -35,12 +27,11 @@ const CustomDrawer = ({
         height: 100,
         padding: '26px 20px 26px 20px',
         backgroundColor: '#f4f4f4',
-        borderBottom: 'solid 1px #c6c6c6'
+        borderBottom: 'solid 1px #c6c6c6',
       }}
       footer={footer}
       footerStyle={{
         height: 100,
-        padding: '26px 20px 26px 20px',
         backgroundColor: '#f4f4f4',
         borderTop: 'solid 1px #c6c6c6',
         padding: 0,

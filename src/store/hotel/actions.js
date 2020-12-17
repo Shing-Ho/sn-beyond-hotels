@@ -1,12 +1,12 @@
-import { createActions } from "redux-actions";
-import moment from "moment";
+import { createActions } from 'redux-actions';
+import moment from 'moment';
 
 import coreActions from 'store/core/actions';
-import * as API from "helpers/api";
-import { filterHotels, getVisibleHotels } from "helpers/utils";
+import * as API from 'helpers/api';
+import { filterHotels, getVisibleHotels } from 'helpers/utils';
 
 const options = {
-  prefix: "HOTELS",
+  prefix: 'HOTELS',
 };
 
 const hotelActions = createActions(
@@ -22,12 +22,12 @@ const hotelActions = createActions(
     SET_COUNT: undefined,
     UPDATE_FILTERS: undefined,
     SELECT_HOTEL: undefined,
-    SET_TOP_FILTERS:undefined,
+    SET_TOP_FILTERS: undefined,
     CANCEL_LOOKUP_SUCCESS: undefined,
     CANCEL_ORDER_SUCCESS: undefined,
     CLEAR_STATE: undefined,
   },
-  options
+  options,
 );
 
 const onPageChange = (page, pageSize) => (dispatch, getState) => {
@@ -40,11 +40,9 @@ const onPageChange = (page, pageSize) => (dispatch, getState) => {
   dispatch(hotelActions.setVisibleHotels(visibleHotels));
 };
 
-const topFilterData = (payload) => (dispatch, getState) =>{
+const topFilterData = (payload) => (dispatch) => {
   dispatch(hotelActions.setTopFilters(payload));
-}
-
-
+};
 
 const onFilterChange = (changes) => (dispatch, getState) => {
   const {
@@ -70,28 +68,30 @@ const searchHotels = (requestObj) => async (dispatch, getState) => {
       payload = requestObj;
     } else {
       payload = {
-        location_id: "5128581",
-        start_date: moment().add(1, "day").format("YYYY-MM-DD"),
-        end_date: moment().add(2, "day").format("YYYY-MM-DD"),
+        location_id: '5128581',
+        start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+        end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
         occupancy: {
           adults: 2,
           children: 0,
         },
-        language: "en",
+        language: 'en',
       };
     }
     if (payload.currency) {
       dispatch(coreActions.setCurrency(payload.currency));
     } else {
       // use current state's currency
-      const { core: { currency } } = getState();
+      const {
+        core: { currency },
+      } = getState();
       payload.currency = currency;
     }
-    let data = await API.searchHotels(payload);
+    const data = await API.searchHotels(payload);
     dispatch(hotelActions.getHotelsDataSuccess(data));
     const filterObj = {};
-    if(payload.hotel_id) {
-      filterObj.hotel_id = payload.hotel_id
+    if (payload.hotel_id) {
+      filterObj.hotel_id = payload.hotel_id;
     }
     dispatch(onFilterChange(filterObj));
   } catch (error) {

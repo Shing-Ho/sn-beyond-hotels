@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Pagination from "components/Pagination/Pagination";
 import ListItem from "components/ListItem/ListItem";
@@ -11,7 +11,7 @@ import {
   getFormattedVisibleHotels,
 } from "store/hotel/selectors";
 
-import styles from "./Results.module.scss";
+import styles from './Results.module.scss';
 
 const ResultsList = ({ filteredHotels, currency }) => {
   let hotels = useSelector(getHotels);

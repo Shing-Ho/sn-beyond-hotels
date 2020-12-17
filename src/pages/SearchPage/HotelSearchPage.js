@@ -21,19 +21,19 @@ import styles from "./HotelSearchPage.module.scss";
 
 const initialState = {
   location: {
-    location_id: "5128581",
-    location_name: "New York City",
-    iso_country_code: "USA",
+    location_id: '5128581',
+    location_name: 'New York City',
+    iso_country_code: 'USA',
   },
-  start_date: moment().add(1, "day").format("YYYY-MM-DD"),
-  end_date: moment().add(2, "day").format("YYYY-MM-DD"),
+  start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+  end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
   occupancy: {
     adults: 2,
     children: 0,
   },
   nights: 1,
-  language: "en",
-  currency: "USD",
+  language: 'en',
+  currency: 'USD',
 };
 
 const HotelSearchPage = ({ noHeader, noFooter, display }) => {
@@ -41,7 +41,6 @@ const HotelSearchPage = ({ noHeader, noFooter, display }) => {
   const loading = useSelector(getLoading);
   const fetchingRecords = useSelector(getFetchingRecords);
   const currency = useSelector(getCurrency);
-  const error = useSelector(getError);
   const params = useLocation();
   const [showDrawer, toggleDrawer] = useState(false);
 
@@ -49,14 +48,14 @@ const HotelSearchPage = ({ noHeader, noFooter, display }) => {
     if (params.search) {
       const urls = queryString.parse(params.search);
       const payload = {
-        location_id: "5128581",
-        start_date: moment().add(1, "day").format("YYYY-MM-DD"),
-        end_date: moment().add(2, "day").format("YYYY-MM-DD"),
+        location_id: '5128581',
+        start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+        end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
         occupancy: {
           adults: 2,
           children: 0,
         },
-        language: "en",
+        language: 'en',
       };
       if (urls.hotelID) {
         payload.hotel_id = urls.hotelID;
@@ -80,17 +79,15 @@ const HotelSearchPage = ({ noHeader, noFooter, display }) => {
       dispatch(hotelActions.searchHotels(payload));
     } else {
       dispatch(hotelActions.searchHotels());
-      dispatch(bookingActions.setBookingPayload(""));
+      dispatch(bookingActions.setBookingPayload(''));
     }
   }, [params, dispatch]);
 
   return (
-    <Page noHeader noFooter >
+    <Page noHeader noFooter>
       <div className={styles.root}>
         <div className={cx(styles.container, styles.childContainer)}>
-          {
-            display && <TopFilters currency={currency} initialState={initialState} />
-          }
+          {display && <TopFilters currency={currency} initialState={initialState} />}
           <div className={styles.main}>
             <Drawer
               className="left-filter-drawer"

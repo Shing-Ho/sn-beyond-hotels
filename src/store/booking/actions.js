@@ -1,6 +1,6 @@
 import { createActions } from 'redux-actions';
-
 import * as API from 'helpers/api';
+
 const options = {
   prefix: 'BOOKING',
 };
@@ -30,5 +30,5 @@ const bookingHotel = (payload) => async (dispatch) => {
 
 export default {
   ...bookingActions,
-  bookingHotel
+  bookingHotel,
 };

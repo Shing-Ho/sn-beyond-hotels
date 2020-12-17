@@ -1,28 +1,21 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col } from "antd";
-import Page from "components/Page/Page";
-import history from "store/history";
-import coreActions from "store/core/actions";
-import PaymentsHeader from "./components/PaymentsHeader/PaymentsHeader";
-import PaymentsForm from "./components/PaymentsForm/PaymentsForm";
-import ItineraryDetail from "./components/ItineraryDetail/ItineraryDetail";
-import { Checkbox } from "components/CheckboxGroup/CheckboxGroup";
-import Button from "components/Button/Button";
-import {
-  // getLoading,
-  // getPrimaryContact,
-  getSelectedRoomItems,
-} from "store/booking/selectors";
-import { getCurrency } from "store/core/selectors";
-import styles from "./PaymentsPage.module.scss";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col } from 'antd';
+import Page from 'components/Page/Page';
+import history from 'store/history';
+import coreActions from 'store/core/actions';
+import { Checkbox } from 'components/CheckboxGroup/CheckboxGroup';
+import Button from 'components/Button/Button';
+import { getSelectedRoomItems } from 'store/booking/selectors';
+import { getCurrency } from 'store/core/selectors';
+import ItineraryDetail from './components/ItineraryDetail/ItineraryDetail';
+import PaymentsForm from './components/PaymentsForm/PaymentsForm';
+import PaymentsHeader from './components/PaymentsHeader/PaymentsHeader';
+import styles from './PaymentsPage.module.scss';
 
 export default function PaymentsPage() {
   const [tosAgreed, setTosAgreed] = useState(false);
   const dispatch = useDispatch();
-  // const loading = useSelector(getLoading);
-  // const payload = useSelector(getBookingPayload);
-  // const contact = useSelector(getPrimaryContact);
   const selectedRooms = useSelector(getSelectedRoomItems);
   const currency = useSelector(getCurrency);
 
@@ -33,7 +26,7 @@ export default function PaymentsPage() {
   };
 
   const goBack = () => {
-    history.push("guest");
+    history.push('guest');
   };
 
   return (
@@ -45,27 +38,21 @@ export default function PaymentsPage() {
             <PaymentsForm title="Primary Payment Method" formKey="primary" />
           </Col>
           <Col className={styles.right} md={8} xs={24}>
-            <ItineraryDetail
-              showDiscount
-              currency={currency}
-              items={selectedRooms}
-              width="375px"
-            />
+            <ItineraryDetail showDiscount currency={currency} items={selectedRooms} width="375px" />
           </Col>
         </Row>
       </div>
       <div className={styles.bottom}>
         <div className={styles.wrapper}>
           <Checkbox invert value={tosAgreed} onChange={toggleTosAgreed}>
-            I understand that some items might not be available any longer, that
-            I will be refunded and notified right after check out, and have
-            reviewed the Terms of Use and Privacy Policy.
+            I understand that some items might not be available any longer, that I will be refunded and notified right
+            after check out, and have reviewed the Terms of Use and Privacy Policy.
           </Checkbox>
           <div>
             <Button size="large" invert onClick={goBack}>
               Back
             </Button>
-            <Button size="large" onClick={handleFormSubmit("primary")}>
+            <Button size="large" onClick={handleFormSubmit('primary')}>
               Check Out
             </Button>
           </div>

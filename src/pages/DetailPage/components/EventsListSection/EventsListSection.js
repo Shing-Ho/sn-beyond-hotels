@@ -1,25 +1,25 @@
-import React from "react";
-import cx from "classnames";
-import { Tabs, TabPane } from "components/Tab/Tab";
-import GoogleMap from "components/GoogleMap/GoogleMap";
-import TicketsItem from "../TicketsItem/TicketsItem";
-import SeatingItem from "../SeatingItem/SeatingItem";
-import styles from "./EventsListSection.module.scss";
+import React from 'react';
+import cx from 'classnames';
+import { Tabs, TabPane } from 'components/Tab/Tab';
+import GoogleMap from 'components/GoogleMap/GoogleMap';
+import TicketsItem from '../TicketsItem/TicketsItem';
+import SeatingItem from '../SeatingItem/SeatingItem';
+import styles from './EventsListSection.module.scss';
 
 const location = {
   lat: 27.2046,
-  lng: 77.4977
+  lng: 77.4977,
 };
 
-export default function EventsListSection(props) {
+export default function EventsListSection() {
   return (
     <div className={cx(styles.root)}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Tickets" key="1">
           <div className={styles.title}>Orchestra Seats</div>
-          <TicketsItem/>
-          <TicketsItem/>
-          <TicketsItem/>
+          <TicketsItem />
+          <TicketsItem />
+          <TicketsItem />
         </TabPane>
         <TabPane tab="Seating" key="2">
           <SeatingItem />

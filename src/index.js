@@ -5,13 +5,13 @@ import { hot } from 'react-hot-loader';
 import { IntlProvider } from 'react-intl';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
-import i18nMessages from './i18n';
 import { getCore } from 'store/core/selectors';
 import ReactGA from 'react-ga';
 
 import Routes from 'routes';
 import { store, history, persistor } from 'store';
 import * as serviceWorker from 'serviceWorker';
+import i18nMessages from './i18n';
 import 'font-awesome/scss/font-awesome.scss';
 import 'helpers/api/api-interceptor';
 import 'index.scss';

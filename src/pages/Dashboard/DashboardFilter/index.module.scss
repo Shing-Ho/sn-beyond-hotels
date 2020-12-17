@@ -19,6 +19,7 @@
     border-right: 1px solid #dedede;
     height: 80px;
     align-items: center;
+    justify-content: center;
     color: #7b7c7e;
     font-family: Lato;
     font-size: 14px;
@@ -30,17 +31,17 @@
       min-width: 130px;
     }
     .icon {
-      margin-bottom: 12px;
       svg {
         width: 25px;
-        height: auto;
+        height: 25px;
+        fill: #ffffff;
+        color: #ffffff;
       }
     }
     .selectedIcon {
-      margin-bottom: 12px;
       svg {
         width: 25px;
-        height: auto;
+        height: 25px;
       }
     }
   }
