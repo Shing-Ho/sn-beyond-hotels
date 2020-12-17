@@ -47,72 +47,84 @@ const initialFilterData = {
 
 const HotelsData = [
   {
+    id: 1,
     name: 'Taix Restaurent',
     start: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '19.99',
   },
   {
+    id: 2,
     name: 'Masa of Echo Park',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '25',
   },
   {
+    id: 3,
     name: 'Thrill FAll Bungee',
     start: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '15.25',
   },
   {
+    id: 4,
     name: 'Cats Musical',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '25',
   },
   {
+    id: 5,
     name: 'ALTA NightClub',
     start: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '30',
   },
   {
+    id: 6,
     name: 'Tesla car rental',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '40',
   },
   {
+    id: 7,
     name: 'Taix Restaurent',
     start: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '19.99',
   },
   {
+    id: 8,
     name: 'Masa of Echo Park',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '25',
   },
   {
+    id: 9,
     name: 'Thrill FAll Bungee',
     start: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '15.25',
   },
   {
+    id: 10,
     name: 'Cats Musical',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '25',
   },
   {
+    id: 11,
     name: 'ALTA NightClub',
     start: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
     from: '30',
   },
   {
+    id: 12,
     name: 'Tesla car rental',
     start: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
@@ -198,6 +210,8 @@ const DashboardPage = () => {
   const [itemView, setItemView] = useState('grid');
   const [items, setItems] = useState(HotelsData);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {}, [searchType]);
 
   useEffect(() => {
@@ -216,6 +230,10 @@ const DashboardPage = () => {
 
   const handleSortBy = (e) => {
     setSortBy(e.key);
+  };
+
+  const onHotelItemClick = (id) => {
+    dispatch(push(`/events/${id}`));
   };
 
   return (
@@ -245,6 +263,7 @@ const DashboardPage = () => {
               filter={filter}
               items={items}
               onPageChange={() => {}}
+              onHotelItemClick={onHotelItemClick}
             />
           )}
         </div>
