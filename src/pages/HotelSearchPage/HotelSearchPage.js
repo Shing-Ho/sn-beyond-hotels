@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import queryString from "query-string";
-import { Spin, Drawer } from "antd";
-import moment from "moment";
-import cx from "classnames";
-import Page from "components/Page/Page";
-import TopFilters from "components/TopFilters/TopFilters";
-import HotelLeftFilters from "./components/Filters/HotelLeftFilters";
-import Results from "./components/Results/Results";
-import hotelActions from "store/hotel/actions";
-import {
-  getLoading,
-  getFetchingRecords,
-  getError,
-} from "store/hotel/selectors";
-import { getCurrency } from "store/core/selectors";
-import bookingActions from "store/booking/actions";
-import styles from "./HotelSearchPage.module.scss";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
+import { Spin, Drawer } from 'antd';
+import moment from 'moment';
+import cx from 'classnames';
+import Page from 'components/Page/Page';
+import TopFilters from 'components/TopFilters/TopFilters';
+import hotelActions from 'store/hotel/actions';
+import { getLoading, getFetchingRecords } from 'store/hotel/selectors';
+import { getCurrency } from 'store/core/selectors';
+import bookingActions from 'store/booking/actions';
+import Results from './components/Results/Results';
+import HotelLeftFilters from './components/Filters/HotelLeftFilters';
+import styles from './HotelSearchPage.module.scss';
 
 const initialState = {
   location: {
@@ -36,7 +32,7 @@ const initialState = {
   currency: 'USD',
 };
 
-const HotelSearchPage = ({ noHeader, noFooter, display }) => {
+const HotelSearchPage = ({ display }) => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const fetchingRecords = useSelector(getFetchingRecords);

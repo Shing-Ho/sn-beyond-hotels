@@ -1,21 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import Pagination from "components/Pagination/Pagination";
-import ListItem from "components/ListItem/ListItem";
+import Pagination from 'components/Pagination/Pagination';
+import ListItem from 'components/ListItem/ListItem';
 
-import hotelActions from "store/hotel/actions";
-import {
-  getTotalCount,
-  getHotels,
-  getFormattedVisibleHotels,
-} from "store/hotel/selectors";
+import hotelActions from 'store/hotel/actions';
+import { getTotalCount, getHotels, getFormattedVisibleHotels } from 'store/hotel/selectors';
 
 import styles from './Results.module.scss';
 
 const ResultsList = ({ filteredHotels, currency }) => {
   let hotels = useSelector(getHotels);
-  let visibleHotels = useSelector(getFormattedVisibleHotels);
+  const visibleHotels = useSelector(getFormattedVisibleHotels);
   const count = useSelector(getTotalCount);
   const dispatch = useDispatch();
 
@@ -32,10 +28,8 @@ const ResultsList = ({ filteredHotels, currency }) => {
   return (
     <>
       <div className={styles.items}>
-        {!!visibleHotels.length ? (
-          visibleHotels.map((hotel) => (
-            <ListItem data={hotel} currency={currency} key={hotel.hotel_id} />
-          ))
+        {visibleHotels.length ? (
+          visibleHotels.map((hotel) => <ListItem data={hotel} currency={currency} key={hotel.hotel_id} />)
         ) : (
           <div className={styles.noRecordsFound}>
             <FormattedMessage id="noResultsFound" defaultMessage="No Results Found" />

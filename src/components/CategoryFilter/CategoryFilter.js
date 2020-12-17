@@ -3,9 +3,9 @@ import { Radio } from 'antd';
 
 import styles from './CategoryFilter.module.scss';
 
-const CategoryFilter = (props) => (
+const CategoryFilter = ({ onChange }) => (
   <div className={styles.container}>
-    <Radio.Group defaultValue="accommodations" buttonStyle="solid" className={styles.radio} onChange={props.onChange}>
+    <Radio.Group defaultValue="accommodations" buttonStyle="solid" className={styles.radio} onChange={onChange}>
       <Radio.Button value="all">
         <span className={styles.optionLabel}>Show All</span>
       </Radio.Button>

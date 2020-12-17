@@ -17,9 +17,9 @@ import styles from './HotelLeftFilters.module.scss';
 const popularBrandOptions = Object.keys(popularBrandsJson);
 
 const HotelLeftFilters = ({ currency }) => {
-	const [ form ] = Form.useForm();
-	const intl = useIntl();
-	const dispatch = useDispatch();
+  const [form] = Form.useForm();
+  const intl = useIntl();
+  const dispatch = useDispatch();
 
   const filters = useSelector(getFilters);
   const hotels = useSelector(getHotels);

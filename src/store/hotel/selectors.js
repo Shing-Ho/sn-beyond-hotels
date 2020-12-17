@@ -1,25 +1,3 @@
-export const getHotels = (state) => state.hotel.hotels;
-export const getFilteredHotels = (state) => state.hotel.filteredHotels;
-export const getVisibleHotels = (state) => state.hotel.visibleHotels;
-export const getFormattedHotels = (state) =>
-  state.hotel.hotels.map(hotelItemFormatter);
-export const getFormattedFilteredHotels = (state) =>
-  state.hotel.filteredHotels.map(hotelItemFormatter);
-export const getFormattedVisibleHotels = (state) =>
-  state.hotel.visibleHotels.map(hotelItemFormatter);
-export const getTotalCount = (state) => state.hotel.count;
-export const getFilters = (state) => state.hotel.filters;
-export const getLoading = (state) => state.hotel.loading;
-export const getFetchingRecords = (state) => state.hotel.fetchingRecords;
-export const getSelectedHotel = (state) => state.hotel.selectedHotel;
-export const getLocationData = (state) => state.hotel.locationData;
-export const getTopFilters = (state) => state.hotel.topFilters;
-export const getCancelLookupResponse = (state) =>
-  state.hotel.cancelLookupResponse;
-export const getCancelOrderResponse = (state) =>
-  state.hotel.cancelOrderResponse;
-export const getError = (state) => state.hotel.error;
-
 export const hotelItemFormatter = (data) => ({
   id: data.hotel_id,
   rate: data.avg_nightly_rate,
@@ -31,3 +9,19 @@ export const hotelItemFormatter = (data) => ({
   description: data.hotel_details?.property_description,
   geolocation: data.hotel_details?.geolocation,
 });
+export const getHotels = (state) => state.hotel.hotels;
+export const getFilteredHotels = (state) => state.hotel.filteredHotels;
+export const getVisibleHotels = (state) => state.hotel.visibleHotels;
+export const getFormattedHotels = (state) => state.hotel.hotels.map(hotelItemFormatter);
+export const getFormattedFilteredHotels = (state) => state.hotel.filteredHotels.map(hotelItemFormatter);
+export const getFormattedVisibleHotels = (state) => state.hotel.visibleHotels.map(hotelItemFormatter);
+export const getTotalCount = (state) => state.hotel.count;
+export const getFilters = (state) => state.hotel.filters;
+export const getLoading = (state) => state.hotel.loading;
+export const getFetchingRecords = (state) => state.hotel.fetchingRecords;
+export const getSelectedHotel = (state) => state.hotel.selectedHotel;
+export const getLocationData = (state) => state.hotel.locationData;
+export const getTopFilters = (state) => state.hotel.topFilters;
+export const getCancelLookupResponse = (state) => state.hotel.cancelLookupResponse;
+export const getCancelOrderResponse = (state) => state.hotel.cancelOrderResponse;
+export const getError = (state) => state.hotel.error;

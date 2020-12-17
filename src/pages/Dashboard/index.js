@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 import { Menu } from 'antd';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 
-import styles from '../SearchPage/SearchPage.module.scss';
 import TopFilters from '../../components/TopFilters/TopFilters';
 import Page from '../../components/Page/Page';
 import DashboardFilter from './DashboardFilter';
 import SearchAndView from './SearchAndView';
 import ContainerView from './ContainerView';
-import SearchPage from '../SearchPage/SearchPage';
+import HotelSearchPage from '../HotelSearchPage/HotelSearchPage';
+import styles from '../HotelSearchPage/HotelSearchPage.module.scss';
 
 import { ReactComponent as BedFillGray } from '../../icons/dashboardIcons/BedFillGray.svg';
 import { ReactComponent as BedTransparent } from '../../icons/dashboardIcons/BedTransparent.svg';
@@ -253,7 +255,7 @@ const DashboardPage = () => {
             setItemView={setItemView}
           />
           {searchType === 'hotels' ? (
-            <SearchPage noHeader noFooter display={!searchType === 'hotels'} />
+            <HotelSearchPage noHeader noFooter display={searchType !== 'hotels'} />
           ) : (
             <ContainerView
               filterBy={filterBy}

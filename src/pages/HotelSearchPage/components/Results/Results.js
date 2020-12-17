@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Radio } from 'antd';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
-import ResultsList from './ResultsList';
 import { getFormattedFilteredHotels } from 'store/hotel/selectors';
+import ResultsList from './ResultsList';
 import styles from './Results.module.scss';
 
 const Results = ({ toggleDrawer, currency }) => {
@@ -18,7 +18,7 @@ const Results = ({ toggleDrawer, currency }) => {
 
   useEffect(() => {
     if (hotels && hotels.length > 0) {
-      const geolocation = hotels[0].geolocation;
+      const { geolocation } = hotels[0];
       setDefaultCenter([geolocation.latitude, geolocation.longitude]);
     }
     const coords = hotels.map((hotel) => hotel.geolocation);
@@ -28,18 +28,14 @@ const Results = ({ toggleDrawer, currency }) => {
   return (
     <div className={styles.root}>
       <div className={styles.viewSwitch}>
-        <Radio.Group
-          defaultValue='list'
-          buttonStyle='solid'
-          className={styles.radio}
-          onChange={onViewChange}
-        >
-          <Radio.Button value='list' onClick={() => toggleDrawer(true)}>
-            <i className='fa fa-bars' aria-hidden='true'></i>&nbsp; Filters
+        <Radio.Group defaultValue="list" buttonStyle="solid" className={styles.radio} onChange={onViewChange}>
+          <Radio.Button value="list" onClick={() => toggleDrawer(true)}>
+            <i className="fa fa-bars" aria-hidden="true" />
+            &nbsp; Filters
           </Radio.Button>
-          <Radio.Button value='map'>
-            <i className='fa fa-map-marker' aria-hidden='true'></i>&nbsp; View
-            Map
+          <Radio.Button value="map">
+            <i className="fa fa-map-marker" aria-hidden="true" />
+            &nbsp; View Map
           </Radio.Button>
         </Radio.Group>
       </div>

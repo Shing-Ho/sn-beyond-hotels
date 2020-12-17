@@ -4,7 +4,7 @@ import _ from 'lodash';
 // import FormWithHeader from 'components/FormWithHeader/FormWithHeader';
 import styles from './SummaryRight.module.scss';
 
-export default function SummaryRight({ paymentPayload, bookingHotelPayload }) {
+export default function SummaryRight({ bookingHotelPayload }) {
   const getTotalPrice = () => _.get(bookingHotelPayload, 'reservation.room_rate.total.amount');
 
   const getSubTotalPrice = () => _.get(bookingHotelPayload, 'reservation.room_rate.total_base_rate.amount');
