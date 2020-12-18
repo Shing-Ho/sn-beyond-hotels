@@ -1,5 +1,5 @@
-import { handleActions } from "redux-actions";
-import { coreActions } from "store/core/actions";
+import { handleActions } from 'redux-actions';
+import { coreActions } from 'store/core/actions';
 
 export const coreReducer = handleActions(
   new Map([
@@ -56,7 +56,7 @@ export const coreReducer = handleActions(
       coreActions.toggleDrawer,
       (state, action) => ({
         ...state,
-        cartDrawer: action.payload
+        cartDrawer: action.payload,
       }),
     ],
     [
@@ -77,12 +77,12 @@ export const coreReducer = handleActions(
   {
     loading: false,
     error: null,
-    locale: "en",
+    locale: 'en',
     languages: [],
     formSubmitted: {},
     drawerOpen: false,
-    currency: "USD",
-    cartDrawer: false
+    currency: 'USD',
+    cartDrawer: false,
   },
 );
 

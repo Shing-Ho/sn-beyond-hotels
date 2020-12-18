@@ -45,7 +45,4 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-api.interceptors.response.use(
-  undefined,
-  (error) => Promise.reject(new ApiError(error)),
-);
+api.interceptors.response.use(undefined, (error) => Promise.reject(new ApiError(error)));

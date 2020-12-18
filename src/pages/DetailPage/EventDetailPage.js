@@ -40,40 +40,32 @@ const images = [
   },
 ];
 
-const EventsDetailPage = () => {
-  return (
-    <Page>
-      <div className={styles.carousel}>
-        <Carousel image={images} />
-        <DetailHeader
-          className={styles.detailHeader}
-          details={{ name: 'ATV Riding Tours' }}
-        />
+const EventsDetailPage = () => (
+  <Page>
+    <div className={styles.carousel}>
+      <Carousel image={images} />
+      <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} />
+    </div>
+    <div className={styles.root}>
+      <div className={styles.content}>
+        <Row justify="center">
+          <Col md={16}>
+            <Row>
+              <DetailHeader className={styles.detailHeader} details={{ name: 'Hamilton - The Musical' }} />
+            </Row>
+            <Row>
+              <EventsListSection className={styles.left} />
+            </Row>
+          </Col>
+          <Col md={8}>
+            <div className={styles.detail}>
+              <EventBookingSection />
+            </div>
+          </Col>
+        </Row>
       </div>
-      <div className={styles.root}>
-        <div className={styles.content}>
-          <Row justify='center'>
-            <Col md={16}>
-              <Row>
-                <DetailHeader
-                  className={styles.detailHeader}
-                  details={{ name: 'Hamilton - The Musical' }}
-                />
-              </Row>
-              <Row>
-                <EventsListSection className={styles.left} />
-              </Row>
-            </Col>
-            <Col md={8}>
-              <div className={styles.detail}>
-                <EventBookingSection />
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </Page>
-  );
-};
+    </div>
+  </Page>
+);
 
 export default EventsDetailPage;

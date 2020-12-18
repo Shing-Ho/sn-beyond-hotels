@@ -1,21 +1,14 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import cx from "classnames";
-import DiscountForm from "../DiscountForm/DiscountForm";
-import ItineraryItem from "../ItineraryItem/ItineraryItem";
-import bookingActions from "store/booking/actions";
-import {
-  getSelectedHotel,
-  getTotalBookingAmount,
-} from "store/booking/selectors";
-import styles from "./ItineraryDetail.module.scss";
+/* eslint-disable react/no-array-index-key */
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import cx from 'classnames';
+import bookingActions from 'store/booking/actions';
+import { getSelectedHotel, getTotalBookingAmount } from 'store/booking/selectors';
+import DiscountForm from '../DiscountForm/DiscountForm';
+import ItineraryItem from '../ItineraryItem/ItineraryItem';
+import styles from './ItineraryDetail.module.scss';
 
-export default function ItineraryDetail({
-  items,
-  showDiscount,
-  drawerChild,
-  currency,
-}) {
+export default function ItineraryDetail({ items, showDiscount, drawerChild, currency }) {
   const totalAmount = useSelector(getTotalBookingAmount);
   const selectedHotel = useSelector(getSelectedHotel);
   const dispatch = useDispatch();
@@ -27,14 +20,14 @@ export default function ItineraryDetail({
   };
 
   return (
-    <div className={`${styles.root} ${drawerChild ? styles.drawer : ""}`}>
+    <div className={`${styles.root} ${drawerChild ? styles.drawer : ''}`}>
       <div className={styles.header}>
         <h5>
-          {" "}
-          <span>${totalAmount.toFixed(2) || "0,000.00"}</span>TOTAL
+          {' '}
+          <span>${totalAmount.toFixed(2) || '0,000.00'}</span>TOTAL
         </h5>
         <span>
-          <b>{items.length}</b> {items.length > 1 ? "ite ms" : "item"}
+          <b>{items.length}</b> {items.length > 1 ? 'ite ms' : 'item'}
         </span>
       </div>
       {showDiscount && <DiscountForm className={styles.discountForm} />}
@@ -59,7 +52,7 @@ export default function ItineraryDetail({
           <div className={styles.wrapper}>
             <span className={styles.total}>
               {currency?.symbol}
-              {totalAmount.toFixed(2) || "0,000.00"}
+              {totalAmount.toFixed(2) || '0,000.00'}
             </span>
             <span className={styles.totalText}>TOTAL</span>
           </div>

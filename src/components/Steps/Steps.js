@@ -12,14 +12,6 @@ const Steps = ({ className, children, ...others }) => (
   </DefaultSteps>
 );
 
-const Step = ({ className, ...others }) => (
-  <DefaultStep
-    className={cx(styles.step, className)}
-    {...others}
-  />
-);
+const Step = ({ className, ...others }) => <DefaultStep className={cx(styles.step, className)} {...others} />;
 
-export {
-  Steps,
-  Step,
-};
+export { Steps, Step };

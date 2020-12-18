@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col} from 'antd';
+import { Row, Col } from 'antd';
 
 import Card from 'components/Card/Card';
 import Button from 'components/Button/Button';
@@ -23,31 +23,34 @@ export default function SummaryBottom() {
         <Col lg={8} md={24} sm={24} xs={24} className={styles.eachCard}>
           <Card
             Icon={Restaurant}
-            img='https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+            img="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
             rate={3}
-            title='Palm Restaurant'
+            title="Palm Restaurant"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum."
-            price="19.99" />
+            price="19.99"
+          />
         </Col>
         <Col lg={8} md={24} sm={24} xs={24} className={styles.eachCard}>
           <Card
             Icon={Restaurant}
-            img='https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+            img="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
             rate={4}
-            title='Awesome Beach'
+            title="Awesome Beach"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum."
-            price="39.99" />
+            price="39.99"
+          />
         </Col>
         <Col lg={8} md={24} sm={24} xs={24} className={styles.eachCard}>
           <Card
             Icon={Restaurant}
-            img='https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80'
+            img="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80"
             rate={5}
-            title='Moutain Hotel'
+            title="Moutain Hotel"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum."
-            price="199.99" />
+            price="199.99"
+          />
         </Col>
       </Row>
     </div>
-  )
+  );
 }

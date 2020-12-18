@@ -1,0 +1,86 @@
+@import 'styles';
+
+.root {
+  width: 100%;
+  margin: 0 0 20px 0 !important;
+
+  > div {
+    &:first-child {
+      padding-left: 0 !important;
+    }
+    &:last-child {
+      padding-right: 0 !important;
+    }
+  }
+
+  .radioWrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .radio {
+    display: flex;
+
+    :global(.ant-radio-button-wrapper) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #003398;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      font-weight: 600;
+      .fa {
+        margin-right: 10px;
+      }
+      &:hover {
+        color: $grayColor;
+      }
+    }
+
+    :global(.ant-radio-button-wrapper-checked) {
+      background-color: $primaryColor !important;
+      border-color: $primaryColor !important;
+      color: white;
+    }
+    :global(.ant-radio-button-wrapper-checked::before) {
+      background-attachment: $primaryColor !important;
+    }
+  }
+
+  .tabWrapper {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+
+    .tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      border-bottom: 4px solid $borderGrayColor;
+
+      &.active {
+        color: $primaryColor;
+        border-color: $primaryColor;
+      }
+
+      .label {
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .icon {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-mobile) {
+  > div:first-child {
+    margin-right: 0;
+  }
+}

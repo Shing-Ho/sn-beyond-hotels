@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Carousel from "react-multi-carousel";
-import { ReactComponent as LeftArrowIcon } from "icons/arrow-left.svg";
-import { ReactComponent as RightArrowIcon } from "icons/arrow-right.svg";
-import styles from "./Carousel.module.scss";
-import "react-multi-carousel/lib/styles.css";
+import React, { useEffect, useState } from 'react';
+import Carousel from 'react-multi-carousel';
+import { ReactComponent as LeftArrowIcon } from 'icons/arrow-left.svg';
+import { ReactComponent as RightArrowIcon } from 'icons/arrow-right.svg';
+import styles from './Carousel.module.scss';
+import 'react-multi-carousel/lib/styles.css';
 
 const responsive = {
   desktop: {
@@ -44,18 +44,16 @@ const CustomCarousel = ({ image }) => {
         customLeftArrow={<LeftArrowIcon className={styles.leftArrow} />}
         customRightArrow={<RightArrowIcon className={styles.rightArrow} />}
       >
-        {images.map((image, i) => {
-          return (
-            <div
-              className={styles.carousel}
-              style={{
-                backgroundImage: `url(${image})`,
-              }}
-            >
-              <div className="overlay" />
-            </div>
-          );
-        })}
+        {images.map((imageUrl) => (
+          <div
+            className={styles.carousel}
+            style={{
+              backgroundImage: `url(${imageUrl})`,
+            }}
+          >
+            <div className="overlay" />
+          </div>
+        ))}
       </Carousel>
     </div>
   );

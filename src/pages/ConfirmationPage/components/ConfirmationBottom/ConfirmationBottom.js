@@ -1,11 +1,11 @@
-import React from "react";
-import { Row, Col } from "antd";
+import React from 'react';
+import { Row, Col } from 'antd';
 
-import Card from "components/Card/Card";
-import Button from "components/Button/Button";
-import { ReactComponent as SimpleNight } from "icons/simplenightWight.svg";
-import { ReactComponent as Restaurant } from "icons/restaurantWhite.svg";
-import styles from "./ConfirmationBottom.module.scss";
+import Card from 'components/Card/Card';
+import Button from 'components/Button/Button';
+import { ReactComponent as SimpleNight } from 'icons/simplenightWight.svg';
+import { ReactComponent as Restaurant } from 'icons/restaurantWhite.svg';
+import styles from './ConfirmationBottom.module.scss';
 
 export default function ConfirmationBottom({ currency }) {
   return (

@@ -1,22 +1,18 @@
-import React from "react";
-import { Row, Col } from "antd";
-import { useSelector } from "react-redux";
-import _ from "lodash";
+import React from 'react';
+import { Row, Col } from 'antd';
+import { useSelector } from 'react-redux';
+import _ from 'lodash';
 
-import { getCurrency } from "store/core/selectors";
-import Page from "components/Page/Page";
-import Button from "components/Button/Button";
-import {
-  getBookingPayload,
-  getBookingHotelPayload,
-  getPaymentPayload,
-} from "../../store/booking/selectors";
-import { getSelectedHotel } from "../../store/hotel/selectors";
-import ConfirmationLeft from "./components/ConfirmationLeft/ConfirmationLeft";
-import ConfirmationRight from "./components/ConfirmationRight/ConfirmationRight";
-import ConfirmationHeader from "./components/ConfirmationHeader/ConfirmationHeader";
-import ConfirmationBottom from "./components/ConfirmationBottom/ConfirmationBottom";
-import styles from "./ConfirmationPage.module.scss";
+import { getCurrency } from 'store/core/selectors';
+import Page from 'components/Page/Page';
+import Button from 'components/Button/Button';
+import { getBookingPayload, getBookingHotelPayload, getPaymentPayload } from '../../store/booking/selectors';
+import { getSelectedHotel } from '../../store/hotel/selectors';
+import ConfirmationLeft from './components/ConfirmationLeft/ConfirmationLeft';
+import ConfirmationRight from './components/ConfirmationRight/ConfirmationRight';
+import ConfirmationHeader from './components/ConfirmationHeader/ConfirmationHeader';
+import ConfirmationBottom from './components/ConfirmationBottom/ConfirmationBottom';
+import styles from './ConfirmationPage.module.scss';
 
 export default function ConfirmationPage() {
   const preSelectedRooms = useSelector(getBookingPayload);
@@ -27,19 +23,18 @@ export default function ConfirmationPage() {
 
   const getHeaderItems = () => {
     const list = [];
-    preSelectedRooms.hotel_id &&
+    if (preSelectedRooms.hotel_id) {
       list.push({
-        label: "ORDER NUMBER",
-        value: _.get(bookingHotelPayload, "reservation.locator.id", ""),
+        label: 'ORDER NUMBER',
+        value: _.get(bookingHotelPayload, 'reservation.locator.id', ''),
       });
-    preSelectedRooms.room_rate &&
-      list.push({ label: "ITEMS", value: preSelectedRooms.room_rate.length });
+    }
     let total = 0;
+    if (preSelectedRooms.room_rate) list.push({ label: 'ITEMS', value: preSelectedRooms.room_rate.length });
     preSelectedRooms.room_rate.forEach((each) => {
-      total += parseFloat(_.get(each, "roomDetails.total.amount", 0), 0);
+      total += parseFloat(_.get(each, 'roomDetails.total.amount', 0), 0);
     });
-    preSelectedRooms.room_rate &&
-      list.push({ label: "TOTAL", value: total.toFixed(2) });
+    if (preSelectedRooms.room_rate) list.push({ label: 'TOTAL', value: total.toFixed(2) });
     return list;
   };
 

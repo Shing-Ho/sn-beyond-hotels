@@ -8,16 +8,11 @@ export default function HotelItem({ className, currency }) {
   return (
     <div className={cx(styles.root, className)}>
       <div className={styles.banner}>
-        <img src={getRandomImageUrl()} alt='other hotel item' />
+        <img src={getRandomImageUrl()} alt="other hotel item" />
       </div>
       <div className={styles.content}>
         Four Seasons
-        <Rating
-          scoreonly
-          outlined
-          score={Math.round(Math.random() * 5)}
-          className={styles.row}
-        />
+        <Rating scoreonly outlined score={Math.round(Math.random() * 5)} className={styles.row} />
         <span className={styles.description}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.
         </span>

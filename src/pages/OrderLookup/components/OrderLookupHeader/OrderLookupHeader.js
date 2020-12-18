@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import { Button, Spin } from 'antd'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Spin } from 'antd';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { LoadingOutlined } from '@ant-design/icons';
 
-import styles from './OrderLookupHeader.module.scss'
-import RightIconInput from 'components/RightIconInput/RightIconInput'
+import RightIconInput from 'components/RightIconInput/RightIconInput';
 import hotelActions from 'store/hotel/actions';
-import {getCancelLookupResponse, getLoading, getError} from 'store/hotel/selectors';
-import headerImg from 'images/withBlue.png'
-import {ReactComponent as SearchIcon} from 'icons/search.svg'
-import {ReactComponent as UserIcon} from 'icons/user.svg'
+import { getCancelLookupResponse, getLoading, getError } from 'store/hotel/selectors';
+import headerImg from 'images/withBlue.png';
+import { ReactComponent as SearchIcon } from 'icons/search.svg';
+import { ReactComponent as UserIcon } from 'icons/user.svg';
 import { useHistory } from 'react-router-dom';
+import styles from './OrderLookupHeader.module.scss';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24, color: '#003398' }} spin />;
 
@@ -28,20 +29,20 @@ export default function OrderLookupHeader() {
     if (cancelLookupResponse.booking_status) {
       history.push('orderSummary');
     }
-  }, [cancelLookupResponse, history])
+  }, [cancelLookupResponse, history]);
 
   useEffect(() => {
-    if(error) {
-      setErrorShow('The order number or last name could not be located. Please try again.')
-      dispatch(hotelActions.clearState())
+    if (error) {
+      setErrorShow('The order number or last name could not be located. Please try again.');
+      dispatch(hotelActions.clearState());
     } else {
       // setErrorShow('')
     }
-  }, [error, orderNumber, lastName, dispatch])
+  }, [error, orderNumber, lastName, dispatch]);
 
   const onSearch = () => {
-    dispatch(hotelActions.cancelLookup({booking_id: orderNumber, last_name: lastName}));
-  }
+    dispatch(hotelActions.cancelLookup({ booking_id: orderNumber, last_name: lastName }));
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -73,21 +74,15 @@ export default function OrderLookupHeader() {
             }
           />
         </div>
-        {errorShow ? (
-          <div className={styles.errorText}>
-            {errorShow}
-          </div>
-        ) : null}
+        {errorShow ? <div className={styles.errorText}>{errorShow}</div> : null}
         <Button onClick={onSearch} className={styles.orderSearchButton}>
           <div className={styles.searchIconWrapper}>
             <SearchIcon className={styles.orderSearchIcon} />
           </div>
           <span className={styles.orderSearchText}>Search</span>
-          {hotelLoading ? (
-            <Spin indicator={antIcon} />
-          ) : null}
+          {hotelLoading ? <Spin indicator={antIcon} /> : null}
         </Button>
       </div>
     </div>
-  )
+  );
 }

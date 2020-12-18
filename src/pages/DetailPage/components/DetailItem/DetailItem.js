@@ -1,50 +1,34 @@
-import React from "react";
-import cx from "classnames";
-import { get } from "lodash";
-import { ReactComponent as InfoIcon } from "icons/info.svg";
-import { FormattedMessage } from "react-intl";
-import { Button, Popover, Tooltip } from "antd";
-import Divider from "components/Divider/Divider";
-import { commaFormat } from "helpers/utils";
-import { Currencies } from "helpers/constants";
-import styles from "./DetailItem.module.scss";
+import React from 'react';
+import cx from 'classnames';
+import { get } from 'lodash';
+import { ReactComponent as InfoIcon } from 'icons/info.svg';
+import { FormattedMessage } from 'react-intl';
+import { Button, Popover, Tooltip } from 'antd';
+import Divider from 'components/Divider/Divider';
+import { commaFormat } from 'helpers/utils';
+import { Currencies } from 'helpers/constants';
+import styles from './DetailItem.module.scss';
 
-const PopOverContent = (data) => {
-  return (
-    <div>
-      <p>
-        <FormattedMessage
-          id="detailPage.info.rate"
-          values={{ rate: commaFormat(data.total_base_rate.amount) }}
-        />
-      </p>
-      <p>
-        <FormattedMessage
-          id="detailPage.info.taxes"
-          values={{ taxes: commaFormat(data.total_tax_rate.amount) }}
-        />
-      </p>
-      <p>
-        <FormattedMessage
-          id="detailPage.info.total"
-          values={{ total: commaFormat(data.total.amount) }}
-        />
-      </p>
-    </div>
-  );
-};
+const PopOverContent = (data) => (
+  <div>
+    <p>
+      <FormattedMessage id="detailPage.info.rate" values={{ rate: commaFormat(data.total_base_rate.amount) }} />
+    </p>
+    <p>
+      <FormattedMessage id="detailPage.info.taxes" values={{ taxes: commaFormat(data.total_tax_rate.amount) }} />
+    </p>
+    <p>
+      <FormattedMessage id="detailPage.info.total" values={{ total: commaFormat(data.total.amount) }} />
+    </p>
+  </div>
+);
 
 const DetailItem = (props) => {
-  const { data, nights, selected, currency, onSelect } = props;
+  const { data, nights, selected, onSelect } = props;
 
-  const totalCost =
-    data.total && data.total.amount > 0
-      ? commaFormat(Number(data.total.amount).toFixed(2))
-      : 0;
-  const nightCost = data.avg_nightly_rate
-    ? commaFormat(Number(data.avg_nightly_rate.amount).toFixed(2))
-    : 0;
-  const currencySymbol = Currencies[data?.avg_nightly_rate?.currency || 'USD']?.symbol
+  const totalCost = data.total && data.total.amount > 0 ? commaFormat(Number(data.total.amount).toFixed(2)) : 0;
+  const nightCost = data.avg_nightly_rate ? commaFormat(Number(data.avg_nightly_rate.amount).toFixed(2)) : 0;
+  const currencySymbol = Currencies[data?.avg_nightly_rate?.currency || 'USD']?.symbol;
   return (
     <div
       className={cx(styles.root, {
@@ -79,30 +63,26 @@ const DetailItem = (props) => {
             </Popover>
             <FormattedMessage id="learnMore" />
           </div>
-          {get(data, "cancellation_policy.summary") && (
+          {get(data, 'cancellation_policy.summary') && (
             <div className={styles.cancellation}>
               <Tooltip
                 color="white"
                 placement="top"
                 title={
                   <div className={styles.cnlTooltip}>
-                    <span>Cancellation Deadline</span>:{" "}
-                    {get(data, "cancellation_policy.cancellation_deadline")}
+                    <span>Cancellation Deadline</span>: {get(data, 'cancellation_policy.cancellation_deadline')}
                     <br />
-                    <span>Policy</span>:{" "}
-                    {get(data, "cancellation_policy.unstructured_policy")}
+                    <span>Policy</span>: {get(data, 'cancellation_policy.unstructured_policy')}
                   </div>
                 }
               >
-                <span className={styles.cnlText}>
-                  {get(data, "cancellation_policy.summary").replace("_", " ")}
-                </span>
+                <span className={styles.cnlText}>{get(data, 'cancellation_policy.summary').replace('_', ' ')}</span>
               </Tooltip>
             </div>
           )}
         </div>
         <Divider />
-        <div className={styles.category}></div>
+        <div className={styles.category} />
 
         <div className={styles.bottom}>
           <div className={styles.roomCount} onClick={onSelect}>

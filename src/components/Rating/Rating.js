@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import cx from 'classnames';
-import { ReactComponent as StarIcon } from "icons/star.svg";
-import { ReactComponent as StarGrayIcon } from "icons/star_gray.svg";
-import { ReactComponent as StarOutlinedIcon } from "icons/star-outline.svg";
-import { ReactComponent as SimplenightIcon } from "icons/simplenight.svg";
-import styles from "./Rating.module.scss";
+import { ReactComponent as StarIcon } from 'icons/star.svg';
+import { ReactComponent as StarGrayIcon } from 'icons/star_gray.svg';
+import { ReactComponent as StarOutlinedIcon } from 'icons/star-outline.svg';
+import { ReactComponent as SimplenightIcon } from 'icons/simplenight.svg';
+import styles from './Rating.module.scss';
 
 const onStarClick = (score, isCancel, onChange) => () => {
   if (onChange) {
@@ -17,7 +17,7 @@ const generateStars = (score, size, outlined, onChange) => {
   const Star = StarIcon;
   const StarGrey = outlined ? StarOutlinedIcon : StarGrayIcon;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i += 1) {
     if (score >= i + 1) {
       result.push(
         <Star
@@ -26,7 +26,7 @@ const generateStars = (score, size, outlined, onChange) => {
           height={size}
           className={styles.star}
           onClick={onStarClick(i + 1, score === i + 1, onChange)}
-        />
+        />,
       );
     } else {
       result.push(
@@ -36,26 +36,21 @@ const generateStars = (score, size, outlined, onChange) => {
           height={size}
           className={styles.star}
           onClick={onStarClick(i + 1, score === i + 1, onChange)}
-        />
+        />,
       );
     }
   }
   return result;
 };
 
-const Rating = ({
-  scoreonly,
-  outlined,
-  score,
-  size = 24,
-  className,
-  onChange,
-}) => (
-  <div className={cx(styles.rating, className, { 
-    [styles.disabled]: !onChange
-  })}>
+const Rating = ({ scoreonly, outlined, score, size = 24, className, onChange }) => (
+  <div
+    className={cx(styles.rating, className, {
+      [styles.disabled]: !onChange,
+    })}
+  >
     {generateStars(score, size, outlined, onChange)}
-    {!scoreonly &&
+    {!scoreonly && (
       <>
         <span className={styles.count}>{(Math.random() * 100).toFixed()}</span>
 
@@ -67,7 +62,7 @@ const Rating = ({
         </div>
         <span>User Rating</span>
       </>
-    }
+    )}
   </div>
 );
 

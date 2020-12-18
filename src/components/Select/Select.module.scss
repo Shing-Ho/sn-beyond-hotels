@@ -35,13 +35,36 @@
   :global(.ant-select-item-option-active) {
     background-color: $primaryLightColor !important;
   }
-  .arrowDown {
+  .suffix {
     position: absolute;
     right: 10px;
+    top: 5px;
+    color: $primaryColor;
+  }
+  .arrowDown {
+    @extend .suffix;
     top: 15px;
-    
     path {
       stroke: $primaryColor;
     }
+  }
+}
+
+.tag {
+  position: relative;
+
+  > div {
+    margin-bottom: 5px;
+    > span {
+      padding-right: 20px;
+    }
+  }
+
+  > svg {
+    cursor: pointer;
+    fill: $primaryColor;
+    position: absolute;
+    right: 13px;
+    top: 6px;
   }
 }

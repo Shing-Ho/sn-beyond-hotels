@@ -55,14 +55,10 @@ export const bookingReducer = handleActions(
       bookingActions.removeItineraryItem,
       (state, action) => {
         const newBookingPayload = {
-          ...state.bookingPayload
+          ...state.bookingPayload,
         };
 
-        // console.log(newBookingPayload.room_rate.length, action.payload);
-
-        newBookingPayload.room_rate.splice(
-          action.payload, 1
-        );
+        newBookingPayload.room_rate.splice(action.payload, 1);
 
         return {
           ...state,
