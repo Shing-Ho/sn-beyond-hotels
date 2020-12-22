@@ -3,12 +3,12 @@ import cx from 'classnames';
 
 import styles from './index.module.scss';
 
-const DashboardFilter = ({ searchTypeData, setSearchType, searchType }) => (
+const DashboardFilter = ({ searchTypeData, searchType, onItemClick }) => (
   <div className={styles.content}>
     {searchTypeData.map((item) => (
       <div
         className={cx(styles.searchType, { [styles.selectedSearchType]: item.value === searchType })}
-        onClick={() => setSearchType(item.value)}
+        onClick={() => onItemClick(item.value)}
       >
         <div className={styles.icon}>{item.value === searchType ? item.selectedIcon : item.icon}</div>
         <div>{item.name}</div>
