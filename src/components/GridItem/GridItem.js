@@ -2,9 +2,9 @@ import React from 'react';
 import cx from 'classnames';
 import { getRandomImageUrl } from 'helpers/utils';
 import Rating from 'components/Rating/Rating';
-import styles from './ListTileItem.module.scss';
+import styles from './GridItem.module.scss';
 
-export default function ListTileItem({ className, data, currency }) {
+export default function ListTileItem({ className, data = {}, currency }) {
   return (
     <div className={cx(styles.root, className)}>
       <div className={styles.banner}>

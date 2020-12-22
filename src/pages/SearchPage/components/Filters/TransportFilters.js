@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Radio } from 'antd';
 import cx from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import FormItem from 'components/FormItem/FormItem';
 import Select from 'components/Select/Select';
 import styles from './TransportFilters.module.scss';
@@ -116,7 +117,9 @@ const TransportFilters = ({ onViewModeChange, onTabChange }) => {
         <Col md={12} sm={24} xs={24}>
           <Row justify="space-between" gutter={20}>
             <Col md={8} sm={8} xs={8}>
-              <Select className={styles.select} options={[]} placeholder="Filter..." />
+              <Select className={styles.select} options={[]} placeholder="Filter...">
+                <FormattedMessage id="filter" defaultMessage="Filter" />
+              </Select>
             </Col>
             <Col md={8} sm={8} xs={8}>
               <Select className={styles.select} options={[]} placeholder="Sort..." />

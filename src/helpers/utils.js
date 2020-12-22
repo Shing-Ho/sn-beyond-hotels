@@ -92,4 +92,4 @@ export const filterHotels = (hotels, filters) => {
 
 export const getVisibleHotels = (hotels, page, pageSize) => hotels.slice((page - 1) * pageSize, page * pageSize);
 
-export const commaFormat = (text) => text.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+export const commaFormat = (text) => text?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
