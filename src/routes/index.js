@@ -12,6 +12,7 @@ import SummaryPage from 'pages/SummaryPage/SummaryPage';
 import GuestPage from 'pages/GuestPage/GuestPage';
 import OrderLookup from 'pages/OrderLookup/OrderLookup';
 import DiningDetailPage from 'pages/DetailPage/DiningDetailPage';
+import FoodDetailPage from '../pages/DetailPage/FoodDetailPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -31,6 +32,10 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/guest`} exact component={GuestPage} />
         <Route path={`${BASE_ROUTE}/orderLookup`} exact component={OrderLookup} />
         <Route path={`${BASE_ROUTE}/search`} exact component={HotelDetailPage} />
+        <Route path={`${BASE_ROUTE}/hotels/:id`} exact component={HotelDetailPage} />
+        <Route path={`${BASE_ROUTE}/events/:id`} exact component={EventDetailPage} />
+        <Route path={`${BASE_ROUTE}/foods/:id`} exact component={FoodDetailPage} />
+        <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
         <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
       </Switch>

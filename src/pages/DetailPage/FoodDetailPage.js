@@ -2,10 +2,10 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
-import EventsListSection from './components/EventsListSection/EventsListSection';
-import EventBookingSection from './components/EventBookingSection/EventBookingSection';
+import FoodListSection from './components/FoodListSection/FoodListSection';
+import FoodBookingSection from './components/FoodBookingSection/FoodBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
-import styles from './EventsDetailPage.module.scss';
+import styles from './FoodDetailPage.module.scss';
 
 const images = [
   {
@@ -40,26 +40,26 @@ const images = [
   },
 ];
 
-const EventsDetailPage = () => (
+const FoodDetailPage = () => (
   <Page>
     <div className={styles.carousel}>
       <Carousel image={images} />
-      <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} isRating />
+      <DetailHeader className={styles.detailHeader} details={{ name: "Bob's Burgers" }} isFoodDetail />
     </div>
     <div className={styles.root}>
       <div className={styles.content}>
         <Row justify="center">
           <Col md={16}>
             <Row>
-              <DetailHeader className={styles.detailHeader} details={{ name: 'Hamilton - The Musical' }} isRating />
+              <DetailHeader className={styles.detailHeader} details={{ name: "Bob's Burgers" }} isFoodDetail />
             </Row>
             <Row>
-              <EventsListSection className={styles.left} />
+              <FoodListSection className={styles.left} />
             </Row>
           </Col>
           <Col md={8}>
             <div className={styles.detail}>
-              <EventBookingSection />
+              <FoodBookingSection />
             </div>
           </Col>
         </Row>
@@ -68,4 +68,4 @@ const EventsDetailPage = () => (
   </Page>
 );
 
-export default EventsDetailPage;
+export default FoodDetailPage;

@@ -1,0 +1,164 @@
+@import "styles";
+
+.root {
+  border: 1px solid #dedede;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: max-content;
+  width: 100%;
+  min-height: 800px;
+  .tabPane {
+    margin-top: 23px;
+    .bookContent {
+      font-size: 20px;
+      font-weight: 300;
+      .time {
+        padding: 0 20px;
+        font-size: 20px;
+        font-weight: 300;
+      }
+      h3 {
+        margin-bottom: 15px;
+      }
+      @media (min-width: $bp-mobile) {
+      }
+      .timeWrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(93px, 1fr));
+        grid-gap: 20px;
+        margin-top: 20px;
+        .time {
+          //flex: 1;
+          min-width: 93px;
+          margin: 0;
+          padding: 6px 10px;
+          border: 2px solid #dedede;
+          border-radius: 3px;
+          background: #fff;
+          color: #7b7c7e;
+          font-family: Lato;
+          font-size: 16px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.38;
+          letter-spacing: normal;
+          text-align: center;
+          &.selected {
+            background-color: $primaryColor;
+            border-color: $primaryColor;
+            color: #fff;
+          }
+          //@media (max-width: 992px) {
+          //  min-width: 100%;
+          //  flex-grow: 1;
+          //  margin-right: 0;
+          //}
+        }
+      }
+      .yourOrder {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+
+        > span {
+          margin: 0;
+          margin-bottom: 28px;
+        }
+
+        > div {
+          font-size: 14px;
+          font-weight: bold;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: Lato;
+          font-weight: bold;
+          line-height: 1.43;
+          color: #7b7c7e;
+          margin-bottom: 16px;
+
+          > span {
+            color: $primaryColor;
+
+            > svg {
+              margin-left: 15px;
+              cursor: pointer;
+
+              > path {
+                fill: $brownColor;
+              }
+            }
+          }
+        }
+      }
+      .total {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 16px 0 27px 0;
+        .totalCost {
+          color: $primaryColor;
+          font-size: 24px;
+          font-weight: bold;
+          margin-left: 10px;
+        }
+      }
+
+      .requestButton {
+        font-weight: bold;
+        height: 36px;
+        width: 100%;
+        border-radius: 3px;
+        border: none;
+        background-color: $primaryLightColor;
+        color: $primaryColor;
+        margin-top: 30px;
+        font-family: Lato;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.38;
+
+        &:hover, &:focus {
+          background: $primaryLightColor;
+          opacity: 0.9;
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+
+  .bookNow, .addToItinerary {
+    font-size: 24px;
+    font-weight: bold;
+    height: 60px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .bookNow {
+    background-color: $primaryLightColor;
+    color: $primaryColor;
+
+    &:hover, &:focus {
+      background: $primaryLightColor;
+      opacity: 0.9;
+      color: $primaryColor;
+    }
+  }
+  .addToItinerary {
+    background-color: $primaryColor;
+    color: white;
+
+    &:hover, &:focus {
+      background: $primaryColor;
+      opacity: 0.9;
+      color: white;
+    }
+  }
+  .errorText {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

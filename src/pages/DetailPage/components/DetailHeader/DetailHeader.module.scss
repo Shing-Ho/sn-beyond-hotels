@@ -8,6 +8,7 @@
     font-weight: 300;
     display: flex;
     align-items: center;
+    margin-bottom: 27px;
 
     .bedIcon {
       height: 60px;
@@ -112,6 +113,11 @@
     .tags {
       flex-direction: column;
       margin-top: 10px;
+
+      > div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       .right > div:first-child {
         margin-left: 0;
