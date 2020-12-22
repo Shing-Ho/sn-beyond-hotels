@@ -16,6 +16,10 @@
     margin: 10px 0;
   }
   .tabPane {
+    .ant-tabs-tab {
+      width: 50%;
+      justify-content: center;
+    }
     .title {
       font-family: Lato;
       font-size: 24px;
