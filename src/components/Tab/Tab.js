@@ -3,9 +3,9 @@ import { Tabs as DefaultTabs } from 'antd';
 import cx from 'classnames';
 import styles from './Tab.module.scss';
 
-const Tabs = ({ children, className, ...other }) => (
+const Tabs = ({ size, children, className, ...other }) => (
   <div className={cx(styles.root, className)}>
-    <DefaultTabs className={styles.tabs} {...other}>
+    <DefaultTabs className={size === 'big' ? styles.bigTab : styles.tabs} {...other}>
       {children}
     </DefaultTabs>
   </div>

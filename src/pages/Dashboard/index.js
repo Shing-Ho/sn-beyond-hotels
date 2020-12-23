@@ -235,7 +235,11 @@ const DashboardPage = () => {
   };
 
   const onHotelItemClick = (id) => {
-    dispatch(push(`/events/${id}`));
+    if (searchType === 'dining') {
+      dispatch(push(`/dining/${id}`));
+    } else {
+      dispatch(push(`/events/${id}`));
+    }
   };
 
   return (
