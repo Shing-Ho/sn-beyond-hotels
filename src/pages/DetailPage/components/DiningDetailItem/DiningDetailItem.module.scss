@@ -1,0 +1,73 @@
+@import "styles";
+
+.root {
+  margin-bottom: 30px;
+  .item {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid $borderGrayColor;
+    margin-bottom: 20px;
+    img {
+      width: 50%;
+      height: 185px;
+      object-fit: cover;
+    }
+    .details {
+      margin: 16px 29px;
+      width: 100%;
+      .title {
+        font-size: 24px;
+        color: $grayColor;
+        font-weight: 300;
+      }
+      .price {
+        color: $primaryColor;
+        font-size: 24px;
+        font-weight: bold;
+        width: 100%;
+        border-bottom: 1px solid $borderGrayColor;
+        padding-bottom: 10px;
+      }
+      .bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+        .learnMore {
+          font-weight: 300;
+          display: flex;
+          align-items: center;
+          color: $primaryColor;
+          & > svg {
+            height: 14px;
+            margin-right: 5px;
+  
+            g,
+            path,
+            circle {
+              fill: $primaryColor;
+            }
+          }
+        }
+        .items {
+          display: flex;
+          flex-direction: row;
+          justify-self: center;
+          align-items: center;
+        }
+        .itemsText {
+          color: $primaryColor;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.cnlTooltip {
+  color: $grayColor;
+
+  > span {
+    color: $primaryColor;
+  }
+}

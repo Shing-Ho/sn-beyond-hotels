@@ -1,0 +1,179 @@
+@import "styles";
+
+.root {
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: auto;
+  .bookContent {
+    border: 1px solid $borderGrayColor;
+    font-size: 20px;
+    font-weight: 300;
+    max-width: 360px;
+    .tabPane {
+      .guestRow {
+        margin: 0px 20px 0px 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px $borderGrayColor solid;
+        .guestText {
+          font-size: 24px;
+          margin-left: 20px;
+        }
+      }
+      .dateContainer {
+        padding: 0px 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        .dateTimeText {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+      }
+      .timeSelectContainer {
+        margin: 20px 0px 0px;
+      }
+      .bookNow, .addToItinerary {
+        font-size: 24px;
+        font-weight: bold;
+        height: 60px;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+      }
+      .differentTimeText {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: $grayColor;
+      }
+      .differentTime {
+        border-radius: 0;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 0px;
+      }
+      .bookNow, .differentTime {
+        background-color: $primaryLightColor;
+        color: $primaryColor;
+    
+        &:hover, &:focus {
+          background: $primaryLightColor;
+          opacity: 0.9;
+          color: $primaryColor;
+        }
+      }
+      .addToItinerary {
+        background-color: $primaryColor;
+        color: white;
+    
+        &:hover, &:focus {
+          background: $primaryColor;
+          opacity: 0.9;
+          color: white;
+        }
+      }
+      .waitListWrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 19px;
+        border-top: 1px solid $borderGrayColor;
+        .waitListLeft {
+          font-size: 24px;
+          color: $grayColor;
+          font-weight: 300;
+        }
+        .waitListRight {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .waitListTop {
+            color: $primaryColor;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .waitListBottom {
+            color: $grayColor;
+            font-size: 14px;
+          }
+        }
+      }
+      .topButtons {
+        margin: 0px 20px;
+        padding-bottom: 21.5px;
+        border-bottom: 1px solid $borderGrayColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .deliveryButton, .pickUpButton {
+          font-size: 16px;
+          font-weight: bold;
+          height: 36px;
+          width: 100%;
+          border-radius: 3px;
+          border: none;
+        }
+        .deliveryButton {
+          background-color: white;
+          color: $grayColor;
+          margin-right: 21px;
+          border: 2px solid $borderGrayColor;
+          &:hover, &:focus {
+            background: $primaryLightColor;
+            opacity: 0.9;
+            color: $primaryColor;
+          }
+        }
+        .pickUpButton {
+          background-color: $primaryColor;
+          color: white;
+      
+          &:hover, &:focus {
+            background: $primaryColor;
+            opacity: 0.9;
+            color: white;
+          }
+        }
+      }
+      .orderContainer {
+        padding: 0px 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        border-top: 1px $borderGrayColor solid;
+        .orderText {
+          margin-top: 20px;
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+        .orderRow {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          .orderName {
+            color: $grayColor;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          .orderRight {
+            display: flex;
+            flex-direction: row;
+            .orderNumber {
+              color: $primaryColor;
+              font-size: 14px;
+              font-weight: bold;
+              margin-right: 15px;
+            }
+            .closeIcon {
+              width: 12px;
+              height: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

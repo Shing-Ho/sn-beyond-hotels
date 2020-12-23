@@ -181,7 +181,11 @@ const DashboardPage = () => {
   };
 
   const onItemClick = (id) => {
-    dispatch(push(`/events/${id}`));
+    if (searchType === 'dining') {
+      dispatch(push(`/dining/${id}`));
+    } else {
+      dispatch(push(`/events/${id}`));
+    }
   };
 
   const handleSearchTypeChange = (type) => {

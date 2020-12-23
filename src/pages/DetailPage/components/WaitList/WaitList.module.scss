@@ -1,0 +1,133 @@
+@import "styles";
+
+.root {
+  border: 1px solid $borderGrayColor;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: auto;
+  .bookContent {
+    font-size: 20px;
+    font-weight: 300;
+    max-width: 400px;
+    .header {
+      padding: 20px 19px 29px 19px;
+      background-color: $bgLightGrayColor;
+      border-bottom: 1px solid $borderGrayColor;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        background-color: $bgGrayColor;
+        padding: 3px;
+        border-radius: 10px;
+        span {
+          color: white;
+        }
+      }
+      .headerText {
+        height: 24px;
+        margin: 1px 127px 0 0;
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: left;
+        color: $grayColor;
+      }
+    }
+    .main {
+      padding: 18px 21px;
+      .top {
+        padding-bottom: 18px;
+        border-bottom: 1px solid $borderGrayColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .boldText {
+          font-size: 18px;
+          font-weight: bold;
+          color: $primaryColor;
+        }
+        .normalText {
+          font-size: 18px;
+          font-weight: 300;
+          color: $primaryColor;
+        }
+      }
+      .waitDiv {
+        padding: 30px;
+        text-align: center;
+        border-bottom: 1px solid $borderGrayColor;
+        .boldText {
+          font-size: 24px;
+          color: $primaryColor;
+          font-weight: bold;
+        }
+        .normalText {
+          font-size: 20px;
+          columns: $grayColor;
+          font-weight: 300;
+        }
+      }
+      .collapse {
+        padding: 14.5px 0px;
+        border-bottom: 1px solid $borderGrayColor;
+        .chartDiv {
+          height: 200px;
+        }
+      }
+      .inputGroup {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        input {
+          width: 50%;
+          margin-right: 10px;
+        }
+        .rightInput {
+          display: flex;
+          flex-direction: row;
+          .inputText {
+            font-size: 14px;
+            color: $primaryColor;
+            font-weight: bold;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .bookNow, .addToItinerary {
+      font-size: 24px;
+      font-weight: bold;
+      height: 60px;
+      width: 100%;
+      border-radius: 0;
+      border: none;
+    }
+    .bookNow, .differentTime {
+      background-color: $primaryLightColor;
+      color: $primaryColor;
+  
+      &:hover, &:focus {
+        background: $primaryLightColor;
+        opacity: 0.9;
+        color: $primaryColor;
+      }
+    }
+    .addToItinerary {
+      background-color: $primaryColor;
+      color: white;
+  
+      &:hover, &:focus {
+        background: $primaryColor;
+        opacity: 0.9;
+        color: white;
+      }
+    }
+  }
+}

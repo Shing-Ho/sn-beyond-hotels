@@ -35,4 +35,38 @@
       }
     }
   }
+  .bigTab {
+    &:global(.ant-tabs) {
+      :global(.ant-tabs-nav) {
+        &:before {
+          border-bottom-width: 2px;
+          border-bottom-color: $borderGrayColor;
+          // right: 100px;
+        }
+
+        :global(.ant-tabs-tab) {
+          padding: 20px 50px 20px 50px;
+
+          :global(.ant-tabs-tab-btn) {
+            color: $grayColor;
+            line-height: 20px;
+            font-size: 14px;
+            text-transform: none;
+            font-weight: bold;
+          }
+
+          &:global(.ant-tabs-tab-active) {
+            :global(.ant-tabs-tab-btn) {
+              color: $primaryColor;
+            }
+          }
+        }
+
+        :global(.ant-tabs-ink-bar) {
+          height: 4px;
+          background: $primaryColor;
+        }
+      }
+    }
+  }
 }
