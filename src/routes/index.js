@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import DashboardPage from 'pages/Dashboard';
-import TransportSearchPage from 'pages/HotelSearchPage/TransportSearchPage';
+import TransportSearchPage from 'pages/SearchPage/TransportSearchPage';
 import HotelDetailPage from 'pages/DetailPage/HotelDetailPage';
 import EventDetailPage from 'pages/DetailPage/EventDetailPage';
 import ToursDetailPage from 'pages/DetailPage/ToursDetailPage';
