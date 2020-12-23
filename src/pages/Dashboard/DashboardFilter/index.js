@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import styles from './index.module.scss';
 
-const DashboardFilter = ({ searchTypeData, searchType, onItemClick }) => (
+const DashboardFilter = ({ searchTypeData, searchType, onItemClick, intl }) => (
   <div className={styles.content}>
     {searchTypeData.map((item) => (
       <div
@@ -11,7 +11,7 @@ const DashboardFilter = ({ searchTypeData, searchType, onItemClick }) => (
         onClick={() => onItemClick(item.value)}
       >
         <div className={styles.icon}>{item.value === searchType ? item.selectedIcon : item.icon}</div>
-        <div>{item.name}</div>
+        <div>{intl.formatMessage({ id: item.name })}</div>
       </div>
     ))}
   </div>

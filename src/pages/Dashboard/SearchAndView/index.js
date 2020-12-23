@@ -17,11 +17,11 @@ const searchOptions = [
   },
 ];
 
-const SearchAndView = ({ setSearch, search, filterMenu, sortMenu, setItemView, itemView }) => (
+const SearchAndView = ({ setSearch, search, filterMenu, sortMenu, setItemView, itemView, intl }) => (
   <div className={styles.content}>
     <div className={styles.searchBar}>
       <Select
-        placeholder="Search..."
+        placeholder={`${intl.formatMessage({ id: 'search', defaultValue: 'Search' })}...`}
         value={search}
         options={searchOptions}
         mode="tags"

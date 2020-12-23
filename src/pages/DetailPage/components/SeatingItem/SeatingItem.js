@@ -13,13 +13,18 @@ const SeatingItem = () => (
         <img src={Ticket} alt="ticket" />
         <div className={styles.detail}>
           <div className={styles.title}>
-            <div className={styles.header}>Right</div>
+            <div className={styles.header}>
+              <FormattedMessage id="right" defaultMessage="Right" />
+            </div>
             <div className={styles.time}>12:00 PM</div>
           </div>
           <div className={styles.priceDiv}>
             <div className={styles.price}>$190.00 - $240</div>
             <div className={styles.duration}>
-              160 Min<span>Duration</span>
+              160 <FormattedMessage id="min" defaultMessage="Min" />
+              <span>
+                <FormattedMessage id="duration" defaultMessage="Duration" />
+              </span>
             </div>
           </div>
           <div className={styles.learnDiv}>
@@ -49,198 +54,308 @@ const SeatingItem = () => (
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>
           <div className={styles.seatDetail}>
             <div className={styles.seatNames}>A 21, A22</div>
             <div className={styles.seatBook}>
-              <div className={styles.seatPrice}>$190.00/Seat</div>
+              <div className={styles.seatPrice}>
+                $190.00/
+                <FormattedMessage id="seats" defaultMessage="Seats" />
+              </div>
               <div className={styles.seatButton}>
-                <Button>Add</Button>
+                <Button>
+                  <FormattedMessage id="add" defaultMessage="Add" />
+                </Button>
               </div>
             </div>
           </div>

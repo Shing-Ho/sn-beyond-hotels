@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { Form, Input, InputNumber } from 'antd';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import FormItem from 'components/FormItem/FormItem';
 import Rating from 'components/Rating/Rating';
@@ -89,10 +89,14 @@ const HotelLeftFilters = ({ currency }) => {
     <div className={styles.root}>
       <div className={styles.summary}>
         <div className={styles.header}>
-          <h3 className={styles.header}>Filters</h3>
+          <h3 className={styles.header}>
+            <FormattedMessage id="hotel.filters" defaultMessage="Filters" />
+          </h3>
           <div className={styles.valueNumber}>
             <span>264</span>
-            <h6>Rooms</h6>
+            <h6>
+              <FormattedMessage id="rooms" defaultMessage="Rooms" />
+            </h6>
           </div>
         </div>
       </div>
@@ -126,7 +130,7 @@ const HotelLeftFilters = ({ currency }) => {
             onChange={onMaxChange}
           />
         </FormItem>
-        <FormItem label="Star Rating">
+        <FormItem label={intl.formatMessage({ id: 'starRating', defaultValue: 'Star Rating' })}>
           <Rating
             scoreonly
             className={styles.starRating}
