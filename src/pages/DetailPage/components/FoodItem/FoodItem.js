@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import NumberInput from 'components/NumberInput/NumberInput';
 import Divider from 'components/Divider/Divider';
-import { getRandomImageUrl } from 'helpers/utils';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import styles from './FoodItem.module.scss';
 
-const FoodItem = ({ type = 'EVENT' }) => {
+const FoodItem = ({ type = 'EVENT', data, setData }) => {
   const [quantity, setQuantity] = useState({});
 
   const handleQuantityChange = (name) => (value) => {
@@ -14,17 +13,19 @@ const FoodItem = ({ type = 'EVENT' }) => {
       ...quantity,
       [name]: value,
     });
+
+    setData({ ...data, items: value });
   };
   return (
     <div className={styles.root}>
-      <img src={getRandomImageUrl()} alt={type.toLocaleLowerCase()} />
+      <img src={data.src} alt={type.toLocaleLowerCase()} />
       <div className={styles.detail}>
         <div className={styles.titleWrapper}>
           <div className={styles.title}>
-            <div className={styles.header}>Poutine</div>
+            <div className={styles.header}>{data.title}</div>
           </div>
           <div className={styles.priceDiv}>
-            <div className={styles.price}>$8.50</div>
+            <div className={styles.price}>${data.price}</div>
           </div>
         </div>
         <Divider margin={17} />
@@ -37,7 +38,7 @@ const FoodItem = ({ type = 'EVENT' }) => {
             <span className="mr-1">
               <FormattedMessage id="items" />
             </span>
-            <NumberInput defaultValue={2} onChange={handleQuantityChange} name="quantity" />
+            <NumberInput value={data.items} onChange={handleQuantityChange} name="quantity" />
           </div>
         </div>
       </div>

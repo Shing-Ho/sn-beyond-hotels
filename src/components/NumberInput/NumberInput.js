@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import cx from 'classnames';
 import { ReactComponent as PlusIcon } from 'icons/plus.svg';
 import { ReactComponent as MinusIcon } from 'icons/minus.svg';
 import styles from './NumberInput.module.scss';
 
-const NumberInput = ({ defaultValue = 1, className, name, onChange }) => {
+const NumberInput = ({ defaultValue = 1, className, name, onChange, value: propsValue }) => {
   const [value, setValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setValue(propsValue);
+  }, [propsValue]);
+
   const handleClick = (amount) => (e) => {
     e.stopPropagation();
 

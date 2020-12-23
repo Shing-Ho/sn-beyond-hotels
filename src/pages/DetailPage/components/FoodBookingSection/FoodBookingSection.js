@@ -11,7 +11,7 @@ import './custom-tabs.scss';
 
 const showTimings = ['ASAP', '5.30 PM', '5.45 PM', '6:00 PM', '6:15 PM', '6:30 PM'];
 
-export default function FoodBookingSection({ className }) {
+const FoodBookingSection = ({ className, data, setData }) => {
   const [selectedTime, setSelectedTime] = useState([]);
   const onBookNowClick = () => {};
 
@@ -22,6 +22,10 @@ export default function FoodBookingSection({ className }) {
     } else {
       setSelectedTime([...selectedTime, time]);
     }
+  };
+
+  const onCloseClick = (obj) => () => {
+    setData({ ...obj, items: 0 });
   };
 
   return (
@@ -54,27 +58,18 @@ export default function FoodBookingSection({ className }) {
               <span>
                 <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
               </span>
-              <div>
-                Sliders
-                <span>
-                  2
-                  <CloseIcon />
-                </span>
-              </div>
-              <div>
-                Small Salad
-                <span>
-                  1
-                  <CloseIcon />
-                </span>
-              </div>
-              <div>
-                Big Burger Combo
-                <span>
-                  1
-                  <CloseIcon />
-                </span>
-              </div>
+              {data.map((d) => {
+                if (!d.items) return null;
+                return (
+                  <div>
+                    {d.title}
+                    <span>
+                      {d.items}
+                      <CloseIcon onClick={onCloseClick(d)} />
+                    </span>
+                  </div>
+                );
+              })}
             </div>
             <div className={styles.total}>
               <span>
@@ -96,4 +91,6 @@ export default function FoodBookingSection({ className }) {
       </Tabs>
     </div>
   );
-}
+};
+
+export default FoodBookingSection;

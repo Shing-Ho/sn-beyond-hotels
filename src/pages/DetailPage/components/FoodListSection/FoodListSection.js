@@ -13,16 +13,17 @@ const location = {
   lng: 77.4977,
 };
 
-export default function FoodListSection() {
+const FoodListSection = ({ data, setData }) => {
   const intl = useIntl();
+  console.log('data : ', data);
   return (
     <div className={cx(styles.root)}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Menus" key="1">
           <div className={styles.title}>Sides</div>
-          <FoodItem />
-          <FoodItem />
-          <FoodItem />
+          {data.map((d) => (
+            <FoodItem data={d} setData={setData} />
+          ))}
           <Collapse
             header={intl.formatMessage({ id: 'burgers', defaultValue: 'Bergers' })}
             type="large"
@@ -72,4 +73,6 @@ export default function FoodListSection() {
       </Tabs>
     </div>
   );
-}
+};
+
+export default FoodListSection;
