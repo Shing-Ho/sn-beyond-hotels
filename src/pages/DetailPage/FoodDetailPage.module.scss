@@ -5,6 +5,10 @@
     max-width: 1180px;
     width: 100%;
     margin: 20px auto;
+    padding-left: 10px;
+    @media screen and (max-width: 767px){
+      padding-right: 10px;
+    }
     .detail {
       display: flex;
       justify-content: space-between;

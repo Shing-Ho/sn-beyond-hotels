@@ -10,11 +10,13 @@ const FoodItem = ({ type = 'EVENT' }) => (
   <div className={styles.root}>
     <img src={getRandomImageUrl()} alt={type.toLocaleLowerCase()} />
     <div className={styles.detail}>
-      <div className={styles.title}>
-        <div className={styles.header}>Poutine</div>
-      </div>
-      <div className={styles.priceDiv}>
-        <div className={styles.price}>$8.50</div>
+      <div className={styles.titleWrapper}>
+        <div className={styles.title}>
+          <div className={styles.header}>Poutine</div>
+        </div>
+        <div className={styles.priceDiv}>
+          <div className={styles.price}>$8.50</div>
+        </div>
       </div>
       <Divider margin={17} />
       <div className={styles.learnDiv}>

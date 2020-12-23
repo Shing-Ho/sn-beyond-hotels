@@ -58,7 +58,7 @@
   .tags {
     display: flex;
     justify-content: space-between;
-
+    flex-wrap: wrap;
     > div {
       display: flex;
       align-items: center;
