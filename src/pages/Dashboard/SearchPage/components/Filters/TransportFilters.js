@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Radio } from 'antd';
 import cx from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormItem from 'components/FormItem/FormItem';
 import Select from 'components/Select/Select';
 import styles from './TransportFilters.module.scss';
@@ -78,6 +78,7 @@ const searchOptions = [
 const TransportFilters = ({ onViewModeChange, onTabChange }) => {
   const [search, setSearch] = useState([]);
   const [tab, setTab] = useState('ALL');
+  const intl = useIntl();
 
   const handleChange = (field) => (data) => {
     switch (field) {
@@ -104,7 +105,7 @@ const TransportFilters = ({ onViewModeChange, onTabChange }) => {
         <Col md={12} sm={24} xs={24}>
           <FormItem className={styles.search}>
             <Select
-              placeholder="Search..."
+              placeholder={`${intl.formatMessage({ id: 'search' })}...`}
               value={search}
               options={searchOptions}
               mode="tags"
@@ -117,12 +118,12 @@ const TransportFilters = ({ onViewModeChange, onTabChange }) => {
         <Col md={12} sm={24} xs={24}>
           <Row justify="space-between" gutter={20}>
             <Col md={8} sm={8} xs={8}>
-              <Select className={styles.select} options={[]} placeholder="Filter...">
+              <Select className={styles.select} options={[]} placeholder={`${intl.formatMessage({ id: 'filter' })}...`}>
                 <FormattedMessage id="filter" defaultMessage="Filter" />
               </Select>
             </Col>
             <Col md={8} sm={8} xs={8}>
-              <Select className={styles.select} options={[]} placeholder="Sort..." />
+              <Select className={styles.select} options={[]} placeholder={`${intl.formatMessage({ id: 'sort' })}...`} />
             </Col>
             <Col className={styles.radioWrapper} md={8} sm={8} xs={8}>
               <Radio.Group

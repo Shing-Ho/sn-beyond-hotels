@@ -12,13 +12,25 @@ import styles from './DetailItem.module.scss';
 const PopOverContent = (data) => (
   <div>
     <p>
-      <FormattedMessage id="detailPage.info.rate" values={{ rate: commaFormat(data.total_base_rate.amount) }} />
+      <FormattedMessage
+        id="detailPage.info.rate"
+        defaultMessage={`Rate: ${commaFormat(data.total_base_rate.amount)}`}
+        values={{ rate: commaFormat(data.total_base_rate.amount) }}
+      />
     </p>
     <p>
-      <FormattedMessage id="detailPage.info.taxes" values={{ taxes: commaFormat(data.total_tax_rate.amount) }} />
+      <FormattedMessage
+        id="detailPage.info.taxes"
+        defaultMessage={`Taxes: ${commaFormat(data.total_tax_rate.amount)}`}
+        values={{ taxes: commaFormat(data.total_tax_rate.amount) }}
+      />
     </p>
     <p>
-      <FormattedMessage id="detailPage.info.total" values={{ total: commaFormat(data.total.amount) }} />
+      <FormattedMessage
+        id="detailPage.info.total"
+        defaultMessage={`Total: ${commaFormat(data.total.amount)}`}
+        values={{ total: commaFormat(data.total.amount) }}
+      />
     </p>
   </div>
 );
@@ -49,9 +61,9 @@ const DetailItem = (props) => {
             {totalCost}
             <span>
               {nights > 1 ? (
-                <FormattedMessage id="detailItem.costs" values={{ nights }} />
+                <FormattedMessage id="detailItem.costs" defaultMessage={`for ${nights} Nights`} values={{ nights }} />
               ) : (
-                <FormattedMessage id="detailItem.cost" values={{ nights }} />
+                <FormattedMessage id="detailItem.cost" defaultMessage={`for ${nights} Night`} values={{ nights }} />
               )}
             </span>
           </div>
@@ -61,7 +73,7 @@ const DetailItem = (props) => {
             <Popover content={PopOverContent(data)}>
               <InfoIcon />
             </Popover>
-            <FormattedMessage id="learnMore" />
+            <FormattedMessage id="learnMore" defaultMessage="Learn More" />
           </div>
           {get(data, 'cancellation_policy.summary') && (
             <div className={styles.cancellation}>
@@ -87,7 +99,7 @@ const DetailItem = (props) => {
         <div className={styles.bottom}>
           <div className={styles.roomCount} onClick={onSelect}>
             <Button type="primary">
-              <FormattedMessage id="select" />
+              <FormattedMessage id="select" defaultMessage="Select" />
             </Button>
           </div>
         </div>

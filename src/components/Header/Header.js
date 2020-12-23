@@ -28,8 +28,6 @@ const Header = () => {
     dispatch(coreActions.setLocale(_locale));
   };
 
-  console.log('###', languageOptions, locale);
-
   return (
     <header className={styles.header}>
       <div className={styles.container}>

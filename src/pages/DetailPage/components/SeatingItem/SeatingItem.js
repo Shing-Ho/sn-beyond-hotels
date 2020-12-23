@@ -25,11 +25,11 @@ const SeatingItem = () => (
           <div className={styles.learnDiv}>
             <div className={styles.learn}>
               <InfoIcon />
-              <FormattedMessage id="learnMore" />
+              <FormattedMessage id="learnMore" defaultMessage="Learn More" />
             </div>
             <div className={styles.countDiv}>
               <span className="mr-1">
-                <FormattedMessage id="guests" />
+                <FormattedMessage id="guests" defaultMessage="Guests" />
               </span>
               <NumberInput defaultValue={2} onChange={() => null} />
             </div>
@@ -39,10 +39,10 @@ const SeatingItem = () => (
       <div className={styles.seatContainer}>
         <div className={styles.seatHeader}>
           <span>
-            <FormattedMessage id="seats" />
+            <FormattedMessage id="seats" defaultMessage="Seats" />
           </span>
           <span>
-            <FormattedMessage id="guests" />
+            <FormattedMessage id="guests" defaultMessage="Guests" />
           </span>
         </div>
         <div className={styles.seatBody}>

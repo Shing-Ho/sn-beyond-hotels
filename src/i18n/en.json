@@ -39,6 +39,9 @@
   "paymentType": "Payment Type",
   "amenities": "Amenities",
   "safetyAndAccessibility": "Safety and Accessibility",
+  "showMore": "Show More",
+  "location": "Location",
+
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",
   "detailPage.RoomList.tab.mapPane": "Map Pane",

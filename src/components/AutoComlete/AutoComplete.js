@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { AutoComplete } from 'antd';
 import { useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 import { debounce } from 'lodash';
 import hotelActions from '../../store/hotel/actions';
 import styles from './AutoComplete.module.scss';
@@ -14,6 +15,7 @@ const Complete = ({ onSelect, value, clearData, styles: inputStyle = {}, placeho
   const [text, setText] = useState('');
   const [locationData, setLocationData] = useState([]);
   const dispatch = useDispatch();
+  const intl = useIntl();
 
   const callAPI = (payload) => {
     dispatch(hotelActions.getLocationData(payload)).then((res) => {
@@ -44,7 +46,7 @@ const Complete = ({ onSelect, value, clearData, styles: inputStyle = {}, placeho
       className={styles.autocomplete}
       style={{ ...inputStyle }}
       onChange={onCompleteChange}
-      placeholder={placeholder || 'location'}
+      placeholder={intl.formatMessage({ id: 'location' })}
       onSelect={onSelected}
     />
   );

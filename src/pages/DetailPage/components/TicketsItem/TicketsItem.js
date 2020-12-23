@@ -36,11 +36,11 @@ const TicketsItem = ({ type = 'EVENT' }) => (
       <div className={styles.learnDiv}>
         <div className={styles.learn}>
           <InfoIcon />
-          <FormattedMessage id="learnMore" />
+          <FormattedMessage id="learnMore" defaultMessage="Learn More" />
         </div>
         <div className={styles.countDiv}>
           <span className="mr-1">
-            <FormattedMessage id="guests" />
+            <FormattedMessage id="guests" defaultMessage="Guests" />
           </span>
           <NumberInput defaultValue={2} onChange={() => null} />
         </div>
