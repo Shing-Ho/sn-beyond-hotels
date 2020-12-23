@@ -6,6 +6,7 @@
   height: max-content;
   width: 100%;
   min-height: 600px;
+  min-width: 358px;
   .tabPane {
     margin-top: 23px;
     .bookContent {
@@ -63,6 +64,11 @@
         > span {
           margin: 0;
           margin-bottom: 28px;
+          font-family: Lato;
+          font-size: 24px;
+          font-weight: 300;
+          line-height: 1.21;
+          color: #7b7c7e;
         }
 
         > div {
@@ -96,6 +102,12 @@
         align-items: center;
         text-align: center;
         margin: 16px 0 27px 0;
+        font-family: Lato;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.2;
+        color: #7b7c7e;
+        text-transform: uppercase;
         .totalCost {
           color: $primaryColor;
           font-size: 24px;

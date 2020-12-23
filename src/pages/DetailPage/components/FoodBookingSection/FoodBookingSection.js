@@ -5,8 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import DatePicker from 'components/DatePicker/DatePicker';
 import Divider from 'components/Divider/Divider';
 import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
-import styles from './FoodBookingSection.module.scss';
 import { TabPane, Tabs } from '../../../../components/Tab/Tab';
+import styles from './FoodBookingSection.module.scss';
+import './custom-tabs.scss';
 
 const showTimings = ['ASAP', '5.30 PM', '5.45 PM', '6:00 PM', '6:15 PM', '6:30 PM'];
 
