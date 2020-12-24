@@ -58,7 +58,7 @@ const searchTypeOptions = [
   },
   {
     id: 3,
-    name: 'Flights',
+    name: 'flights',
     value: 'flights',
     icon: <FlightsOutline />,
     selectedIcon: <FlightsTransparent />,
@@ -72,7 +72,7 @@ const searchTypeOptions = [
   },
   {
     id: 5,
-    name: 'Gas & Charging',
+    name: 'gasAndCharging',
     value: 'gas',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,

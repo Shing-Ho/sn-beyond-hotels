@@ -66,8 +66,9 @@
   "add": "Add",
   "seats": "Seats",
   "orderNumber": "ORDER NUMBER",
-  "items": "Items",
   "back": "Back",
+  "flights": "Flights",
+  "gasAndCharging": "Gas & Charging",
 
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",
