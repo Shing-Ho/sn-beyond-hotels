@@ -231,6 +231,7 @@ const FlightSearchForm = () => {
                         <NumberInput
                           className={styles.travelers}
                           defaultValue={1}
+                          value={1}
                           name="travelerCount"
                           onChange={handleTravelerCountChange}
                           leftComponent={
