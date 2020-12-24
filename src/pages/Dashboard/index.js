@@ -5,6 +5,7 @@ import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
 
 import Page from 'components/Page/Page';
+import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
 import TopFilters from 'components/TopFilters/TopFilters';
 import TabSelect from 'components/TabSelect/TabSelect';
 import { getRandomImageUrl } from 'helpers/utils';
@@ -22,6 +23,8 @@ import { ReactComponent as DiningSvg } from 'icons/dashboardIcons/Dining.svg';
 import { ReactComponent as DiningWhiteSvg } from 'icons/dashboardIcons/DiningWhite.svg';
 import { ReactComponent as Nightlife } from 'icons/dashboardIcons/Nightlife.svg';
 import { ReactComponent as NightlifeWhite } from 'icons/dashboardIcons/NightlifeWhite.svg';
+import { ReactComponent as FlightsTransparent } from '../../icons/dashboardIcons/Flights.svg';
+import { ReactComponent as FlightsOutline } from '../../icons/dashboardIcons/FlightsOutline.svg';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
 import HotelSearchPage from './SearchPage/HotelSearchPage';
@@ -54,41 +57,48 @@ const searchTypeOptions = [
   },
   {
     id: 3,
+    name: 'Flights',
+    value: 'flights',
+    icon: <FlightsOutline />,
+    selectedIcon: <FlightsTransparent />,
+  },
+  {
+    id: 4,
     name: 'Transportation',
     value: 'transports',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
   {
-    id: 4,
+    id: 5,
     name: 'Gas & Charging',
     value: 'gas',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
   },
   {
-    id: 5,
+    id: 6,
     name: 'Tours & Activities',
     value: 'tours',
     icon: <ToursActivities />,
     selectedIcon: <ToursActivitiesWhite />,
   },
   {
-    id: 6,
+    id: 7,
     name: 'Shows & Events',
     value: 'events',
     icon: <ShowsEvents />,
     selectedIcon: <ShowsEventsWhite />,
   },
   {
-    id: 7,
+    id: 8,
     name: 'Dining',
     value: 'dining',
     icon: <DiningSvg />,
     selectedIcon: <DiningWhiteSvg />,
   },
   {
-    id: 8,
+    id: 9,
     name: 'NightLife',
     value: 'nightLife',
     icon: <Nightlife />,
@@ -201,8 +211,11 @@ const DashboardPage = () => {
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}
-          {searchType !== 'hotels' && <ContainerView items={items} searchType={searchType} subHeader={subHeader} />}
+          {searchType !== 'hotels' && searchType !== 'flights' && (
+            <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
+          )}
         </div>
+        {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}
       </div>
     </Page>
   );
