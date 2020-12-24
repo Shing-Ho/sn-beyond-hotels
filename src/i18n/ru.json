@@ -62,6 +62,7 @@
   "seats": "Сиденья",
   "orderNumber": "НОМЕР ЗАКАЗА",
   "items": "Предметы",
+  "back": "Назад",
 
   "detailPage.notification.description": "Данные формы недействительны",
   "detailPage.RoomList.tab.detailPane": "Панель сведений",
@@ -123,5 +124,7 @@
   "searchPage.filters.safety.employee_ppe": "СИЗ сотрудника",
 
   "confirmationPage.continueShopping": "Продолжить покупки",
-  "confirmationPage.viewAllOrders": "Просмотреть все заказы"
+  "confirmationPage.viewAllOrders": "Просмотреть все заказы",
+
+  "guestPage.inputOnlyNumberInField": "Пожалуйста, введите только номер в этом поле"
 }

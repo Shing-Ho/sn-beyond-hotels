@@ -67,6 +67,7 @@
   "seats": "Seats",
   "orderNumber": "ORDER NUMBER",
   "items": "Items",
+  "back": "Back",
 
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",
@@ -128,5 +129,7 @@
   "searchPage.filters.safety.employee_ppe": "Employee PPE",
 
   "confirmationPage.continueShopping": "Continue Shopping",
-  "confirmationPage.viewAllOrders": "View All Orders"
+  "confirmationPage.viewAllOrders": "View All Orders",
+
+  "guestPage.inputOnlyNumberInField": "Please input only number in this field"
 }

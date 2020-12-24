@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Form } from 'antd';
+import { FormattedMessage, useIntl } from 'react-intl';
 import history from 'store/history';
 import Page from 'components/Page/Page';
 import bookingActions from 'store/booking/actions';
@@ -27,6 +28,8 @@ export default function GuestPage() {
   // set primary checked to true as default
   const [items, setItems] = useState((selectedRooms || []).map((v) => ({ ...v, primary: true })));
 
+  const intl = useIntl();
+
   const changeItem = (cItem, index) => {
     const tItem = [...items];
     tItem[index - 1] = cItem;
@@ -48,7 +51,12 @@ export default function GuestPage() {
       await form.validateFields();
 
       if (!isNumber(primaryContact.phone)) {
-        setPhoneError('Please input only number in this field');
+        setPhoneError(
+          intl.formatMessage({
+            id: 'guestPage.inputOnlyNumberInField',
+            defaultValue: 'Please input only number in this field',
+          }),
+        );
         return;
       }
 
@@ -99,14 +107,16 @@ export default function GuestPage() {
               <span>
                 {currency?.symbol} {totalAmount.toFixed(2)}
               </span>
-              <span>Total</span>
+              <span>
+                <FormattedMessage id="total" defaultMessage="Total" />
+              </span>
             </div>
             <div className={styles.backCheckoutBtn}>
               <Button size="large" invert onClick={goBack}>
-                Back
+                <FormattedMessage id="back" defaultMessage="Back" />
               </Button>
               <Button size="large" onClick={handleFormSubmit}>
-                Check Out
+                <FormattedMessage id="checkOut" defaultMessage="Check Out" />
               </Button>
             </div>
           </div>
@@ -118,10 +128,12 @@ export default function GuestPage() {
                 <span>
                   {currency?.symbol} {totalAmount.toFixed(2)}
                 </span>
-                <span>Total</span>
+                <span>
+                  <FormattedMessage id="total" defaultMessage="Total" />
+                </span>
               </div>
               <span>
-                <b>{items.length || 0}</b> Items
+                <b>{items.length || 0}</b> <FormattedMessage id="items" defaultMessage="Items" />
               </span>
             </div>
           }
@@ -129,10 +141,12 @@ export default function GuestPage() {
             <div className={styles.drawerBottom}>
               <div className={styles.drawalTotalSection}>
                 <span>{`${currency?.symbol} ${totalAmount.toFixed(2)}`}</span>
-                <span>Total</span>
+                <span>
+                  <FormattedMessage id="total" defaultMessage="Total" />
+                </span>
               </div>
               <Button size="large" onClick={handleFormSubmit}>
-                Check Out
+                <FormattedMessage id="checkOut" defaultMessage="Check Out" />
               </Button>
             </div>
           }
