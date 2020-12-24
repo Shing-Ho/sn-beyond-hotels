@@ -12,6 +12,9 @@
     width: 100%;
     padding-top: 62px;
     height: 652px;
+    @media (max-width: $bp-mobile) {
+      height: 1100px;
+    }
     .imgWrapper {
       position: absolute;
       left: 0;
@@ -247,12 +250,18 @@
           @media (max-width: $bp-mobile) {
             display: none;
           }
+          .plane {
+            margin-top: 35px;
+          }
         }
         .searchSelectWrapper {
           position: relative;
           width: 100%;
           margin-top: 15px;
-
+          @media (max-width: $bp-mobile) {
+            width: 80%;
+            margin: 0 auto;
+          }
           :global(.ant-select) {
             width: 100%;
           }
@@ -344,7 +353,7 @@
       }
       .divider {
         width: 100%;
-        margin: 36px 0;
+        margin: 25px 0;
         border: 1px solid #fff;
         z-index: 1;
       }
