@@ -15,7 +15,7 @@ const location = {
 
 const FoodListSection = ({ data, setData }) => {
   const intl = useIntl();
-  console.log('data : ', data);
+
   return (
     <div className={cx(styles.root)}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
