@@ -1,32 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
-import { Dropdown } from 'antd';
+import { Input, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
-import Select from 'components/Select/Select';
 import styles from './index.module.scss';
 
-const searchOptions = [
-  {
-    title: 'Tag',
-    value: 'tag',
-  },
-  {
-    title: 'LongTag',
-    value: 'longtag',
-  },
-];
-
-const SearchAndView = ({ setSearch, search, filterMenu, sortMenu, setItemView, itemView }) => (
+const SearchAndView = ({ setSearchText, filterMenu, sortMenu, setItemView, itemView }) => (
   <div className={styles.content}>
     <div className={styles.searchBar}>
-      <Select
-        placeholder="Search..."
-        value={search}
-        options={searchOptions}
-        mode="tags"
-        suffix={<span className="fa fa-search" />}
-        onChange={setSearch}
+      <Input
+        placeholder="Search"
+        suffix={<span className="fa fa-search" style={{ color: '#003398' }} />}
+        onChange={(e) => setSearchText(e.target.value)}
       />
     </div>
     <div className={styles.filterBar}>

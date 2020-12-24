@@ -1,26 +1,17 @@
 import React from 'react';
-import GoogleMap from 'components/GoogleMap/GoogleMap';
-import GridView from './GridView';
-import ListView from './ListView';
 import styles from './index.module.scss';
+import GridView from './GridView/index';
 
-const ContainerView = ({ itemView, items, total, currency, onPageChange, onItemClick }) => {
+const ContainerView = ({ itemView, items, onPageChange, onHotelItemClick }) => {
   if (items.length === 0) return <div className={styles.container}>No results found...</div>;
   return (
     <div>
       {itemView === 'grid' && (
-        <GridView
-          items={items}
-          onPageChange={onPageChange}
-          total={total}
-          currency={currency}
-          onItemClick={onItemClick}
-        />
+        <GridView items={items} onPageChange={onPageChange} onHotelItemClick={onHotelItemClick} />
       )}
       {itemView === 'list' && (
-        <ListView items={items} onPageChange={onPageChange} currency={currency} onItemClick={onItemClick} />
+        <GridView items={items} onPageChange={onPageChange} onHotelItemClick={onHotelItemClick} />
       )}
-      {itemView === 'location' && <GoogleMap height={600} center={[24.2028, 10.4418]} coords={[]} />}
     </div>
   );
 };

@@ -59,9 +59,6 @@
         stroke: $primaryColor !important
       }
     }
-    & > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-      top: 0 !important;
-    }
     &.invert {
       .ant-collapse-header {
         background: white;

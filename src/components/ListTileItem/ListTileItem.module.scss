@@ -1,4 +1,4 @@
-@import 'styles';
+@import "styles";
 
 .root {
   max-width: 360px;
@@ -50,11 +50,6 @@
       font-size: 18px;
       color: white;
       background-color: $primaryColor;
-
-      > svg {
-        width: 24px;
-        height: 24px;
-      }
     }
     .description {
       font-size: 14px;
