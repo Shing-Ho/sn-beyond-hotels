@@ -155,13 +155,11 @@ const initialData = Array(30)
 const DashboardPage = () => {
   const [filter, setFilter] = useState(initialFilterData);
   const params = useParams();
-  const searchType = params.type;
-  const intl = useIntl();
-
   const dispatch = useDispatch();
   const searchType = params.type;
   const [items, setItems] = useState([]);
   const [gasType, setGasType] = useState('all');
+  const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));

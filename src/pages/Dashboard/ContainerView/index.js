@@ -8,6 +8,7 @@ import GoogleMap from 'components/GoogleMap/GoogleMap';
 import SearchAndView from '../SearchAndView';
 import GridView from './GridView';
 import ListView from './ListView';
+import { useIntl } from 'react-intl';
 
 import styles from './index.module.scss';
 
@@ -29,6 +30,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
   const [items, setItems] = useState([]);
   const [pagination, setPagination] = useState({ page: 1, size: 9 });
   const dispatch = useDispatch();
+  const intl = useIntl();
 
   const handlePageChange = (page, size) => {
     setPagination({ page, size });
@@ -83,6 +85,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
         filterMenu={menu(handleFilterBy)}
         sortMenu={sortMenu(handleSortBy)}
         setItemView={setItemView}
+        intl={intl}
       />
       {subHeader && <div className={styles.subHeader}>{subHeader}</div>}
       {itemView === 'grid' && (
