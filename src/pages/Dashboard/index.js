@@ -54,7 +54,7 @@ const searchTypeOptions = [
   {
     id: 3,
     name: 'Transportation',
-    value: 'transport',
+    value: 'transports',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
