@@ -105,6 +105,26 @@
               color: #ffffff;
             }
           }
+          .roundSelectedBtn {
+            width: 125px;
+            height: 44px;
+            border-radius: 3px;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.38;
+            letter-spacing: normal;
+            text-align: center;
+            background-color: #003398;
+            color: #ffffff;
+            &:focus,
+            &:hover {
+              background-color: #003398;
+              color: #ffffff;
+            }
+          }
         }
       }
       .searchRow {
@@ -141,22 +161,57 @@
               color: #ffffff;
               opacity: 0.5;
             }
-            .searchInput {
+            .autoCompleteWrapper {
               margin-top: 10px;
+              border: 1px solid #d9d9d9;
+              background: #fff;
+              display: flex;
+              align-items: center;
               @media (max-width: $bp-mobile) {
                 width: 80%;
               }
-              :global(.ant-input-group.ant-input-group-compact) {
-                input {
-                  padding-left: 12px;
+              :global(.ant-select) {
+                width: 100%;
+                height: 50px;
+                :global(.ant-select-selector) {
+                  border: none !important;
+                  height: 50px;
+                  display: flex;
+                  align-items: center;
                 }
-                input::-webkit-input-placeholder {
+                :global(.ant-select-selection-search) {
+                  border: none !important;
+                  height: 50px;
+                  display: flex;
+                  align-items: center;
+                  input {
+                    font-family: Arial;
+                    font-size: 18px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    line-height: 1.17;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #003398;
+                  }
+                  input:focus {
+                    border: none;
+                  }
+                }
+                :global(.ant-select-selection-placeholder) {
+                  font-family: Arial;
+                  font-size: 18px;
+                  font-weight: normal;
+                  font-stretch: normal;
+                  font-style: italic;
+                  line-height: 1.17;
+                  letter-spacing: normal;
+                  text-align: left;
                   color: #003398;
                 }
               }
-              .rightIconWrapper {
-                margin-top: 9px;
-                margin-right: -8px;
+              .pinIcon {
+                margin-right: 8px;
               }
             }
             .datePickerWrapper {
@@ -205,9 +260,19 @@
           :global(.ant-select),
           :global(.ant-select-selector) {
             height: 50px !important;
-
             input {
               height: 50px;
+            }
+            :global(.ant-select-selection-item) {
+              display: flex;
+              align-items: center;
+              font-size: 18px;
+              font-weight: normal;
+              font-stretch: normal;
+              line-height: 1.17;
+              letter-spacing: normal;
+              text-align: left;
+              color: #003398;
             }
           }
           :global(.ant-select-selection-placeholder) {
