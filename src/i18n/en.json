@@ -127,9 +127,9 @@
   "searchPage.filters.safety.employee_cleanliness": "Employee Cleanliness",
   "searchPage.filters.safety.bathroom_cleanliness": "Bathroom Cleanliness",
   "searchPage.filters.safety.employee_ppe": "Employee PPE",
-
   "confirmationPage.continueShopping": "Continue Shopping",
   "confirmationPage.viewAllOrders": "View All Orders",
-
-  "guestPage.inputOnlyNumberInField": "Please input only number in this field"
+  "guestPage.inputOnlyNumberInField": "Please input only number in this field",
+  "paymentsPage.PrimaryPaymentMethod": "Primary Payment Method",
+  "paymentsPage.TermsAndPrivacyMessage": "I understand that some items might not be available any longer, that I will be refunded and notified right after check out, and have reviewed the Terms of Use and Privacy Policy."
 }

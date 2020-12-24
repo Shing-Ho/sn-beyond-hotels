@@ -122,9 +122,9 @@
   "searchPage.filters.safety.employee_cleanliness": "Чистота сотрудников",
   "searchPage.filters.safety.bathroom_cleanliness": "Чистота в ванной",
   "searchPage.filters.safety.employee_ppe": "СИЗ сотрудника",
-
   "confirmationPage.continueShopping": "Продолжить покупки",
   "confirmationPage.viewAllOrders": "Просмотреть все заказы",
-
-  "guestPage.inputOnlyNumberInField": "Пожалуйста, введите только номер в этом поле"
+  "guestPage.inputOnlyNumberInField": "Пожалуйста, введите только номер в этом поле",
+  "paymentsPage.PrimaryPaymentMethod": "Основной способ оплаты",
+  "paymentsPage.TermsAndPrivacyMessage": "Я понимаю, что некоторые товары могут быть больше недоступны, что мне вернут деньги и сообщат мне сразу после выезда, и я ознакомился с Условиями использования и Политикой конфиденциальности."
 }
