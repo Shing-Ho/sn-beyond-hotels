@@ -5,10 +5,10 @@ import { Menu } from 'antd';
 import * as _ from 'lodash';
 import { getCurrency } from 'store/core/selectors';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
+import { useIntl } from 'react-intl';
 import SearchAndView from '../SearchAndView';
 import GridView from './GridView';
 import ListView from './ListView';
-import { useIntl } from 'react-intl';
 
 import styles from './index.module.scss';
 
