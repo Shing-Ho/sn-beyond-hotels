@@ -63,7 +63,7 @@ const EditPanelBody = ({
       </div>
     </div>
     {displayCount && (
-      <div style={{ display: 'flex' }}>
+      <div className="countContainer">
         <div className={classNames('itemWrapper', 'countWrapper')}>
           <div className="icon">
             <AdultIcon width="25" />

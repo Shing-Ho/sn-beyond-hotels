@@ -10,9 +10,9 @@ import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import hotelActions from 'store/hotel/actions';
 import { commaFormat } from 'helpers/utils';
-import IconButton from '../IconButton/IconButton';
-import Button from '../Button/Button';
-import Rating from '../Rating/Rating';
+import IconButton from 'components/IconButton/IconButton';
+import Button from 'components/Button/Button';
+import Rating from 'components/Rating/Rating';
 import styles from './ListItem.module.scss';
 
 const ListItem = ({ data, className, currency }) => {
@@ -36,7 +36,9 @@ const ListItem = ({ data, className, currency }) => {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.circle}>{data.icon || <BedIcon />}</div>
+          <div className={styles.circle}>
+            <BedIcon />
+          </div>
           <div className={styles.content}>
             <div className={styles.line}>
               <h3 className={styles.itemName}>{data.name}</h3>
