@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Row, Col, Button, DatePicker, Select } from 'antd';
-import cx from 'classnames';
 import moment from 'moment';
+import cx from 'classnames';
 import { isEmpty } from 'lodash';
+import { Row, Col, Button, DatePicker, Select } from 'antd';
 
 import NumberInput from 'components/NumberInput/NumberInput';
 import { Checkbox } from 'components/CheckboxGroup/CheckboxGroup';
@@ -14,10 +14,12 @@ import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 import { ReactComponent as PinIcon } from 'icons/pin.svg';
 import { ReactComponent as MinusIcon } from 'icons/minusBlue.svg';
 import { ReactComponent as PlusIcon } from 'icons/plusBlue.svg';
+import { ReactComponent as FlightIcon } from 'icons/tofromflight.svg';
+
 import styles from './FlightSearchForm.module.scss';
 
 const FlightSearchForm = () => {
-  const [departureDate, setDepartureDate] = useState(moment().toISOString());
+  const [departureDate, setDepartureDate] = useState(moment().format('MM-DD-YYYY'));
   const [returnDate, setReturnDate] = useState(moment().format('MM-DD-YYYY'));
   const [searchType, setSearchType] = useState('roundtrip');
   const [cabinClass, setCabinClass] = useState('');
@@ -154,7 +156,11 @@ const FlightSearchForm = () => {
                 </div>
               </div>
             </Col>
-            <Col flex="100px" className={styles.searchColHide} />
+            <Col flex="100px" className={styles.searchColHide}>
+              <div className={styles.plane}>
+                <FlightIcon width={100} height={142} />
+              </div>
+            </Col>
             <Col flex="1" className={styles.searchCol}>
               <div className={styles.searchForm}>
                 <div className={styles.searchText}>To</div>
@@ -217,33 +223,36 @@ const FlightSearchForm = () => {
             <Col flex="100px" className={styles.searchColHide} />
             <Col flex="1">
               <Row>
-                <Col md={12} xs={12}>
+                <Col md={12} xs={24}>
                   <Row>
-                    <div className={styles.searchText}>Travelers</div>
+                    <Col md={24} xs={24}>
+                      <div className={styles.searchText}>Travelers</div>
+                    </Col>
                   </Row>
                   <Row>
-                    <div className={styles.searchComp}>
-                      {/* <NumberInput className={styles.travelers} name="travelers" onChange={onChange} defaultValue={2} /> */}
-                      <NumberInput
-                        className={styles.travelers}
-                        defaultValue={1}
-                        name="travelerCount"
-                        onChange={handleTravelerCountChange}
-                        leftComponent={
-                          <div>
-                            <MinusIcon width={46} height={46} />
-                          </div>
-                        }
-                        rightComponent={
-                          <div className={styles.plusIcon}>
-                            <PlusIcon width={26} height={21} />
-                          </div>
-                        }
-                      />
-                    </div>
+                    <Col md={24} xs={24}>
+                      <div className={styles.searchComp}>
+                        <NumberInput
+                          className={styles.travelers}
+                          defaultValue={1}
+                          name="travelerCount"
+                          onChange={handleTravelerCountChange}
+                          leftComponent={
+                            <div>
+                              <MinusIcon width={46} height={46} />
+                            </div>
+                          }
+                          rightComponent={
+                            <div className={styles.plusIcon}>
+                              <PlusIcon width={26} height={21} />
+                            </div>
+                          }
+                        />
+                      </div>
+                    </Col>
                   </Row>
                 </Col>
-                <Col md={12} xs={12}>
+                <Col md={12} xs={24}>
                   <Row>
                     <div className={styles.searchText}>Non-Stop Flight</div>
                   </Row>
