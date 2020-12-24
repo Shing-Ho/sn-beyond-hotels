@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchPage from 'pages/SearchPage/HotelSearchPage';
+import SearchPage from 'pages/HotelSearchPage/HotelSearchPage';
 import styles from './App.component.scss';
 
 function App() {

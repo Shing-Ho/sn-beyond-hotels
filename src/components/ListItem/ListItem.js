@@ -36,7 +36,9 @@ const ListItem = ({ data, className, currency }) => {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.circle}>{data.icon || <BedIcon />}</div>
+          <div className={styles.circle}>
+            <BedIcon />
+          </div>
           <div className={styles.content}>
             <div className={styles.line}>
               <h3 className={styles.itemName}>{data.name}</h3>

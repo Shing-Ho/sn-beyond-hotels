@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Page from 'components/Page/Page';
+import TopFilters from 'components/TopFilters/TopFilters';
 import { getCurrency } from 'store/core/selectors';
-import GridItem from 'components/GridItem/GridItem';
+import ListTileItem from 'components/ListTileItem/ListTileItem';
 import ListItem from 'components/ListItem/ListItem';
 import Pagination from 'components/Pagination/Pagination';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { getRandomImageUrl } from 'helpers/utils';
+import TransportFilters from './components/Filters/TransportFilters';
 import styles from './TransportSearchPage.module.scss';
 
 const initialData = Array(30)
@@ -23,8 +25,9 @@ const initialData = Array(30)
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
   }));
 
-const TransportSearchPage = ({ viewMode }) => {
+const TransportSearchPage = () => {
   const currency = useSelector(getCurrency);
+  const [viewMode, setViewMode] = useState('tile');
   const [transports, setTransports] = useState([]);
 
   const handlePageChange = (page, size) => {
@@ -35,21 +38,25 @@ const TransportSearchPage = ({ viewMode }) => {
     handlePageChange(1, 10);
   }, []);
 
+  const handleTabChange = () => {};
+
   return (
-    <Page noHeader noFooter>
+    <Page>
       <div className={styles.root}>
         <div className={styles.container}>
+          <TopFilters currency={currency} />
+          <TransportFilters onTabChange={handleTabChange} onViewModeChange={setViewMode} />
           <div className={styles.main}>
-            {viewMode === 'grid' &&
+            {viewMode === 'tile' &&
               transports.map((data, i) => (
-                <GridItem className={styles.tileItem} data={data} key={`transport_${i}`} currency={currency} />
+                <ListTileItem className={styles.tileItem} data={data} key={`transport_${i}`} currency={currency} />
               ))}
             {viewMode === 'list' &&
               transports.map((data, i) => (
                 <ListItem className={styles.listItem} data={data} key={`transport_${i}`} currency={currency} />
               ))}
-            {viewMode === 'location' && <GoogleMap height={600} center={[24.2028, 10.4418]} coords={[]} />}
-            {viewMode !== 'location' && (
+            {viewMode === 'map' && <GoogleMap height={600} center={[24.2028, 10.4418]} coords={[]} />}
+            {viewMode !== 'map' && (
               <div className={styles.pagination}>
                 <Pagination
                   total={initialData.length}
