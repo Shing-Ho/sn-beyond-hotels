@@ -79,10 +79,6 @@ const FlightSearchForm = () => {
   const postSearch = () => {
     const validate = validateForm();
     if (validate) {
-      // const originCity = `${origin.location_name} ${getName(origin.province)}`;
-      // const destinationCity = `${destination.location_name} ${getName(destination.iso_country_code)}`;
-      // const originAirCode
-      // const destinationAirCode
       const refId = 10045;
       const roundTripPost = `https://secure.rezserver.com/flights/results/depart/?rs_chk_in=${departureDate}&rs_chk_out=${departureDate}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
       const oneWayPost = `https://secure.rezserver.com/flights/results/depart/?rs_chk_in1=${departureDate}&rs_chk_out1=${departureDate}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
