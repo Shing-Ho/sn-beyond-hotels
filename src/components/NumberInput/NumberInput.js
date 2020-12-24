@@ -5,7 +5,15 @@ import { ReactComponent as PlusIcon } from 'icons/plus.svg';
 import { ReactComponent as MinusIcon } from 'icons/minus.svg';
 import styles from './NumberInput.module.scss';
 
-const NumberInput = ({ defaultValue = 1, className, name, onChange, value: propsValue }) => {
+const NumberInput = ({
+  defaultValue = 1,
+  className,
+  name,
+  onChange,
+  rightComponent,
+  leftComponent,
+  value: propsValue,
+}) => {
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
@@ -25,13 +33,9 @@ const NumberInput = ({ defaultValue = 1, className, name, onChange, value: props
 
   return (
     <Input.Group compact className={cx(styles.root, className)}>
-      <Button onClick={handleClick(-1)}>
-        <MinusIcon width={28} height={28} />
-      </Button>
+      <Button onClick={handleClick(-1)}>{leftComponent || <MinusIcon width={28} height={28} />}</Button>
       <Input name={name} value={value} />
-      <Button onClick={handleClick(1)}>
-        <PlusIcon width={28} height={28} />
-      </Button>
+      <Button onClick={handleClick(1)}>{rightComponent || <PlusIcon width={28} height={28} />}</Button>
     </Input.Group>
   );
 };
