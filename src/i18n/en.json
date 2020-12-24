@@ -65,6 +65,8 @@
   "orderNow": "Order Now",
   "add": "Add",
   "seats": "Seats",
+  "orderNumber": "ORDER NUMBER",
+  "items": "Items",
 
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",
@@ -123,5 +125,8 @@
   "searchPage.filters.safety.crowdedness": "Crowdedness",
   "searchPage.filters.safety.employee_cleanliness": "Employee Cleanliness",
   "searchPage.filters.safety.bathroom_cleanliness": "Bathroom Cleanliness",
-  "searchPage.filters.safety.employee_ppe": "Employee PPE"
+  "searchPage.filters.safety.employee_ppe": "Employee PPE",
+
+  "confirmationPage.continueShopping": "Continue Shopping",
+  "confirmationPage.viewAllOrders": "View All Orders"
 }

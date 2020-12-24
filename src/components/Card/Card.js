@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FormattedMessage } from 'react-intl';
 import Rating from 'components/Rating/Rating';
 import styles from './Card.module.scss';
 
@@ -17,7 +17,9 @@ export default function Card({ img, title, rate, Icon, description, price }) {
         </div>
         <div className={styles.description}>{description}</div>
         <div className={styles.priceRow}>
-          <div>FROM</div>
+          <div>
+            <FormattedMessage id="from" defaultMessage="FROM" />
+          </div>
           <div className={styles.price}>{price}</div>
         </div>
       </div>

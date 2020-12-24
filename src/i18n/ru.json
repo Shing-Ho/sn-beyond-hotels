@@ -60,6 +60,8 @@
   "orderNow": "Заказать сейчас",
   "add": "Добавлять",
   "seats": "Сиденья",
+  "orderNumber": "НОМЕР ЗАКАЗА",
+  "items": "Предметы",
 
   "detailPage.notification.description": "Данные формы недействительны",
   "detailPage.RoomList.tab.detailPane": "Панель сведений",
@@ -118,5 +120,8 @@
   "searchPage.filters.safety.crowdedness": "Crowdedness",
   "searchPage.filters.safety.employee_cleanliness": "Чистота сотрудников",
   "searchPage.filters.safety.bathroom_cleanliness": "Чистота в ванной",
-  "searchPage.filters.safety.employee_ppe": "СИЗ сотрудника"
+  "searchPage.filters.safety.employee_ppe": "СИЗ сотрудника",
+
+  "confirmationPage.continueShopping": "Продолжить покупки",
+  "confirmationPage.viewAllOrders": "Просмотреть все заказы"
 }
