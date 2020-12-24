@@ -4,8 +4,9 @@ import moment from 'moment';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
 
-import TopFilters from 'components/TopFilters/TopFilters';
 import Page from 'components/Page/Page';
+import TopFilters from 'components/TopFilters/TopFilters';
+import TabSelect from 'components/TabSelect/TabSelect';
 import { getRandomImageUrl } from 'helpers/utils';
 import { ReactComponent as BedFillGray } from 'icons/dashboardIcons/BedFillGray.svg';
 import { ReactComponent as BedTransparent } from 'icons/dashboardIcons/BedTransparent.svg';
@@ -95,6 +96,21 @@ const searchTypeOptions = [
   },
 ];
 
+const gasSelectOptions = [
+  {
+    label: 'Show All',
+    value: 'all',
+  },
+  {
+    label: 'Gas Stations',
+    value: 'gas',
+  },
+  {
+    label: 'Charge Stations',
+    value: 'charge',
+  },
+];
+
 const initialState = {
   location: {
     location_id: '5128581',
@@ -131,6 +147,7 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   const searchType = params.type;
   const [items, setItems] = useState([]);
+  const [gasType, setGasType] = useState('all');
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));
@@ -139,7 +156,13 @@ const DashboardPage = () => {
   useEffect(() => {
     let filteredItems = initialData;
     if (searchType !== 'all') {
-      filteredItems = initialData.filter((item) => item.type === searchType);
+      filteredItems = initialData.filter((item) => {
+        let valid = item.type === searchType;
+        if (searchType === 'gas') {
+          valid = valid && (gasType === 'all' || item.subType === gasType);
+        }
+        return valid;
+      });
     }
 
     setItems(
@@ -161,6 +184,11 @@ const DashboardPage = () => {
     );
   }, [searchType]);
 
+  let subHeader;
+  if (searchType === 'gas') {
+    subHeader = <TabSelect options={gasSelectOptions} onChange={setGasType} />;
+  }
+
   return (
     <Page>
       <div className={styles.root}>
@@ -173,7 +201,7 @@ const DashboardPage = () => {
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}
-          {searchType !== 'hotels' && <ContainerView items={items} searchType={searchType} />}
+          {searchType !== 'hotels' && <ContainerView items={items} searchType={searchType} subHeader={subHeader} />}
         </div>
       </div>
     </Page>

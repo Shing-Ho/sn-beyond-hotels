@@ -20,7 +20,7 @@ const sortMenu = (click) => (
   </Menu>
 );
 
-const ContainerView = ({ items: initialItems, searchType, onItemClick }) => {
+const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick }) => {
   const currency = useSelector(getCurrency);
   const [search, setSearch] = useState([]);
   const [filterBy, setFilterBy] = useState('');
@@ -84,6 +84,7 @@ const ContainerView = ({ items: initialItems, searchType, onItemClick }) => {
         sortMenu={sortMenu(handleSortBy)}
         setItemView={setItemView}
       />
+      {subHeader && <div className={styles.subHeader}>{subHeader}</div>}
       {itemView === 'grid' && (
         <GridView
           items={items}
