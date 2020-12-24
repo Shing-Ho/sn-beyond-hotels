@@ -1,46 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
-import _ from 'lodash';
-import { Menu } from 'antd';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-import TopFilters from '../../components/TopFilters/TopFilters';
-import Page from '../../components/Page/Page';
+import TopFilters from 'components/TopFilters/TopFilters';
+import Page from 'components/Page/Page';
+import { getRandomImageUrl } from 'helpers/utils';
+import { ReactComponent as BedFillGray } from 'icons/dashboardIcons/BedFillGray.svg';
+import { ReactComponent as BedTransparent } from 'icons/dashboardIcons/BedTransparent.svg';
+import { ReactComponent as ShowAllFillGray } from 'icons/dashboardIcons/ShowAllFillGray.svg';
+import { ReactComponent as ShowAllWhite } from 'icons/dashboardIcons/ShowAllWhite.svg';
+import { ReactComponent as TransportationOutline } from 'icons/dashboardIcons/TransportationOutline.svg';
+import { ReactComponent as TransportationTransparent } from 'icons/dashboardIcons/TransportationTransparent.svg';
+import { ReactComponent as ToursActivities } from 'icons/dashboardIcons/ToursActivities.svg';
+import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
+import { ReactComponent as ShowsEvents } from 'icons/dashboardIcons/ShowsEvents.svg';
+import { ReactComponent as ShowsEventsWhite } from 'icons/dashboardIcons/ShowsEventsWhite.svg';
+import { ReactComponent as DiningSvg } from 'icons/dashboardIcons/Dining.svg';
+import { ReactComponent as DiningWhiteSvg } from 'icons/dashboardIcons/DiningWhite.svg';
+import { ReactComponent as Nightlife } from 'icons/dashboardIcons/Nightlife.svg';
+import { ReactComponent as NightlifeWhite } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import DashboardFilter from './DashboardFilter';
-import SearchAndView from './SearchAndView';
 import ContainerView from './ContainerView';
-import HotelSearchPage from '../SearchPage/HotelSearchPage';
-import TransportSearchPage from '../SearchPage/TransportSearchPage';
-import { getRandomImageUrl } from '../../helpers/utils';
-import { getCurrency } from '../../store/core/selectors';
-import styles from '../SearchPage/HotelSearchPage.module.scss';
-
-import { ReactComponent as BedFillGray } from '../../icons/dashboardIcons/BedFillGray.svg';
-import { ReactComponent as BedTransparent } from '../../icons/dashboardIcons/BedTransparent.svg';
-import { ReactComponent as ShowAllFillGray } from '../../icons/dashboardIcons/ShowAllFillGray.svg';
-import { ReactComponent as ShowAllWhite } from '../../icons/dashboardIcons/ShowAllWhite.svg';
-import { ReactComponent as TransportationOutline } from '../../icons/dashboardIcons/TransportationOutline.svg';
-import { ReactComponent as TransportationTransparent } from '../../icons/dashboardIcons/TransportationTransparent.svg';
-import { ReactComponent as ToursActivities } from '../../icons/dashboardIcons/ToursActivities.svg';
-import { ReactComponent as ToursActivitiesWhite } from '../../icons/dashboardIcons/ToursActivitiesWhite.svg';
-import { ReactComponent as ShowsEvents } from '../../icons/dashboardIcons/ShowsEvents.svg';
-import { ReactComponent as ShowsEventsWhite } from '../../icons/dashboardIcons/ShowsEventsWhite.svg';
-import { ReactComponent as DiningSvg } from '../../icons/dashboardIcons/Dining.svg';
-import { ReactComponent as DiningWhiteSvg } from '../../icons/dashboardIcons/DiningWhite.svg';
-import { ReactComponent as Nightlife } from '../../icons/dashboardIcons/Nightlife.svg';
-import { ReactComponent as NightlifeWhite } from '../../icons/dashboardIcons/NightlifeWhite.svg';
-import { ReactComponent as BedIcon } from '../../icons/bed3.svg';
-
-const menu = (click) => <Menu onClick={click}>{/* Add menu item for filter here */}</Menu>;
-
-const sortMenu = (click) => (
-  <Menu onClick={click}>
-    <Menu.Item key="asc">Ascending</Menu.Item>
-    <Menu.Item key="desc">Descending</Menu.Item>
-  </Menu>
-);
+import HotelSearchPage from './SearchPage/HotelSearchPage';
+import styles from './index.module.scss';
 
 const initialFilterData = {
   location: {
@@ -52,20 +36,7 @@ const initialFilterData = {
   end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
 };
 
-const initialData = Array(30)
-  .fill(0)
-  .map((v, id) => ({
-    id,
-    rate: (Math.random() * 2000).toFixed(2),
-    image: getRandomImageUrl(),
-    icon: <BedIcon />,
-    name: `Mid-Size SUV - ${id}`,
-    rating: Math.round(Math.random() * 5),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
-  }));
-
-const searchTypeData = [
+const searchTypeOptions = [
   {
     id: 1,
     name: 'Show All',
@@ -83,33 +54,40 @@ const searchTypeData = [
   {
     id: 3,
     name: 'Transportation',
-    value: 'transport',
+    value: 'transports',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
   {
     id: 4,
+    name: 'Gas & Charging',
+    value: 'gas',
+    icon: <Nightlife />,
+    selectedIcon: <NightlifeWhite />,
+  },
+  {
+    id: 5,
     name: 'Tours & Activities',
     value: 'tours',
     icon: <ToursActivities />,
     selectedIcon: <ToursActivitiesWhite />,
   },
   {
-    id: 5,
+    id: 6,
     name: 'Shows & Events',
     value: 'events',
     icon: <ShowsEvents />,
     selectedIcon: <ShowsEventsWhite />,
   },
   {
-    id: 6,
+    id: 7,
     name: 'Dining',
     value: 'dining',
     icon: <DiningSvg />,
     selectedIcon: <DiningWhiteSvg />,
   },
   {
-    id: 7,
+    id: 8,
     name: 'NightLife',
     value: 'nightLife',
     icon: <Nightlife />,
@@ -134,63 +112,54 @@ const initialState = {
   currency: 'USD',
 };
 
+const initialData = Array(30)
+  .fill(0)
+  .map((_, id) => ({
+    id,
+    rate: (Math.random() * 2000).toFixed(2),
+    image: getRandomImageUrl(),
+    type: searchTypeOptions[Math.ceil(Math.random() * 7)].value,
+    name: `Fake Item ${id}`,
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  }));
+
 const DashboardPage = () => {
-  const currency = useSelector(getCurrency);
   const [filter, setFilter] = useState(initialFilterData);
-  const [search, setSearch] = useState([]);
-  const [filterBy, setFilterBy] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [itemView, setItemView] = useState('grid');
-  const [items, setItems] = useState(initialData);
-  const [pagination, setPagination] = useState({ page: 1, size: 10 });
   const params = useParams();
-  const searchType = params.type;
-
   const dispatch = useDispatch();
-
-  const handlePageChange = (page, size) => {
-    setPagination({ page, size });
-  };
-
-  useEffect(() => {
-    setPagination({ page: 1, size: 10 });
-  }, []);
-
-  useEffect(() => {
-    const { page, size } = pagination;
-    let data = initialData;
-    if (search.length) {
-      data = data.filter((item) => search.every((v) => item.name.toLowerCase().includes(v.toLowerCase())));
-    }
-
-    setItems(data.slice((page - 1) * size, page * size));
-  }, [search, pagination]);
-
-  useEffect(() => {}, [filterBy]);
-
-  useEffect(() => {
-    setItems(_.orderBy(items, 'name', sortBy));
-  }, [sortBy]);
-
-  const handleFilterBy = (e) => {
-    setFilterBy(e.key);
-  };
-
-  const handleSortBy = (e) => {
-    setSortBy(e.key);
-  };
-
-  const onItemClick = (id) => {
-    if (searchType === 'dining') {
-      dispatch(push(`/dining/${id}`));
-    } else {
-      dispatch(push(`/events/${id}`));
-    }
-  };
+  const searchType = params.type;
+  const [items, setItems] = useState([]);
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));
   };
+
+  useEffect(() => {
+    let filteredItems = initialData;
+    if (searchType !== 'all') {
+      filteredItems = initialData.filter((item) => item.type === searchType);
+    }
+
+    setItems(
+      filteredItems.map((item) => {
+        const searchTypeInfo = searchTypeOptions.find((option) => option.value === item.type);
+        let subIcons = [];
+
+        if (searchType === 'gas') {
+          subIcons = [
+            <Nightlife />,
+            <DiningSvg />,
+            <TransportationOutline />,
+            <ShowsEvents />,
+            <ToursActivities />,
+          ].slice(Math.ceil(Math.random() * 2), Math.round(Math.random() * 5));
+        }
+        return { icon: searchTypeInfo.selectedIcon, subIcons, ...item };
+      }),
+    );
+  }, [searchType]);
 
   return (
     <Page>
@@ -199,37 +168,12 @@ const DashboardPage = () => {
           <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
           <DashboardFilter
             searchType={searchType}
-            searchTypeData={searchTypeData}
+            searchTypeData={searchTypeOptions}
             onItemClick={handleSearchTypeChange}
           />
-          {searchType !== 'hotels' && (
-            <SearchAndView
-              search={search}
-              filterBy={filterBy}
-              sortby={sortBy}
-              itemView={itemView}
-              setSearch={setSearch}
-              filterMenu={menu(handleFilterBy)}
-              sortMenu={sortMenu(handleSortBy)}
-              setItemView={setItemView}
-            />
-          )}
-          {searchType === 'hotels' && <HotelSearchPage noHeader noFooter display={searchType !== 'hotels'} />}
-          {searchType === 'transport' && <TransportSearchPage noHeader noFooter viewMode={itemView} />}
-          {!['hotels', 'transport'].includes(searchType) && (
-            <ContainerView
-              filterBy={filterBy}
-              itemView={itemView}
-              search={search}
-              searchType={searchType}
-              filter={filter}
-              items={items}
-              total={initialData.length}
-              currency={currency}
-              onPageChange={handlePageChange}
-              onItemClick={onItemClick}
-            />
-          )}
+          {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
+          {/* TODO: remove temporary page after we create whole pages */}
+          {searchType !== 'hotels' && <ContainerView items={items} searchType={searchType} />}
         </div>
       </div>
     </Page>

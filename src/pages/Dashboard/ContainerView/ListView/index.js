@@ -32,6 +32,8 @@ const ListView = ({ items = [], currency, total, onPageChange, onItemClick }) =>
           showSizeChanger
           showQuickJumper
           onChange={onPageChange}
+          defaultPageSize={9}
+          pageSizeOptions={[9, 18, 27, 45]}
           onShowSizeChange={(current, size) => onPageChange(0, size)}
         />
       </Row>
