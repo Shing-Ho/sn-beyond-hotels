@@ -6,6 +6,7 @@ import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
 import TopFilters from '../../components/TopFilters/TopFilters';
 import Page from '../../components/Page/Page';
 import DashboardFilter from './DashboardFilter';
@@ -23,6 +24,8 @@ import { ReactComponent as ShowAllFillGray } from '../../icons/dashboardIcons/Sh
 import { ReactComponent as ShowAllWhite } from '../../icons/dashboardIcons/ShowAllWhite.svg';
 import { ReactComponent as TransportationOutline } from '../../icons/dashboardIcons/TransportationOutline.svg';
 import { ReactComponent as TransportationTransparent } from '../../icons/dashboardIcons/TransportationTransparent.svg';
+import { ReactComponent as FlightsTransparent } from '../../icons/dashboardIcons/Flights.svg';
+import { ReactComponent as FlightsOutline } from '../../icons/dashboardIcons/FlightsOutline.svg';
 import { ReactComponent as ToursActivities } from '../../icons/dashboardIcons/ToursActivities.svg';
 import { ReactComponent as ToursActivitiesWhite } from '../../icons/dashboardIcons/ToursActivitiesWhite.svg';
 import { ReactComponent as ShowsEvents } from '../../icons/dashboardIcons/ShowsEvents.svg';
@@ -82,34 +85,41 @@ const searchTypeData = [
   },
   {
     id: 3,
+    name: 'Flights',
+    value: 'flights',
+    icon: <FlightsOutline />,
+    selectedIcon: <FlightsTransparent />,
+  },
+  {
+    id: 4,
     name: 'Transportation',
     value: 'transport',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
   {
-    id: 4,
+    id: 5,
     name: 'Tours & Activities',
     value: 'tours',
     icon: <ToursActivities />,
     selectedIcon: <ToursActivitiesWhite />,
   },
   {
-    id: 5,
+    id: 6,
     name: 'Shows & Events',
     value: 'events',
     icon: <ShowsEvents />,
     selectedIcon: <ShowsEventsWhite />,
   },
   {
-    id: 6,
+    id: 7,
     name: 'Dining',
     value: 'dining',
     icon: <DiningSvg />,
     selectedIcon: <DiningWhiteSvg />,
   },
   {
-    id: 7,
+    id: 8,
     name: 'NightLife',
     value: 'nightLife',
     icon: <Nightlife />,
@@ -212,7 +222,7 @@ const DashboardPage = () => {
           )}
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter display={searchType !== 'hotels'} />}
           {searchType === 'transport' && <TransportSearchPage noHeader noFooter viewMode={itemView} />}
-          {!['hotels', 'transport'].includes(searchType) && (
+          {!['hotels', 'transport', 'flights'].includes(searchType) && (
             <ContainerView
               filterBy={filterBy}
               itemView={itemView}
@@ -227,6 +237,7 @@ const DashboardPage = () => {
             />
           )}
         </div>
+        {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}
       </div>
     </Page>
   );

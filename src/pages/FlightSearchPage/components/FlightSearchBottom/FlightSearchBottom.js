@@ -53,7 +53,7 @@ export default function FlightSearchBottom({ currency }) {
       </div>
       <Row gutter={24}>
         {cards.map((c) => (
-          <Col md={8} xs={24}>
+          <Col md={8} xs={24} key={c.title}>
             <Card
               Icon={c.icon}
               img={c.img}

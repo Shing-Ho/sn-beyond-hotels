@@ -10,7 +10,6 @@ import ConfirmationPage from 'pages/ConfirmationPage/ConfirmationPage';
 import SummaryPage from 'pages/SummaryPage/SummaryPage';
 import GuestPage from 'pages/GuestPage/GuestPage';
 import OrderLookup from 'pages/OrderLookup/OrderLookup';
-import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -24,7 +23,6 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/guest`} exact component={GuestPage} />
         <Route path={`${BASE_ROUTE}/orderLookup`} exact component={OrderLookup} />
         <Route path={`${BASE_ROUTE}/search`} exact component={HotelDetailPage} />
-        <Route path={`${BASE_ROUTE}/flightSearch`} exact component={FlightSearchPage} />
         <Route path={`${BASE_ROUTE}/hotels/:id`} exact component={HotelDetailPage} />
         <Route path={`${BASE_ROUTE}/events/:id`} exact component={EventDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
