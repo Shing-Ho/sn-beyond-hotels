@@ -45,7 +45,9 @@ const ListItem = ({ data, className, currency }) => {
                   <span>
                     <FormattedMessage id="average" defaultMessage="AVERAGE" />
                   </span>
-                  <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate.toFixed(currency?.decimal))}</span>
+                  <span className={styles.itemRate}>
+                    {currency?.symbol + commaFormat(data.rate.toFixed(currency?.decimal))}
+                  </span>
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
