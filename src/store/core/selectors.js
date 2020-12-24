@@ -7,4 +7,5 @@ export const getDrawerOpen = (state) => state.core.drawerOpen;
 export const getCurrency = (state) => ({
   value: state.core.currency,
   symbol: Currencies[state.core.currency || 'USD']?.symbol,
+  decimal: Currencies[state.core.currency || 'USD']?.decimal_digits,
 });
