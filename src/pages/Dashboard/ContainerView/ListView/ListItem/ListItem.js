@@ -5,7 +5,6 @@ import { push } from 'connected-react-router';
 import { Popover } from 'antd';
 import cx from 'classnames';
 import { ReactComponent as PinIcon } from 'icons/pin.svg';
-import { ReactComponent as BedIcon } from 'icons/bed3.svg';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import hotelActions from 'store/hotel/actions';
@@ -36,13 +35,21 @@ const ListItem = ({ data, className, currency }) => {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.circle}>
-            <BedIcon />
-          </div>
+          <div className={styles.circle}>{data.icon}</div>
           <div className={styles.content}>
             <div className={styles.line}>
               <h3 className={styles.itemName}>{data.name}</h3>
               <div className={styles.rateInfo}>
+                {data.subIcons?.length > 0 && (
+                  <div className={styles.subInfo}>
+                    <div className={styles.icons}>
+                      {data.subIcons.map((icon) => (
+                        <span>{icon}</span>
+                      ))}
+                    </div>
+                    <span className={styles.text}>6.6kW</span>
+                  </div>
+                )}
                 <div className="flex-vertical-center">
                   <span>
                     <FormattedMessage id="average" defaultMessage="AVERAGE" />
