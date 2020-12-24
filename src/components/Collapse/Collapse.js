@@ -6,7 +6,7 @@ import styles from './Collapse.module.scss';
 
 const { Panel } = Collapse;
 
-const CustomCollapse = ({ children, className, header, invert, type = 'normal' }) => {
+const CustomCollapse = ({ children, className, header, invert, type = 'normal', activeKey = 'default' }) => {
   const size = type === 'large' ? 18 : 14;
 
   return (
@@ -15,7 +15,7 @@ const CustomCollapse = ({ children, className, header, invert, type = 'normal' }
         large: type === 'large',
         invert,
       })}
-      defaultActiveKey={['default']}
+      defaultActiveKey={[activeKey]}
       expandIcon={() => (
         <span>
           <ArrowIcon width={size} height={size} className={styles.arrow} />

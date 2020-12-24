@@ -1,0 +1,12 @@
+.ant-tabs-nav-list {
+  width: 100%;
+  .ant-tabs-tab {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    justify-content: center;
+  }
+  .ant-tabs-ink-bar {
+    width: 100%;
+  }
+}
