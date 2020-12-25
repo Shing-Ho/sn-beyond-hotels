@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .root {
   :global(.ant-checkbox-checked .ant-checkbox-inner),
@@ -50,6 +50,6 @@
 
   :global(.ant-checkbox-group-item) {
     margin: 5px 0;
-    display: block;
+    display: flex;
   }
 }

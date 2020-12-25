@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 
 import Page from 'components/Page/Page';
 import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
@@ -43,63 +44,63 @@ const initialFilterData = {
 const searchTypeOptions = [
   {
     id: 1,
-    name: 'Show All',
+    name: 'showAll',
     value: 'all',
     icon: <ShowAllFillGray />,
     selectedIcon: <ShowAllWhite />,
   },
   {
     id: 2,
-    name: 'Hotels',
+    name: 'hotels',
     value: 'hotels',
     icon: <BedFillGray />,
     selectedIcon: <BedTransparent />,
   },
   {
     id: 3,
-    name: 'Flights',
+    name: 'flights',
     value: 'flights',
     icon: <FlightsOutline />,
     selectedIcon: <FlightsTransparent />,
   },
   {
     id: 4,
-    name: 'Transportation',
+    name: 'transportation',
     value: 'transports',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
   {
     id: 5,
-    name: 'Gas & Charging',
+    name: 'gasAndCharging',
     value: 'gas',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
   },
   {
     id: 6,
-    name: 'Tours & Activities',
+    name: 'toursAndActivities',
     value: 'tours',
     icon: <ToursActivities />,
     selectedIcon: <ToursActivitiesWhite />,
   },
   {
     id: 7,
-    name: 'Shows & Events',
+    name: 'showsAndEvents',
     value: 'events',
     icon: <ShowsEvents />,
     selectedIcon: <ShowsEventsWhite />,
   },
   {
     id: 8,
-    name: 'Dining',
+    name: 'dining',
     value: 'dining',
     icon: <DiningSvg />,
     selectedIcon: <DiningWhiteSvg />,
   },
   {
     id: 9,
-    name: 'NightLife',
+    name: 'nightLife',
     value: 'nightLife',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
@@ -158,6 +159,7 @@ const DashboardPage = () => {
   const searchType = params.type;
   const [items, setItems] = useState([]);
   const [gasType, setGasType] = useState('all');
+  const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));
@@ -208,6 +210,7 @@ const DashboardPage = () => {
             searchType={searchType}
             searchTypeData={searchTypeOptions}
             onItemClick={handleSearchTypeChange}
+            intl={intl}
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}

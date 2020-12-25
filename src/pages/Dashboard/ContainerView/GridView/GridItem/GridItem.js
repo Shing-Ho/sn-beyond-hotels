@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { getRandomImageUrl } from 'helpers/utils';
 import Rating from 'components/Rating/Rating';
 import styles from './GridItem.module.scss';
@@ -19,7 +20,7 @@ export default function GridItem({ className, data, currency }) {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.'}
         </span>
         <div className={styles.row}>
-          FROM
+          <FormattedMessage id="from" defaultMessage="FROM" />
           <span>
             {currency?.symbol}
             {data?.rate || 19.99}

@@ -12,7 +12,9 @@ const TicketsItem = ({ type = 'EVENT' }) => (
     <img src={type === 'EVENT' ? Ticket : getRandomImageUrl()} alt={type.toLocaleLowerCase()} />
     <div className={styles.detail}>
       <div className={styles.title}>
-        <div className={styles.header}>Right</div>
+        <div className={styles.header}>
+          <FormattedMessage id="right" defaultMessage="Right" />
+        </div>
         <div className={styles.time}>
           12:00 PM, 3:00 PM, <span> + 2</span>
         </div>
@@ -22,12 +24,18 @@ const TicketsItem = ({ type = 'EVENT' }) => (
         <div className={styles.duration}>
           {type === 'EVENT' && (
             <>
-              160 Min<span>Duration</span>
+              160 <FormattedMessage id="min" defaultMessage="Min" />
+              <span>
+                <FormattedMessage id="duration" defaultMessage="Duration" />
+              </span>
             </>
           )}
           {type === 'TOUR' && (
             <>
-              2 Hours<span>Long</span>
+              2 <FormattedMessage id="hours" defaultMessage="Hours" />
+              <span>
+                <FormattedMessage id="long" defaultMessage="Long" />
+              </span>
             </>
           )}
         </div>
@@ -36,11 +44,11 @@ const TicketsItem = ({ type = 'EVENT' }) => (
       <div className={styles.learnDiv}>
         <div className={styles.learn}>
           <InfoIcon />
-          <FormattedMessage id="learnMore" />
+          <FormattedMessage id="learnMore" defaultMessage="Learn More" />
         </div>
         <div className={styles.countDiv}>
           <span className="mr-1">
-            <FormattedMessage id="guests" />
+            <FormattedMessage id="guests" defaultMessage="Guests" />
           </span>
           <NumberInput defaultValue={2} onChange={() => null} />
         </div>

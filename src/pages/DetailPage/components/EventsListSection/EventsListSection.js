@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import TicketsItem from '../TicketsItem/TicketsItem';
@@ -12,27 +13,31 @@ const location = {
 };
 
 export default function EventsListSection() {
+  const intl = useIntl();
+
   return (
     <div className={cx(styles.root)}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
-        <TabPane tab="Tickets" key="1">
-          <div className={styles.title}>Orchestra Seats</div>
+        <TabPane tab={intl.formatMessage({ id: 'tickets', defaultValue: 'Tickets' })} key="1">
+          <div className={styles.title}>
+            <FormattedMessage id="orchestraSeats" defaultMessage="Orchestra Seats" />
+          </div>
           <TicketsItem />
           <TicketsItem />
           <TicketsItem />
         </TabPane>
-        <TabPane tab="Seating" key="2">
+        <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="2">
           <SeatingItem />
         </TabPane>
-        <TabPane tab="Details" key="3">
+        <TabPane tab={intl.formatMessage({ id: 'details', defaultValue: 'Details' })} key="3">
           <h1>This is Details tab</h1>
         </TabPane>
-        <TabPane tab="Map" key="4">
+        <TabPane tab={intl.formatMessage({ id: 'map', defaultValue: 'Map' })} key="4">
           <div className={styles.googleMapContainer}>
             <GoogleMap className={styles.googleMap} center={location} coords={[location]} />
           </div>
         </TabPane>
-        <TabPane tab="Reviews" key="5">
+        <TabPane tab={intl.formatMessage({ id: 'reviews', defaultValue: 'Reviews' })} key="5">
           <div>
             <h1>This is review tab</h1>
           </div>

@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .header {
   display: flex;
@@ -31,7 +31,7 @@
     .logo {
       .logoImage {
         max-width: 236px;
-        @media (max-width: $bp-mobile){
+        @media (max-width: $bp-mobile) {
           max-width: 200px;
         }
       }
@@ -47,12 +47,21 @@
         list-style-type: none;
       }
     }
-    .cartWrapper {
-      position: relative;
-      p {
-        position: absolute;
-        top: -7px;
-        left: 15px;
+
+    .itemWrapper {
+      display: flex;
+
+      .langWrapper {
+        padding: 0 15px;
+      }
+
+      .cartWrapper {
+        position: relative;
+        p {
+          position: absolute;
+          top: -7px;
+          left: 15px;
+        }
       }
     }
   }
