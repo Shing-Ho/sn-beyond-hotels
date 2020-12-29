@@ -161,6 +161,7 @@
           .orderRight {
             display: flex;
             flex-direction: row;
+            align-items: center;
             .orderNumber {
               color: $primaryColor;
               font-size: 14px;
