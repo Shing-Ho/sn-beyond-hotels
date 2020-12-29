@@ -3,8 +3,11 @@
 .root {
   width: 100%;
   display: flex;
-  margin-top: 20px;
   border-bottom: 4px solid $borderGrayColor;
+
+  &.thin {
+    border-bottom-width: 2px;
+  }
 
   .tab {
     display: flex;
@@ -15,15 +18,27 @@
     padding: 15px 20px;
     margin-bottom: -4px;
 
+    &.stretch {
+      flex: 1;
+    }
+
     &.active {
       color: $primaryColor;
       border-bottom: 4px solid $primaryColor;
+
+      &.thin {
+        margin-bottom: -2px;
+        border-bottom-width: 2px;
+      }
     }
 
     .label {
       font-size: 14px;
       font-weight: bold;
-      text-transform: uppercase;
+
+      &.uppercase {
+        text-transform: uppercase;
+      }
     }
     .icon {
       font-size: 24px;

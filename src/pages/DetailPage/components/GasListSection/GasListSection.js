@@ -3,33 +3,33 @@ import { useSelector } from 'react-redux';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import Collapse from 'components/Collapse/Collapse';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
-import TicketsItem from '../TicketsItem/TicketsItem';
-import styles from './ToursListSection.module.scss';
+import Divider from 'components/Divider/Divider';
 import { getCurrency } from 'store/core/selectors';
+import TicketsItem from '../TicketsItem/TicketsItem';
+import styles from './GasListSection.module.scss';
 
 const location = {
   lat: 27.2046,
   lng: 77.4977,
 };
 
-export default function ToursListSection() {
+export default function GasListSection() {
   const currency = useSelector(getCurrency);
 
   return (
     <div className={styles.root}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
-        <TabPane tab="Tickets" key="1">
-          <Collapse className={styles.title} header="Fun For The Whole Family" type="large">
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
+        <TabPane tab="Chargers" key="1">
+          <Collapse className={styles.title} header="Prepaid Gas" type="large">
+            <TicketsItem type="GAS" currency={currency} />
           </Collapse>
-          <Collapse className={styles.title} header="Extreme Tours" type="large">
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
+          <Divider />
+          <Collapse className={styles.title} header="Other Services" type="large">
+            <TicketsItem type="GAS" currency={currency} />
+            <TicketsItem type="GAS" currency={currency} />
           </Collapse>
         </TabPane>
-        <TabPane tab="Details" key="3">
+        <TabPane tab="Station Info" key="3">
           <h1>This is Details tab</h1>
         </TabPane>
         <TabPane tab="Map" key="4">
