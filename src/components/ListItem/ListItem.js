@@ -13,6 +13,7 @@ import { commaFormat } from 'helpers/utils';
 import IconButton from '../IconButton/IconButton';
 import Button from '../Button/Button';
 import Rating from '../Rating/Rating';
+import TaxAndFees from '../TaxAndFees/TaxAndFees';
 import styles from './ListItem.module.scss';
 
 const ListItem = ({ data, className, currency }) => {
@@ -51,7 +52,7 @@ const ListItem = ({ data, className, currency }) => {
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
-                    <Popover content={<taxFeeComponent data={data} />}>
+                    <Popover content={<TaxAndFees data={data} currency={currency} />}>
                       <InfoIcon className={styles.infoIcon} />
                     </Popover>
                     <span>
