@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { push } from 'connected-react-router';
 import { Popover } from 'antd';
 import { get } from 'lodash';
 import cx from 'classnames';
@@ -27,7 +26,8 @@ const ListItem = ({ data, className, currency }) => {
 
   const onViewClick = () => {
     dispatch(hotelActions.selectHotel(data));
-    dispatch(push(`${window.BASE_ROUTE || ''}/hotels/${data.id}`));
+    const win = window.open(`${window.BASE_ROUTE || ''}/hotels/${data.id}`, '_blank');
+    win.focus();
   };
 
   return (
