@@ -29,6 +29,11 @@ const ResultsList = ({ filteredHotels, currency }) => {
   return (
     <>
       <div className={styles.items}>
+        {!!visibleHotels.length && (
+          <h3 className={styles.total}>
+            {visibleHotels.length} <FormattedMessage id="totalResultsFound" defaultMessage="Total results found" />{' '}
+          </h3>
+        )}
         {visibleHotels.length ? (
           visibleHotels.map((hotel) => <ListItem data={hotel} currency={currency} key={hotel.hotel_id} />)
         ) : (

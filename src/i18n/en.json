@@ -4,6 +4,7 @@
   "cancel": "Cancel",
   "select": "Select",
   "noResultsFound": "No results found",
+  "totalResultsFound": "Total results found",
   "detailPage.language": "en",
   "detailPage.currency": "USD",
   "error": "Error",
