@@ -8,6 +8,7 @@ export const hotelItemFormatter = (data) => ({
   rating: data.hotel_details?.review_rating / 2,
   description: data.hotel_details?.property_description,
   geolocation: data.hotel_details?.geolocation,
+  detail: data.hotel_details,
 });
 export const getHotels = (state) => state.hotel.hotels;
 export const getFilteredHotels = (state) => state.hotel.filteredHotels;

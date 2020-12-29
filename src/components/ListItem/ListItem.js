@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 import { Popover } from 'antd';
+import { get } from 'lodash';
 import cx from 'classnames';
 import { ReactComponent as PinIcon } from 'icons/pin.svg';
 import { ReactComponent as BedIcon } from 'icons/bed3.svg';
@@ -67,7 +68,15 @@ const ListItem = ({ data, className, currency }) => {
               <Rating scoreonly score={data.rating} className={styles.rating} />
             </div>
             <div className={`${styles.line} ${styles.baseline}`}>
-              <span className={styles.description}>{data.description}</span>
+              <span className={styles.description}>
+                {get(data.detail, 'address.address1')}
+                <div>
+                  {get(data.detail, 'address.city')}
+                  {data.detail.address.province ? `, ${data.detail.address.province}` : ''},{' '}
+                  {get(data.detail, 'address.country')}
+                  {get(data.detail, 'address.postal_code')}
+                </div>
+              </span>
               <div className={styles.actions}>
                 {data.geolocation && <IconButton Icon={PinIcon} onClick={toggleMap} />}
                 <Button onClick={onViewClick}>
