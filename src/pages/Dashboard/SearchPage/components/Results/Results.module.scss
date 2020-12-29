@@ -88,5 +88,17 @@
   .pagination {
     margin-top: 20px;
     align-self: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .total {
+      font-weight: 300;
+      font-size: 24px;
+      color: #7b7c7e;
+    }
+    .content {
+      width: fit-content;
+    }
   }
 }

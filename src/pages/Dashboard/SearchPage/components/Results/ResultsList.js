@@ -44,12 +44,18 @@ const ResultsList = ({ filteredHotels, currency }) => {
       </div>
       {!!visibleHotels.length && count > 0 && (
         <div className={styles.pagination}>
+          {!!visibleHotels.length && (
+            <h3 className={styles.total}>
+              {visibleHotels.length} <FormattedMessage id="totalResultsFound" defaultMessage="Total results found" />{' '}
+            </h3>
+          )}
           <Pagination
             total={count}
             showSizeChanger
             showQuickJumper
             onChange={onPageChange}
             onShowSizeChange={(current, size) => onPageChange(0, size)}
+            className={styles.content}
           />
         </div>
       )}
