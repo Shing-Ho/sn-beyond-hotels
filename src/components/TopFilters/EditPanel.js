@@ -37,89 +37,96 @@ const EditPanelBody = ({
   searchHotels,
   toggleEdit,
   displayCount,
-}) => (
-  <div className="editPanel">
-    <div className={classNames('itemWrapper', 'autoCompleteWrapper')}>
-      <Complete value={data.location} onSelect={onSelect} clearData={clearData} />
-      <img src={pin} alt="" className={styles.img} />
-    </div>
-    <div className={classNames('itemWrapper', 'date-picker')}>
-      <div className="dateWrapper">
-        <DatePicker
-          onChange={(e) => onDateChange('start_date')(e)}
-          defaultValue={moment(data.start_date)}
-          value={moment(data.start_date)}
-          suffixIcon={<CalendarIcon className="calendarIcon" />}
-        />
+}) => {
+  const disableStartDate = (current) => current && current < moment().subtract(1, 'days');
+
+  const disableEndDate = (current) => current && current < moment(data.start_date);
+  return (
+    <div className="editPanel">
+      <div className={classNames('itemWrapper', 'autoCompleteWrapper')}>
+        <Complete value={data.location} onSelect={onSelect} clearData={clearData} />
+        <img src={pin} alt="" className={styles.img} />
       </div>
-      <div className="minus" />
-      <div className="dateWrapper">
-        <DatePicker
-          onChange={(e) => onDateChange('end_date')(e)}
-          defaultValue={moment(data.end_date)}
-          value={moment(data.end_date)}
-          suffixIcon={<CalendarIcon className="calendarIcon" />}
-        />
-      </div>
-    </div>
-    {displayCount && (
-      <div className="countContainer">
-        <div className={classNames('itemWrapper', 'countWrapper')}>
-          <div className="icon">
-            <AdultIcon width="25" />
-            <span className="text">
-              <FormattedMessage id="adults" defaultMessage="Adults" />
-            </span>
-          </div>
-          <div className="countInputWrapper">
-            <Input className="countInput" value={data.occupancy.adults} />
-            <NumberInput className="customNumberInput" name="adults" onChange={onChange} defaultValue={2} />
-            <div className="iconsWrapper">
-              <PlusIcon onClick={() => onChange('adults')(data.occupancy.adults + 1)} />
-              <MinusIcon onClick={() => onChange('adults')(data.occupancy.adults - 1)} />
-            </div>
-          </div>
+      <div className={classNames('itemWrapper', 'date-picker')}>
+        <div className="dateWrapper">
+          <DatePicker
+            onChange={(e) => onDateChange('start_date')(e)}
+            defaultValue={moment(data.start_date)}
+            value={moment(data.start_date)}
+            suffixIcon={<CalendarIcon className="calendarIcon" />}
+            disabledDate={disableStartDate}
+          />
         </div>
-        <div className={classNames('itemWrapper', 'countWrapper')}>
-          <div className="icon">
-            <ChildIcon width="25" />
-            <span className="text">
-              <FormattedMessage id="children" defaultMessage="Children" />
-            </span>
-          </div>
-          <div className="countInputWrapper">
-            <Input className="countInput" value={data.occupancy.children} />
-            <NumberInput className="customNumberInput" name="children" defaultValue={0} onChange={onChange} />
-            <div className="iconsWrapper">
-              <PlusIcon onClick={() => onChange('children')(data.occupancy.children + 1)} />
-              <MinusIcon onClick={() => onChange('children')(data.occupancy.children - 1)} />
-            </div>
-          </div>
-        </div>
-        <div className={classNames('itemWrapper', 'countWrapper')}>
-          <div className="icon">
-            <BedIcon width="25" />
-            <span className="text">Rooms</span>
-          </div>
-          <div className="countInputWrapper">
-            <Input className="countInput" value={data.nights} />
-            <NumberInput className="customNumberInput" name="nights" defaultValue={1} onChange={onChange} />
-            <div className="iconsWrapper">
-              <PlusIcon onClick={() => onChange('nights')(data.nights + 1)} />
-              <MinusIcon onClick={() => onChange('nights')(data.nights - 1)} />
-            </div>
-          </div>
-        </div>
-        <div className={classNames('itemWrapper', 'currency')}>
-          <Select options={currencyOptions} value={get(currency, 'value')} onChange={onCurrencyChange} />
+        <div className="minus" />
+        <div className="dateWrapper">
+          <DatePicker
+            onChange={(e) => onDateChange('end_date')(e)}
+            defaultValue={moment(data.end_date)}
+            value={moment(data.end_date)}
+            suffixIcon={<CalendarIcon className="calendarIcon" />}
+            disabledDate={disableEndDate}
+          />
         </div>
       </div>
-    )}
-    <div className="footer-wrapper">
-      <EditPanelFooter toggleEdit={toggleEdit} searchHotels={searchHotels} />
+      {displayCount && (
+        <div className="countContainer">
+          <div className={classNames('itemWrapper', 'countWrapper')}>
+            <div className="icon">
+              <AdultIcon width="25" />
+              <span className="text">
+                <FormattedMessage id="adults" defaultMessage="Adults" />
+              </span>
+            </div>
+            <div className="countInputWrapper">
+              <Input className="countInput" value={data.occupancy.adults} />
+              <NumberInput className="customNumberInput" name="adults" onChange={onChange} defaultValue={2} />
+              <div className="iconsWrapper">
+                <PlusIcon onClick={() => onChange('adults')(data.occupancy.adults + 1)} />
+                <MinusIcon onClick={() => onChange('adults')(data.occupancy.adults - 1)} />
+              </div>
+            </div>
+          </div>
+          <div className={classNames('itemWrapper', 'countWrapper')}>
+            <div className="icon">
+              <ChildIcon width="25" />
+              <span className="text">
+                <FormattedMessage id="children" defaultMessage="Children" />
+              </span>
+            </div>
+            <div className="countInputWrapper">
+              <Input className="countInput" value={data.occupancy.children} />
+              <NumberInput className="customNumberInput" name="children" defaultValue={0} onChange={onChange} />
+              <div className="iconsWrapper">
+                <PlusIcon onClick={() => onChange('children')(data.occupancy.children + 1)} />
+                <MinusIcon onClick={() => onChange('children')(data.occupancy.children - 1)} />
+              </div>
+            </div>
+          </div>
+          <div className={classNames('itemWrapper', 'countWrapper')}>
+            <div className="icon">
+              <BedIcon width="25" />
+              <span className="text">Rooms</span>
+            </div>
+            <div className="countInputWrapper">
+              <Input className="countInput" value={data.nights} />
+              <NumberInput className="customNumberInput" name="nights" defaultValue={1} onChange={onChange} />
+              <div className="iconsWrapper">
+                <PlusIcon onClick={() => onChange('nights')(data.nights + 1)} />
+                <MinusIcon onClick={() => onChange('nights')(data.nights - 1)} />
+              </div>
+            </div>
+          </div>
+          <div className={classNames('itemWrapper', 'currency')}>
+            <Select options={currencyOptions} value={get(currency, 'value')} onChange={onCurrencyChange} />
+          </div>
+        </div>
+      )}
+      <div className="footer-wrapper">
+        <EditPanelFooter toggleEdit={toggleEdit} searchHotels={searchHotels} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const EditPanelFooter = ({ toggleEdit, searchHotels }) => (
   <div className={classNames('itemWrapper', 'footer')}>
