@@ -99,8 +99,8 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
                 <div className={styles.wrapper}>
                   <img src={cal} alt="" className={styles.img} />
                   <div className={styles.item}>
-                    {moment(data.start_date).format('MM/DD/YYYY')} {'-'}
-                    {moment(data.end_date).format('MM/DD/YYYY')}
+                    {moment(data.start_date).format('MMM DD, YYYY')} {'-'}
+                    {moment(data.end_date).format('MMM DD, YYYY')}
                   </div>
                 </div>
                 <div className={styles.wrapper}>
