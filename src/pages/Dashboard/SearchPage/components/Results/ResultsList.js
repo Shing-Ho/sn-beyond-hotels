@@ -11,12 +11,13 @@ import styles from './Results.module.scss';
 
 const ResultsList = ({ filteredHotels, currency }) => {
   let hotels = useSelector(getHotels);
-  const visibleHotels = useSelector(getFormattedVisibleHotels);
+  let visibleHotels = useSelector(getFormattedVisibleHotels);
   const count = useSelector(getTotalCount);
   const dispatch = useDispatch();
 
   if (filteredHotels) {
     hotels = filteredHotels;
+    visibleHotels = filteredHotels;
   }
 
   if (!hotels || !hotels.length === 0) return null;
