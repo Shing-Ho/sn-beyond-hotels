@@ -12,7 +12,6 @@ import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 import { ReactComponent as MinusIcon } from 'icons/minus.svg';
 import { ReactComponent as PlusIcon } from 'icons/plus.svg';
 import { ReactComponent as BedIcon } from 'icons/bed.svg';
-import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
 import NumberInput from '../NumberInput/NumberInput';
 import { Currencies } from '../../helpers/constants';
 import Select from '../Select/Select';

@@ -44,14 +44,16 @@ const topFilterData = (payload) => (dispatch) => {
   dispatch(hotelActions.setTopFilters(payload));
 };
 
-const onFilterChange = (changes) => (dispatch, getState) => {
+const onFilterChange = (changes, search) => (dispatch, getState) => {
   const {
     hotel: { hotels, page, pageSize, filters },
   } = getState();
-  const updatedFilters = {
-    ...filters,
-    ...changes,
-  };
+  let updatedFilters;
+  if (search) {
+    updatedFilters = { ...changes };
+  } else {
+    updatedFilters = { ...filters, ...changes };
+  }
   dispatch(hotelActions.updateFilters(updatedFilters));
   const filteredHotels = filterHotels(hotels, updatedFilters);
   dispatch(hotelActions.setFilteredHotels(filteredHotels));
@@ -93,7 +95,7 @@ const searchHotels = (requestObj) => async (dispatch, getState) => {
     if (payload.hotel_id) {
       filterObj.hotel_id = payload.hotel_id;
     }
-    dispatch(onFilterChange(filterObj));
+    dispatch(onFilterChange(filterObj, 'search'));
   } catch (error) {
     dispatch(hotelActions.setFailure(error));
   }

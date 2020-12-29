@@ -28,6 +28,15 @@ const HotelLeftFilters = ({ currency }) => {
   const [popularBrands, setPopularBrands] = useState([]);
   const [amenities, setAmenities] = useState([]);
 
+  useEffect(() => {
+    if (!filters.brands) {
+      setPopularBrands([]);
+    }
+    if (!filters.amenities) {
+      setAmenities([]);
+    }
+  }, [filters]);
+
   const debouncedFunction = useRef(
     _.debounce((key) => {
       dispatch(hotelActions.onFilterChange({ keyword: key }));
