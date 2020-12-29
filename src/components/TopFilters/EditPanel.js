@@ -35,7 +35,6 @@ const EditPanelBody = ({
   onDateChange,
   data,
   searchHotels,
-  toggleEdit,
   displayCount,
 }) => {
   const disableStartDate = (current) =>
@@ -124,16 +123,16 @@ const EditPanelBody = ({
         </div>
       )}
       <div className="footer-wrapper">
-        <EditPanelFooter toggleEdit={toggleEdit} searchHotels={searchHotels} />
+        <EditPanelFooter searchHotels={searchHotels} />
       </div>
     </div>
   );
 };
 
-const EditPanelFooter = ({ toggleEdit, searchHotels }) => (
+const EditPanelFooter = ({ searchHotels }) => (
   <div className={classNames('itemWrapper', 'footer')}>
     <div className="cancel">
-      <Button onClick={() => toggleEdit(false)}>
+      <Button>
         <FormattedMessage id="cancel" defaultMessage="Cancel" />
       </Button>
     </div>
@@ -142,9 +141,9 @@ const EditPanelFooter = ({ toggleEdit, searchHotels }) => (
         <FormattedMessage id="search" defaultMessage="Search" />
       </Button>
     </div>
-    <div className="closeIcon">
-      <CloseIcon onClick={() => toggleEdit(false)} />
-    </div>
+    {/* <div className="closeIcon"> */}
+    {/*  <CloseIcon onClick={() => toggleEdit(false)} /> */}
+    {/* </div> */}
   </div>
 );
 
@@ -157,7 +156,7 @@ const EditPanel = ({ ...props }) => (
       maskClosable
       visible
       title="Edit Your Preferences"
-      onCancel={() => props.toggleEdit(false)}
+      // onCancel={() => props.toggleEdit(false)}
       className="editPanelResponsive"
       footer={<EditPanelFooter {...props} />}
     >

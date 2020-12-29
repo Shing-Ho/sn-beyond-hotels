@@ -68,7 +68,6 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
     };
     dispatch(hotelActions.searchHotels(payload));
     dispatch(hotelActions.topFilterData(payload));
-    toggleEdit(false);
   };
 
   const onCurrencyChange = (_currency) => {
@@ -89,7 +88,6 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
             onDateChange={onDateChange}
             data={data}
             searchHotels={searchHotels}
-            toggleEdit={toggleEdit}
             displayCount={displayCount}
           />
         ) : (
