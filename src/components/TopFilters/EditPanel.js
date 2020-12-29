@@ -56,6 +56,7 @@ const EditPanelBody = ({
             value={moment(data.start_date)}
             suffixIcon={<CalendarIcon className="calendarIcon" />}
             disabledDate={disableStartDate}
+            format="MMM DD, YYYY"
           />
         </div>
         <div className="minus" />
@@ -66,6 +67,7 @@ const EditPanelBody = ({
             value={moment(data.end_date)}
             suffixIcon={<CalendarIcon className="calendarIcon" />}
             disabledDate={disableEndDate}
+            format="MMM DD, YYYY"
           />
         </div>
       </div>
