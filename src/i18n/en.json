@@ -97,7 +97,7 @@
   "detailPage.info.rate": "Rate: ${rate}",
   "detailPage.info.taxes": "Taxes: ${taxes}",
   "detailPage.info.total": "Total: ${total}",
-  "detailPage.modifySearch": "Modify Search",
+  "detailPage.checkRates": "Check Rates",
   "searchPage.filters.resultList.resultItem.rate": "Average nightly rate: {rate}",
   "searchPage.filters.resultList.resultItem.base": "Average nightly base rate: {base}",
   "searchPage.filters.resultList.resultItem.tax": "Average nightly tax: {tax}",

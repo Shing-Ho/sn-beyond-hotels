@@ -92,7 +92,7 @@ export default function BookingSection({
     <div className={cx(styles.root, className)}>
       <div className={styles.bookContent}>
         <h4>
-          <FormattedMessage id="detailPage.modifySearch" defaultMessage="Modify Search" />
+          <FormattedMessage id="detailPage.checkRates" defaultMessage="Modify Search" />
         </h4>
         <div className={styles.adultChildWrapper}>
           <div className={styles.adult}>
