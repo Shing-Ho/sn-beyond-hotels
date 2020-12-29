@@ -70,10 +70,10 @@ const HotelItem = (props) => {
         </div>
         <div className={styles.flexWrapper}>
           <div className={styles.learnMore}>
-            <Popover content={PopOverContent(data)}>
+            <Popover content={PopOverContent(data)} placement="bottom">
               <InfoIcon />
             </Popover>
-            <FormattedMessage id="learnMore" defaultMessage="Learn More" />
+            <FormattedMessage id="priceBreakDown" defaultMessage="Price Breakdown" />
           </div>
           {get(data, 'cancellation_policy.summary') && (
             <div className={styles.cancellation}>
