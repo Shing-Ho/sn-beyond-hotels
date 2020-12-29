@@ -93,6 +93,7 @@
         .itemName {
           font-weight: 300;
           font-size: 24px;
+          cursor: pointer;
         }
         .rateInfo {
           display: flex;
@@ -117,6 +118,7 @@
             color: $primaryColor;
             font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
           }
           .taxesAndFees {
             display: flex;

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
@@ -27,13 +28,13 @@ const ListItem = ({ data, className, currency }) => {
   const onViewClick = () => {
     dispatch(hotelActions.selectHotel(data));
     const win = window.open(`${window.BASE_ROUTE || ''}/hotels/${data.id}`, '_blank');
-    win.focus();
+    win?.focus();
   };
 
   return (
     <div className={cx(styles.resultContainer, className)}>
       <div className={styles.resultItem}>
-        <div className={styles.mainImage}>
+        <div className={styles.mainImage} onClick={onViewClick}>
           <img src={data.image} alt="Result Item" />
         </div>
 
@@ -41,13 +42,15 @@ const ListItem = ({ data, className, currency }) => {
           <div className={styles.circle}>{data.icon || <BedIcon />}</div>
           <div className={styles.content}>
             <div className={styles.line}>
-              <h3 className={styles.itemName}>{data.name}</h3>
+              <h3 className={styles.itemName} onClick={onViewClick}>
+                {data.name}
+              </h3>
               <div className={styles.rateInfo}>
                 <div className="flex-vertical-center">
                   <span>
                     <FormattedMessage id="average" defaultMessage="AVERAGE" />
                   </span>
-                  <span className={styles.itemRate}>
+                  <span className={styles.itemRate} onClick={onViewClick}>
                     {currency?.symbol + commaFormat(data.rate.toFixed(currency?.decimal))}
                   </span>
                 </div>
