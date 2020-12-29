@@ -11,6 +11,7 @@ import GuestPage from 'pages/GuestPage/GuestPage';
 import OrderLookup from 'pages/OrderLookup/OrderLookup';
 import EventDetailPage from 'pages/DetailPage/EventDetailPage';
 import ToursDetailPage from 'pages/DetailPage/ToursDetailPage';
+import DiningDetailPage from 'pages/DetailPage/DiningDetailPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -22,6 +23,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/hotels/:id`} exact component={DetailPage} />
         <Route path={`${BASE_ROUTE}/events/:id`} exact component={EventDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
+        <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/transports`} exact component={TransportSearchPage} />
         <Route path={`${BASE_ROUTE}/payments`} exact component={PaymentsPage} />
         <Route path={`${BASE_ROUTE}/confirmation`} exact component={ConfirmationPage} />

@@ -1,0 +1,94 @@
+@import "styles";
+
+.root {
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: auto;
+  .bookContent {
+    border: 1px solid $borderGrayColor;
+    font-size: 20px;
+    font-weight: 300;
+    max-width: 360px;
+    .header {
+      padding: 20px 19px 29px 19px;
+      background-color: $bgLightGrayColor;
+      border-bottom: 1px solid $borderGrayColor;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        background-color: $bgGrayColor;
+        padding: 0px;
+        border-radius: 10px;
+        span {
+          color: white;
+        }
+      }
+      .headerText {
+        height: 24px;
+        margin-top: 1px;
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: left;
+        color: $grayColor;
+      }
+    }
+    .main {
+      padding: 18px 21px;
+      .notifyText {
+        color: $grayColor;
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.43;
+        font-weight: normal;
+        letter-spacing: normal;
+      }
+      .item {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        .itemText {
+          font-size: 24px;
+          color: $grayColor;
+          margin-bottom: 15px;
+        }
+        .ant-picker {
+          width: 100%;
+        }
+      }
+    }
+    .bookNow, .addToItinerary {
+      font-size: 24px;
+      font-weight: bold;
+      height: 60px;
+      width: 100%;
+      border-radius: 0;
+      border: none;
+    }
+    .bookNow, .differentTime {
+      background-color: $primaryLightColor;
+      color: $primaryColor;
+  
+      &:hover, &:focus {
+        background: $primaryLightColor;
+        opacity: 0.9;
+        color: $primaryColor;
+      }
+    }
+    .addToItinerary {
+      background-color: $primaryColor;
+      color: white;
+  
+      &:hover, &:focus {
+        background: $primaryColor;
+        opacity: 0.9;
+        color: white;
+      }
+    }
+  }
+}
