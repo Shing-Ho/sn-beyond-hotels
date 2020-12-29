@@ -49,13 +49,13 @@ const HotelItem = (props) => {
     >
       <div className={styles.detail}>
         <div className={styles.header}>
-          <span>{data.name}</span>
-        </div>
-        <div className={styles.price}>
+          <span className={styles.name}>{data.name}</span>
           <span className={styles.main}>
             {currencySymbol}
             {commaFormat(Number(nightCost.replace(',', '') * 1).toFixed(2))}
           </span>
+        </div>
+        <div className={styles.price}>
           <div className={styles.night}>
             {currencySymbol}
             {totalCost}
