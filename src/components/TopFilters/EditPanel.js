@@ -38,9 +38,11 @@ const EditPanelBody = ({
   toggleEdit,
   displayCount,
 }) => {
-  const disableStartDate = (current) => current && current < moment().subtract(1, 'days');
+  const disableStartDate = (current) =>
+    (current && current < moment().subtract(1, 'days')) || current > moment().add(18, 'months');
 
-  const disableEndDate = (current) => current && current < moment(data.start_date);
+  const disableEndDate = (current) =>
+    (current && current < moment(data.start_date)) || current > moment().add(18, 'months');
   return (
     <div className="editPanel">
       <div className={classNames('itemWrapper', 'autoCompleteWrapper')}>
