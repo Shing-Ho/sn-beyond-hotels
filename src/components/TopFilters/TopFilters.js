@@ -15,7 +15,7 @@ import styles from './TopFilters.module.scss';
 
 const TopFilters = ({ currency, displayCount, initialState }) => {
   const topFilters = useSelector(getTopFilters);
-  const [isEdit, toggleEdit] = useState(false);
+  const [isEdit, toggleEdit] = useState(true);
   const [data, setData] = useState({ ...initialState, ...topFilters });
   const dispatch = useDispatch();
   const locCache = useRef(initialState.location);
