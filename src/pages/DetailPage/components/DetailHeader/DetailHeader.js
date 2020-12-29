@@ -4,6 +4,8 @@ import { get } from 'lodash';
 import { ReactComponent as BedIcon } from 'icons/bed3.svg';
 import { ReactComponent as CleanIcon } from 'icons/cleaner.svg';
 import { ReactComponent as UserGroupIcon } from 'icons/user-group.svg';
+import { ReactComponent as HeartWhiteIcon } from 'icons/heartWhite.svg';
+import { ReactComponent as ShareWhiteIcon } from 'icons/shareWhite.svg';
 import Tag from 'components/Tag/Tag';
 import Rating from 'components/Rating/Rating';
 import styles from './DetailHeader.module.scss';
@@ -52,8 +54,8 @@ const DetailHeader = ({ className, details, icon, headerOnly, isRating, isFoodDe
           <div className={styles.right}>
             <Tag text="Very Clean" color="#00d6a3" icon={<CleanIcon />} />
             <Tag text="Crowded" color="#b94b19" icon={<UserGroupIcon />} />
-            <Tag color="#7b7c7e" icon={<UserGroupIcon />} />
-            <Tag color="#7b7c7e" icon={<UserGroupIcon />} />
+            <Tag color="#7b7c7e" icon={<HeartWhiteIcon />} />
+            <Tag color="#7b7c7e" icon={<ShareWhiteIcon />} />
           </div>
         </div>
       </>

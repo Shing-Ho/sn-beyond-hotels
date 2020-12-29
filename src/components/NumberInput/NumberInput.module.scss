@@ -1,22 +1,42 @@
-@import "styles";
+@import 'styles';
 
 .root {
   display: table !important;
   width: auto !important;
   border-radius: 8px;
-  border: 2px solid $primaryColor;
+  overflow: hidden;
+
+  &.minus {
+    button,
+    input {
+      border-color: #7b7c7e;
+    }
+    .leftButton {
+      background-color: #7b7c7e;
+      &:hover {
+        background-color: #7b7c7e;
+        border-color: #7b7c7e;
+      }
+    }
+    .rightButton {
+      border-color: $primaryColor;
+    }
+  }
 
   button {
     width: 35px;
+    height: 34px;
     padding: 2px !important;
     background-color: $primaryColor;
-    border: none;
+    border: 2px solid $primaryColor;
 
     &:hover {
       background-color: $primaryHoverColor;
+      border-color: $primaryHoverColor;
     }
     &:focus {
       background-color: $primaryColor;
+      border-color: $primaryHoverColor;
     }
   }
   input {
@@ -24,5 +44,6 @@
     text-align: center !important;
     color: $primaryColor;
     font-weight: bold;
+    border: 2px solid $primaryColor;
   }
 }

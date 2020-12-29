@@ -9,12 +9,13 @@ const NumberInput = ({
   defaultValue = 1,
   className,
   name,
-  onChange,
+  // onChange,
   rightComponent,
   leftComponent,
-  value: propsValue,
+  propsValue,
 }) => {
   const [value, setValue] = useState(defaultValue);
+  const [minus, setMinus] = useState(false);
 
   useEffect(() => {
     setValue(propsValue);
@@ -24,18 +25,27 @@ const NumberInput = ({
     e.stopPropagation();
 
     const newValue = value + amount;
-    if (newValue < 0) {
-      return;
+    if (newValue <= 0) {
+      setMinus(true);
+      // return;
+    } else {
+      setMinus(false);
     }
+
     setValue(newValue);
-    onChange(name)(newValue);
+
+    // onChange(name)(newValue);
   };
 
   return (
-    <Input.Group compact className={cx(styles.root, className)}>
-      <Button onClick={handleClick(-1)}>{leftComponent || <MinusIcon width={28} height={28} />}</Button>
+    <Input.Group compact className={cx(styles.root, className, { [styles.minus]: minus })}>
+      <Button onClick={handleClick(-1)} className={styles.leftButton} disabled={minus}>
+        {leftComponent || <MinusIcon width={28} height={28} />}
+      </Button>
       <Input name={name} value={value} />
-      <Button onClick={handleClick(1)}>{rightComponent || <PlusIcon width={28} height={28} />}</Button>
+      <Button onClick={handleClick(1)} className={styles.rightButton}>
+        {rightComponent || <PlusIcon width={28} height={28} />}
+      </Button>
     </Input.Group>
   );
 };

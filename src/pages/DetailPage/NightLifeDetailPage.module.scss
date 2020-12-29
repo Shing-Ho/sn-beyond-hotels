@@ -1,0 +1,67 @@
+@import "styles";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    max-width: 1180px;
+    width: 100%;
+    padding: 40px 20px;
+
+    .detailHeader {
+      margin-bottom: 60px;
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 40px;
+      .left {
+        width: 750px;
+        height: 100%;
+      }
+      .right {
+        width: 360px;
+        height: 100%;
+      }
+    }
+  }
+  .bottom {
+    width: 100%;
+    padding: 0 20px;
+    max-width: 1180px;
+  }
+}
+
+.carousel {
+  width: 100%;
+  position: relative;
+
+  .detailHeader {
+    display: none;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .root {
+    .content {
+      .detail {
+        padding-left: 0;
+      }
+      .detailHeader {
+        display: none;
+      }
+    }
+  }
+  .carousel {
+    .detailHeader {
+      display: block;  
+    }
+  }
+}
