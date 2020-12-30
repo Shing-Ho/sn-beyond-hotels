@@ -95,7 +95,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
           <div className={styles.icon}>
             <CalendarIcon />
           </div>
-          <span>{moment(startDate, 'YYYY-MM-DD').format('DD/MM/YYYY')} Check In</span>
+          <span>{moment(startDate, 'YYYY-MM-DD').format('MMM DD, YYYY')} Check In</span>
         </div>
       </div>
       <div className={styles.item}>
@@ -103,7 +103,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
           <div className={styles.icon}>
             <CalendarIcon />
           </div>
-          <span>{moment(endDate, 'YYYY-MM-DD').format('DD/MM/YYYY')} Check Out</span>
+          <span>{moment(endDate, 'YYYY-MM-DD').format('MMM DD, YYYY')} Check Out</span>
         </div>
       </div>
       <div className={styles.item}>

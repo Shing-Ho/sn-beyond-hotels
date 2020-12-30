@@ -3,11 +3,9 @@
 .root {
   padding: 13px 0;
   border-bottom: 1px solid $borderGrayColor;
-  position: relative;
+  border-top: 1px solid $borderGrayColor;
 
-  &:last-child {
-    border: none;
-  }
+  position: relative;
 
   .item {
     display: flex;
