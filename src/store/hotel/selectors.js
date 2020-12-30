@@ -26,3 +26,4 @@ export const getTopFilters = (state) => state.hotel.topFilters;
 export const getCancelLookupResponse = (state) => state.hotel.cancelLookupResponse;
 export const getCancelOrderResponse = (state) => state.hotel.cancelOrderResponse;
 export const getError = (state) => state.hotel.error;
+export const getSearchData = (state) => state?.hotel?.searchData;

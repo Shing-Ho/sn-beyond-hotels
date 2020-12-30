@@ -26,6 +26,7 @@ const hotelActions = createActions(
     CANCEL_LOOKUP_SUCCESS: undefined,
     CANCEL_ORDER_SUCCESS: undefined,
     CLEAR_STATE: undefined,
+    SEARCH_DATA: undefined,
   },
   options,
 );
@@ -119,6 +120,7 @@ const searchHotelById = (id, searchData) => async (dispatch, getState) => {
     } = getState();
 
     dispatch(hotelActions.setLoading(true));
+    dispatch(hotelActions.searchData(searchData));
     const data = await API.searchHotelById(searchData);
     dispatch(hotelActions.selectHotel({ ...data, currency }));
   } catch (error) {

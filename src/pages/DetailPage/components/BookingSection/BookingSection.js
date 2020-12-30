@@ -126,6 +126,7 @@ export default function BookingSection({
                 defaultValue={bookFormValue.checkIn || moment()}
                 value={bookFormValue.checkIn}
                 onChange={handleBookFormChange('checkIn')}
+                format="MMM DD, YYYY"
               />
             )}
           </div>
@@ -137,6 +138,7 @@ export default function BookingSection({
               defaultValue={bookFormValue.checkOut || moment().add(1, 'day')}
               value={bookFormValue.checkOut}
               onChange={handleBookFormChange('checkOut')}
+              format="MMM DD, YYYY"
             />
           </div>
         </div>
