@@ -18,7 +18,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
   const totalRooms = get(booking, 'room_count');
   const [showActionBar, setShowActionBar] = useState(false);
   const totalNight = moment(endDate).diff(moment(startDate), 'days');
-  const avgRate = items.avg_nightly_rate.amount;
+  const totalRate = items?.total?.amount;
 
   const toggleActionBar = () => setShowActionBar(!showActionBar && actionEnabled);
 
@@ -87,7 +87,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
             </span>
             <span className={styles.total}>
               {currency?.symbol}
-              {avgRate.toFixed(2) || '0,000.00'}
+              {totalRate?.toFixed(2) || '0,000.00'}
             </span>
           </div>
         </div>
