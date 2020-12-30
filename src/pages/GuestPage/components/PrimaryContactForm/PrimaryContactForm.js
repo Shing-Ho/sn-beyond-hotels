@@ -21,7 +21,7 @@ export default function PrimaryContactForm({ index, primaryContact, setPrimaryCo
     const keys = Object.keys(list);
     let tmpList = [];
     tmpList = keys.map((key) => ({ title: key.toUpperCase(), value: list[key] }));
-    setCountrySelectList(tmpList);
+    setCountrySelectList(tmpList.sort((a, b) => (a.title > b.title ? 1 : -1)));
   }, []);
 
   return (
