@@ -50,7 +50,7 @@ export default function PrimaryContactForm({ index, primaryContact, setPrimaryCo
         <Row gutter={24}>
           <Col span={12} xs={24}>
             <FormItem label="Country" name={`country_${index}`} size="large" required>
-              <Select options={countrySelectList} onChange={(value) => setValue(value, 'country')} />
+              <Select options={countrySelectList} onChange={(value) => setValue(value, 'country')} innerSuffix />
             </FormItem>
           </Col>
           <Col span={12} xs={24}>
