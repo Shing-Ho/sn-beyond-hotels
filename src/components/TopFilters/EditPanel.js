@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { DatePicker, Input, Button, Modal } from 'antd';
+import React from 'react';
+import { DatePicker, Input, Button } from 'antd';
 import moment from 'moment';
 import { get } from 'lodash';
 import classNames from 'classnames';
@@ -81,7 +81,7 @@ const EditPanelBody = ({
             </div>
             <div className="countInputWrapper">
               <Input className="countInput" value={data.occupancy.adults} />
-              <NumberInput className="customNumberInput" name="adults" onChange={onChange} defaultValue={2} />
+              <NumberInput className="customNumberInput" name="adults" onChange={onChange} value={2} />
               <div className="iconsWrapper">
                 <PlusIcon onClick={() => onChange('adults')(data.occupancy.adults + 1)} />
                 <MinusIcon onClick={() => onChange('adults')(data.occupancy.adults - 1)} />
@@ -97,7 +97,7 @@ const EditPanelBody = ({
             </div>
             <div className="countInputWrapper">
               <Input className="countInput" value={data.occupancy.children} />
-              <NumberInput className="customNumberInput" name="children" defaultValue={0} onChange={onChange} />
+              <NumberInput className="customNumberInput" name="children" value={0} onChange={onChange} />
               <div className="iconsWrapper">
                 <PlusIcon onClick={() => onChange('children')(data.occupancy.children + 1)} />
                 <MinusIcon onClick={() => onChange('children')(data.occupancy.children - 1)} />
@@ -111,7 +111,7 @@ const EditPanelBody = ({
             </div>
             <div className="countInputWrapper">
               <Input className="countInput" value={data.nights} />
-              <NumberInput className="customNumberInput" name="nights" defaultValue={1} onChange={onChange} />
+              <NumberInput className="customNumberInput" name="nights" value={1} onChange={onChange} />
               <div className="iconsWrapper">
                 <PlusIcon onClick={() => onChange('nights')(data.nights + 1)} />
                 <MinusIcon onClick={() => onChange('nights')(data.nights - 1)} />
@@ -153,16 +153,6 @@ const EditPanel = ({ ...props }) => (
     <div className="editPanelWrapper">
       <EditPanelBody {...props} />
     </div>
-    <Modal
-      maskClosable
-      visible
-      title="Edit Your Preferences"
-      // onCancel={() => props.toggleEdit(false)}
-      className="editPanelResponsive"
-      footer={<EditPanelFooter {...props} />}
-    >
-      <EditPanelBody {...props} />
-    </Modal>
   </>
 );
 
