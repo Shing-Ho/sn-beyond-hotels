@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import Collapse from 'components/Collapse/Collapse';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
+import { getCurrency } from 'store/core/selectors';
 import TicketsItem from '../TicketsItem/TicketsItem';
 import styles from './ToursListSection.module.scss';
-import { getCurrency } from 'store/core/selectors';
 
 const location = {
   lat: 27.2046,
