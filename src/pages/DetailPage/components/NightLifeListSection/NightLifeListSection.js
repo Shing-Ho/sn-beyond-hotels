@@ -63,23 +63,20 @@ export default function NightLifeListSection() {
           </Collapse>
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="2">
+          <h1>This is Seating tab</h1>
+        </TabPane>
+        <TabPane tab={intl.formatMessage({ id: 'details', defaultValue: 'Details' })} key="3">
           <h1>This is Details tab</h1>
         </TabPane>
-        <TabPane tab={intl.formatMessage({ id: 'overview', defaultValue: 'Overview' })} key="3">
-          <h1>This is Overview tab</h1>
-        </TabPane>
-        <TabPane tab={intl.formatMessage({ id: 'details', defaultValue: 'Details' })} key="4">
-          <h1>This is Details tab</h1>
-        </TabPane>
-        <TabPane tab={intl.formatMessage({ id: 'menus', defaultValue: 'Menus' })} key="5">
+        <TabPane tab={intl.formatMessage({ id: 'menus', defaultValue: 'Menus' })} key="4">
           <h1>This is Menus tab</h1>
         </TabPane>
-        <TabPane tab={intl.formatMessage({ id: 'map', defaultValue: 'Map' })} key="6">
+        <TabPane tab={intl.formatMessage({ id: 'map', defaultValue: 'Map' })} key="5">
           <div className={styles.googleMapContainer}>
             <GoogleMap className={styles.googleMap} center={location} coords={[location]} />
           </div>
         </TabPane>
-        <TabPane tab={intl.formatMessage({ id: 'reviews', defaultValue: 'Reviews' })} key="7">
+        <TabPane tab={intl.formatMessage({ id: 'reviews', defaultValue: 'Reviews' })} key="6">
           <div>
             <h1>This is review tab</h1>
           </div>
