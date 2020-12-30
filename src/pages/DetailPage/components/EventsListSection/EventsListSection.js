@@ -1,8 +1,10 @@
 import React from 'react';
-import cx from 'classnames';
+import { useSelector } from 'react-redux';
 import { FormattedMessage, useIntl } from 'react-intl';
+import cx from 'classnames';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
+import { getCurrency } from 'store/core/selectors';
 import TicketsItem from '../TicketsItem/TicketsItem';
 import SeatingItem from '../SeatingItem/SeatingItem';
 import styles from './EventsListSection.module.scss';
@@ -14,6 +16,7 @@ const location = {
 
 export default function EventsListSection() {
   const intl = useIntl();
+  const currency = useSelector(getCurrency);
 
   return (
     <div className={cx(styles.root)}>
@@ -22,9 +25,9 @@ export default function EventsListSection() {
           <div className={styles.title}>
             <FormattedMessage id="orchestraSeats" defaultMessage="Orchestra Seats" />
           </div>
-          <TicketsItem />
-          <TicketsItem />
-          <TicketsItem />
+          <TicketsItem currency={currency} />
+          <TicketsItem currency={currency} />
+          <TicketsItem currency={currency} />
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="2">
           <SeatingItem />

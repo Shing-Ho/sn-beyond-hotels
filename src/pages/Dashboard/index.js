@@ -16,6 +16,8 @@ import { ReactComponent as ShowAllFillGray } from 'icons/dashboardIcons/ShowAllF
 import { ReactComponent as ShowAllWhite } from 'icons/dashboardIcons/ShowAllWhite.svg';
 import { ReactComponent as TransportationOutline } from 'icons/dashboardIcons/TransportationOutline.svg';
 import { ReactComponent as TransportationTransparent } from 'icons/dashboardIcons/TransportationTransparent.svg';
+import { ReactComponent as GasStation } from 'icons/dashboardIcons/GasStation.svg';
+import { ReactComponent as GasStationWhite } from 'icons/dashboardIcons/GasStationWhite.svg';
 import { ReactComponent as ToursActivities } from 'icons/dashboardIcons/ToursActivities.svg';
 import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
 import { ReactComponent as ShowsEvents } from 'icons/dashboardIcons/ShowsEvents.svg';
@@ -24,8 +26,11 @@ import { ReactComponent as DiningSvg } from 'icons/dashboardIcons/Dining.svg';
 import { ReactComponent as DiningWhiteSvg } from 'icons/dashboardIcons/DiningWhite.svg';
 import { ReactComponent as Nightlife } from 'icons/dashboardIcons/Nightlife.svg';
 import { ReactComponent as NightlifeWhite } from 'icons/dashboardIcons/NightlifeWhite.svg';
-import { ReactComponent as FlightsTransparent } from '../../icons/dashboardIcons/Flights.svg';
-import { ReactComponent as FlightsOutline } from '../../icons/dashboardIcons/FlightsOutline.svg';
+import { ReactComponent as FlightsTransparent } from 'icons/dashboardIcons/Flights.svg';
+import { ReactComponent as FlightsOutline } from 'icons/dashboardIcons/FlightsOutline.svg';
+import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
+import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
+import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
 import HotelSearchPage from './SearchPage/HotelSearchPage';
@@ -74,8 +79,8 @@ const searchTypeOptions = [
     id: 5,
     name: 'gasAndCharging',
     value: 'gas',
-    icon: <Nightlife />,
-    selectedIcon: <NightlifeWhite />,
+    icon: <GasStation />,
+    selectedIcon: <GasStationWhite />,
   },
   {
     id: 6,
@@ -183,13 +188,10 @@ const DashboardPage = () => {
         let subIcons = [];
 
         if (searchType === 'gas') {
-          subIcons = [
-            <Nightlife />,
-            <DiningSvg />,
-            <TransportationOutline />,
-            <ShowsEvents />,
-            <ToursActivities />,
-          ].slice(Math.ceil(Math.random() * 2), Math.round(Math.random() * 5));
+          subIcons = [<FuelCombo />, <ChargePlug />, <FuleValve />].slice(
+            Math.ceil(Math.random() * 2),
+            Math.round(Math.random() * 3),
+          );
         }
         return { icon: searchTypeInfo.selectedIcon, subIcons, ...item };
       }),
@@ -198,7 +200,7 @@ const DashboardPage = () => {
 
   let subHeader;
   if (searchType === 'gas') {
-    subHeader = <TabSelect options={gasSelectOptions} onChange={setGasType} />;
+    subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
   }
 
   return (

@@ -1,7 +1,8 @@
-@import "styles";
+@import 'styles';
 
 .root {
   width: 100%;
+  margin-bottom: 20px;
 
   .title {
     font-size: 48px;
@@ -44,14 +45,13 @@
     .rating {
       margin-bottom: 20px;
       width: 150px;
-      @media (max-width: $bp-mobile){
+      @media (max-width: $bp-mobile) {
         margin-bottom: 0;
       }
-      @media screen and (max-width: 467px){
+      @media screen and (max-width: 467px) {
         width: 100px;
         margin-right: 10px;
       }
-
     }
   }
 
@@ -126,10 +126,10 @@
   }
 }
 
-@media screen and (max-width: $bp-mobile-landscape){
-  .root{
+@media screen and (max-width: $bp-mobile-landscape) {
+  .root {
     flex-direction: column;
-    .details{
+    .details {
       max-width: none;
       flex-wrap: wrap;
     }
