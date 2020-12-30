@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button, Popover, Tooltip } from 'antd';
 import Divider from 'components/Divider/Divider';
 import { commaFormat } from 'helpers/utils';
-import { Currencies } from 'helpers/constants';
+import currency from '../../../../helpers/currency';
 import styles from './DetailItem.module.scss';
 
 const PopOverContent = (data) => (
@@ -37,10 +37,9 @@ const PopOverContent = (data) => (
 
 const HotelItem = (props) => {
   const { data, nights, selected, onSelect } = props;
-
   const totalCost = data.total && data.total.amount > 0 ? commaFormat(Number(data.total.amount).toFixed(2)) : 0;
   const nightCost = data.avg_nightly_rate ? commaFormat(Number(data.avg_nightly_rate.amount).toFixed(2)) : 0;
-  const currencySymbol = Currencies[data?.avg_nightly_rate?.currency || 'USD']?.symbol;
+  const currencySymbol = currency[data?.avg_nightly_rate?.currency || 'USD']?.symbol;
   return (
     <div
       className={cx(styles.root, {

@@ -9,6 +9,7 @@ import Button from 'components/Button/Button';
 import Drawer from 'components/Drawer/Drawer';
 import { getSelectedHotel, getSelectedRoomItems, getTotalBookingAmount } from 'store/booking/selectors';
 import { getCurrency } from 'store/core/selectors';
+import { Currencies } from 'helpers/constants';
 import GuestHeader from './components/GuestHeader/GuestHeader';
 import AdditionalForm from './components/AdditionalForm/AdditionalForm';
 import PrimaryContactFormContainer from './components/PrimaryContactFormContainer/PrimaryContactFormContainer';
@@ -27,6 +28,8 @@ export default function GuestPage() {
   const [phoneError, setPhoneError] = useState('');
   // set primary checked to true as default
   const [items, setItems] = useState((selectedRooms || []).map((v) => ({ ...v, primary: true })));
+
+  const currencySymbol = Currencies[items[0]?.avg_nightly_rate?.currency || 'USD']?.symbol;
 
   const intl = useIntl();
 
@@ -105,7 +108,7 @@ export default function GuestPage() {
           <div className={styles.wrapper}>
             <div className={styles.totalSection}>
               <span>
-                {currency?.symbol} {totalAmount.toFixed(2)}
+                {currencySymbol} {totalAmount.toFixed(2)}
               </span>
               <span>
                 <FormattedMessage id="total" defaultMessage="Total" />
@@ -126,7 +129,7 @@ export default function GuestPage() {
             <div className={styles.drawerHeader}>
               <div className={styles.drawalTotalSection}>
                 <span>
-                  {currency?.symbol} {totalAmount.toFixed(2)}
+                  {currencySymbol} {totalAmount.toFixed(2)}
                 </span>
                 <span>
                   <FormattedMessage id="total" defaultMessage="Total" />
@@ -140,7 +143,7 @@ export default function GuestPage() {
           footer={
             <div className={styles.drawerBottom}>
               <div className={styles.drawalTotalSection}>
-                <span>{`${currency?.symbol} ${totalAmount.toFixed(2)}`}</span>
+                <span>{`${currencySymbol} ${totalAmount.toFixed(2)}`}</span>
                 <span>
                   <FormattedMessage id="total" defaultMessage="Total" />
                 </span>

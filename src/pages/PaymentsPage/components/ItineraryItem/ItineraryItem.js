@@ -113,7 +113,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
           </div>
           <span>Resort Fee</span>
         </div>
-        <span>{baseCurrency?.symbol}00.00</span>
+        <span>{currency[data?.avg_nightly_rate?.currency]?.symbol}00.00</span>
       </div>
       <div className={styles.item}>
         <div>
@@ -130,7 +130,7 @@ export default function ItineraryItem({ data, actionEnabled, selectedHotel, curr
                   <FormattedMessage id="ctotal" defaultMessage="TOTAL" />
                 </span>
                 <span className={styles.itemRate}>
-                  {baseCurrency?.symbol}
+                  {currency[data?.avg_nightly_rate?.currency]?.symbol}
                   {totalRate?.toFixed(2) || '0,000.00'}
                 </span>
               </div>
