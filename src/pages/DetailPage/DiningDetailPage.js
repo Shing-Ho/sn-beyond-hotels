@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useLocation } from 'react-router-dom';
-import { Spin } from 'antd';
+// import { Spin } from 'antd';
 import { useIntl } from 'react-intl';
 import moment from 'moment';
 import queryString from 'query-string';
@@ -12,12 +12,45 @@ import Carousel from 'components/Carousel/Carousel';
 // import history from 'store/history';
 import hotelActions from 'store/hotel/actions';
 // import bookingActions from 'store/booking/actions';
-import { getLoading } from 'store/hotel/selectors';
+// import { getLoading } from 'store/hotel/selectors';
 import DiningSection from './components/DiningSection/DiningSection';
 // import BookingSection from './components/BookingSection/BookingSection';
 import DiningListSection from './components/DiningListSection/DiningListSection';
 import styles from './DiningDetailPage.module.scss';
 import { getBookingPayload, getSelectedHotel } from '../../store/booking/selectors';
+
+const images = [
+  {
+    url: '//media.iceportal.com/34323/photos/60150742_XL.jpg',
+    type: '',
+    display_order: 0,
+  },
+  {
+    url: '//media.iceportal.com/34323/photos/60150744_XL.jpg',
+    type: '',
+    display_order: 1,
+  },
+  {
+    url: '//media.iceportal.com/34323/photos/60150756_XL.jpg',
+    type: '',
+    display_order: 2,
+  },
+  {
+    url: '//media.iceportal.com/34323/photos/60150758_XL.jpg',
+    type: '',
+    display_order: 3,
+  },
+  {
+    url: '//media.iceportal.com/34323/photos/60150750_XL.jpg',
+    type: '',
+    display_order: 4,
+  },
+  {
+    url: '//media.iceportal.com/34323/photos/60150752_XL.jpg',
+    type: '',
+    display_order: 5,
+  },
+];
 
 const DetailPage = () => {
   const [selectedRooms, setSelectedRooms] = useState([]);
@@ -25,7 +58,7 @@ const DetailPage = () => {
   // const [formData] = useState({});
   const hotel = useSelector(getSelectedHotel);
   const preSelectedRooms = useSelector(getBookingPayload);
-  const loading = useSelector(getLoading);
+  // const loading = useSelector(getLoading);
   const dispatch = useDispatch();
   const params = useParams();
   const intl = useIntl();
@@ -189,22 +222,22 @@ const DetailPage = () => {
   //   history.push(`${window.BASE_ROUTE || ''}/guest`);
   // };
 
-  if (!hotel) {
-    return (
-      <div className={styles.loaderContainer}>
-        <Spin size="large" />
-      </div>
-    );
-  }
+  // if (!hotel) {
+  //   return (
+  //     <div className={styles.loaderContainer}>
+  //       <Spin size="large" />
+  //     </div>
+  //   );
+  // }
   return (
     <Page>
-      {loading && (
+      {/* {loading && (
         <div className={styles.loaderContainerAbsolute}>
           <Spin size="large" />
         </div>
-      )}
+      )} */}
       <>
-        <Carousel image={hotel.hotel_details.photos} />
+        <Carousel image={hotel?.hotel_details?.photos || images} />
         <div className={styles.root}>
           <div className={styles.content}>
             <div className={styles.detail}>
