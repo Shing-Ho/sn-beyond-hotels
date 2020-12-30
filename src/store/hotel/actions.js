@@ -61,6 +61,17 @@ const onFilterChange = (changes, search) => (dispatch, getState) => {
   dispatch(onPageChange(page, pageSize));
 };
 
+const onSortChange = (sortBy) => (dispatch, getState) => {
+  const {
+    hotel: { hotels, page, pageSize, filters },
+  } = getState();
+  dispatch(hotelActions.updateFilters(filters));
+  const filteredHotels = filterHotels(hotels, filters, sortBy);
+  dispatch(hotelActions.setFilteredHotels(filteredHotels));
+  dispatch(hotelActions.setCount(filteredHotels.length));
+  dispatch(onPageChange(page, pageSize));
+};
+
 const searchHotels = (requestObj) => async (dispatch, getState) => {
   try {
     dispatch(hotelActions.getHotelsDataRequest(true));
@@ -153,4 +164,5 @@ export default {
   getLocationData,
   cancelLookup,
   cancelOrder,
+  onSortChange,
 };

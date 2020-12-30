@@ -11,10 +11,17 @@
   }
 
   .items {
-    .total {
-      font-weight: 300;
-      font-size: 24px;
-      color: #7b7c7e;
+    .totalWrapper {
+      display: flex;
+      justify-content: space-between;
+      .total {
+        font-weight: 300;
+        font-size: 24px;
+        color: #7b7c7e;
+      }
+      .filter {
+        cursor: pointer;
+      }
     }
   }
 
