@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
-import { Form, Input, InputNumber } from 'antd';
+import { Form, Input, InputNumber, Checkbox } from 'antd';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import FormItem from 'components/FormItem/FormItem';
 import Rating from 'components/Rating/Rating';
-import CheckboxGroup from 'components/CheckboxGroup/CheckboxGroup';
 import Collapse from 'components/Collapse/Collapse';
 import { getHotels, getFilters } from 'store/hotel/selectors';
 import hotelActions from 'store/hotel/actions';
@@ -47,12 +46,18 @@ const HotelLeftFilters = ({ currency }) => {
   const allAmenitiesOption = useMemo(() => {
     // reduce to get all the amenities from the result array
     const amenitiesArr = hotels.reduce((arr, hotel) => [...arr, ...(hotel?.hotel_details?.amenities || [])], []);
-
+    const rec = _.countBy(amenitiesArr);
+    const finalArr = [];
     // get the uniq records and format them to display
-    return _.uniq(amenitiesArr).map((hotel) => ({
-      title: intl.formatMessage({ id: `searchPage.filters.amenity.${hotel.toLowerCase()}`, defaultValue: hotel }),
-      value: hotel,
-    }));
+    _.forOwn(rec, (value, key) => {
+      const obj = {
+        title: intl.formatMessage({ id: `searchPage.filters.amenity.${key.toLowerCase()}`, defaultValue: key }),
+        value: key,
+        count: value,
+      };
+      finalArr.push(obj);
+    });
+    return finalArr;
   }, [hotels, intl]);
 
   useEffect(() => debouncedFunction.current(keyword), [keyword]);
@@ -63,23 +68,38 @@ const HotelLeftFilters = ({ currency }) => {
   }, [dispatch, amenities, popularBrands]);
 
   const allPopularBrandOptions = useMemo(() => {
-    const res = popularBrandOptions.filter((option) => {
+    const res = [];
+    popularBrandOptions.forEach((option) => {
       const chainCodeArr = popularBrandsJson[option].map((o) => o.chainCode);
       const chainNameArr = popularBrandsJson[option].map((o) => o.chainName);
-      return hotels
-        .map(
-          (hotel) =>
-            chainCodeArr.includes(hotel.hotel_details.chain_code) ||
-            chainNameArr.includes(hotel.hotel_details.chain_name),
-        )
-        .some((v) => v);
+      if (
+        hotels
+          .map(
+            (hotel) =>
+              chainCodeArr.includes(hotel.hotel_details.chain_code) ||
+              chainNameArr.includes(hotel.hotel_details.chain_name),
+          )
+          .some((v) => v)
+      ) {
+        res.push({
+          name: option,
+          count: hotels
+            .map(
+              (hotel) =>
+                chainCodeArr.includes(hotel.hotel_details.chain_code) ||
+                chainNameArr.includes(hotel.hotel_details.chain_name),
+            )
+            .filter((v) => v).length,
+        });
+      }
     });
-    return res.map((option) =>
-      intl.formatMessage({
-        id: `searchPage.filters.brand.${option.toLowerCase().replace(/\s/g, '_')}`,
-        defaultValue: option,
+    return res.map((option) => ({
+      ...option,
+      name: intl.formatMessage({
+        id: `searchPage.filters.brand.${option.name.toLowerCase().replace(/\s/g, '_')}`,
+        defaultValue: option.name,
       }),
-    );
+    }));
   }, [hotels, intl]);
 
   const onMinChange = (value) => {
@@ -92,6 +112,26 @@ const HotelLeftFilters = ({ currency }) => {
 
   const onRateChange = (value) => {
     dispatch(hotelActions.onFilterChange({ starRating: value }));
+  };
+
+  const onPopularBrandsOptionChange = (option) => (event) => {
+    const { checked } = event.target;
+    const index = popularBrands.indexOf(option.name);
+    if (checked && index === -1) {
+      setPopularBrands([...popularBrands, option.name]);
+    } else if (!checked && index !== -1) {
+      setPopularBrands([...popularBrands.slice(0, index), ...popularBrands.slice(index + 1)]);
+    }
+  };
+
+  const onAmenitiesOptionChange = (option) => (event) => {
+    const { checked } = event.target;
+    const index = amenities.indexOf(option.value);
+    if (checked && index === -1) {
+      setAmenities([...amenities, option.value]);
+    } else if (!checked && index !== -1) {
+      setAmenities([...amenities.slice(0, index), ...amenities.slice(index + 1)]);
+    }
   };
 
   return (
@@ -152,17 +192,41 @@ const HotelLeftFilters = ({ currency }) => {
 					<Slider range defaultValue={[ 3, 5 ]} min={1} max={5} />
 				</FormItem> */}
         <FormItem>
-          <Collapse header={intl.formatMessage({ id: 'popularBrands', defaultValue: 'Popular Brands' })}>
-            <CheckboxGroup options={allPopularBrandOptions} value={popularBrands} onChange={setPopularBrands} />
+          <Collapse
+            className={styles.filterCustomCollapse}
+            header={intl.formatMessage({ id: 'popularBrands', defaultValue: 'Popular Brands' })}
+          >
+            {allPopularBrandOptions.map((option) => (
+              <Checkbox
+                className={styles.filterCustomCheckbox}
+                checked={popularBrands.includes(option.name)}
+                onChange={onPopularBrandsOptionChange(option)}
+              >
+                <div className={styles.filterCheckboxLabel}>
+                  <span>{option.name}</span>
+                  <span className={styles.count}>{option.count}</span>
+                </div>
+              </Checkbox>
+            ))}
           </Collapse>
         </FormItem>
         <FormItem>
-          <Collapse header={intl.formatMessage({ id: 'amenities', defaultValue: 'Amenities' })}>
-            <CheckboxGroup
-              options={allAmenitiesOption.map((opt) => opt.title)}
-              value={amenities}
-              onChange={setAmenities}
-            />
+          <Collapse
+            className={styles.filterCustomCollapse}
+            header={intl.formatMessage({ id: 'amenities', defaultValue: 'Amenities' })}
+          >
+            {allAmenitiesOption.map((option) => (
+              <Checkbox
+                className={styles.filterCustomCheckbox}
+                checked={amenities.includes(option.value)}
+                onChange={onAmenitiesOptionChange(option)}
+              >
+                <div className={styles.filterCheckboxLabel}>
+                  <span>{option.title}</span>
+                  <span className={styles.count}>{option.count}</span>
+                </div>
+              </Checkbox>
+            ))}
           </Collapse>
         </FormItem>
       </Form>
