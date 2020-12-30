@@ -12,6 +12,10 @@
   background-color: #ffffff;
   max-height: 185px;
 
+  &.active {
+    border-color: $primaryColor;
+  }
+
   img {
     width: 45%;
   }
@@ -62,6 +66,14 @@
           color: #003398;
         }
       }
+      .icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          margin-left: 20px;
+        }
+      }
     }
     .priceDiv {
       display: flex;
@@ -88,6 +100,11 @@
           margin-left: 5px;
           font-weight: 300;
         }
+      }
+      .personCapacity {
+        font-family: Lato;
+        font-size: 14px;
+        color: #003398;
       }
     }
     .learnDiv {

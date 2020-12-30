@@ -106,7 +106,7 @@ const searchTypeOptions = [
   {
     id: 9,
     name: 'nightLife',
-    value: 'nightLife',
+    value: 'nightlife',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
   },
@@ -150,7 +150,7 @@ const initialData = Array(30)
     id,
     rate: (Math.random() * 2000).toFixed(2),
     image: getRandomImageUrl(),
-    type: searchTypeOptions[Math.ceil(Math.random() * 7)].value,
+    type: searchTypeOptions[Math.ceil(Math.random() * 8)].value,
     name: `Fake Item ${id}`,
     rating: Math.round(Math.random() * 5),
     description:

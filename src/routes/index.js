@@ -13,6 +13,7 @@ import OrderLookup from 'pages/OrderLookup/OrderLookup';
 import DiningDetailPage from 'pages/DetailPage/DiningDetailPage';
 import FoodDetailPage from 'pages/DetailPage/FoodDetailPage';
 import GasDetailPage from 'pages/DetailPage/GasDetailPage';
+import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -32,6 +33,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
+        <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
         <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
       </Switch>
