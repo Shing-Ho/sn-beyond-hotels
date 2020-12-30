@@ -8,19 +8,19 @@ const taxesFees = ({ data, currency }) => (
     <p>
       <FormattedMessage
         id="searchPage.filters.resultList.resultItem.rate"
-        values={{ rate: commaFormat(data.rate.toFixed(currency?.decimal)) }}
+        values={{ rate: commaFormat(`${currency?.symbol}${data.rate.toFixed(currency?.decimal)}`) }}
       />
     </p>
     <p>
       <FormattedMessage
         id="searchPage.filters.resultList.resultItem.base"
-        values={{ base: commaFormat(data.base.toFixed(currency?.decimal)) }}
+        values={{ base: commaFormat(`${currency?.symbol}${data.base.toFixed(currency?.decimal)}`) }}
       />
     </p>
     <p>
       <FormattedMessage
         id="searchPage.filters.resultList.resultItem.tax"
-        values={{ tax: commaFormat(data.tax.toFixed(currency?.decimal)) }}
+        values={{ tax: commaFormat(`${currency?.symbol}${data.tax.toFixed(currency?.decimal)}`) }}
       />
     </p>
   </div>

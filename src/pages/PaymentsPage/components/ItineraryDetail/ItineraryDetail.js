@@ -24,7 +24,11 @@ export default function ItineraryDetail({ items, showDiscount, drawerChild, curr
       <div className={styles.header}>
         <h5>
           {' '}
-          <span>${totalAmount.toFixed(2) || '0,000.00'}</span>TOTAL
+          <span>
+            {currency?.symbol}
+            {totalAmount.toFixed(2) || '0,000.00'}
+          </span>
+          TOTAL
         </h5>
         <span>
           <b>{items.length}</b> {items.length > 1 ? 'ite ms' : 'item'}
