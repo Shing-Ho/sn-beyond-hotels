@@ -23,6 +23,26 @@
     }
   }
 
+  &.plus {
+    button,
+    input {
+      border-color: #7b7c7e;
+    }
+    .leftButton {
+      border-color: $primaryColor;
+    }
+    .rightButton {
+      background-color: #7b7c7e;
+      &:hover {
+        background-color: #7b7c7e;
+        border-color: #7b7c7e;
+      }
+    }
+    input {
+      border-left-color: $primaryColor;
+    }
+  }
+
   button {
     width: 35px;
     height: 34px;

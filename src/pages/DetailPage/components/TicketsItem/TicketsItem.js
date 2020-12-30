@@ -56,11 +56,6 @@ const TicketsItem = ({ type = 'EVENT', currency }) => (
             </>
           )}
         </div>
-        {personCapacity && personCapacity > 0 && (
-          <div className={styles.personCapacity}>
-            <bold>{personCapacity} Person</bold> Capacity
-          </div>
-        )}
       </div>
       <Divider />
       <div className={styles.learnDiv}>

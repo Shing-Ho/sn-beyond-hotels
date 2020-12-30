@@ -72,6 +72,11 @@
   "admission": "Прием",
   "overview": "Обзор",
   "menus": "Меню",
+  "person": "Человек",
+  "capacity": "Вместимость",
+  "pickAdate": "Выберите дату",
+  "yourReservation": "Ваше бронирование",
+  "reserveNow": "Забронировать сейчас",
 
   "detailPage.notification.description": "Данные формы недействительны",
   "detailPage.RoomList.tab.detailPane": "Панель сведений",

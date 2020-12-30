@@ -6,7 +6,7 @@ import { getRandomImageUrl } from 'helpers/utils';
 import Carousel from 'components/Carousel/Carousel';
 import { ReactComponent as NightlifeWhiteIcon } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import NightLifeListSection from './components/NightLifeListSection/NightLifeListSection';
-import EventBookingSection from './components/EventBookingSection/EventBookingSection';
+import NightLifeBookingSection from './components/NightLifeBookingSection/NightLifeBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
 import OtherSection from './components/OtherSection/OtherSection';
 import styles from './NightLifeDetailPage.module.scss';
@@ -41,12 +41,16 @@ const NightLifeDetailPage = () => (
           </Col>
           <Col md={8} sm={24} flex={1}>
             <div className={styles.detail}>
-              <EventBookingSection />
+              <NightLifeBookingSection />
             </div>
           </Col>
         </Row>
       </div>
-      <OtherSection className={styles.bottom} />
+      <OtherSection
+        className={styles.bottom}
+        type="NightLife"
+        icon={<NightlifeWhiteIcon width="26px" height="29px" />}
+      />
     </div>
   </Page>
 );

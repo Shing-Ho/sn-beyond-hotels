@@ -72,6 +72,11 @@
   "admission": "Admission",
   "overview": "Overview",
   "menus": "Menus",
+  "person": "Person",
+  "capacity": "Capacity",
+  "pickAdate": "Pick a Date",
+  "yourReservation": "Your Reservation",
+  "reserveNow": "Reserve Now",
 
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",

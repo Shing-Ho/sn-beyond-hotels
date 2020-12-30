@@ -7,15 +7,17 @@ import styles from './NumberInput.module.scss';
 
 const NumberInput = ({
   defaultValue = 1,
+  maxValue = 0,
   className,
   name,
-  // onChange,
+  onChange,
   rightComponent,
   leftComponent,
   propsValue,
 }) => {
   const [value, setValue] = useState(defaultValue);
-  const [minus, setMinus] = useState(false);
+  const [minus, setMinus] = useState(propsValue <= 0);
+  const [plus, setPlus] = useState(maxValue === 0 ? false : propsValue >= maxValue);
 
   useEffect(() => {
     setValue(propsValue);
@@ -25,25 +27,21 @@ const NumberInput = ({
     e.stopPropagation();
 
     const newValue = value + amount;
-    if (newValue <= 0) {
-      setMinus(true);
-      // return;
-    } else {
-      setMinus(false);
-    }
 
+    setMinus(newValue <= 0);
+
+    setPlus(maxValue === 0 ? false : newValue >= maxValue);
     setValue(newValue);
-
-    // onChange(name)(newValue);
+    onChange(newValue);
   };
 
   return (
-    <Input.Group compact className={cx(styles.root, className, { [styles.minus]: minus })}>
+    <Input.Group compact className={cx(styles.root, className, { [styles.minus]: minus, [styles.plus]: plus })}>
       <Button onClick={handleClick(-1)} className={styles.leftButton} disabled={minus}>
         {leftComponent || <MinusIcon width={28} height={28} />}
       </Button>
       <Input name={name} value={value} />
-      <Button onClick={handleClick(1)} className={styles.rightButton}>
+      <Button onClick={handleClick(1)} className={styles.rightButton} disabled={plus}>
         {rightComponent || <PlusIcon width={28} height={28} />}
       </Button>
     </Input.Group>

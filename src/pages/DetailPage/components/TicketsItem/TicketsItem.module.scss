@@ -12,6 +12,10 @@
   background-color: #ffffff;
   max-height: 185px;
 
+  &.active {
+    border-color: $primaryColor;
+  }
+
   img {
     width: 45%;
   }
@@ -101,9 +105,6 @@
         font-family: Lato;
         font-size: 14px;
         color: #003398;
-        bold {
-          font-weight: bold;
-        }
       }
     }
     .learnDiv {
