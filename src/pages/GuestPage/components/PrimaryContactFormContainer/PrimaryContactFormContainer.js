@@ -28,8 +28,8 @@ export default function PrimaryContactFormContainer({ primaryContact, setPrimary
               <div className={styles.infoRight}>
                 <InfoIcon className={styles.infoIcon} />
                 <span>
-                  Primary Contact is the lead traveler going on the tour. This name needs to match the name on the
-                  voucher for the tour operator.
+                  Primary Contact is the lead traveler going on the hotel booking. This name needs to match the name on
+                  the the the voucher for the hotel booking operator.
                 </span>
               </div>
             </Col>
