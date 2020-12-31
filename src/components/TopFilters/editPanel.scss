@@ -19,6 +19,12 @@
   }
   .itemWrapper {
     margin: 15px 0 15px 15px;
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      box-shadow: none;
+    }
+    .anticon-close-circle {
+      font-size: 16px;
+    }
     @media screen and (max-width: 1200px) {
       margin: 7px 0 7px 0;
     }

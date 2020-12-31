@@ -103,6 +103,11 @@
               border-color: $primaryColor;
             }
           }
+          &:hover {
+            :global(.ant-checkbox-inner) {
+              border-color: $primaryColor;
+            }
+          }
           :global(.ant-checkbox-inner) {
             height: 100%;
             width: 100%;
@@ -118,6 +123,11 @@
           width: 200px;
           .count {
             color: #a0a0a0;
+          }
+        }
+        &:hover {
+          :global(.ant-checkbox-inner) {
+            border-color: $primaryColor;
           }
         }
       }
