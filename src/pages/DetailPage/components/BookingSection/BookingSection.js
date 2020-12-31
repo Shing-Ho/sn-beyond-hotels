@@ -151,27 +151,29 @@ export default function BookingSection({
           <span>
             <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
           </span>
-          {selectedRooms.map((room) => (
-            <div key={room.id}>
-              {occupancy.num_rooms} {room.name}
-              <span>
-                {nights > 1 ? (
-                  <FormattedMessage
-                    id="detailPage.bookingSection.nights"
-                    defaultMessage={`${nights} Nights`}
-                    values={{ nights }}
-                  />
-                ) : (
-                  <FormattedMessage
-                    id="detailPage.bookingSection.night"
-                    defaultMessage={`${nights} Night`}
-                    values={{ nights }}
-                  />
-                )}
-                <CloseIcon onClick={onRemoveRoom(room.code, true)} />
-              </span>
-            </div>
-          ))}
+          <div className={styles.orders}>
+            {selectedRooms.map((room) => (
+              <div key={room.id}>
+                {occupancy.num_rooms} {room.name}
+                <span>
+                  {nights > 1 ? (
+                    <FormattedMessage
+                      id="detailPage.bookingSection.nights"
+                      defaultMessage={`${nights} Nights`}
+                      values={{ nights }}
+                    />
+                  ) : (
+                    <FormattedMessage
+                      id="detailPage.bookingSection.night"
+                      defaultMessage={`${nights} Night`}
+                      values={{ nights }}
+                    />
+                  )}
+                  <CloseIcon onClick={onRemoveRoom(room.code, true)} />
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
         <div className={styles.total}>
           <span>

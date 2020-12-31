@@ -97,6 +97,12 @@
         :global(.ant-checkbox) {
           width: 24px;
           height: 24px;
+          &:global(.ant-checkbox-checked) {
+            :global(.ant-checkbox-inner) {
+              background-color: $primaryColor;
+              border-color: $primaryColor;
+            }
+          }
           :global(.ant-checkbox-inner) {
             height: 100%;
             width: 100%;
