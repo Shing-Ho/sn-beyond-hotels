@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { getCurrency } from 'store/core/selectors';
-import DetailItem from '../DetailItem/DetailItem';
+import DetailItem from '../DetailItem/HotelItem';
 import styles from './RoomListSection.module.scss';
 
 export default function RoomListSection(props) {

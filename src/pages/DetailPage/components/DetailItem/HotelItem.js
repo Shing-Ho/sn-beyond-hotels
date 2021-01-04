@@ -35,7 +35,7 @@ const PopOverContent = (data) => (
   </div>
 );
 
-const DetailItem = (props) => {
+const HotelItem = (props) => {
   const { data, nights, selected, onSelect } = props;
 
   const totalCost = data.total && data.total.amount > 0 ? commaFormat(Number(data.total.amount).toFixed(2)) : 0;
@@ -108,4 +108,4 @@ const DetailItem = (props) => {
   );
 };
 
-export default DetailItem;
+export default HotelItem;
