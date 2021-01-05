@@ -53,7 +53,7 @@ const FlightSearchForm = () => {
     },
   ];
 
-  const handleTravelerCountChange = () => (value) => {
+  const handleTravelerCountChange = (value) => {
     setTravelerCount(value);
   };
 
@@ -71,30 +71,48 @@ const FlightSearchForm = () => {
   };
 
   const validateForm = () => {
-    if (isEmpty(origin) || isEmpty(destination) || departureDate === '' || returnDate === '' || travelerCount <= 0)
+    if (isEmpty(origin) || isEmpty(destination) || departureDate === '' || returnDate === '' || travelerCount <= 0) {
       return false;
+    }
     return true;
   };
 
   const postSearch = () => {
     const validate = validateForm();
+
     if (validate) {
       const refId = 10045;
-      const roundTripPost = `https://secure.rezserver.com/flights/results/depart/?rs_chk_in=${moment(
-        departureDate,
-      ).format('MM/DD/YYYY')}&rs_chk_out=${moment(returnDate).format(
-        'MM/DD/YYYY',
-      )}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
-      const oneWayPost = `https://secure.rezserver.com/flights/results/depart/?rs_chk_in1=${moment(
-        departureDate,
-      ).format('MM/DD/YYYY')}&rs_chk_out1=${moment(returnDate).format(
-        'MM/DD/YYYY',
-      )}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
+
+      if (origin.location_type === 'AIRPORT') {
+        origin.location = `${origin.location_airport_city} (${origin.location_id})`;
+      } else if (origin.location_type === 'CITY') {
+        if (origin.iso_country_code === 'US') {
+          origin.location = encodeURIComponent(`${origin.location_name}, ${origin.province}`);
+        } else {
+          origin.location = '';
+        }
+      }
+
+      if (destination.location_type === 'AIRPORT') {
+        destination.location = `${destination.location_airport_city} (${destination.location_id})`;
+      } else if (destination.location_type === 'CITY') {
+        if (origin.iso_country_code === 'US') {
+          destination.location = encodeURIComponent(`${destination.location_name}, ${destination.province}`);
+        } else {
+          destination.location = '';
+        }
+      }
+
+      const rsChkIn = encodeURIComponent(moment(departureDate).format('MM/DD/YYYY'));
+      const rsChkOut = encodeURIComponent(moment(returnDate).format('MM/DD/YYYY'));
+
+      const roundTripPost = `rs_o_city=${origin.location}&rs_d_city=${destination.location}&rs_o_aircode=${origin.location_id}&rs_d_aircode=${destination.location_id}&rs_chk_in=${rsChkIn}&rs_chk_out=${rsChkOut}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
+      const oneWayPost = `rs_o_city1=${origin.location}&rs_d_city1=${destination.location}&rs_o_aircode1=${origin.location_id}&rs_d_aircode1=${destination.location_id}&rs_chk_in1=${rsChkIn}&rs_adults=${travelerCount}&rs_children=0&refid=${refId}&air_search_type=${searchType}&cabin_class=`;
 
       if (searchType === 'roundtrip') {
-        window.open(roundTripPost);
+        window.open(`https://secure.rezserver.com/flights/results/depart/?${roundTripPost}`);
       } else {
-        window.open(oneWayPost);
+        window.open(`https://secure.rezserver.com/flights/results/depart/?${oneWayPost}`);
       }
     }
   };
@@ -178,16 +196,18 @@ const FlightSearchForm = () => {
                   />
                   <PinIcon className={styles.pinIcon} width={24} height={24} />
                 </div>
-                <div className={styles.datePickerWrapper}>
-                  <DatePicker
-                    onChange={(value) => setReturnDate(moment(value).format('MM-DD-YYYY'))}
-                    defaultValue={moment()}
-                    value={moment(returnDate)}
-                    format="MM-DD-YYYY"
-                    suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
-                    className={styles.datePicker}
-                  />
-                </div>
+                {searchType === 'roundtrip' && (
+                  <div className={styles.datePickerWrapper}>
+                    <DatePicker
+                      onChange={(value) => setReturnDate(moment(value).format('MM-DD-YYYY'))}
+                      defaultValue={moment()}
+                      value={moment(returnDate)}
+                      format="MM-DD-YYYY"
+                      suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
+                      className={styles.datePicker}
+                    />
+                  </div>
+                )}
               </div>
             </Col>
           </Row>
@@ -240,7 +260,7 @@ const FlightSearchForm = () => {
                         <NumberInput
                           className={styles.travelers}
                           defaultValue={1}
-                          value={1}
+                          propsValue={travelerCount}
                           name="travelerCount"
                           onChange={handleTravelerCountChange}
                           leftComponent={
