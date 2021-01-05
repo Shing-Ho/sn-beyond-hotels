@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import cx from 'classnames';
 import { isEmpty } from 'lodash';
@@ -109,6 +109,10 @@ const FlightSearchForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (moment(departureDate).isAfter(returnDate)) setReturnDate(departureDate);
+  }, [departureDate]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.main}>
@@ -167,6 +171,7 @@ const FlightSearchForm = () => {
                     format="MM-DD-YYYY"
                     suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
                     className={styles.datePicker}
+                    disabledDate={(current) => moment().add(-1, 'days') >= current}
                   />
                 </div>
               </div>
@@ -197,6 +202,7 @@ const FlightSearchForm = () => {
                       format="MM-DD-YYYY"
                       suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
                       className={styles.datePicker}
+                      disabledDate={(current) => current && current < moment(departureDate, 'MM-DD-YYYY')}
                     />
                   </div>
                 )}
