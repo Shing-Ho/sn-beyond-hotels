@@ -86,21 +86,13 @@ const FlightSearchForm = () => {
       if (origin.location_type === 'AIRPORT') {
         origin.location = `${origin.location_airport_city} (${origin.location_id})`;
       } else if (origin.location_type === 'CITY') {
-        if (origin.iso_country_code === 'US') {
-          origin.location = encodeURIComponent(`${origin.location_name}, ${origin.province}`);
-        } else {
-          origin.location = '';
-        }
+        origin.location = encodeURIComponent(`${origin.location_name}, ${origin.province}`);
       }
 
       if (destination.location_type === 'AIRPORT') {
         destination.location = `${destination.location_airport_city} (${destination.location_id})`;
       } else if (destination.location_type === 'CITY') {
-        if (origin.iso_country_code === 'US') {
-          destination.location = encodeURIComponent(`${destination.location_name}, ${destination.province}`);
-        } else {
-          destination.location = '';
-        }
+        destination.location = encodeURIComponent(`${destination.location_name}, ${destination.province}`);
       }
 
       const rsChkIn = encodeURIComponent(moment(departureDate).format('MM/DD/YYYY'));
