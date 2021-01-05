@@ -1,0 +1,40 @@
+@import 'styles';
+
+.carousel {
+  width: 100%;
+  position: relative;
+
+  .uploadZone {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 176px;
+    color: white;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 300;
+      font-family: Lato;
+      color: white;
+    }
+    p {
+      font-size: 14px;
+      font-family: Lato;
+      margin: 22px 0;
+    }
+    .uploadBtn {
+      height: 60px;
+      border: 2px solid white;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-size: 20px;
+      font-weight: bold;
+      color: #565656;
+      padding: 0 20px;
+
+      svg {
+        fill: #565656;
+        margin-right: 14px;
+      }
+    }
+  }
+}

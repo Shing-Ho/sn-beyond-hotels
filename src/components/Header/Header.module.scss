@@ -42,11 +42,17 @@
         font-size: 20px;
         font-family: Lato;
         font-weight: bold;
+        color: $grayColor;
+        &:global(.ant-menu-item):not(:hover) {
+          border: none;
+        }
         &:global(.ant-menu-item-active) {
           border-width: 0;
+          color: $secondaryLightColor;
         }
         &:global(.ant-menu-item-selected) {
-          border-width: 5px;
+          border-bottom: 5px solid $secondaryLightColor !important;
+          color: $secondaryLightColor;
         }
       }
     }

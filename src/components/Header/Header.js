@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import { FormattedMessage } from 'react-intl';
 import coreActions from 'store/core/actions';
 import { getSelectedRoomItems } from '../../store/booking/selectors';
 import { getLocale, getCurrentMenu } from '../../store/core/selectors';
@@ -45,10 +46,10 @@ const Header = () => {
         </div>
         <Menu onClick={onMenuChange} className={styles.menus} selectedKeys={[currentMenu]} mode="horizontal">
           <Menu.Item className={styles.menuItem} key="/">
-            Dashboard
+            <FormattedMessage id="dashboard" defaultMessage="Dashboard" />
           </Menu.Item>
           <Menu.Item className={styles.menuItem} key="/venues">
-            Venues
+            <FormattedMessage id="venues" defaultMessage="Venues" />
           </Menu.Item>
         </Menu>
         <div className={styles.itemWrapper}>
