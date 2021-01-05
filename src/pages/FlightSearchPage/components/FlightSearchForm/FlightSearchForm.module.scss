@@ -242,6 +242,9 @@
                   input::-webkit-input-placeholder {
                     color: #003398;
                   }
+                  :global(.ant-picker-clear) {
+                    display: none;
+                  }
                 }
               }
             }
