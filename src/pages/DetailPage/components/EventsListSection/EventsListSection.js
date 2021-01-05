@@ -5,7 +5,7 @@ import cx from 'classnames';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { getCurrency } from 'store/core/selectors';
-import TicketsItem from '../TicketsItem/TicketsItem';
+import TicketsItem from '../DetailItem/TicketsItem';
 import SeatingItem from '../SeatingItem/SeatingItem';
 import styles from './EventsListSection.module.scss';
 

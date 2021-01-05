@@ -4,7 +4,7 @@ import { Tabs, TabPane } from 'components/Tab/Tab';
 import Collapse from 'components/Collapse/Collapse';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { getCurrency } from 'store/core/selectors';
-import TicketsItem from '../TicketsItem/TicketsItem';
+import TourItem from '../DetailItem/TourItem';
 import styles from './ToursListSection.module.scss';
 
 const location = {
@@ -20,13 +20,13 @@ export default function ToursListSection() {
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Tickets" key="1">
           <Collapse className={styles.title} header="Fun For The Whole Family" type="large">
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
+            <TourItem currency={currency} />
+            <TourItem currency={currency} />
+            <TourItem currency={currency} />
           </Collapse>
           <Collapse className={styles.title} header="Extreme Tours" type="large">
-            <TicketsItem type="TOUR" currency={currency} />
-            <TicketsItem type="TOUR" currency={currency} />
+            <TourItem currency={currency} />
+            <TourItem currency={currency} />
           </Collapse>
         </TabPane>
         <TabPane tab="Details" key="3">

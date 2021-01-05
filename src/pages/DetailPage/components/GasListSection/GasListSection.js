@@ -5,7 +5,7 @@ import Collapse from 'components/Collapse/Collapse';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import Divider from 'components/Divider/Divider';
 import { getCurrency } from 'store/core/selectors';
-import TicketsItem from '../TicketsItem/TicketsItem';
+import GasItem from '../DetailItem/GasItem';
 import styles from './GasListSection.module.scss';
 
 const location = {
@@ -21,12 +21,12 @@ export default function GasListSection() {
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Chargers" key="1">
           <Collapse className={styles.title} header="Prepaid Gas" type="large">
-            <TicketsItem type="GAS" currency={currency} />
+            <GasItem currency={currency} />
           </Collapse>
           <Divider />
           <Collapse className={styles.title} header="Other Services" type="large">
-            <TicketsItem type="GAS" currency={currency} />
-            <TicketsItem type="GAS" currency={currency} />
+            <GasItem currency={currency} />
+            <GasItem currency={currency} />
           </Collapse>
         </TabPane>
         <TabPane tab="Station Info" key="3">

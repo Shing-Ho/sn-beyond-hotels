@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import Collapse from 'components/Collapse/Collapse';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
-import TicketsNightLifeItem from '../TicketsItem/TicketsNightLifeItem';
+import NightLifeItem from '../DetailItem/NightLifeItem';
 import styles from './NightLifeListSection.module.scss';
 
 const location = {
@@ -54,12 +54,12 @@ export default function NightLifeListSection() {
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab={intl.formatMessage({ id: 'admission', defaultValue: 'Admission' })} key="1">
           <Collapse className={styles.title} header="General Admission" type="large">
-            <TicketsNightLifeItem details={data[0]} setData={setNightLifeData} />
+            <NightLifeItem details={data[0]} setData={setNightLifeData} />
           </Collapse>
           <Collapse className={styles.title} header="VIP" type="large">
-            <TicketsNightLifeItem details={data[1]} setData={setNightLifeData} />
-            <TicketsNightLifeItem details={data[2]} setData={setNightLifeData} />
-            <TicketsNightLifeItem details={data[3]} setData={setNightLifeData} />
+            <NightLifeItem details={data[1]} setData={setNightLifeData} />
+            <NightLifeItem details={data[2]} setData={setNightLifeData} />
+            <NightLifeItem details={data[3]} setData={setNightLifeData} />
           </Collapse>
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="2">

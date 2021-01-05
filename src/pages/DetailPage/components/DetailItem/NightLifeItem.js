@@ -7,9 +7,9 @@ import { getRandomImageUrl } from 'helpers/utils';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import { ReactComponent as CloseFillGrayIcon } from 'icons/close-fill-gray.svg';
 import { ReactComponent as CheckFillIcon } from 'icons/check-fill.svg';
-import styles from './TicketsItem.module.scss';
+import styles from './DetailItemNew.module.scss';
 
-const TicketsNightLifeItem = ({ details, setData }) => {
+const NightLifeItem = ({ details, setData }) => {
   const setGuests = (value) => {
     const obj = details;
     obj.guests = value;
@@ -62,4 +62,4 @@ const TicketsNightLifeItem = ({ details, setData }) => {
   );
 };
 
-export default TicketsNightLifeItem;
+export default NightLifeItem;

@@ -6,7 +6,7 @@ import Select from 'components/Select/Select';
 import { getRandomImageUrl } from 'helpers/utils';
 import Ticket from 'icons/tickets.png';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
-import styles from './TicketsItem.module.scss';
+import styles from './DetailItemNew.module.scss';
 
 const options = [
   {
