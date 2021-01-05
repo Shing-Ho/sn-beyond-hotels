@@ -15,6 +15,7 @@ export const coreActions = createActions(
     TOGGLE_DRAWER_OPEN: undefined,
     SET_CURRENCY: undefined,
     TOGGLE_DRAWER: undefined,
+    SET_CURRENT_MENU: undefined,
   },
   options,
 );
