@@ -1,0 +1,34 @@
+@import 'styles';
+
+.availability {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 19px;
+  border: 1px solid $lightGrayColor;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+
+  .title {
+    font-family: Lato;
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .description {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 18px 0;
+    border-bottom: 1px solid $lightGrayColor;
+  }
+  .btn {
+    height: 36px;
+    background-color: $secondaryLightColor;
+    border: 2px solid #44a9bd;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    i {
+      margin-right: 10px;
+    }
+  }
+}
