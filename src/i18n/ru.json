@@ -48,6 +48,7 @@
   "showsAndEvents": "Шоу и события",
   "dining": "обеденный",
   "nightLife": "NightLife",
+  "shopping": "Shopping",
   "starRating": "Звездный рейтинг",
   "from": "ОТ",
   "tickets": "Билеты",
@@ -77,7 +78,6 @@
   "pickAdate": "Выберите дату",
   "yourReservation": "Ваше бронирование",
   "reserveNow": "Забронировать сейчас",
-
   "detailPage.notification.description": "Данные формы недействительны",
   "detailPage.RoomList.tab.detailPane": "Панель сведений",
   "detailPage.RoomList.tab.mapPane": "Область карты",
@@ -140,5 +140,7 @@
   "confirmationPage.viewAllOrders": "Просмотреть все заказы",
   "guestPage.inputOnlyNumberInField": "Пожалуйста, введите только номер в этом поле",
   "paymentsPage.PrimaryPaymentMethod": "Основной способ оплаты",
-  "paymentsPage.TermsAndPrivacyMessage": "Я понимаю, что некоторые товары могут быть больше недоступны, что мне вернут деньги и сообщат мне сразу после выезда, и я ознакомился с Условиями использования и Политикой конфиденциальности."
+  "paymentsPage.TermsAndPrivacyMessage": "Я понимаю, что некоторые товары могут быть больше недоступны, что мне вернут деньги и сообщат мне сразу после выезда, и я ознакомился с Условиями использования и Политикой конфиденциальности.",
+  "shopping.allcategories": "ALL CATEGORIES",
+  "shopping.filterbystores": "FILTER BY STORES"
 }

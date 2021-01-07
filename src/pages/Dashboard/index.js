@@ -28,12 +28,15 @@ import { ReactComponent as Nightlife } from 'icons/dashboardIcons/Nightlife.svg'
 import { ReactComponent as NightlifeWhite } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import { ReactComponent as FlightsTransparent } from 'icons/dashboardIcons/Flights.svg';
 import { ReactComponent as FlightsOutline } from 'icons/dashboardIcons/FlightsOutline.svg';
+import { ReactComponent as Shopping } from 'icons/dashboardIcons/Icon_Category_Shopping.svg';
+import { ReactComponent as ShoppingWhite } from 'icons/dashboardIcons/Icon_Category_Shopping_White.svg';
 import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
 import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
 import HotelSearchPage from './SearchPage/HotelSearchPage';
+import ShoppingSearchPage from './SearchPage/ShoppingSearchPage';
 import styles from './index.module.scss';
 
 const initialFilterData = {
@@ -109,6 +112,13 @@ const searchTypeOptions = [
     value: 'nightlife',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
+  },
+  {
+    id: 10,
+    name: 'shopping',
+    value: 'shopping',
+    icon: <Shopping />,
+    selectedIcon: <ShoppingWhite />,
   },
 ];
 
@@ -216,11 +226,12 @@ const DashboardPage = () => {
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}
-          {searchType !== 'hotels' && searchType !== 'flights' && (
+          {searchType !== 'hotels' && searchType !== 'flights' && searchType !== 'shopping' && (
             <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
           )}
         </div>
         {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}
+        {searchType === 'shopping' && <ShoppingSearchPage noHeader noFooter />}
       </div>
     </Page>
   );

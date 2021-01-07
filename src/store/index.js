@@ -9,6 +9,7 @@ import history from 'store/history';
 import coreReducer from 'store/core/reducers';
 import hotelReducer from 'store/hotel/reducers';
 import bookingReducer from 'store/booking/reducers';
+import shoppingReducer from 'store/shopping/reducers';
 
 const rootPersistConfig = {
   key: 'root',
@@ -45,6 +46,13 @@ const rootReducer = persistReducer(
         storage,
       },
       bookingReducer,
+    ),
+    shopping: persistReducer(
+      {
+        key: 'shopping',
+        storage,
+      },
+      shoppingReducer,
     ),
     router: connectRouter(history),
   }),

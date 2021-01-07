@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Target - Downtown Main Street",
+        "rating": 4
+    },
+    {
+        "id": 2,
+        "title": "Best Buy - Downtown - 3rd Blvd.",
+        "rating": 4
+    },
+    {
+        "id": 3,
+        "title": "Home Depot - Downtown - East",
+        "rating": 4
+    },
+    {
+        "id": 4,
+        "title": "Lululemon - Downtown",
+        "rating": 4
+    },
+    {
+        "id": 5,
+        "title": "GAP - Downtown - West Coast Mall",
+        "rating": 4
+    },
+    {
+        "id": 6,
+        "title": "Best Buy - East 12th St.",
+        "rating": 4
+    },
+    {
+        "id": 7,
+        "title": "ULTA Beauty - Seaview Factory Outlets",
+        "rating": 4
+    },
+    {
+        "id": 8,
+        "title": "GAP - Downtown - 2nd St.",
+        "rating": 4
+    },
+    {
+        "id": 9,
+        "title": "Lululemon - 42nd St.",
+        "rating": 4
+    }
+]
