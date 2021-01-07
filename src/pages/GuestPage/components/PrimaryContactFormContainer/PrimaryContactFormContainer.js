@@ -6,17 +6,12 @@ import { Checkbox } from 'components/CheckboxGroup/CheckboxGroup';
 import PrimaryContactForm from '../PrimaryContactForm/PrimaryContactForm';
 import styles from './PrimaryContactFormContainer.module.scss';
 
-export default function PrimaryContactFormContainer({ primaryContact, setPrimaryContact, phoneError }) {
+export default function PrimaryContactFormContainer({ primaryContact, setPrimaryContact }) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>Primary Contact</div>
       <div className={styles.form}>
-        <PrimaryContactForm
-          index={0}
-          primaryContact={primaryContact}
-          setPrimaryContact={setPrimaryContact}
-          phoneError={phoneError}
-        />
+        <PrimaryContactForm index={0} primaryContact={primaryContact} setPrimaryContact={setPrimaryContact} />
         <div className={styles.info}>
           <Row gutter={24}>
             <Col span={12} xs={24}>
