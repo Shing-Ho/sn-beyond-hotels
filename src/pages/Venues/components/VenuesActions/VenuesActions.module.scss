@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 10px 0;
 
   .btn {
     height: 36px;
@@ -41,7 +41,7 @@
     &.publish {
       height: 60px;
       background-color: $secondaryColor;
-      margin-top: 40px;
+      margin-top: 35px;
       font-size: 24px;
     }
 

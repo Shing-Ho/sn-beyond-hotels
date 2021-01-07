@@ -5,6 +5,7 @@ import { Tabs, TabPane } from 'components/Tab/Tab';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
+import ProductItem from '../ProductItem/ProductItem';
 import styles from './VenuesContentSection.module.scss';
 
 export default function VenuesContentSection() {
@@ -18,7 +19,7 @@ export default function VenuesContentSection() {
             header={<ProductsGroupHeader trash equal />}
             collapsedHeader={<ProductsGroupCollapsedHeader title="Main" amount={0} trash equal />}
           >
-            aaa
+            <ProductItem />
           </ProductsGroupCollapse>
 
           <div className={styles.description}>
@@ -29,18 +30,18 @@ export default function VenuesContentSection() {
             </p>
           </div>
           <ProductsGroupCollapse
-            header={<ProductsGroupHeader trash equal />}
+            header={<ProductsGroupHeader propsValue="Hightlights" trash equal />}
             collapsedHeader={<ProductsGroupCollapsedHeader title="Hightlights" amount={0} equal />}
             collapsed="close"
           >
-            bbb
+            <ProductItem />
           </ProductsGroupCollapse>
           <ProductsGroupCollapse
-            header={<ProductsGroupHeader trash equal />}
-            collapsedHeader={<ProductsGroupCollapsedHeader title="Offers" amount={0} />}
+            header={<ProductsGroupHeader propsValue="Offers" trash equal />}
+            collapsedHeader={<ProductsGroupCollapsedHeader title="Offers" amount={12} />}
             collapsed="close"
           >
-            bbb
+            <ProductItem />
           </ProductsGroupCollapse>
           <Button className={styles.groupAddBtn}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Product Group

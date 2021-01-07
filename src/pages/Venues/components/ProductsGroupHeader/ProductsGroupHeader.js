@@ -9,11 +9,12 @@ export default function ProductsGroupHeader({
   placeholder = 'Add a product group name for this first group...',
   trash = false,
   equal = false,
+  propsValue = '',
 }) {
   return (
     <div className={styles.openedHeader} onClick={(event) => event.stopPropagation()}>
       <div className={styles.input}>
-        <Input placeholder={placeholder} maxLength={30} />
+        <Input placeholder={placeholder} propsValue={propsValue} maxLength={30} />
       </div>
       <div className={styles.actions}>
         {trash && (

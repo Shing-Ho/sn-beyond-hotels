@@ -1,0 +1,66 @@
+@import 'styles';
+
+.productItem {
+  width: 100%;
+  min-height: 185px;
+  display: flex;
+  border: 1px solid $borderGrayColor;
+  margin: 10px 0;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+
+  .image {
+    flex: 1;
+    background-color: $lightGrayColor;
+    position: relative;
+
+    .icon {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      border: solid 2px white;
+      background-color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        fill: $grayColor;
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    .initContent {
+      padding: 20px;
+      color: $grayColor;
+      .title {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: 300;
+      }
+      .description {
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: normal;
+        margin-top: 10px;
+      }
+      .btn {
+        width: 100%;
+        height: 50px;
+        border: 2px solid $secondaryLightColor;
+        color: $secondaryLightColor;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+        i {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
