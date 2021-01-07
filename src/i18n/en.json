@@ -48,6 +48,7 @@
   "showsAndEvents": "Shows & Events",
   "dining": "Dining",
   "nightLife": "NightLife",
+  "shopping": "Shopping",
   "starRating": "Star Rating",
   "from": "FROM",
   "tickets": "Tickets",
@@ -140,5 +141,7 @@
   "confirmationPage.viewAllOrders": "View All Orders",
   "guestPage.inputOnlyNumberInField": "Please input only number in this field",
   "paymentsPage.PrimaryPaymentMethod": "Primary Payment Method",
-  "paymentsPage.TermsAndPrivacyMessage": "I understand that some items might not be available any longer, that I will be refunded and notified right after check out, and have reviewed the Terms of Use and Privacy Policy."
+  "paymentsPage.TermsAndPrivacyMessage": "I understand that some items might not be available any longer, that I will be refunded and notified right after check out, and have reviewed the Terms of Use and Privacy Policy.",
+  "shopping.allcategories": "ALL CATEGORIES",
+  "shopping.filterbystores": "FILTER BY STORES"
 }

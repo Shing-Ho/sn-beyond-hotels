@@ -1,0 +1,42 @@
+[
+    {
+        "id": "-1",
+        "title": "SHOW ALL"
+    },
+    {
+        "id": "1",
+        "title": "ELECTRONICS"
+    },
+    {
+        "id": "2",
+        "title": "GROCERY"
+    },
+    {
+        "id": "3",
+        "title": "TOYS"
+    },
+    {
+        "id": "4",
+        "title": "HEALTH"
+    },
+    {
+        "id": "5",
+        "title": "BEAUTY"
+    },
+    {
+        "id": "6",
+        "title": "PETS"
+    },
+    {
+        "id": "7",
+        "title": "HOME"
+    },
+    {
+        "id": "8",
+        "title": "MEN"
+    },
+    {
+        "id": "9",
+        "title": "WOMEN"
+    }
+]

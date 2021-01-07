@@ -1,0 +1,96 @@
+@import "styles";
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 31px;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+  .searchBar {
+    display: flex;
+    width: 50%;
+    margin:12px 0;
+    height: 36px;
+    max-width: 570px;
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+    input {
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+  }
+  .filterBar {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    margin: 12px 0;
+    height: 36px;
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .filter {
+      display: flex;
+      width: 30%;
+      .dropdown{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 11px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        margin-right: 20px;
+        max-width: 150px;
+        span {
+          color: #003398;
+        }
+      }
+    }
+    .sort {
+      display: flex;
+      width: 30%;
+      .dropdown{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 11px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        margin-right: 20px;
+        max-width: 150px;
+        span {
+          color: #003398;
+        }
+      }
+    }
+  }
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #dedede;
+    border-left: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    .icon {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      border-right: 1px solid #dedede;
+      align-items: center;
+      color: #7b7c7e;
+      padding: 10px;
+      width: 36px;
+      max-width: 36px;
+      font-size: 16px;
+    }
+    .selectedIcon {
+      background-color: #003398;
+      color: #ffffff;
+    }
+  }
+}
