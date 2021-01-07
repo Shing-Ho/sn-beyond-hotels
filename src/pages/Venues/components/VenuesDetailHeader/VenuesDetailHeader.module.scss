@@ -71,6 +71,13 @@
         color: white;
         font-size: 14px;
         font-weight: bold;
+        display: flex;
+        align-items: center;
+
+        svg {
+          fill: white;
+          margin-right: 7px;
+        }
       }
     }
 

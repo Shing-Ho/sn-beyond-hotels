@@ -17,6 +17,7 @@ export default function CustomInput({ placeholder = 'Add...', name, propsValue, 
       name={name}
       value={value}
       onChange={(e) => handleChange(e.target.value)}
+      maxLength={maxLength}
       suffix={<div className={styles.suffix}>{maxLength ? `${currentLength}/${maxLength}` : ''}</div>}
     />
   );

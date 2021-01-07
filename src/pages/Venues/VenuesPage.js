@@ -8,6 +8,7 @@ import VenuesDetailHeader from './components/VenuesDetailHeader/VenuesDetailHead
 import VenuesAvailability from './components/VenuesAvailability/VenuesAvailability';
 import VenuesActions from './components/VenuesActions/VenuesActions';
 import VenuesAssistant from './components/VenuesAssistant/VenuesAssistant';
+import VenuesContentSection from './components/VenuesContentSection/VenuesContentSection';
 import styles from './VenuesPage.module.scss';
 
 export default function VenuesPage() {
@@ -21,6 +22,9 @@ export default function VenuesPage() {
             <Col md={16} sm={24} flex={1}>
               <Row>
                 <VenuesDetailHeader />
+              </Row>
+              <Row>
+                <VenuesContentSection />
               </Row>
             </Col>
             <Col md={8} sm={24} flex={1}>
