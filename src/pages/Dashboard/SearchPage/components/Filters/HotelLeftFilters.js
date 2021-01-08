@@ -23,9 +23,9 @@ const HotelLeftFilters = ({ currency }) => {
   const filters = useSelector(getFilters);
   const hotels = useSelector(getHotels);
 
-  const [keyword, setKeyword] = useState('');
-  const [popularBrands, setPopularBrands] = useState([]);
-  const [amenities, setAmenities] = useState([]);
+  const [keyword, setKeyword] = useState(filters.keyword || '');
+  const [popularBrands, setPopularBrands] = useState(filters.brands || []);
+  const [amenities, setAmenities] = useState(filters.amenities || []);
 
   useEffect(() => {
     if (!filters.brands) {
@@ -152,6 +152,7 @@ const HotelLeftFilters = ({ currency }) => {
       <Form className={styles.summary} layout="vertical" form={form}>
         <FormItem label={intl.formatMessage({ id: 'keywordSearch', defaultValue: 'Hotel Name Search' })}>
           <Input
+            value={keyword}
             placeholder="Downtown Marriott..."
             suffix={<span className="fa fa-search" />}
             onChange={(e) => setKeyword(e.target.value)}
@@ -162,7 +163,7 @@ const HotelLeftFilters = ({ currency }) => {
           label={intl.formatMessage({ id: 'priceRange', defaultValue: 'Price Range' })}
         >
           <InputNumber
-            defaultValue={0}
+            defaultValue={filters.minPrice || 0}
             formatter={(value) => `${currency?.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
             style={{ width: '44%' }}
@@ -172,7 +173,7 @@ const HotelLeftFilters = ({ currency }) => {
             <span />
           </div>
           <InputNumber
-            defaultValue={1000}
+            defaultValue={filters.maxPrice || 1000}
             formatter={(value) => `${currency?.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
             style={{ width: '44%' }}
@@ -199,7 +200,7 @@ const HotelLeftFilters = ({ currency }) => {
             {allPopularBrandOptions.map((option) => (
               <Checkbox
                 className={styles.filterCustomCheckbox}
-                checked={popularBrands.includes(option.name)}
+                checked={popularBrands?.includes(option.name)}
                 onChange={onPopularBrandsOptionChange(option)}
               >
                 <div className={styles.filterCheckboxLabel}>
@@ -218,7 +219,7 @@ const HotelLeftFilters = ({ currency }) => {
             {allAmenitiesOption.map((option) => (
               <Checkbox
                 className={styles.filterCustomCheckbox}
-                checked={amenities.includes(option.value)}
+                checked={amenities?.includes(option.value)}
                 onChange={onAmenitiesOptionChange(option)}
               >
                 <div className={styles.filterCheckboxLabel}>
