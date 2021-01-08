@@ -7,18 +7,20 @@
   padding: 19px;
   border: 1px solid $lightGrayColor;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
-
   .title {
     font-family: Lato;
     font-size: 24px;
     font-weight: 300;
+    margin-bottom: 18px;
   }
-  .description {
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: normal;
-    padding: 18px 0;
+  .contentContainer {
     border-bottom: 1px solid $lightGrayColor;
+    margin-bottom: 18px;
+    .description {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: normal;
+    }
   }
   .btn {
     height: 36px;
