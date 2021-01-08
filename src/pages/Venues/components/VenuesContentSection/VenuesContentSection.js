@@ -36,6 +36,9 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
             collapsedHeader={<ProductsGroupCollapsedHeader title="Main" amount={0} trash equal />}
           >
             <ProductItem onboarding={productOnboarding} />
+            <Button className={[styles.addBtn, styles.product]}>
+              <i className="fa fa-plus" aria-hidden="true" /> Add Product
+            </Button>
           </ProductsGroupCollapse>
 
           <div className={styles.description}>
@@ -59,7 +62,7 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           >
             <ProductItem />
           </ProductsGroupCollapse>
-          <Button className={styles.groupAddBtn}>
+          <Button className={[styles.addBtn, styles.group]}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Product Group
           </Button>
         </TabPane>

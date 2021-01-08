@@ -3,7 +3,7 @@
 .root {
   width: 100%;
   height: 100%;
-  margin-top: 60px;
+  margin: 60px 0;
 
   .collapse {
     margin: 10px 0;
@@ -84,16 +84,25 @@
     }
   }
 
-  .groupAddBtn {
+  .addBtn {
     width: 100%;
     height: 50px;
-    background-color: $secondaryLightColor;
     border: 2px solid #44a9bd;
-    color: white;
     font-size: 16px;
     font-weight: bold;
     i {
       margin-right: 10px;
+    }
+
+    &.group {
+      color: white;
+      background-color: $secondaryLightColor;
+    }
+    &.product {
+      color: $secondaryLightColor;
+      background-color: white;
+      border-color: $secondaryLightColor;
+      margin-top: 10px;
     }
   }
 }
