@@ -11,29 +11,68 @@
     top: 176px;
     color: white;
 
-    h3 {
-      font-size: 24px;
-      font-weight: 300;
-      font-family: Lato;
-      color: white;
-    }
-    p {
-      font-size: 14px;
-      font-family: Lato;
-      margin: 22px 0;
-    }
-    .uploadBtn {
-      height: 60px;
-      border: 2px solid white;
-      background-color: rgba(255, 255, 255, 0.8);
-      font-size: 20px;
-      font-weight: bold;
-      color: #565656;
-      padding: 0 20px;
+    .container {
+      position: relative;
+      margin: 0 auto;
+      width: 720px;
 
-      svg {
-        fill: #565656;
-        margin-right: 14px;
+      h3 {
+        font-size: 24px;
+        font-weight: 300;
+        font-family: Lato;
+        color: white;
+      }
+      p {
+        font-size: 14px;
+        font-family: Lato;
+        margin: 22px 0;
+      }
+      .uploadBtn {
+        height: 60px;
+        border: 2px solid white;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 20px;
+        font-weight: bold;
+        color: #565656;
+        padding: 0 20px;
+
+        svg {
+          fill: #565656;
+          margin-right: 14px;
+        }
+      }
+      .mentoring {
+        display: none;
+        position: absolute;
+        bottom: -300px;
+        width: 630px;
+        z-index: 11;
+        transform: rotate(15deg);
+
+        img {
+          height: 125px;
+          transform: rotate(200deg);
+        }
+
+        p {
+          font-size: 36px;
+          font-weight: bold;
+          line-height: 1.28;
+          text-align: center;
+          color: $secondaryLightColor;
+        }
+      }
+    }
+
+    &.onboarding {
+      z-index: 11;
+
+      .mentoring {
+        display: block;
+      }
+
+      .uploadBtn {
+        box-shadow: 0 0 40px 0 white;
       }
     }
   }

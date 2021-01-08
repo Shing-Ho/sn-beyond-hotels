@@ -1,25 +1,41 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { Button } from 'antd';
+import cx from 'classnames';
+
+import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
+
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
 import ProductItem from '../ProductItem/ProductItem';
+
 import styles from './VenuesContentSection.module.scss';
 
-export default function VenuesContentSection() {
+export default function VenuesContentSection({ productOnboarding, tabsOnboarding }) {
   const intl = useIntl();
 
   return (
     <div className={styles.root}>
-      <Tabs className={styles.tabPane} defaultActiveKey="1">
+      <Tabs
+        className={cx(styles.tabPane, {
+          [styles.onboarding]: tabsOnboarding,
+        })}
+        defaultActiveKey="1"
+        onboarding={tabsOnboarding}
+      >
         <TabPane tab="Products" key="1">
+          <div className={styles.mentoring}>
+            <p>Tab through other sections to add additional details and information</p>
+            <img src={mentorImg} alt="Arrow for mentoring" />
+          </div>
           <ProductsGroupCollapse
-            header={<ProductsGroupHeader trash equal />}
+            onboarding={productOnboarding}
+            header={<ProductsGroupHeader onboarding={productOnboarding} trash equal />}
             collapsedHeader={<ProductsGroupCollapsedHeader title="Main" amount={0} trash equal />}
           >
-            <ProductItem />
+            <ProductItem onboarding={productOnboarding} />
           </ProductsGroupCollapse>
 
           <div className={styles.description}>

@@ -1,6 +1,8 @@
 import React from 'react';
-
+import cx from 'classnames';
 import Input from 'components/Input/Input';
+
+import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
 import { ReactComponent as TrashIcon } from 'icons/trash.svg';
 import { ReactComponent as DragIcon } from 'icons/Icon_SupMan_Drag.svg';
 import styles from './ProductsGroupHeader.module.scss';
@@ -10,10 +12,19 @@ export default function ProductsGroupHeader({
   trash = false,
   equal = false,
   propsValue = '',
+  onboarding,
 }) {
   return (
     <div className={styles.openedHeader} onClick={(event) => event.stopPropagation()}>
-      <div className={styles.input}>
+      <div
+        className={cx(styles.input, {
+          [styles.onboarding]: onboarding,
+        })}
+      >
+        <div className={styles.mentoring}>
+          <p>Add similar products to Product Groups</p>
+          <img src={mentorImg} alt="Arrow for mentoring" />
+        </div>
         <Input placeholder={placeholder} propsValue={propsValue} maxLength={30} />
       </div>
       <div className={styles.actions}>

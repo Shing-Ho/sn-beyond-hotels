@@ -8,7 +8,36 @@
 
   .title {
     display: flex;
+    position: relative;
     width: 100%;
+
+    .mentoring1 {
+      display: none;
+      position: absolute;
+      top: -170px;
+      left: 150px;
+      width: 480px;
+      z-index: 11;
+      transform: rotate(10deg);
+
+      img {
+        height: 220px;
+        transform: rotate(50deg);
+        left: 100px;
+        position: absolute;
+      }
+
+      p {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.28;
+        text-align: center;
+        color: $secondaryLightColor;
+        margin: 0;
+        position: absolute;
+        top: -20px;
+      }
+    }
 
     .icon {
       width: 60px;
@@ -57,9 +86,35 @@
   }
 
   .tags {
+    position: relative;
     display: flex;
     width: 100%;
     margin-top: 21px;
+
+    .mentoring2 {
+      display: none;
+      position: absolute;
+      bottom: -230px;
+      width: 600px;
+      z-index: 11;
+      transform: rotate(-10deg);
+
+      img {
+        height: 220px;
+        transform: rotate(140deg);
+        position: relative;
+        left: 200px;
+      }
+
+      p {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.28;
+        text-align: center;
+        color: $secondaryLightColor;
+        margin: 0;
+      }
+    }
 
     .button {
       .btn {
@@ -126,6 +181,30 @@
             }
           }
         }
+      }
+    }
+  }
+
+  &.onboarding {
+    .title {
+      .mentoring1 {
+        display: block;
+      }
+      .icon {
+        z-index: 11;
+      }
+      .input {
+        z-index: 11;
+        box-shadow: 0 0 20px 0 white;
+      }
+    }
+    .tags {
+      .mentoring2 {
+        display: block;
+      }
+      .select {
+        z-index: 11;
+        box-shadow: 0 0 10px 0 white;
       }
     }
   }

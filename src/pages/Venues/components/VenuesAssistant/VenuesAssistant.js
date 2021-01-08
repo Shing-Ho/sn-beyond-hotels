@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { ReactComponent as CloseIcon } from 'icons/Icon_Global_Action_Close.svg';
 import styles from './VenuesAssistant.module.scss';
 
-export default function VenuesAssistant() {
+export default function VenuesAssistant({ handleOnboarding }) {
   return (
     <div className={styles.venuesAssistant}>
       <div className={styles.header}>
@@ -23,7 +23,9 @@ export default function VenuesAssistant() {
         <div className={styles.index}>3</div>
         <div className={styles.content}>Finish adding enough to your venue and Publish to then make Active.</div>
       </div>
-      <Button className={styles.btn}>Show Me How</Button>
+      <Button className={styles.btn} onClick={() => handleOnboarding(true)}>
+        Show Me How
+      </Button>
     </div>
   );
 }

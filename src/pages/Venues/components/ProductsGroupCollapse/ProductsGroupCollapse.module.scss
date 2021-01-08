@@ -1,6 +1,9 @@
 @import 'styles';
 
 :global {
+  .ant-tabs {
+    overflow: visible !important;
+  }
   .ant-collapse {
     .ant-collapse-header {
       background: white;

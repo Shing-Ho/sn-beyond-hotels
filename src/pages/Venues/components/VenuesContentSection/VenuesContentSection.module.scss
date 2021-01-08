@@ -9,11 +9,36 @@
     margin: 10px 0;
   }
   .tabPane {
+    position: relative;
+    .mentoring {
+      display: none;
+      position: absolute;
+      top: -240px;
+      width: 600px;
+      z-index: 11;
+      transform: rotate(5deg);
+
+      img {
+        height: 125px;
+        transform: rotate(20deg);
+        position: relative;
+        left: 40%;
+      }
+
+      p {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.28;
+        text-align: center;
+        color: $secondaryLightColor;
+        margin-bottom: 10px;
+      }
+    }
+
     :global(.ant-tabs) {
       :global(.ant-tabs-nav) {
         :global(.ant-tabs-tab) {
           &:global(.ant-tabs-tab-active) {
-            border-color: red;
             :global(.ant-tabs-tab-btn) {
               color: $secondaryLightColor;
             }
@@ -22,6 +47,26 @@
         :global(.ant-tabs-ink-bar) {
           height: 4px;
           background: $secondaryLightColor;
+        }
+      }
+    }
+
+    &.onboarding {
+      .mentoring {
+        display: block;
+      }
+
+      :global {
+        .ant-tabs-nav {
+          z-index: 11;
+          .ant-tabs-tab-btn {
+            color: white !important;
+          }
+          .ant-tabs-tab-active {
+            .ant-tabs-tab-btn {
+              color: $secondaryLightColor !important;
+            }
+          }
         }
       }
     }

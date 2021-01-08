@@ -1,12 +1,17 @@
 import React from 'react';
 import { Button } from 'antd';
+import cx from 'classnames';
 
 import { ReactComponent as PhotoIcon } from 'icons/Icon_SupMan_Photos.svg';
 import styles from './ProductItem.module.scss';
 
-export default function ProductItem() {
+export default function ProductItem({ onboarding }) {
   return (
-    <div className={styles.productItem}>
+    <div
+      className={cx(styles.productItem, {
+        [styles.onboarding]: onboarding,
+      })}
+    >
       <div className={styles.image}>
         {/* <img src={} alt="Product Item" /> */}
         <div className={styles.icon}>
