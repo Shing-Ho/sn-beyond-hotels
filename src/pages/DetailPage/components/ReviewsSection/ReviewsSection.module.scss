@@ -1,0 +1,59 @@
+@import "styles";
+
+.main {
+  .topDiv {
+    border: 1px solid $borderGrayColor;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    .rowBetween {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .numberText {
+          color: $primaryColor;
+          font-size: 26px;
+          margin-left: 10px;
+        }
+        .avgRating {
+          color: $grayColor;
+          font-size: 24px;
+          font-weight: 100;
+          margin-left: 10px;
+        }
+      }
+    }
+    .chartDiv {
+      margin-top: 20px;
+      width: 100%;
+      height: 200px;
+    }
+  }
+  .bottomDiv {
+    border: 1px solid $borderGrayColor;
+    width: 100%;
+    background-color: white;
+    margin-top: 30px;
+    padding: 30px 15px;
+    .rowBetween {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .customerReview {
+        color: $grayColor;
+        font-size: 24px;
+        font-weight: 100;
+      }
+    }
+    .buttonDiv {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
