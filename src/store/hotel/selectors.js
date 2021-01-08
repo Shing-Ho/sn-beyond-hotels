@@ -1,4 +1,5 @@
 export const hotelItemFormatter = (data) => ({
+  ...data,
   id: data.hotel_id,
   rate: data.avg_nightly_rate,
   base: data.avg_nightly_base,

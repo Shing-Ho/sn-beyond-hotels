@@ -27,7 +27,7 @@ export default function GuestPage() {
   const [form] = Form.useForm();
   const selectedHotel = useSelector(getSelectedHotel);
   const selectedRooms = useSelector(getSelectedRoomItems);
-  const contactInfo = useSelector(getGuestContactInformation());
+  const contactInfo = useSelector(getGuestContactInformation);
   const totalAmount = useSelector(getTotalBookingAmount);
   const currency = useSelector(getCurrency);
   const [primaryContact, setPrimaryContact] = useState({});
