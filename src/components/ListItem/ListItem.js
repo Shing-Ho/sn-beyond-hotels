@@ -11,6 +11,7 @@ import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import hotelActions from 'store/hotel/actions';
 import { commaFormat } from 'helpers/utils';
+import { push } from 'connected-react-router';
 import IconButton from '../IconButton/IconButton';
 import Button from '../Button/Button';
 import Rating from '../Rating/Rating';
@@ -27,8 +28,7 @@ const ListItem = ({ data, className, currency }) => {
 
   const onViewClick = () => {
     dispatch(hotelActions.selectHotel(data));
-    const win = window.open(`${window.BASE_ROUTE || ''}/hotels/${data.id}`, '_blank');
-    win?.focus();
+    dispatch(push(`${window.BASE_ROUTE || ''}/hotels/${data.id}`));
   };
 
   return (
