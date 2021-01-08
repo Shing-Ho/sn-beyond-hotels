@@ -46,7 +46,7 @@ export default function VenuesHeader() {
             <Button className={[styles.btn, styles.primary]} type="primary">
               Start Over
             </Button>
-            <Button className={[styles.btn, styles.disabled]} type="primary" disabled>
+            <Button className={[styles.btn, styles.publish, styles.disabled]} type="primary" disabled>
               PUBLISH
             </Button>
           </div>
