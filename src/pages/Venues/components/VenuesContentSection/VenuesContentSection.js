@@ -88,7 +88,7 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
             width={1000}
             onCancel={() => setModalVisible(false)}
           >
-            <VenuesDetailsSteps />
+            <VenuesDetailsSteps onCancel={() => setModalVisible(false)} />
           </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
