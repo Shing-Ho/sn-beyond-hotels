@@ -3,7 +3,6 @@ import { Row, Col } from 'antd';
 import $ from 'jquery';
 
 import Page from 'components/Page/Page';
-import Modal from 'components/Modal/Modal';
 import VenuesHeader from './components/VenuesHeader/VenuesHeader';
 import VenuesUploadZone from './components/VenuesUploadZone/VenuesUploadZone';
 import VenuesDetailHeader from './components/VenuesDetailHeader/VenuesDetailHeader';
@@ -16,7 +15,6 @@ import styles from './VenuesPage.module.scss';
 
 export default function VenuesPage() {
   const [onboarding, SetOnboarding] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const openOnboarding = () => {
     $('html, body').animate({ scrollTop: 0 }, 100, () => {
@@ -46,11 +44,7 @@ export default function VenuesPage() {
                 <VenuesDetailHeader onboarding={onboarding === 3} />
               </Row>
               <Row>
-                <VenuesContentSection
-                  productOnboarding={onboarding === 4}
-                  tabsOnboarding={onboarding === 5}
-                  setModalVisible={setModalVisible}
-                />
+                <VenuesContentSection productOnboarding={onboarding === 4} tabsOnboarding={onboarding === 5} />
               </Row>
             </Col>
             <Col md={8} sm={24} flex={1}>
@@ -70,9 +64,6 @@ export default function VenuesPage() {
         </div>
       </div>
       {onboarding > 0 && <VenuesAssistantOnboarding currentStep={onboarding} handleOnboarding={handleOnboarding} />}
-      <Modal title="Venue Details" visible={modalVisible} onCancel={() => setModalVisible(false)}>
-        <div>aaa</div>
-      </Modal>
     </Page>
   );
 }

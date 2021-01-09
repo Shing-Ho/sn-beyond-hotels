@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Button } from 'antd';
 import cx from 'classnames';
@@ -6,6 +6,7 @@ import cx from 'classnames';
 import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
 
 import { Tabs, TabPane } from 'components/Tab/Tab';
+import Modal from 'components/Modal/Modal';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
@@ -13,8 +14,9 @@ import ProductItem from '../ProductItem/ProductItem';
 
 import styles from './VenuesContentSection.module.scss';
 
-export default function VenuesContentSection({ productOnboarding, tabsOnboarding, setModalVisible }) {
+export default function VenuesContentSection({ productOnboarding, tabsOnboarding }) {
   const intl = useIntl();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <div className={styles.root}>
@@ -70,6 +72,9 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           <Button className={[styles.addBtn, styles.group]} onClick={() => setModalVisible(true)}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Deails
           </Button>
+          <Modal title="Venue Details" visible={modalVisible} centered onCancel={() => setModalVisible(false)}>
+            <div>aaa</div>
+          </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
           <h1>This is Contacts tab</h1>
