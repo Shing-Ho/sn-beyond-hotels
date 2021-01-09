@@ -13,7 +13,7 @@ import ProductItem from '../ProductItem/ProductItem';
 
 import styles from './VenuesContentSection.module.scss';
 
-export default function VenuesContentSection({ productOnboarding, tabsOnboarding }) {
+export default function VenuesContentSection({ productOnboarding, tabsOnboarding, setModalVisible }) {
   const intl = useIntl();
 
   return (
@@ -67,7 +67,9 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           </Button>
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'details', defaultValue: 'Details' })} key="2">
-          <h1>This is Details tab</h1>
+          <Button className={[styles.addBtn, styles.group]} onClick={() => setModalVisible(true)}>
+            <i className="fa fa-plus" aria-hidden="true" /> Add Deails
+          </Button>
         </TabPane>
         <TabPane tab="Contacts" key="3">
           <h1>This is Contacts tab</h1>
