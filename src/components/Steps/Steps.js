@@ -6,8 +6,8 @@ import styles from './Steps.module.scss';
 
 const { Step: DefaultStep } = DefaultSteps;
 
-const Steps = ({ className, children, ...others }) => (
-  <DefaultSteps className={cx(styles.root, styles.venues, className)} {...others}>
+const Steps = ({ className, children, venuesMode = false, ...others }) => (
+  <DefaultSteps className={cx(styles.root, className, { [styles.venues]: venuesMode })} {...others}>
     {children}
   </DefaultSteps>
 );

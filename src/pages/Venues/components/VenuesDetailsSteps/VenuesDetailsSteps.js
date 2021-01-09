@@ -41,7 +41,7 @@ export default function VenuesDetailsSteps() {
   return (
     <div className={styles.venuesDetailsSteps}>
       <div className={styles.stepsContainer}>
-        <Steps current={currentStep} className="venues" labelPlacement="vertical">
+        <Steps current={currentStep} venuesMode labelPlacement="vertical">
           {steps.map((item) => (
             <Step key={item.title} title={item.title} icon={<div>{item.step}</div>} />
           ))}
