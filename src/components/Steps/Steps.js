@@ -7,11 +7,13 @@ import styles from './Steps.module.scss';
 const { Step: DefaultStep } = DefaultSteps;
 
 const Steps = ({ className, children, ...others }) => (
-  <DefaultSteps className={cx(styles.root, className)} {...others}>
+  <DefaultSteps className={cx(styles.root, styles.venues, className)} {...others}>
     {children}
   </DefaultSteps>
 );
 
-const Step = ({ className, ...others }) => <DefaultStep className={cx(styles.step, className)} {...others} />;
+const Step = ({ className, icon = null, ...others }) => (
+  <DefaultStep className={cx(styles.step, className)} icon={icon} {...others} />
+);
 
 export { Steps, Step };

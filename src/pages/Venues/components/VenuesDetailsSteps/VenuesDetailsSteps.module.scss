@@ -1,0 +1,38 @@
+@import 'styles';
+
+.venuesDetailsSteps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .stepsContainer {
+    width: 720px;
+    margin: 0 auto;
+  }
+
+  .actions {
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+    .btn {
+      height: 60px;
+      color: white;
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: bold;
+      border-radius: 3px;
+      flex: 1;
+
+      &.continue {
+        background-color: $secondaryLightColor;
+        border: 2px solid $secondaryLightColor;
+        margin-left: 40px;
+      }
+      &.cancel {
+        border: 2px solid $secondaryLightColor;
+        color: $secondaryLightColor;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Button } from 'antd';
 import cx from 'classnames';
@@ -10,6 +10,7 @@ import Modal from 'components/Modal/Modal';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
+import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
 import ProductItem from '../ProductItem/ProductItem';
 
 import styles from './VenuesContentSection.module.scss';
@@ -17,6 +18,11 @@ import styles from './VenuesContentSection.module.scss';
 export default function VenuesContentSection({ productOnboarding, tabsOnboarding }) {
   const intl = useIntl();
   const [modalVisible, setModalVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState('1');
+
+  useEffect(() => {
+    setActiveTab(productOnboarding || tabsOnboarding ? '1' : activeTab);
+  }, [productOnboarding, tabsOnboarding]);
 
   return (
     <div className={styles.root}>
@@ -25,7 +31,9 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           [styles.onboarding]: tabsOnboarding,
         })}
         defaultActiveKey="1"
+        activeKey={activeTab}
         onboarding={tabsOnboarding}
+        onChange={(key) => setActiveTab(key)}
       >
         <TabPane tab="Products" key="1">
           <div className={styles.mentoring}>
@@ -72,8 +80,15 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           <Button className={[styles.addBtn, styles.group]} onClick={() => setModalVisible(true)}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Deails
           </Button>
-          <Modal title="Venue Details" visible={modalVisible} centered onCancel={() => setModalVisible(false)}>
-            <div>aaa</div>
+          <Modal
+            title="Venue Details"
+            visible={modalVisible}
+            footer={null}
+            centered
+            width={1000}
+            onCancel={() => setModalVisible(false)}
+          >
+            <VenuesDetailsSteps />
           </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
