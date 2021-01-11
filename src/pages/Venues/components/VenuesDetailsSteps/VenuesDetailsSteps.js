@@ -198,22 +198,22 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3} offset={1}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={2}>
@@ -231,7 +231,7 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={2} offset={1}>
@@ -246,12 +246,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={2} offset={1}>
@@ -266,12 +266,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={2} offset={1}>
@@ -286,12 +286,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={2} offset={1}>
@@ -366,10 +366,10 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   <Row className={styles.row}>
                     <Col span={6} className={styles.time}>
                       <div className={styles.timePicker}>
-                        <TimePicker use12Hours format="h A" placeholder="- -" />
+                        <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                       </div>
                       <div className={cx(styles.timePicker, styles.second)}>
-                        <TimePicker use12Hours format="h A" placeholder="- -" />
+                        <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                       </div>
                     </Col>
                     <Col span={3}>

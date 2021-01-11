@@ -1,10 +1,49 @@
-@import "styles";
+@import 'styles';
+
+:global(.ant-picker-focused) {
+  border-color: $primaryColor !important;
+  box-shadow: $primaryFocusBoxShadow !important;
+
+  &.secondary {
+    border-color: $secondaryColor !important;
+    box-shadow: $SecondaryFocusBoxShadow !important;
+  }
+  &.secondaryLight {
+    border-color: $secondaryLightColor !important;
+    box-shadow: $SecondaryFocusBoxShadow !important;
+  }
+}
 
 .root {
   height: 36px;
 }
 
-:global(.ant-picker-focused) {
-  border-color: $primaryColor !important;
-  box-shadow: $primaryFocusBoxShadow !important;
+.popup {
+  :global(.ant-picker-ok .ant-btn.ant-btn-primary) {
+    background: $primaryColor;
+    border-color: $primaryColor;
+    color: white;
+  }
+  :global(.ant-picker-now .ant-picker-now-btn) {
+    color: $primaryColor;
+  }
+
+  &.secondary {
+    :global(.ant-picker-ok .ant-btn.ant-btn-primary) {
+      background: $secondaryColor;
+      border-color: $secondaryColor;
+    }
+    :global(.ant-picker-now .ant-picker-now-btn) {
+      color: $secondaryColor;
+    }
+  }
+  &.secondaryLight {
+    :global(.ant-btn.ant-btn-primary) {
+      background: $secondaryLightColor !important;
+      border-color: $secondaryLightColor !important;
+    }
+    :global(.ant-picker-now-btn) {
+      color: $secondaryLightColor;
+    }
+  }
 }
