@@ -1,10 +1,10 @@
-@import "styles";
+@import 'styles';
 
 .root {
-  height: 100%;
+  position: relative;
 
   .content {
-    min-height: calc(100% - 120px);
+    min-height: calc(100vh - 120px);
 
     @media (max-width: $bp-mobile) {
       // background: #f6f6f6;

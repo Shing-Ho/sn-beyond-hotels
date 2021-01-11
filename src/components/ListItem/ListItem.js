@@ -36,9 +36,7 @@ const ListItem = ({ data, className, currency }) => {
         </div>
 
         <div className={styles.right}>
-          <div className={styles.circle}>
-            <BedIcon />
-          </div>
+          <div className={styles.circle}>{data.icon || <BedIcon />}</div>
           <div className={styles.content}>
             <div className={styles.line}>
               <h3 className={styles.itemName}>{data.name}</h3>
@@ -47,7 +45,9 @@ const ListItem = ({ data, className, currency }) => {
                   <span>
                     <FormattedMessage id="average" defaultMessage="AVERAGE" />
                   </span>
-                  <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                  <span className={styles.itemRate}>
+                    {currency?.symbol + commaFormat(data.rate.toFixed(currency?.decimal))}
+                  </span>
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>

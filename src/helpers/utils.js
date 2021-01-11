@@ -1,4 +1,4 @@
-import { flatMapDeep } from 'lodash';
+import { filter, flatMapDeep } from 'lodash';
 import popularBrandsJson from './jsons/popular-brands.json';
 
 export const getRandomImageUrl = (width = 500, height = 300) =>
@@ -92,4 +92,36 @@ export const filterHotels = (hotels, filters) => {
 
 export const getVisibleHotels = (hotels, page, pageSize) => hotels.slice((page - 1) * pageSize, page * pageSize);
 
-export const commaFormat = (text) => text.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+export const commaFormat = (text) => text?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+export const filterShoppingItems = (products, filters) => {
+  let filteredProducts = products;
+  if (filters.keyword && filters.keyword !== '') {
+    filteredProducts = filteredProducts.filter((product) => {
+      if (product.productName && product.productName.toLowerCase().indexOf(filters.keyword) >= 0) return true;
+      if (product.productDetail && product.productDetail.toLowerCase().indexOf(filters.keyword) >= 0) return true;
+      return false;
+    });
+  }
+
+  if (filters.minPrice && parseInt(filters.minPrice, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.price >= filters.minPrice);
+  }
+  if (filters.maxPrice && parseInt(filters.maxPrice, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.price <= filters.maxPrice);
+  }
+  if (filters.starRating && filters.starRating > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.rating <= filters.starRating);
+  }
+  if (filters.categoryid && filters.categoryid > 0) {
+    filteredProducts = filteredProducts.filter(
+      (product) => parseInt(product.categoryid, 10) === parseInt(filters.categoryid, 10),
+    );
+  }
+
+  if (filters.storeid && parseInt(filters.storeid, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.storeid === filter.storeid);
+  }
+
+  return filteredProducts;
+};

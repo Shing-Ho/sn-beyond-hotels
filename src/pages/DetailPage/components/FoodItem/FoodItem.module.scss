@@ -1,0 +1,151 @@
+@import 'styles';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 22px;
+  padding: 0;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  border: solid 1px #dedede;
+  background-color: #ffffff;
+
+  img {
+    width: 45%;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+    flex-direction: column;
+    max-height: unset;
+    width: auto;
+    height: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .detail {
+    padding: 15px 25px 0 29px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    @media screen and (max-width: 1067px) {
+      padding: 15px 25px 15px 29px;
+    }
+
+    .titleWrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .header {
+        font-size: 24px;
+        color: #7b7c7e;
+        font-weight: 300;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .time {
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.43;
+        letter-spacing: normal;
+        text-align: right;
+        color: #7b7c7e;
+        @media screen and (max-width: 468px) {
+          text-align: left;
+        }
+
+        > span {
+          color: #003398;
+        }
+      }
+    }
+
+    .priceDiv {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media screen and (max-width: 1068px) {
+        margin-bottom: 13px;
+      }
+
+      .price {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.42;
+        text-align: left;
+        color: #003398;
+      }
+
+      .duration {
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.21;
+        color: #003398;
+
+        > span {
+          margin-left: 5px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .learnDiv {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 4px 0 30px 0;
+
+      .learn {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: $primaryColor;
+
+        > svg {
+          margin-right: 5px;
+        }
+      }
+
+      .countDiv {
+        display: flex;
+        align-items: center;
+
+        > span {
+          font-family: Lato;
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 1.43;
+          text-align: right;
+          color: #003398;
+          text-transform: uppercase;
+        }
+      }
+
+      @media screen and (min-width: 320px) and (max-width: 375px) {
+        .countDiv {
+          flex-direction: column;
+        }
+      }
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        .countDiv {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

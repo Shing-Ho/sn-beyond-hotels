@@ -1,0 +1,107 @@
+@import 'styles';
+
+.root {
+  border: 1px solid #dedede;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: max-content;
+  width: 100%;
+
+  .bookContent {
+    font-size: 20px;
+    font-weight: 300;
+
+    .datepicker {
+      padding: 19px 19px 30px 19px;
+      border-bottom: 1px solid #dedede;
+
+      h3 {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 10px;
+      }
+    }
+
+    .yourOrder {
+      padding: 19px;
+      display: flex;
+      flex-direction: column;
+
+      > span {
+        font-family: Lato;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      > div {
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 5px;
+
+        > span {
+          font-weight: 300;
+          color: $primaryColor;
+
+          > svg {
+            margin-left: 15px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .total {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 19px 24px 19px;
+      text-transform: uppercase;
+      .totalCost {
+        color: $primaryColor;
+        font-size: 24px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .bookNow,
+  .addToItinerary {
+    font-size: 24px;
+    font-weight: bold;
+    height: 60px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .bookNow {
+    background-color: $primaryLightColor;
+    color: $primaryColor;
+
+    &:hover,
+    &:focus {
+      background: $primaryLightColor;
+      opacity: 0.9;
+      color: $primaryColor;
+    }
+  }
+  .addToItinerary {
+    background-color: $primaryColor;
+    color: white;
+
+    &:hover,
+    &:focus {
+      background: $primaryColor;
+      opacity: 0.9;
+      color: white;
+    }
+  }
+  .errorText {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

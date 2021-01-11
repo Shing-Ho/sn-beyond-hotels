@@ -25,7 +25,9 @@ export default function EventBookingSection({ className }) {
   return (
     <div className={cx(styles.root, className)}>
       <div className={styles.bookContent}>
-        <h3>Date & Time</h3>
+        <h3>
+          <FormattedMessage id="dateAndTime" defaultMessage="Date & Time" />
+        </h3>
         <div className="w-100">
           <DatePicker className="w-100" format="MMMM DD, YYYY" />
         </div>
@@ -46,7 +48,7 @@ export default function EventBookingSection({ className }) {
             <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
           </span>
           <div>
-            Right
+            <FormattedMessage id="right" defaultMessage="Right" />
             <span>
               2
               <CloseIcon />
@@ -61,10 +63,10 @@ export default function EventBookingSection({ className }) {
         </div>
       </div>
       <Button className={styles.bookNow} onClick={onBookNowClick}>
-        Order Now
+        <FormattedMessage id="orderNow" defaultMessage="Order Now" />
       </Button>
       <Button className={styles.addToItinerary} onClick={onBookNowClick}>
-        Add to Itinerary
+        <FormattedMessage id="addToItinerary" defaultMessage="Add to Itinerary" />
       </Button>
     </div>
   );

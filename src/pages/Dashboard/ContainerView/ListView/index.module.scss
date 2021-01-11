@@ -1,0 +1,37 @@
+@import "styles";
+
+.listContainer {
+  .row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: flex;
+    justify-content: center;
+    .column {
+      //max-width: 360px;
+      width: 100%;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin-bottom: 20px;
+    }
+  }
+  .buttonWrap {
+    margin-top: 40px;
+    justify-content: center;
+    .btn {
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #003398;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      line-height: 16px;
+      width: 200px;
+      max-width: 200px;
+    }
+  }
+  .pagination {
+    margin: 57px 0 17px 0;
+  }
+}

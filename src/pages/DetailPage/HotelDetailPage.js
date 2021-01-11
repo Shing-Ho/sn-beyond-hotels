@@ -82,8 +82,6 @@ const DetailPage = () => {
       if (urls.currency) {
         payload.currency = urls.currency;
       }
-      // eslint-disable-next-line no-debugger
-      debugger;
       dispatch(hotelActions.searchHotelById(params.id, payload));
       // dispatch(hotelActions.searchHotels(payload));
     } else {
@@ -208,7 +206,7 @@ const DetailPage = () => {
       <>
         <div className={styles.carousel}>
           <Carousel image={hotel?.hotel_details?.photos || []} />
-          <DetailHeader className={styles.detailHeader} details={hotel.hotel_details} />
+          <DetailHeader className={styles.detailHeader} details={hotel.hotel_details} isRating />
         </div>
         <div className={styles.root}>
           <div className={styles.content}>

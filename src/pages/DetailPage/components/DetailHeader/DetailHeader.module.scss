@@ -1,13 +1,15 @@
-@import "styles";
+@import 'styles';
 
 .root {
   width: 100%;
+  margin-bottom: 20px;
 
   .title {
     font-size: 48px;
     font-weight: 300;
     display: flex;
     align-items: center;
+    margin-bottom: 27px;
 
     .bedIcon {
       height: 60px;
@@ -16,14 +18,10 @@
       background-color: $primaryColor;
       border-radius: 50%;
       position: relative;
-      display: inline-block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin-right: 20px;
-
-      > svg {
-        position: absolute;
-        left: 15px;
-        top: 20px;
-      }
     }
   }
 
@@ -43,21 +41,20 @@
     .rating {
       margin-bottom: 20px;
       width: 150px;
-      @media (max-width: $bp-mobile){
+      @media (max-width: $bp-mobile) {
         margin-bottom: 0;
       }
-      @media screen and (max-width: 467px){
+      @media screen and (max-width: 467px) {
         width: 100px;
         margin-right: 10px;
       }
-
     }
   }
 
   .tags {
     display: flex;
     justify-content: space-between;
-
+    flex-wrap: wrap;
     > div {
       display: flex;
       align-items: center;
@@ -98,10 +95,11 @@
         height: 45px;
         width: 45px;
         min-width: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         > svg {
-          position: absolute;
-          left: 8px;
-          top: 15px;
+          text-align: center;
         }
       }
       p {
@@ -113,6 +111,11 @@
       flex-direction: column;
       margin-top: 10px;
 
+      > div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
       .right > div:first-child {
         margin-left: 0;
       }
@@ -120,10 +123,10 @@
   }
 }
 
-@media screen and (max-width: $bp-mobile-landscape){
-  .root{
+@media screen and (max-width: $bp-mobile-landscape) {
+  .root {
     flex-direction: column;
-    .details{
+    .details {
       max-width: none;
       flex-wrap: wrap;
     }
@@ -135,11 +138,11 @@
         width: 35px;
         min-width: 35px;
         margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         > svg {
-          position: absolute;
-          left: 8px;
-          top: 10px;
-          width: 21px;
+          text-align: center;
         }
       }
     }

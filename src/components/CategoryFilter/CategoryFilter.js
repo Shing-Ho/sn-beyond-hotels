@@ -1,5 +1,6 @@
 import React from 'react';
 import { Radio } from 'antd';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './CategoryFilter.module.scss';
 
@@ -7,7 +8,9 @@ const CategoryFilter = ({ onChange }) => (
   <div className={styles.container}>
     <Radio.Group defaultValue="accommodations" buttonStyle="solid" className={styles.radio} onChange={onChange}>
       <Radio.Button value="all">
-        <span className={styles.optionLabel}>Show All</span>
+        <span className={styles.optionLabel}>
+          <FormattedMessage id="showall" defaultMessage="Show All" />
+        </span>
       </Radio.Button>
       <Radio.Button value="accommodation">
         <span className={styles.optionLabel}>Accommodation</span>

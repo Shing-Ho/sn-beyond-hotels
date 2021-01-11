@@ -1,0 +1,399 @@
+@import 'styles';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+  .main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    padding-top: 62px;
+    height: 652px;
+    @media (max-width: $bp-mobile) {
+      height: 1100px;
+    }
+    .imgWrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      .imgOverlay {
+        width: 100vw;
+        height: 100%;
+        background: #003398;
+        overflow: hidden;
+      }
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+      }
+    }
+    .content {
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      .searchHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        z-index: 5;
+        @media (max-width: $bp-mobile) {
+          flex-direction: column;
+        }
+        .searchWrapper {
+          display: flex;
+          align-items: center;
+          z-index: 1;
+          @media (max-width: $bp-mobile) {
+            flex-direction: column;
+            justify-content: center;
+          }
+          .searchIconWrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            .searchIcon {
+              width: 30px;
+              height: 30px;
+            }
+          }
+          .searchWrapperText {
+            font-size: 48px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.19;
+            letter-spacing: normal;
+            text-align: left;
+            color: #ffffff;
+            @media (max-width: $bp-mobile) {
+              font-size: 30px;
+            }
+          }
+        }
+        .switchType {
+          border: 3px solid #c7d1e5;
+          border-radius: 3px;
+          background: #c7d1e5;
+          outline: none;
+          .roundBtn {
+            width: 125px;
+            height: 44px;
+            border-radius: 3px;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.38;
+            letter-spacing: normal;
+            text-align: center;
+            color: #003398;
+            background: #c7d1e5;
+            &:focus,
+            &:hover {
+              background-color: #003398;
+              color: #ffffff;
+            }
+          }
+          .roundSelectedBtn {
+            width: 125px;
+            height: 44px;
+            border-radius: 3px;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.38;
+            letter-spacing: normal;
+            text-align: center;
+            background-color: #003398;
+            color: #ffffff;
+            &:focus,
+            &:hover {
+              background-color: #003398;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+      .searchRow {
+        margin-top: 34px;
+        @media (max-width: $bp-mobile) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .searchCol {
+          @media (max-width: $bp-mobile) {
+            width: 100%;
+          }
+          .searchForm {
+            @media (max-width: $bp-mobile) {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
+            .searchTextWrapper {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .searchOptionalText {
+              font-size: 18px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: italic;
+              line-height: 1.22;
+              letter-spacing: normal;
+              text-align: left;
+              color: #ffffff;
+              opacity: 0.5;
+            }
+            .autoCompleteWrapper {
+              margin-top: 10px;
+              border: 1px solid #d9d9d9;
+              background: #fff;
+              display: flex;
+              align-items: center;
+              @media (max-width: $bp-mobile) {
+                width: 80%;
+              }
+              :global(.ant-select) {
+                width: 100%;
+                height: 50px;
+                :global(.ant-select-selector) {
+                  border: none !important;
+                  height: 50px;
+                  display: flex;
+                  align-items: center;
+                }
+                :global(.ant-select-selection-search) {
+                  border: none !important;
+                  height: 50px;
+                  display: flex;
+                  align-items: center;
+                  input {
+                    font-family: Arial;
+                    font-size: 18px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    line-height: 1.17;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #003398;
+                  }
+                  input:focus {
+                    border: none;
+                  }
+                }
+                :global(.ant-select-selection-placeholder) {
+                  font-family: Arial;
+                  font-size: 18px;
+                  font-weight: normal;
+                  font-stretch: normal;
+                  font-style: italic;
+                  line-height: 1.17;
+                  letter-spacing: normal;
+                  text-align: left;
+                  color: #003398;
+                }
+              }
+              .pinIcon {
+                margin-right: 8px;
+              }
+            }
+            .datePickerWrapper {
+              width: 253px;
+              height: 50px;
+              margin-top: 20px;
+              @media (max-width: $bp-mobile) {
+                width: 80%;
+              }
+              .datePicker {
+                width: 100%;
+                height: 100%;
+                :global(.ant-picker-input) {
+                  input {
+                    font-size: 18px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.44;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #003398;
+                  }
+                  input::-webkit-input-placeholder {
+                    color: #003398;
+                  }
+                  :global(.ant-picker-clear) {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .searchColHide {
+          @media (max-width: $bp-mobile) {
+            display: none;
+          }
+          .plane {
+            margin-top: 35px;
+          }
+        }
+        .searchSelectWrapper {
+          position: relative;
+          width: 100%;
+          margin-top: 15px;
+          @media (max-width: $bp-mobile) {
+            width: 80%;
+            margin: 0 auto;
+          }
+          :global(.ant-select) {
+            width: 100%;
+          }
+
+          :global(.ant-select),
+          :global(.ant-select-selector) {
+            height: 50px !important;
+            input {
+              height: 50px;
+            }
+            :global(.ant-select-selection-item) {
+              display: flex;
+              align-items: center;
+              font-size: 18px;
+              font-weight: normal;
+              font-stretch: normal;
+              line-height: 1.17;
+              letter-spacing: normal;
+              text-align: left;
+              color: #003398;
+            }
+          }
+          :global(.ant-select-selection-placeholder) {
+            display: flex;
+            align-items: center;
+            font-family: Arial;
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: italic;
+            line-height: 1.17;
+            letter-spacing: normal;
+            text-align: left;
+            color: #003398;
+          }
+        }
+        .searchComp {
+          margin-top: 15px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          .travelers {
+            height: 50px;
+            border: 1px solid #fff;
+            :global(.ant-btn) {
+              width: 50px;
+              height: 50px;
+              background-color: rgba(255, 255, 255, 0.8);
+              border: 1px solid #fff;
+            }
+            :global(.ant-input) {
+              width: 62px !important;
+              height: 50px;
+              border-right: 3px solid #003398;
+            }
+            .plusIcon {
+              margin-top: 8px;
+            }
+          }
+          .checkLabel {
+            margin-left: 5px;
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.22;
+            letter-spacing: normal;
+            text-align: left;
+            color: #ffffff;
+          }
+          :global(.ant-checkbox-inner) {
+            width: 36px;
+            height: 36px;
+            &:after {
+              top: 19px;
+              left: 12px;
+            }
+          }
+        }
+      }
+      .searchText {
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: left;
+        color: #ffffff;
+      }
+      .divider {
+        width: 100%;
+        margin: 25px 0;
+        border: 1px solid #fff;
+        z-index: 1;
+      }
+      .searchRow.searchFilter {
+        margin-top: 0;
+      }
+      .buttonGroup {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        .searchBtn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // margin: 40px 54px 0 67px;
+          // padding: 28px 152px 28px 151px;
+          width: 500px;
+          height: 80px;
+          border: solid 2px #ffffff;
+          background-color: rgba(255, 255, 255, 0.8);
+          .searchBtnText {
+            margin-left: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.4;
+            letter-spacing: normal;
+            text-align: left;
+            text-transform: uppercase;
+            color: #003398;
+          }
+        }
+      }
+    }
+  }
+}

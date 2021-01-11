@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
-import _ from 'lodash';
-import { Menu } from 'antd';
-import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
+import { push } from 'connected-react-router';
+import { useParams } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 
-import TopFilters from '../../components/TopFilters/TopFilters';
-import Page from '../../components/Page/Page';
+import Page from 'components/Page/Page';
+import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
+import TopFilters from 'components/TopFilters/TopFilters';
+import TabSelect from 'components/TabSelect/TabSelect';
+import { getRandomImageUrl } from 'helpers/utils';
+import { ReactComponent as BedFillGray } from 'icons/dashboardIcons/BedFillGray.svg';
+import { ReactComponent as BedTransparent } from 'icons/dashboardIcons/BedTransparent.svg';
+import { ReactComponent as ShowAllFillGray } from 'icons/dashboardIcons/ShowAllFillGray.svg';
+import { ReactComponent as ShowAllWhite } from 'icons/dashboardIcons/ShowAllWhite.svg';
+import { ReactComponent as TransportationOutline } from 'icons/dashboardIcons/TransportationOutline.svg';
+import { ReactComponent as TransportationTransparent } from 'icons/dashboardIcons/TransportationTransparent.svg';
+import { ReactComponent as GasStation } from 'icons/dashboardIcons/GasStation.svg';
+import { ReactComponent as GasStationWhite } from 'icons/dashboardIcons/GasStationWhite.svg';
+import { ReactComponent as ToursActivities } from 'icons/dashboardIcons/ToursActivities.svg';
+import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
+import { ReactComponent as ShowsEvents } from 'icons/dashboardIcons/ShowsEvents.svg';
+import { ReactComponent as ShowsEventsWhite } from 'icons/dashboardIcons/ShowsEventsWhite.svg';
+import { ReactComponent as DiningSvg } from 'icons/dashboardIcons/Dining.svg';
+import { ReactComponent as DiningWhiteSvg } from 'icons/dashboardIcons/DiningWhite.svg';
+import { ReactComponent as Nightlife } from 'icons/dashboardIcons/Nightlife.svg';
+import { ReactComponent as NightlifeWhite } from 'icons/dashboardIcons/NightlifeWhite.svg';
+import { ReactComponent as FlightsTransparent } from 'icons/dashboardIcons/Flights.svg';
+import { ReactComponent as FlightsOutline } from 'icons/dashboardIcons/FlightsOutline.svg';
+import { ReactComponent as Shopping } from 'icons/dashboardIcons/Icon_Category_Shopping.svg';
+import { ReactComponent as ShoppingWhite } from 'icons/dashboardIcons/Icon_Category_Shopping_White.svg';
+import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
+import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
+import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
 import DashboardFilter from './DashboardFilter';
-import SearchAndView from './SearchAndView';
 import ContainerView from './ContainerView';
-import HotelSearchPage from '../HotelSearchPage/HotelSearchPage';
-import styles from '../HotelSearchPage/HotelSearchPage.module.scss';
-
-import { ReactComponent as BedFillGray } from '../../icons/dashboardIcons/BedFillGray.svg';
-import { ReactComponent as BedTransparent } from '../../icons/dashboardIcons/BedTransparent.svg';
-import { ReactComponent as ShowAllFillGray } from '../../icons/dashboardIcons/ShowAllFillGray.svg';
-import { ReactComponent as ShowAllWhite } from '../../icons/dashboardIcons/ShowAllWhite.svg';
-import { ReactComponent as TransportationOutline } from '../../icons/dashboardIcons/TransportationOutline.svg';
-import { ReactComponent as TransportationTransparent } from '../../icons/dashboardIcons/TransportationTransparent.svg';
-import { ReactComponent as ToursActivities } from '../../icons/dashboardIcons/ToursActivities.svg';
-import { ReactComponent as ToursActivitiesWhite } from '../../icons/dashboardIcons/ToursActivitiesWhite.svg';
-import { ReactComponent as ShowsEvents } from '../../icons/dashboardIcons/ShowsEvents.svg';
-import { ReactComponent as ShowsEventsWhite } from '../../icons/dashboardIcons/ShowsEventsWhite.svg';
-import { ReactComponent as DiningSvg } from '../../icons/dashboardIcons/Dining.svg';
-import { ReactComponent as DiningWhiteSvg } from '../../icons/dashboardIcons/DiningWhite.svg';
-import { ReactComponent as Nightlife } from '../../icons/dashboardIcons/Nightlife.svg';
-import { ReactComponent as NightlifeWhite } from '../../icons/dashboardIcons/NightlifeWhite.svg';
-
-const menu = (click) => <Menu onClick={click}>{/* Add menu item for filter here */}</Menu>;
-
-const sortMenu = (click) => (
-  <Menu onClick={click}>
-    <Menu.Item key="asc">Ascending</Menu.Item>
-    <Menu.Item key="desc">Descending</Menu.Item>
-  </Menu>
-);
+import HotelSearchPage from './SearchPage/HotelSearchPage';
+import ShoppingSearchPage from './SearchPage/ShoppingSearchPage';
+import styles from './index.module.scss';
 
 const initialFilterData = {
   location: {
@@ -47,142 +49,91 @@ const initialFilterData = {
   end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
 };
 
-const HotelsData = [
+const searchTypeOptions = [
   {
     id: 1,
-    name: 'Taix Restaurent',
-    start: 3,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '19.99',
-  },
-  {
-    id: 2,
-    name: 'Masa of Echo Park',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '25',
-  },
-  {
-    id: 3,
-    name: 'Thrill FAll Bungee',
-    start: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '15.25',
-  },
-  {
-    id: 4,
-    name: 'Cats Musical',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '25',
-  },
-  {
-    id: 5,
-    name: 'ALTA NightClub',
-    start: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '30',
-  },
-  {
-    id: 6,
-    name: 'Tesla car rental',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '40',
-  },
-  {
-    id: 7,
-    name: 'Taix Restaurent',
-    start: 3,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '19.99',
-  },
-  {
-    id: 8,
-    name: 'Masa of Echo Park',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '25',
-  },
-  {
-    id: 9,
-    name: 'Thrill FAll Bungee',
-    start: 2,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '15.25',
-  },
-  {
-    id: 10,
-    name: 'Cats Musical',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '25',
-  },
-  {
-    id: 11,
-    name: 'ALTA NightClub',
-    start: 4,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '30',
-  },
-  {
-    id: 12,
-    name: 'Tesla car rental',
-    start: 5,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.',
-    from: '40',
-  },
-];
-
-const searchTypeData = [
-  {
-    id: 1,
-    name: 'Show All',
-    value: 'show-all',
+    name: 'showAll',
+    value: 'all',
     icon: <ShowAllFillGray />,
     selectedIcon: <ShowAllWhite />,
   },
   {
     id: 2,
-    name: 'Hotels',
+    name: 'hotels',
     value: 'hotels',
     icon: <BedFillGray />,
     selectedIcon: <BedTransparent />,
   },
   {
     id: 3,
-    name: 'Transportation',
-    value: 'transportation',
+    name: 'flights',
+    value: 'flights',
+    icon: <FlightsOutline />,
+    selectedIcon: <FlightsTransparent />,
+  },
+  {
+    id: 4,
+    name: 'transportation',
+    value: 'transports',
     icon: <TransportationOutline />,
     selectedIcon: <TransportationTransparent />,
   },
   {
-    id: 4,
-    name: 'Tours & Activities',
-    value: 'tours-activities',
+    id: 5,
+    name: 'gasAndCharging',
+    value: 'gas',
+    icon: <GasStation />,
+    selectedIcon: <GasStationWhite />,
+  },
+  {
+    id: 6,
+    name: 'toursAndActivities',
+    value: 'tours',
     icon: <ToursActivities />,
     selectedIcon: <ToursActivitiesWhite />,
   },
   {
-    id: 5,
-    name: 'Shows & Events',
-    value: 'shows-events',
+    id: 7,
+    name: 'showsAndEvents',
+    value: 'events',
     icon: <ShowsEvents />,
     selectedIcon: <ShowsEventsWhite />,
   },
   {
-    id: 6,
-    name: 'Dining',
+    id: 8,
+    name: 'dining',
     value: 'dining',
     icon: <DiningSvg />,
     selectedIcon: <DiningWhiteSvg />,
   },
   {
-    id: 7,
-    name: 'NightLife',
-    value: 'nightLife',
+    id: 9,
+    name: 'nightLife',
+    value: 'nightlife',
     icon: <Nightlife />,
     selectedIcon: <NightlifeWhite />,
+  },
+  {
+    id: 10,
+    name: 'shopping',
+    value: 'shopping',
+    icon: <Shopping />,
+    selectedIcon: <ShoppingWhite />,
+  },
+];
+
+const gasSelectOptions = [
+  {
+    label: 'Show All',
+    value: 'all',
+  },
+  {
+    label: 'Gas Stations',
+    value: 'gas',
+  },
+  {
+    label: 'Charge Stations',
+    value: 'charge',
   },
 ];
 
@@ -203,76 +154,84 @@ const initialState = {
   currency: 'USD',
 };
 
+const initialData = Array(30)
+  .fill(0)
+  .map((_, id) => ({
+    id,
+    rate: (Math.random() * 2000).toFixed(2),
+    image: getRandomImageUrl(),
+    type: searchTypeOptions[Math.ceil(Math.random() * 8)].value,
+    name: `Fake Item ${id}`,
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  }));
+
 const DashboardPage = () => {
   const [filter, setFilter] = useState(initialFilterData);
-  const [searchType, setSearchType] = useState('show-all');
-  const [searchText, setSearchText] = useState('');
-  const [filterBy, setFilterBy] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [itemView, setItemView] = useState('grid');
-  const [items, setItems] = useState(HotelsData);
-
+  const params = useParams();
   const dispatch = useDispatch();
+  const searchType = params.type;
+  const [items, setItems] = useState([]);
+  const [gasType, setGasType] = useState('all');
+  const intl = useIntl();
 
-  useEffect(() => {}, [searchType]);
-
-  useEffect(() => {
-    setItems(HotelsData.filter((item) => item.name.toLowerCase().includes(searchText)));
-  }, [searchText]);
-
-  useEffect(() => {}, [filterBy]);
-
-  useEffect(() => {
-    setItems(_.orderBy(items, 'name', sortBy));
-  }, [sortBy]);
-
-  const handleFilterBy = (e) => {
-    setFilterBy(e.key);
+  const handleSearchTypeChange = (type) => {
+    dispatch(push(`/${type}`));
   };
 
-  const handleSortBy = (e) => {
-    setSortBy(e.key);
-  };
-
-  const onHotelItemClick = (id) => {
-    if (searchType === 'dining') {
-      dispatch(push(`/dining/${id}`));
-    } else {
-      dispatch(push(`/events/${id}`));
+  useEffect(() => {
+    let filteredItems = initialData;
+    if (searchType !== 'all') {
+      filteredItems = initialData.filter((item) => {
+        let valid = item.type === searchType;
+        if (searchType === 'gas') {
+          valid = valid && (gasType === 'all' || item.subType === gasType);
+        }
+        return valid;
+      });
     }
-  };
+
+    setItems(
+      filteredItems.map((item) => {
+        const searchTypeInfo = searchTypeOptions.find((option) => option.value === item.type);
+        let subIcons = [];
+
+        if (searchType === 'gas') {
+          subIcons = [<FuelCombo />, <ChargePlug />, <FuleValve />].slice(
+            Math.ceil(Math.random() * 2),
+            Math.round(Math.random() * 3),
+          );
+        }
+        return { icon: searchTypeInfo.selectedIcon, subIcons, ...item };
+      }),
+    );
+  }, [searchType]);
+
+  let subHeader;
+  if (searchType === 'gas') {
+    subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
+  }
 
   return (
     <Page>
       <div className={styles.root}>
         <div className={styles.container}>
           <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
-          <DashboardFilter searchType={searchType} setSearchType={setSearchType} searchTypeData={searchTypeData} />
-          <SearchAndView
-            searchText={searchText}
-            filterBy={filterBy}
-            sortby={sortBy}
-            itemView={itemView}
-            setSearchText={setSearchText}
-            filterMenu={menu(handleFilterBy)}
-            sortMenu={sortMenu(handleSortBy)}
-            setItemView={setItemView}
+          <DashboardFilter
+            searchType={searchType}
+            searchTypeData={searchTypeOptions}
+            onItemClick={handleSearchTypeChange}
+            intl={intl}
           />
-          {searchType === 'hotels' ? (
-            <HotelSearchPage noHeader noFooter display={searchType !== 'hotels'} />
-          ) : (
-            <ContainerView
-              filterBy={filterBy}
-              itemView={itemView}
-              searchText={searchText}
-              searchType={searchType}
-              filter={filter}
-              items={items}
-              onPageChange={() => {}}
-              onHotelItemClick={onHotelItemClick}
-            />
+          {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
+          {/* TODO: remove temporary page after we create whole pages */}
+          {searchType !== 'hotels' && searchType !== 'flights' && searchType !== 'shopping' && (
+            <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
           )}
         </div>
+        {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}
+        {searchType === 'shopping' && <ShoppingSearchPage noHeader noFooter />}
       </div>
     </Page>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { getRandomImageUrl } from 'helpers/utils';
 import Rating from 'components/Rating/Rating';
 import styles from './HotelItem.module.scss';
@@ -17,7 +18,7 @@ export default function HotelItem({ className, currency }) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci enim, luctus vel nisl Bibendum.
         </span>
         <div className={styles.row}>
-          FROM
+          <FormattedMessage id="from" defaultMessage="FROM" />
           <span>{currency?.symbol}19.99</span>
         </div>
       </div>

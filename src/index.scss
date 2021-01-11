@@ -1,9 +1,10 @@
-@import "styles";
+@import 'styles';
 @import '~antd/dist/antd.css';
 
-body, #root {
+body,
+#root {
   margin: 0;
-  font-family: "Lato", sans-serif !important;
+  font-family: 'Lato', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $grayColor;
@@ -12,6 +13,11 @@ body, #root {
 }
 * {
   box-sizing: border-box;
+}
+
+.noscroll {
+  position: fixed;
+  overflow: hidden;
 }
 
 h1,

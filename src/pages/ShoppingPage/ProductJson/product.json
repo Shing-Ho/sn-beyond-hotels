@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "productName": "Dawn Ultra Dishwashing Liquid  Dish Soap = Original Scent – 7 fl oz",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist.",
+        "price": 1.99,
+        "rating": 4,
+        "productImage": "https://i.ibb.co/KGwPdbb/dawn-ultra-dishwashing-liquid-dish-soap.jpg",
+        "categoryid": 1,
+        "storeid": 3
+    },
+    {
+        "id": 2,
+        "productName": "Rainbow High Skyler – Blue Fashion Doll, with 2.Outfits",
+        "productDetail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl",
+        "price": 26.99,
+        "rating": 4,
+        "productImage": "https://i.ibb.co/4mS8QKW/rainbow-high-skyler.jpg",
+        "categoryid": 2,
+        "storeid": 2
+    },
+    {
+        "id": 3,
+        "productName": "LEGO Creator Expert Corner Garage 10264 Building Kit (2569 Pieces)",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 199.99,
+        "rating": 3,
+        "productImage": "https://i.ibb.co/44nwwNL/lego-creator-expert.jpg",
+        "categoryid": 3,
+        "storeid": 2
+    },
+    {
+        "id": 4,
+        "productName": "Apple iPhone 12",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 949.99,
+        "rating": 2,
+        "productImage": "https://i.ibb.co/dbnXStj/apple-iphone-12.jpg",
+        "categoryid": 4,
+        "storeid": 1
+    },
+    {
+        "id": 5,
+        "productName": "Starbucks Unsweetened Blonde Roast Iced Coffee – 48 fl oz",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 5.99,
+        "rating": 1,
+        "productImage": "https://i.ibb.co/qxpj2Nx/starbucks-unsweetened-blonde-roast-iced-coffee-48-fl-oz-004850020183.jpg",
+        "categoryid": 5,
+        "storeid": 1
+    },
+    {
+        "id": 6,
+        "productName": "Lululemon 5 Year Basic Tee",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 49.99,
+        "rating": 3,
+        "productImage": "https://i.ibb.co/7jjWg2F/lululemon-5-year-basic-tee.jpg",
+        "categoryid": 6,
+        "storeid": 5
+    },
+    {
+        "id": 7,
+        "productName": "ULTA Beauty Box: Glitz Edition Light Pink",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 17.99,
+        "rating": 5,
+        "productImage": "https://i.ibb.co/QPLJDVh/ulta-beauty-box-glitz-edition-light-pink.jpg",
+        "categoryid": 7,
+        "storeid": 7
+    },
+    {
+        "id": 8,
+        "productName": "BLACK+DECKER 4.5 Amp Jig Saw",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 26.99,
+        "rating": 2,
+        "productImage": "https://i.ibb.co/swZmbnM/black-decker-4-5-amp.jpg",
+        "categoryid": 8,
+        "storeid": 8
+    },
+    {
+        "id": 9,
+        "productName": "GAP Kids Hoodies",
+        "productDetail": "Lorem ipsum dolor sit amet , consecteture adipiscing elit. Donec orci enim, luctus vel nist",
+        "price": 16.99,
+        "rating": 3,
+        "productImage": "https://i.ibb.co/K2b4TKJ/GAP-kids-hoodies.jpg",
+        "categoryid": 9,
+        "storeid": 5
+    }
+]

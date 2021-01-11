@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 :global(::selection) {
   background: $primaryColor;
@@ -26,8 +26,8 @@
     line-height: 36px !important;
   }
   :global(.ant-select.ant-select-focused .ant-select-selector) {
-    border-color: $primaryColor !important;
-    box-shadow: $primaryFocusBoxShadow !important;
+    border-color: $primaryColor;
+    box-shadow: $primaryFocusBoxShadow;
   }
   :global(.ant-select:not(.ant-select-disabled):hover .ant-select-selector) {
     border-color: $primaryColor;

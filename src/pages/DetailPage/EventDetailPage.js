@@ -44,14 +44,14 @@ const EventsDetailPage = () => (
   <Page>
     <div className={styles.carousel}>
       <Carousel image={images} />
-      <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} />
+      <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} isRating />
     </div>
     <div className={styles.root}>
       <div className={styles.content}>
         <Row justify="center">
           <Col md={16}>
             <Row>
-              <DetailHeader className={styles.detailHeader} details={{ name: 'Hamilton - The Musical' }} />
+              <DetailHeader className={styles.detailHeader} details={{ name: 'Hamilton - The Musical' }} isRating />
             </Row>
             <Row>
               <EventsListSection className={styles.left} />

@@ -63,12 +63,12 @@ const EditPanelBody = ({
       </div>
     </div>
     {displayCount && (
-      <div style={{ display: 'flex' }}>
+      <div className="countContainer">
         <div className={classNames('itemWrapper', 'countWrapper')}>
           <div className="icon">
             <AdultIcon width="25" />
             <span className="text">
-              <FormattedMessage id="adults" />
+              <FormattedMessage id="adults" defaultMessage="Adults" />
             </span>
           </div>
           <div className="countInputWrapper">
@@ -84,7 +84,7 @@ const EditPanelBody = ({
           <div className="icon">
             <ChildIcon width="25" />
             <span className="text">
-              <FormattedMessage id="children" />
+              <FormattedMessage id="children" defaultMessage="Children" />
             </span>
           </div>
           <div className="countInputWrapper">
@@ -125,12 +125,12 @@ const EditPanelFooter = ({ toggleEdit, searchHotels }) => (
   <div className={classNames('itemWrapper', 'footer')}>
     <div className="cancel">
       <Button onClick={() => toggleEdit(false)}>
-        <FormattedMessage id="cancel" />
+        <FormattedMessage id="cancel" defaultMessage="Cancel" />
       </Button>
     </div>
     <div className="search">
       <Button onClick={searchHotels}>
-        <FormattedMessage id="search" />
+        <FormattedMessage id="search" defaultMessage="Search" />
       </Button>
     </div>
     <div className="closeIcon">

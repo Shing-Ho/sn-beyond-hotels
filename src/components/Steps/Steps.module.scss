@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .root {
   :global(.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after),
@@ -65,51 +65,163 @@
 }
 
 @media (max-width: $bp-mobile) {
- .root {
-   :global(.ant-steps-item-wait .ant-steps-item-icon),
-   :global(.ant-steps-item-process .ant-steps-item-icon),
-   :global(.ant-steps-item-finish .ant-steps-item-icon) {
-     width: 24px;
-     height: 24px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-left: 45px;
+  .root {
+    :global(.ant-steps-item-wait .ant-steps-item-icon),
+    :global(.ant-steps-item-process .ant-steps-item-icon),
+    :global(.ant-steps-item-finish .ant-steps-item-icon) {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 45px;
 
-     svg {
-       width: 26px;
-       height: 20px;
-       color: $primaryColor;
-     }
-   }
+      svg {
+        width: 26px;
+        height: 20px;
+        color: $primaryColor;
+      }
+    }
 
-   :global(.ant-steps-item-wait .ant-steps-item-icon .ant-steps-icon),
-   :global(.ant-steps-item-process .ant-steps-item-icon .ant-steps-icon) {
-     font-size: 16px;
-   }
+    :global(.ant-steps-item-wait .ant-steps-item-icon .ant-steps-icon),
+    :global(.ant-steps-item-process .ant-steps-item-icon .ant-steps-icon) {
+      font-size: 16px;
+    }
 
-   :global(.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title),
-   :global(.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title),
-   :global(.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title) {
-     font-size: 14px;
-     font-weight: 600;
-   }
+    :global(.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title),
+    :global(.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title),
+    :global(.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title) {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-   :global(.ant-steps-item-wait > .ant-steps-item-container),
-   :global(.ant-steps-item-finish > .ant-steps-item-container),
-   :global(.ant-steps-item-process > .ant-steps-item-container) {
-     width: 75px;
-   }
+    :global(.ant-steps-item-wait > .ant-steps-item-container),
+    :global(.ant-steps-item-finish > .ant-steps-item-container),
+    :global(.ant-steps-item-process > .ant-steps-item-container) {
+      width: 75px;
+    }
 
-   :global(.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-tail),
-   :global(.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail),
-   :global(.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-tail) {
-    margin-left: 40px !important;
-    top: -5px;
-   }
+    :global(.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-tail),
+    :global(.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail),
+    :global(.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-tail) {
+      margin-left: 40px !important;
+      top: -5px;
+    }
 
-   :global(.ant-steps-item > .ant-steps-item-container > .ant-steps-item-content) {
-    text-align: start;
+    :global(.ant-steps-item > .ant-steps-item-container > .ant-steps-item-content) {
+      text-align: start;
+    }
   }
- }
+}
+
+.venues {
+  :global {
+    .ant-steps-item-finish {
+      .ant-steps-item-container {
+        .ant-steps-item-tail {
+          &::after {
+            background-color: $secondaryColor;
+            height: 8px;
+            margin: 0;
+            width: calc(100% - 48px);
+            margin-left: 25px;
+          }
+        }
+        .ant-steps-item-icon {
+          .ant-steps-icon {
+            background-color: $secondaryColor;
+            color: white;
+            border: none;
+          }
+        }
+        .ant-steps-item-title {
+          color: $grayColor !important;
+        }
+      }
+    }
+    .ant-steps-item-active {
+      .ant-steps-item-container {
+        .ant-steps-item-tail {
+          &::after {
+            background-color: $grayColor;
+            height: 8px;
+            margin: 0;
+            width: calc(100% - 48px);
+            margin-left: 25px;
+          }
+        }
+        .ant-steps-item-icon {
+          .ant-steps-icon {
+            background-color: $secondaryLightColor;
+            color: white;
+            border: none;
+          }
+        }
+        .ant-steps-item-title {
+          color: $secondaryLightColor !important;
+        }
+      }
+    }
+
+    .ant-steps-item-wait {
+      .ant-steps-item-container {
+        .ant-steps-item-tail {
+          &::after {
+            background-color: $grayColor;
+          }
+        }
+      }
+    }
+    .ant-steps-item-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .ant-steps-item-tail {
+        top: 21px;
+        width: 100%;
+        margin-left: 50%;
+        padding: 0;
+        &::after {
+          background-color: $grayColor;
+          height: 8px;
+          width: calc(100% - 48px);
+          margin-left: 25px;
+        }
+      }
+
+      .ant-steps-item-icon {
+        margin: 0;
+        border: none;
+        .ant-steps-icon {
+          width: 50px !important;
+          height: 50px !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: Lato;
+          font-size: 30px;
+          font-weight: normal;
+          color: $grayColor;
+          border: 4px solid $grayColor;
+          border-radius: 50%;
+        }
+      }
+      .ant-steps-item-content {
+        margin-top: 26px;
+      }
+    }
+    .ant-steps-item {
+      &:nth-last-child(2) {
+        .ant-steps-item-container {
+          .ant-steps-item-tail {
+            &::after {
+              width: calc(100% - 66px);
+              margin-left: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
