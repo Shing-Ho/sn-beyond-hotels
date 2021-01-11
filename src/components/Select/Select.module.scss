@@ -12,7 +12,7 @@
     width: 100%;
   }
   :global(.ant-select-arrow) {
-    display: none;
+    //display: none;
   }
   :global(.ant-select),
   :global(.ant-select-selector) {
@@ -44,6 +44,12 @@
   .arrowDown {
     @extend .suffix;
     top: 15px;
+    path {
+      stroke: $primaryColor;
+    }
+  }
+  .arrowDownin {
+    @extend .suffix;
     path {
       stroke: $primaryColor;
     }

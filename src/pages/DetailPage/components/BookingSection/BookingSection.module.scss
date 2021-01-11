@@ -81,25 +81,27 @@
 
         > span {
           margin: 0;
-          margin-bottom: 28px;
         }
 
-        > div {
+        .orders {
+          display: flex;
+          flex-direction: column;
           font-size: 14px;
           font-weight: bold;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          margin-top: 15px;
+          > div {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-          > span {
-            color: $primaryColor;
+            > span {
+              color: $primaryColor;
 
-            > svg {
-              margin-left: 15px;
-              cursor: pointer;
-
-              > path {
-                fill: $brownColor;
+              > svg {
+                margin-left: 15px;
+                cursor: pointer;
               }
             }
           }

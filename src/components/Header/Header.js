@@ -40,9 +40,11 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <MenuOutlined className={styles.menubtn} onClick={handleMenuButtonClick} />
-        <div className={styles.logo}>
-          <img className={styles.logoImage} src={logo} alt="logo" />
+        <div className={styles.mainContainer}>
+          <MenuOutlined className={styles.menubtn} onClick={handleMenuButtonClick} />
+          <div className={styles.logo}>
+            <img className={styles.logoImage} src={logo} alt="logo" />
+          </div>
         </div>
         <Menu onClick={onMenuChange} className={styles.menus} selectedKeys={[currentMenu]} mode="horizontal">
           <Menu.Item className={styles.menuItem} key="/">
@@ -65,7 +67,7 @@ const Header = () => {
             />
           </div>
           <div className={styles.cartWrapper} onClick={() => dispatch(coreActions.toggleDrawer(true))}>
-            <p>{selectedRooms.length}</p>
+            <span>{selectedRooms.length}</span>
             <img src={CartIcon} alt="" />
           </div>
         </div>

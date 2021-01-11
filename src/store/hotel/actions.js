@@ -26,6 +26,7 @@ const hotelActions = createActions(
     CANCEL_LOOKUP_SUCCESS: undefined,
     CANCEL_ORDER_SUCCESS: undefined,
     CLEAR_STATE: undefined,
+    SEARCH_DATA: undefined,
   },
   options,
 );
@@ -44,16 +45,29 @@ const topFilterData = (payload) => (dispatch) => {
   dispatch(hotelActions.setTopFilters(payload));
 };
 
-const onFilterChange = (changes) => (dispatch, getState) => {
+const onFilterChange = (changes, search) => (dispatch, getState) => {
   const {
     hotel: { hotels, page, pageSize, filters },
   } = getState();
-  const updatedFilters = {
-    ...filters,
-    ...changes,
-  };
+  let updatedFilters;
+  if (search) {
+    updatedFilters = { ...changes };
+  } else {
+    updatedFilters = { ...filters, ...changes };
+  }
   dispatch(hotelActions.updateFilters(updatedFilters));
   const filteredHotels = filterHotels(hotels, updatedFilters);
+  dispatch(hotelActions.setFilteredHotels(filteredHotels));
+  dispatch(hotelActions.setCount(filteredHotels.length));
+  dispatch(onPageChange(page, pageSize));
+};
+
+const onSortChange = (sortBy) => (dispatch, getState) => {
+  const {
+    hotel: { hotels, page, pageSize, filters },
+  } = getState();
+  dispatch(hotelActions.updateFilters(filters));
+  const filteredHotels = filterHotels(hotels, filters, sortBy);
   dispatch(hotelActions.setFilteredHotels(filteredHotels));
   dispatch(hotelActions.setCount(filteredHotels.length));
   dispatch(onPageChange(page, pageSize));
@@ -93,7 +107,7 @@ const searchHotels = (requestObj) => async (dispatch, getState) => {
     if (payload.hotel_id) {
       filterObj.hotel_id = payload.hotel_id;
     }
-    dispatch(onFilterChange(filterObj));
+    dispatch(onFilterChange(filterObj, 'search'));
   } catch (error) {
     dispatch(hotelActions.setFailure(error));
   }
@@ -106,6 +120,7 @@ const searchHotelById = (id, searchData) => async (dispatch, getState) => {
     } = getState();
 
     dispatch(hotelActions.setLoading(true));
+    dispatch(hotelActions.searchData(searchData));
     const data = await API.searchHotelById(searchData);
     dispatch(hotelActions.selectHotel({ ...data, currency }));
   } catch (error) {
@@ -151,4 +166,5 @@ export default {
   getLocationData,
   cancelLookup,
   cancelOrder,
+  onSortChange,
 };

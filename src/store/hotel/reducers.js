@@ -125,6 +125,13 @@ export const hotelReducer = handleActions(
         loading: false,
       }),
     ],
+    [
+      hotelActions.searchData,
+      (state, action) => ({
+        ...state,
+        searchData: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -140,6 +147,7 @@ export const hotelReducer = handleActions(
     selectedHotel: null,
     cancelLookupResponse: {},
     cancelOrderResponse: {},
+    searchData: {},
   },
 );
 

@@ -10,6 +10,22 @@
     margin-left: 0 !important;
   }
 
+  .items {
+    .totalWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .total {
+        font-weight: 300;
+        font-size: 22px;
+        color: #7b7c7e;
+      }
+      .filter {
+        cursor: pointer;
+      }
+    }
+  }
+
   .viewSwitch {
     display: flex;
     justify-content: flex-end;
@@ -80,5 +96,17 @@
   .pagination {
     margin-top: 20px;
     align-self: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .total {
+      font-weight: 300;
+      font-size: 24px;
+      color: #7b7c7e;
+    }
+    .content {
+      width: fit-content;
+    }
   }
 }

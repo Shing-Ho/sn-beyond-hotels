@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Form } from 'antd';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import history from 'store/history';
 import Page from 'components/Page/Page';
 import bookingActions from 'store/booking/actions';
 import Button from 'components/Button/Button';
 import Drawer from 'components/Drawer/Drawer';
-import { getSelectedHotel, getSelectedRoomItems, getTotalBookingAmount } from 'store/booking/selectors';
+import {
+  getGuestContactInformation,
+  getSelectedHotel,
+  getSelectedRoomItems,
+  getTotalBookingAmount,
+} from 'store/booking/selectors';
 import { getCurrency } from 'store/core/selectors';
+import { Currencies } from 'helpers/constants';
 import GuestHeader from './components/GuestHeader/GuestHeader';
 import AdditionalForm from './components/AdditionalForm/AdditionalForm';
 import PrimaryContactFormContainer from './components/PrimaryContactFormContainer/PrimaryContactFormContainer';
@@ -21,14 +27,14 @@ export default function GuestPage() {
   const [form] = Form.useForm();
   const selectedHotel = useSelector(getSelectedHotel);
   const selectedRooms = useSelector(getSelectedRoomItems);
+  const contactInfo = useSelector(getGuestContactInformation);
   const totalAmount = useSelector(getTotalBookingAmount);
   const currency = useSelector(getCurrency);
   const [primaryContact, setPrimaryContact] = useState({});
-  const [phoneError, setPhoneError] = useState('');
   // set primary checked to true as default
   const [items, setItems] = useState((selectedRooms || []).map((v) => ({ ...v, primary: true })));
 
-  const intl = useIntl();
+  const currencySymbol = Currencies[items[0]?.avg_nightly_rate?.currency || 'USD']?.symbol;
 
   const changeItem = (cItem, index) => {
     const tItem = [...items];
@@ -36,30 +42,9 @@ export default function GuestPage() {
     setItems(tItem);
   };
 
-  const isNumber = (numberStr) => {
-    let flag = true;
-    for (let i = 0; i < numberStr.length; i += 1) {
-      if (numberStr[i] < '0' && numberStr[i] > '9') {
-        flag = false;
-      }
-    }
-    return flag;
-  };
-
   const handleFormSubmit = async () => {
     try {
       await form.validateFields();
-
-      if (!isNumber(primaryContact.phone)) {
-        setPhoneError(
-          intl.formatMessage({
-            id: 'guestPage.inputOnlyNumberInField',
-            defaultValue: 'Please input only number in this field',
-          }),
-        );
-        return;
-      }
-
       const allConatct = { primaryContact, items };
       dispatch(bookingActions.setGuestContactInformation(allConatct));
 
@@ -75,15 +60,14 @@ export default function GuestPage() {
 
   return (
     <Page>
-      <Form form={form} name={formKey} layout="vertical">
+      <Form form={form} initialValues={contactInfo?.primaryContact || primaryContact} name={formKey} layout="vertical">
         <GuestHeader />
         <div className={styles.content}>
           <Row gutter={24}>
             <Col md={{ span: 16 }} xs={{ span: 24 }}>
               <PrimaryContactFormContainer
-                primaryContact={primaryContact}
+                primaryContact={contactInfo?.primaryContact || primaryContact}
                 setPrimaryContact={setPrimaryContact}
-                phoneError={phoneError}
               />
               {items.map((item, index) => (
                 <div key={`additionalForm_${index + 1}`} className={styles.detail}>
@@ -105,7 +89,7 @@ export default function GuestPage() {
           <div className={styles.wrapper}>
             <div className={styles.totalSection}>
               <span>
-                {currency?.symbol} {totalAmount.toFixed(2)}
+                {currencySymbol} {totalAmount.toFixed(2)}
               </span>
               <span>
                 <FormattedMessage id="total" defaultMessage="Total" />
@@ -126,7 +110,7 @@ export default function GuestPage() {
             <div className={styles.drawerHeader}>
               <div className={styles.drawalTotalSection}>
                 <span>
-                  {currency?.symbol} {totalAmount.toFixed(2)}
+                  {currencySymbol} {totalAmount.toFixed(2)}
                 </span>
                 <span>
                   <FormattedMessage id="total" defaultMessage="Total" />
@@ -140,7 +124,7 @@ export default function GuestPage() {
           footer={
             <div className={styles.drawerBottom}>
               <div className={styles.drawalTotalSection}>
-                <span>{`${currency?.symbol} ${totalAmount.toFixed(2)}`}</span>
+                <span>{`${currencySymbol} ${totalAmount.toFixed(2)}`}</span>
                 <span>
                   <FormattedMessage id="total" defaultMessage="Total" />
                 </span>

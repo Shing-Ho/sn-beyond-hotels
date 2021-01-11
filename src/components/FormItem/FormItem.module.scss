@@ -41,6 +41,14 @@
       color: $primaryColor !important;
       text-transform: uppercase;
     }
+    :global(.ant-input-affix-wrapper:focus),
+    :global(.ant-input-affix-wrapper-focused) {
+      box-shadow: none;
+      border-color: $primaryColor;
+    }
+    :global(.ant-input-affix-wrapper:hover) {
+      border-color: $primaryColor;
+    }
   }
   :global(.ant-form-item-label > label) {
     font-weight: bold;
