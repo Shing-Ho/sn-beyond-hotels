@@ -73,6 +73,13 @@ export const coreReducer = handleActions(
         currency: action.payload,
       }),
     ],
+    [
+      coreActions.setCurrentMenu,
+      (state, action) => ({
+        ...state,
+        currentMenu: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -83,6 +90,7 @@ export const coreReducer = handleActions(
     drawerOpen: false,
     currency: 'USD',
     cartDrawer: false,
+    currentMenu: '/',
   },
 );
 

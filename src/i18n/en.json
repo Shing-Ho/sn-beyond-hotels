@@ -78,6 +78,11 @@
   "pickAdate": "Pick a Date",
   "yourReservation": "Your Reservation",
   "reserveNow": "Reserve Now",
+  "supplyManager": "Supply Manager",
+  "dashboard": "Dashboard",
+  "venues": "Venues",
+  "active": "Active",
+  "inactive": "Inactive",
 
   "detailPage.notification.description": "Form Data is invalid",
   "detailPage.RoomList.tab.detailPane": "Details Pane",

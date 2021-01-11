@@ -78,6 +78,12 @@
   "pickAdate": "Выберите дату",
   "yourReservation": "Ваше бронирование",
   "reserveNow": "Забронировать сейчас",
+  "supplyManager": "Supply Manager",
+  "dashboard": "Dashboard",
+  "venues": "Venues",
+  "active": "Active",
+  "inactive": "Inactive",
+
   "detailPage.notification.description": "Данные формы недействительны",
   "detailPage.RoomList.tab.detailPane": "Панель сведений",
   "detailPage.RoomList.tab.mapPane": "Область карты",

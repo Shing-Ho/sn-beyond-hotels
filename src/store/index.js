@@ -20,7 +20,7 @@ const rootPersistConfig = {
 const corePersistConfig = {
   key: 'core',
   storage,
-  whitelist: ['locale'],
+  whitelist: ['locale', 'currentMenu'],
 };
 // const authPersistConfig = {
 //   key: 'auth',
