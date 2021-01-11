@@ -23,11 +23,13 @@
     .mainContainer {
       display: flex;
       align-items: center;
+
       .logo {
         @media (max-width: $bp-mobile) {
           margin-left: 3px;
           display: flex;
         }
+
         .logoImage {
           max-width: 236px;
           @media (max-width: $bp-mobile) {
@@ -35,75 +37,83 @@
           }
         }
       }
+
       .menus {
         display: flex;
         height: 100%;
         line-height: 80px;
         background-color: transparent;
-      border: none;
+        border: none;
 
-      .menuItem {
-        margin: 0;
-        top: 0;
-        padding: 0 20px;
-        background-color: transparent;
-        font-size: 20px;
-        font-family: Lato;
-        font-weight: bold;
-        color: $grayColor;
-        &:global(.ant-menu-item):not(:hover) {
-          border: none;
+        .menuItem {
+          margin: 0;
+          top: 0;
+          padding: 0 20px;
+          background-color: transparent;
+          font-size: 20px;
+          font-family: Lato;
+          font-weight: bold;
+          color: $grayColor;
+
+          &:global(.ant-menu-item):not(:hover) {
+            border: none;
+          }
+
+          &:global(.ant-menu-item-active) {
+            border-width: 0;
+            color: $secondaryLightColor;
+          }
+
+          &:global(.ant-menu-item-selected) {
+            border-bottom: 5px solid $secondaryLightColor !important;
+            color: $secondaryLightColor;
+          }
         }
-        &:global(.ant-menu-item-active) {
-          border-width: 0;
-          color: $secondaryLightColor;
+      }
+
+      .itemWrapper {
+        display: flex;
+
+        .langWrapper {
+          padding: 0 15px;
+          @media (max-width: $bp-mobile) {
+            padding: 0 2px;
+          }
         }
-        &:global(.ant-menu-item-selected) {
-          border-bottom: 5px solid $secondaryLightColor !important;
-          color: $secondaryLightColor;
+
+        .cartWrapper {
+          position: relative;
+
+          span {
+            position: absolute;
+            top: 26%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+          }
+
+          img {
+            height: 24px;
+            width: 24px;
+          }
         }
       }
     }
-    .itemWrapper {
-      display: flex;
 
-      .langWrapper {
-        padding: 0 15px;
-        @media (max-width: $bp-mobile) {
-          padding: 0 2px;
-        }
-      }
+    @media (max-width: $bp-mobile) {
+      height: 100px;
+      padding: 10px 15px;
 
-      .cartWrapper {
-        position: relative;
-        span {
-          position: absolute;
-          top: 26%;
-          left: 60%;
-          transform: translate(-50%,-50%);
-          font-size: 16px;
-        }
-        img {
-          height: 24px;
-          width: 24px;
+      .container {
+        .menus {
+          display: none;
         }
       }
     }
-  }
-
-  @media (max-width: $bp-mobile) {
-    height: 100px;
-    padding: 10px 15px;
-
-    .container {
-      .menus {
+    @media (min-width: $bp-mobile) {
+      .menubtn {
         display: none;
       }
-    }
-  }
-  @media (min-width: $bp-mobile) {
-    .menubtn {
-      display: none;
     }
   }
 }
