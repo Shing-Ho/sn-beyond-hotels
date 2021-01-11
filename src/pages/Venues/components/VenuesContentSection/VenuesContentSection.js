@@ -26,6 +26,16 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
 
   return (
     <div className={styles.root}>
+      <div
+        className={cx(styles.tabPane, {
+          [styles.onboarding]: tabsOnboarding,
+        })}
+      >
+        <div className={styles.mentoring}>
+          <p>Tab through other sections to add additional details and information</p>
+          <img src={mentorImg} alt="Arrow for mentoring" />
+        </div>
+      </div>
       <Tabs
         className={cx(styles.tabPane, {
           [styles.onboarding]: tabsOnboarding,
@@ -36,10 +46,6 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
         onChange={(key) => setActiveTab(key)}
       >
         <TabPane tab="Products" key="1">
-          <div className={styles.mentoring}>
-            <p>Tab through other sections to add additional details and information</p>
-            <img src={mentorImg} alt="Arrow for mentoring" />
-          </div>
           <ProductsGroupCollapse
             onboarding={productOnboarding}
             header={<ProductsGroupHeader onboarding={productOnboarding} trash equal />}
