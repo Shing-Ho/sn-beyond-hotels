@@ -3,11 +3,9 @@
 .root {
   padding: 13px 0;
   border-bottom: 1px solid $borderGrayColor;
-  position: relative;
+  border-top: 1px solid $borderGrayColor;
 
-  &:last-child {
-    border: none;
-  }
+  position: relative;
 
   .item {
     display: flex;
@@ -137,6 +135,57 @@
         font-weight: bold;
         flex: 1;
         text-align: end;
+      }
+      .rateInfo {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+        .total {
+          font-weight: 300;
+          font-family: "Lato", sans-serif !important;
+          color: #7b7c7e;
+          font-size: 14px;
+        }
+        @media screen and (max-width: 767px){
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-between;
+          display: flex;
+          flex-wrap: wrap;
+          .flex-vertical-center,  .itemRate {
+            font-size: 16px !important;
+            color: $primaryColor !important;
+          }
+          span{
+
+            color: #003398;
+          }
+        }
+        .itemRate {
+          margin-left: 8px;
+          color: $primaryColor;
+          font-size: 20px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .taxesAndFees {
+          display: flex;
+          flex-direction: row;
+          text-align: right;
+          > :not(:first-child) {
+            margin-left: 8px;
+          }
+          .infoIcon {
+            cursor: pointer;
+          }
+          .total {
+            font-weight: 300;
+            font-family: "Lato", sans-serif !important;
+            color: #7b7c7e;
+            font-size: 14px;
+            text-align: left;
+          }
+        }
       }
     }
   }

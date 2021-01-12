@@ -1,0 +1,96 @@
+@import 'styles';
+
+.productsDetails {
+  h2 {
+    font-family: Lato;
+    font-size: 24px;
+    font-weight: 300;
+    color: $grayColor;
+    margin: 25px 0 15px 0;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    svg {
+      cursor: pointer;
+      path {
+        fill: $secondaryColor;
+      }
+    }
+
+    .btn {
+      width: 40px;
+      height: 24px;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 3px;
+      background-color: rgba($secondaryLightColor, 0.2);
+      color: $secondaryColor;
+      margin-left: 16px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  .location {
+    display: flex;
+    width: 100%;
+    min-height: 118px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+    border: solid 1px $lightGrayColor;
+
+    .map {
+      width: 363px;
+    }
+    .content {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .address {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        b,
+        p {
+          width: 100%;
+          font-family: Lato;
+          font-size: 16px;
+          color: $grayColor;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .hoursOfOperation {
+    width: 100%;
+    min-height: 258px;
+    padding: 30px 20px 20px 20px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+    border: solid 1px $lightGrayColor;
+    color: $grayColor;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: normal;
+
+    .header {
+      padding-bottom: 20px;
+      line-height: 24px;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    hr {
+      margin: 25px 0;
+      height: 1px;
+      border-top: 1px solid $lightGrayColor;
+    }
+  }
+}

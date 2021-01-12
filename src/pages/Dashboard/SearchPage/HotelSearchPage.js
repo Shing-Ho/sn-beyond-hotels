@@ -8,7 +8,7 @@ import cx from 'classnames';
 import Page from 'components/Page/Page';
 import TopFilters from 'components/TopFilters/TopFilters';
 import hotelActions from 'store/hotel/actions';
-import { getLoading, getFetchingRecords } from 'store/hotel/selectors';
+import { getLoading, getFetchingRecords, getVisibleHotels } from 'store/hotel/selectors';
 import { getCurrency } from 'store/core/selectors';
 import bookingActions from 'store/booking/actions';
 import Results from './components/Results/Results';
@@ -36,12 +36,13 @@ const HotelSearchPage = ({ display }) => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const fetchingRecords = useSelector(getFetchingRecords);
+  const hotels = useSelector(getVisibleHotels);
   const currency = useSelector(getCurrency);
   const params = useLocation();
   const [showDrawer, toggleDrawer] = useState(false);
 
   useEffect(() => {
-    if (params.search) {
+    if (params.search && !hotels.length) {
       const urls = queryString.parse(params.search);
       const payload = {
         location_id: '5128581',
@@ -73,7 +74,7 @@ const HotelSearchPage = ({ display }) => {
         payload.currency = urls.currency;
       }
       dispatch(hotelActions.searchHotels(payload));
-    } else {
+    } else if (!hotels.length) {
       dispatch(hotelActions.searchHotels());
       dispatch(bookingActions.setBookingPayload(''));
     }

@@ -12,6 +12,8 @@ import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/Produc
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
 import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
 import ProductItem from '../ProductItem/ProductItem';
+import VenuesProductsDetails from '../VenuesProductsDetails/VenuesProductsDetails';
+import VenuesProductsContacts from '../VenuesProductsContacts/VenuesProductsContacts';
 
 import styles from './VenuesContentSection.module.scss';
 
@@ -26,6 +28,16 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
 
   return (
     <div className={styles.root}>
+      <div
+        className={cx(styles.tabPane, {
+          [styles.onboarding]: tabsOnboarding,
+        })}
+      >
+        <div className={styles.mentoring}>
+          <p>Tab through other sections to add additional details and information</p>
+          <img src={mentorImg} alt="Arrow for mentoring" />
+        </div>
+      </div>
       <Tabs
         className={cx(styles.tabPane, {
           [styles.onboarding]: tabsOnboarding,
@@ -36,10 +48,6 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
         onChange={(key) => setActiveTab(key)}
       >
         <TabPane tab="Products" key="1">
-          <div className={styles.mentoring}>
-            <p>Tab through other sections to add additional details and information</p>
-            <img src={mentorImg} alt="Arrow for mentoring" />
-          </div>
           <ProductsGroupCollapse
             onboarding={productOnboarding}
             header={<ProductsGroupHeader onboarding={productOnboarding} trash equal />}
@@ -80,6 +88,7 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           <Button className={[styles.addBtn, styles.group]} onClick={() => setModalVisible(true)}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Deails
           </Button>
+          <VenuesProductsDetails />
           <Modal
             title="Venue Details"
             visible={modalVisible}
@@ -92,7 +101,10 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
-          <h1>This is Contacts tab</h1>
+          <VenuesProductsContacts />
+          <Button className={[styles.addBtn, styles.product]}>
+            <i className="fa fa-plus" aria-hidden="true" /> Add Another Contact
+          </Button>
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="4">
           <h1>This is Seating tab</h1>

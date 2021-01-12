@@ -52,6 +52,12 @@ export default function RoomListSection(props) {
             <GoogleMap center={location} coords={[location]} />
           </div>
         </TabPane>
+        <TabPane tab={intl.formatMessage({ id: 'location', defaultValue: 'Location' })} key="4">
+          <h3>Location tab</h3>
+        </TabPane>
+        <TabPane tab={intl.formatMessage({ id: 'cleaning/safety', defaultValue: 'Cleaning/Safety' })} key="5">
+          <h3>Cleaning/Safety tab</h3>
+        </TabPane>
       </Tabs>
     </div>
   );
