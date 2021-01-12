@@ -2,12 +2,6 @@ import React from 'react';
 import { Row, Col, Button, Switch, DatePicker } from 'antd';
 import cx from 'classnames';
 
-import PaypalImg from 'icons/paypal-logo.png';
-import AlipayImg from 'icons/alipay-logo.png';
-import VenmoImg from 'icons/venmo-logo.png';
-import WechatImg from 'icons/wechat-logo.png';
-import ApplepayImg from 'icons/applepay-logo.png';
-import ChaseImg from 'icons/chase-logo.png';
 import { ReactComponent as TrashIcon } from 'icons/trash.svg';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 
@@ -15,6 +9,8 @@ import Input from 'components/Input/Input';
 import TimePicker from 'components/TimePicker/TimePicker';
 import Select from 'components/Select/Select';
 import { Steps, Step } from 'components/Steps/Steps';
+
+import VenuesPaymentForms from '../VenuesPaymentForms/VenuesPaymentForms';
 import styles from './VenuesDetailsSteps.module.scss';
 
 const steps = [
@@ -116,38 +112,10 @@ export default function VenuesDetailsSteps({ onCancel }) {
         {currentStep === 3 && (
           <div className={styles.step4}>
             <h1>Select Forms of Payment Accepted</h1>
-            <div className={styles.paymentForms}>
-              <div className={cx(styles.paymentItem, styles.active)}>
-                <div className={[styles.name, styles.center]}>CREDIT/DEBIT</div>
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={PaypalImg} alt="paypal" />
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={VenmoImg} alt="Venmo" />
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={ApplepayImg} alt="Apple Pay" />
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={ChaseImg} alt="Chase" />
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={WechatImg} alt="WeChat Pay" />
-              </div>
-              <div className={styles.paymentItem}>
-                <img src={AlipayImg} alt="Alipay" />
-              </div>
-              <div className={styles.paymentItem}>
-                <div className={styles.name}>NAME OF NEW</div>
-                <div className={styles.icon}>
-                  <TrashIcon width={12} />
-                </div>
-              </div>
-            </div>
-            <Button className={styles.addBtn}>
+            <VenuesPaymentForms />
+            {/* <Button className={styles.addBtn}>
               <i className="fa fa-plus" aria-hidden="true" /> Add New Form Of Payment
-            </Button>
+            </Button> */}
           </div>
         )}
         {currentStep === 4 && (
