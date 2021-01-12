@@ -134,3 +134,9 @@ export const filterShoppingItems = (products, filters) => {
 
   return filteredProducts;
 };
+
+export function extractStringFromHTML(html) {
+  const span = document.createElement('span');
+  span.innerHTML = html;
+  return span.textContent || span.innerText;
+}
