@@ -137,12 +137,12 @@ const DetailPage = () => {
       };
       dispatch(hotelActions.searchHotelById(params.id, payload));
     } else {
-      const maps = {};
-      hotel.room_types.forEach((type) => {
-        const room = (preSelectedRooms ? preSelectedRooms.room_rate : []).find((r) => r.code === type.code);
-        maps[type.code] = room ? room.room_count || 1 : 1;
-      });
-      setRoomCounts(maps);
+      // const maps = {};
+      // hotel?.room_types.forEach((type) => {
+      //   const room = (preSelectedRooms ? preSelectedRooms.room_rate : []).find((r) => r.code === type.code);
+      //   maps[type.code] = room ? room.room_count || 1 : 1;
+      // });
+      // setRoomCounts(maps);
     }
   }, [dispatch, hotel, params.id, preSelectedRooms, intl]);
 
