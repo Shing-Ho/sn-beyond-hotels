@@ -5,6 +5,7 @@ import { Tabs, TabPane } from 'components/Tab/Tab';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { getCurrency } from 'store/core/selectors';
 import DiningDetailItem from '../DiningDetailItem/DiningDetailItem';
+import ReviewsSection from '../ReviewsSection/ReviewsSection';
 import styles from './DiningListSection.module.scss';
 
 const tempItem = [
@@ -97,7 +98,7 @@ export default function DiningListSection(props) {
           </div>
         </TabPane>
         <TabPane tab="REVIEWS" key="4">
-          <div>This is Review</div>
+          <ReviewsSection />
         </TabPane>
         <TabPane tab="SAFETY" key="5">
           <div>This is Safety</div>
