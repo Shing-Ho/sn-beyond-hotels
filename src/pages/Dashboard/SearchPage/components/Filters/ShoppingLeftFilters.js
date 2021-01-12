@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormItem from 'components/FormItem/FormItem';
 import shoppingActions from 'store/shopping/actions';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { getFilters } from 'store/shopping/selectors';
+import { getFilters, getShopBy } from 'store/shopping/selectors';
 import Collapse from 'components/Collapse/Collapse';
 import Rating from 'components/Rating/Rating';
 import styles from './ShoppingLeftFilters.module.scss';
@@ -14,6 +14,7 @@ const ShoppingLeftFilters = ({ currency }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const filters = useSelector(getFilters);
+  const shopyBy = useSelector(getShopBy);
   const shopByOptions = [
     { label: 'PRODUCTS', value: 'PRODUCTS' },
     { label: 'STORE', value: 'STORE' },
@@ -26,7 +27,9 @@ const ShoppingLeftFilters = ({ currency }) => {
   const onMinChange = (value) => {
     dispatch(shoppingActions.onSearchFilterChange({ minPrice: value }));
   };
-
+  const onShopByChange = (event) => {
+    dispatch(shoppingActions.setShopByView(event.target.value));
+  };
   const onMaxChange = (value) => {
     dispatch(shoppingActions.onSearchFilterChange({ maxPrice: value }));
   };
@@ -40,7 +43,7 @@ const ShoppingLeftFilters = ({ currency }) => {
           <h3 className={styles.header}>
             <FormattedMessage id="hotel.filters" defaultMessage="Filters" />
           </h3>
-          <div>
+          <div className={styles.valueNumber}>
             <span>264</span>
             <h6>Items</h6>
           </div>
@@ -83,10 +86,23 @@ const ShoppingLeftFilters = ({ currency }) => {
             </div>
           </FormItem>
           <FormItem label="SHOP BY">
-            <Radio.Group options={shopByOptions} value="PRODUCTS" optionType="button" buttonStyle="solid" />
+            <Radio.Group
+              options={shopByOptions}
+              value={shopyBy}
+              optionType="button"
+              buttonStyle="solid"
+              className={styles.radio}
+              onChange={onShopByChange}
+            />
           </FormItem>
           <FormItem label="AVAILABILITY">
-            <Radio.Group options={availabilityOptions} value="ANY" optionType="button" buttonStyle="solid" />
+            <Radio.Group
+              options={availabilityOptions}
+              value="ANY"
+              optionType="button"
+              buttonStyle="solid"
+              className={styles.radio}
+            />
           </FormItem>
           <FormItem label={intl.formatMessage({ id: 'userRating', defaultValue: 'User Rating' })}>
             <Rating
