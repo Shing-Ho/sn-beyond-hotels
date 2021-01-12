@@ -53,6 +53,7 @@ export default function VenuesDetailsSteps({ onCancel }) {
   const handleStep = (step) => {
     if (step < 0 || step > 4) {
       onCancel();
+      setCurrentStep(0);
     } else {
       setCurrentStep(step);
     }

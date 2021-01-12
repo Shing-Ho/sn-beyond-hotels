@@ -13,6 +13,7 @@ import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
 import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
 import ProductItem from '../ProductItem/ProductItem';
 import VenuesProductsDetails from '../VenuesProductsDetails/VenuesProductsDetails';
+import VenuesProductsContacts from '../VenuesProductsContacts/VenuesProductsContacts';
 
 import styles from './VenuesContentSection.module.scss';
 
@@ -100,7 +101,10 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
-          <h1>This is Contacts tab</h1>
+          <VenuesProductsContacts />
+          <Button className={[styles.addBtn, styles.product]}>
+            <i className="fa fa-plus" aria-hidden="true" /> Add Another Contact
+          </Button>
         </TabPane>
         <TabPane tab={intl.formatMessage({ id: 'seating', defaultValue: 'Seating' })} key="4">
           <h1>This is Seating tab</h1>
