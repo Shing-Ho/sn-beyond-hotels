@@ -7,6 +7,7 @@ import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
 
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import Modal from 'components/Modal/Modal';
+import Editor from 'components/Editor/Editor';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
@@ -19,10 +20,15 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
   const intl = useIntl();
   const [modalVisible, setModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('1');
+  const [detailDescription, setDetailDescription] = useState('');
 
   useEffect(() => {
     setActiveTab(productOnboarding || tabsOnboarding ? '1' : activeTab);
   }, [productOnboarding, tabsOnboarding]);
+
+  const handleDetailDescriptionUpdate = (content) => {
+    setDetailDescription(content);
+  };
 
   return (
     <div className={styles.root}>
@@ -86,6 +92,13 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
           <Button className={[styles.addBtn, styles.group]} onClick={() => setModalVisible(true)}>
             <i className="fa fa-plus" aria-hidden="true" /> Add Deails
           </Button>
+          <Editor
+            blockStyle
+            maxLength={50}
+            value={detailDescription}
+            onChange={handleDetailDescriptionUpdate}
+            className={styles.descEditor}
+          />
           <Modal
             title="Venue Details"
             visible={modalVisible}

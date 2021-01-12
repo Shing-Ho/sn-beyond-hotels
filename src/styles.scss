@@ -43,3 +43,8 @@ $bp-mobile-landscape: 480px;
 :global(.ant-input-number:focus) {
   box-shadow: $primaryFocusBoxShadow !important;
 }
+
+:global(.anticon:before) {
+  display: block !important;
+  font-family: 'anticon' !important;
+}

@@ -1,5 +1,18 @@
 @import 'styles';
 
+:global {
+  .RichEditor-controls:nth-child(1) {
+    & > span:nth-child(1),
+    & > span:nth-child(2),
+    & > span:nth-child(3),
+    & > span:nth-child(4) {
+      display: none;
+    }
+  }
+  .DraftEditor-root {
+    height: 120px;
+  }
+}
 .root {
   position: relative;
   width: 100%;
@@ -70,6 +83,9 @@
           }
         }
       }
+    }
+    .descEditor {
+      margin-top: 20px;
     }
   }
 
