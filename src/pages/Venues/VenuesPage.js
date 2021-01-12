@@ -15,6 +15,7 @@ import styles from './VenuesPage.module.scss';
 
 export default function VenuesPage() {
   const [onboarding, SetOnboarding] = useState(0);
+  const [showMe, setShowMe] = useState(true);
 
   const openOnboarding = () => {
     $('html, body').animate({ scrollTop: 0 }, 100, () => {
@@ -32,6 +33,10 @@ export default function VenuesPage() {
     }
     SetOnboarding(currentStep);
   };
+  const handleShowMeClose = () => {
+    setShowMe(false);
+  };
+
   return (
     <Page>
       <div className={styles.root}>
@@ -56,7 +61,7 @@ export default function VenuesPage() {
                   <VenuesActions />
                 </Row>
                 <Row>
-                  <VenuesAssistant handleOnboarding={openOnboarding} />
+                  {showMe && <VenuesAssistant handleOnboarding={openOnboarding} onCloseClick={handleShowMeClose} />}
                 </Row>
               </div>
             </Col>

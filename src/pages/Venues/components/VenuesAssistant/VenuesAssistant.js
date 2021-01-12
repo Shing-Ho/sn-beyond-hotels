@@ -4,12 +4,12 @@ import { Button } from 'antd';
 import { ReactComponent as CloseIcon } from 'icons/Icon_Global_Action_Close.svg';
 import styles from './VenuesAssistant.module.scss';
 
-export default function VenuesAssistant({ handleOnboarding }) {
+export default function VenuesAssistant({ handleOnboarding, onCloseClick }) {
   return (
     <div className={styles.venuesAssistant}>
       <div className={styles.header}>
         <h3>Supply Manager Assistant</h3>
-        <CloseIcon className={styles.closeIcon} />
+        <CloseIcon className={styles.closeIcon} onClick={onCloseClick} />
       </div>
       <div className={styles.list}>
         <div className={styles.index}>1</div>

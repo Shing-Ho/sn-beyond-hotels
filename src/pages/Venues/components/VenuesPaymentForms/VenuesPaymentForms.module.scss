@@ -1,0 +1,49 @@
+@import 'styles';
+
+.paymentForms {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  .paymentItem {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $lightGrayColor;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &.active {
+      border-color: $secondaryLightColor;
+      background-color: rgba(61, 194, 204, 0.1);
+    }
+
+    img {
+      width: 50%;
+      max-height: 32px;
+      object-fit: contain;
+    }
+
+    .name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: bold;
+      color: $secondaryColor;
+      padding: 0 20px;
+
+      &.center {
+        text-align: center;
+      }
+    }
+    .icon {
+      padding-right: 20px;
+      svg {
+        path {
+          fill: $secondaryColor;
+        }
+      }
+    }
+  }
+}
