@@ -15,7 +15,7 @@ import styles from './TopFilters.module.scss';
 
 const TopFilters = ({ currency, displayCount, initialState }) => {
   const topFilters = useSelector(getTopFilters);
-  const [isEdit, toggleEdit] = useState(false);
+  const [isEdit, toggleEdit] = useState(true);
   const [data, setData] = useState({ ...initialState, ...topFilters });
   const dispatch = useDispatch();
   const locCache = useRef(initialState.location);
@@ -68,7 +68,6 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
     };
     dispatch(hotelActions.searchHotels(payload));
     dispatch(hotelActions.topFilterData(payload));
-    toggleEdit(false);
   };
 
   const onCurrencyChange = (_currency) => {
@@ -89,7 +88,6 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
             onDateChange={onDateChange}
             data={data}
             searchHotels={searchHotels}
-            toggleEdit={toggleEdit}
             displayCount={displayCount}
           />
         ) : (
@@ -99,8 +97,8 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
                 <div className={styles.wrapper}>
                   <img src={cal} alt="" className={styles.img} />
                   <div className={styles.item}>
-                    {moment(data.start_date).format('MM/DD/YYYY')} {'-'}
-                    {moment(data.end_date).format('MM/DD/YYYY')}
+                    {moment(data.start_date).format('MMM DD, YYYY')} {'-'}
+                    {moment(data.end_date).format('MMM DD, YYYY')}
                   </div>
                 </div>
                 <div className={styles.wrapper}>

@@ -1,12 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 $primaryColor: #003398;
 $primaryHoverColor: #2539a5;
 $primaryLightColor: #00339833;
 $primaryFocusBoxShadow: 0 0 0 2px rgba(0, 51, 152, 0.2);
 $grayColor: #7b7c7e;
+$lightGrayColor: #dedede;
 $greenColor: #00d6a3;
 $brownColor: #b94b19;
+
+$secondaryColor: #49838f;
+$secondaryLightColor: #3dc2cc;
+$SecondaryFocusBoxShadow: 0 0 0 2px rgba(73, 131, 143, 0.2);
 
 $bgGrayColor: #f4f4f4;
 $bgLightGrayColor: #fcfcfc;
@@ -28,8 +33,7 @@ $bp-mobile-landscape: 480px;
 :global(.ant-input:hover),
 :global(.ant-input:focus),
 :global(.ant-input-number:hover),
-:global(.ant-input-number:focus)
-:global(.ant-input-affix-wrapper:hover),
+:global(.ant-input-number:focus) :global(.ant-input-affix-wrapper:hover),
 :global(.ant-picker:hover),
 :global(.ant-checkbox:hover),
 :global(.ant-checkbox-wrapper .ant-checkbox-inner:hover) {
@@ -38,4 +42,9 @@ $bp-mobile-landscape: 480px;
 :global(.ant-input:focus),
 :global(.ant-input-number:focus) {
   box-shadow: $primaryFocusBoxShadow !important;
+}
+
+:global(.anticon:before) {
+  display: block !important;
+  font-family: 'anticon' !important;
 }

@@ -87,6 +87,51 @@
         }
       }
     }
+
+    .filterCustomCollapse {
+      .filterCustomCheckbox {
+        display: flex;
+        align-items: center;
+        margin-left: 0;
+        margin-bottom: 5px;
+        :global(.ant-checkbox) {
+          width: 24px;
+          height: 24px;
+          &:global(.ant-checkbox-checked) {
+            :global(.ant-checkbox-inner) {
+              background-color: $primaryColor;
+              border-color: $primaryColor;
+            }
+          }
+          &:hover {
+            :global(.ant-checkbox-inner) {
+              border-color: $primaryColor;
+            }
+          }
+          :global(.ant-checkbox-inner) {
+            height: 100%;
+            width: 100%;
+            &:after {
+              width: 7px;
+              height: 14px;
+            }
+          }
+        }
+        .filterCheckboxLabel {
+          display: flex;
+          justify-content: space-between;
+          width: 200px;
+          .count {
+            color: #a0a0a0;
+          }
+        }
+        &:hover {
+          :global(.ant-checkbox-inner) {
+            border-color: $primaryColor;
+          }
+        }
+      }
+    }
   }
   .inputDivider {
     width: 12%;

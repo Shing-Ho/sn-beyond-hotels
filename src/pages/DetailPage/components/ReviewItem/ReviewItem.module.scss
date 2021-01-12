@@ -1,0 +1,38 @@
+@import "styles";
+
+.main {
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 30px;
+    .row {
+      display: flex;
+      flex-direction: row;
+      img {
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+      }
+      div {
+        .name {
+          color: $primaryColor;
+          font-weight: bold;
+        }
+      }
+    }
+    .date {
+      font-size: 12px;
+      color: $grayColor;
+      font-weight: 600;
+    }
+  }
+  .description {
+    color: $grayColor;
+    font-size: 16px;
+    margin-left: 70px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $borderGrayColor;
+  }
+}

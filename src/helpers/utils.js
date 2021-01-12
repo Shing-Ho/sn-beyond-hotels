@@ -4,7 +4,7 @@ import popularBrandsJson from './jsons/popular-brands.json';
 export const getRandomImageUrl = (width = 500, height = 300) =>
   `http://placeimg.com/${width}/${height}/travel${(Math.random() * 10000).toFixed()}`;
 
-export const filterHotels = (hotels, filters) => {
+export const filterHotels = (hotels, filters, sortBy) => {
   let filteredHotels = hotels;
   if (filters.hotel_id) {
     filteredHotels = filteredHotels.filter((hotel) => hotel.hotel_id === filters.hotel_id);
@@ -87,6 +87,15 @@ export const filterHotels = (hotels, filters) => {
       return chainCodes.includes(hotel.hotel_details.chain_code) || chainName.includes(hotel.hotel_details.chain_name);
     });
   }
+  if (sortBy === 'lowToHigh') {
+    return filteredHotels.sort((a, b) => a.avg_nightly_rate - b.avg_nightly_rate);
+  }
+  if (sortBy === 'highToLow') {
+    return filteredHotels.sort((a, b) => b.avg_nightly_rate - a.avg_nightly_rate);
+  }
+  if (sortBy === 'stars') {
+    return filteredHotels.sort((a, b) => a.hotel_details.star_rating - b.hotel_details.star_rating);
+  }
   return filteredHotels;
 };
 
@@ -125,3 +134,9 @@ export const filterShoppingItems = (products, filters) => {
 
   return filteredProducts;
 };
+
+export function extractStringFromHTML(html) {
+  const span = document.createElement('span');
+  span.innerHTML = html;
+  return span.textContent || span.innerText;
+}

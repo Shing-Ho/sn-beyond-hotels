@@ -27,7 +27,7 @@ export const getSelectedRoomItems = (state) => {
 
   if (bookings) {
     selectedRoomItems = bookings.room_rate.map((booking) => {
-      const selectedRoom = selectedHotel.room_types.find((room) => room.code === booking.code);
+      const selectedRoom = selectedHotel.room_types?.find((room) => room.code === booking.code);
       // console.log(selectedRoom);
       const photos = selectedRoom?.photos || [];
       if (!photos.length) {

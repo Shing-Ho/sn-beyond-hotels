@@ -10,3 +10,4 @@ export const getCurrency = (state) => ({
   symbol: Currencies[state.core.currency || 'USD']?.symbol,
   decimal: Currencies[state.core.currency || 'USD']?.decimal_digits,
 });
+export const getCurrentMenu = (state) => state.core.currentMenu;

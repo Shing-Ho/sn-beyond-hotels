@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import cx from 'classnames';
 import bookingActions from 'store/booking/actions';
 import { getSelectedHotel, getTotalBookingAmount } from 'store/booking/selectors';
+import { Currencies } from 'helpers/constants';
 import DiscountForm from '../DiscountForm/DiscountForm';
 import ItineraryItem from '../ItineraryItem/ItineraryItem';
 import styles from './ItineraryDetail.module.scss';
@@ -12,6 +13,8 @@ export default function ItineraryDetail({ items, showDiscount, drawerChild, curr
   const totalAmount = useSelector(getTotalBookingAmount);
   const selectedHotel = useSelector(getSelectedHotel);
   const dispatch = useDispatch();
+
+  const currencySymbol = Currencies[items[0]?.avg_nightly_rate?.currency || 'USD']?.symbol;
 
   const handleDelete = (index) => () => {
     if (items.length > 1) {
@@ -24,7 +27,11 @@ export default function ItineraryDetail({ items, showDiscount, drawerChild, curr
       <div className={styles.header}>
         <h5>
           {' '}
-          <span>${totalAmount.toFixed(2) || '0,000.00'}</span>TOTAL
+          <span>
+            {currencySymbol}
+            {totalAmount.toFixed(2) || '0,000.00'}
+          </span>
+          TOTAL
         </h5>
         <span>
           <b>{items.length}</b> {items.length > 1 ? 'ite ms' : 'item'}
@@ -51,7 +58,7 @@ export default function ItineraryDetail({ items, showDiscount, drawerChild, curr
         <div className={styles.totalWrapper}>
           <div className={styles.wrapper}>
             <span className={styles.total}>
-              {currency?.symbol}
+              {currencySymbol}
               {totalAmount.toFixed(2) || '0,000.00'}
             </span>
             <span className={styles.totalText}>TOTAL</span>

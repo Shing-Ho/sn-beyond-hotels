@@ -1,4 +1,5 @@
 export const hotelItemFormatter = (data) => ({
+  ...data,
   id: data.hotel_id,
   rate: data.avg_nightly_rate,
   base: data.avg_nightly_base,
@@ -8,6 +9,7 @@ export const hotelItemFormatter = (data) => ({
   rating: data.hotel_details?.review_rating / 2,
   description: data.hotel_details?.property_description,
   geolocation: data.hotel_details?.geolocation,
+  detail: data.hotel_details,
 });
 export const getHotels = (state) => state.hotel.hotels;
 export const getFilteredHotels = (state) => state.hotel.filteredHotels;
@@ -25,3 +27,4 @@ export const getTopFilters = (state) => state.hotel.topFilters;
 export const getCancelLookupResponse = (state) => state.hotel.cancelLookupResponse;
 export const getCancelOrderResponse = (state) => state.hotel.cancelOrderResponse;
 export const getError = (state) => state.hotel.error;
+export const getSearchData = (state) => state?.hotel?.searchData;
