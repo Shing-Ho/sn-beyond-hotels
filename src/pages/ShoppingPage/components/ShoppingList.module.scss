@@ -58,6 +58,12 @@
             height: 100%;
           }
         }
+        .leftFilter {
+          display: block;
+          @media screen and (max-width: 767px) {
+            display: none;
+          }
+        }
       }
   
       .bottom {

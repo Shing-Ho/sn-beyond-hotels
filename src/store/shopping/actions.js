@@ -11,6 +11,7 @@ const shoppingActions = createActions(
     SET_FILTERED_SHOPPING: undefined,
     SET_SELECTED_CATEGORY: undefined,
     CLEAR_FILTERS: undefined,
+    SET_SHOP_BY_VIEW: undefined,
   },
   options,
 );

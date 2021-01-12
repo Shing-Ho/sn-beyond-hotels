@@ -29,18 +29,6 @@
       }
     }
    
-
-    :global(.ant-radio-button) {
-      margin: 0 38px 0 0;
-      padding: 8px 20px 8px 21px;
-      border-radius: 3px;
-      background-color: #003398 !important;
-    }
-
-    :gloabl(.ant-radio-button-wrapper){
-      background: #c7d1e5 !important;
-    }
-    
     :global(.ant-input-number-input-wrap) {
       padding: 4px 11px 4px 0;
     }
@@ -55,30 +43,25 @@
       color: #7b7c7e;
 
       .valueNumber {
-        display: none;
-
-      }
-      @media screen and (max-width: 767px) {
-        .valueNumber {
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          top: 0;
-          span {
-            font-size: 20px;
-            font-weight: bold;
-            color: #003398;
-            line-height: 18px;
-          }
-          h6 {
-            font-size: 14px;
-            color: #7b7c7e;
-            font-weight: normal;
-            margin: 0;
-          }
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        transform: translateX(-50%);
+        float: right;
+        right: 0;
+        span {
+          font-size: 20px;
+          font-weight: bold;
+          color: #003398;
+          line-height: 18px;
         }
+        h6 {
+          font-size: 14px;
+          color: #7b7c7e;
+          font-weight: normal;
+          margin: 0;
+        }
+
       }
     }
     
@@ -120,4 +103,29 @@
   .starRating {
     width: 100%;
   }
+  .radio {
+    width: 100%;
+    display: flex;
+
+    :global(.ant-radio-button-wrapper) {
+      // width: 14.28%;
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+      color: #003398 !important;
+      font-weight: bold;
+      background-color: #C6D7ED !important;
+
+      &:hover {
+        color: $grayColor;
+      }
+    }
+  
+    :global(.ant-radio-button-wrapper-checked) {
+      background-color: $primaryColor !important;
+      border-color: $primaryColor !important;
+      color: white !important;
+    }
+  }
+
 }
