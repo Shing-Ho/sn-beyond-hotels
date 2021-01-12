@@ -16,6 +16,7 @@ import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 
 import VenuesPage from 'pages/Venues/VenuesPage';
+import SupplyManager from 'pages/SupplyManager/VenuesPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -24,6 +25,7 @@ export default function Routes() {
     <>
       <Switch>
         <Route path={`${BASE_ROUTE}/venues`} exact component={VenuesPage} />
+        <Route path={`${BASE_ROUTE}/tours/supply-manager`} exact component={SupplyManager} />
         <Route path={`${BASE_ROUTE}/payments`} exact component={PaymentsPage} />
         <Route path={`${BASE_ROUTE}/confirmation`} exact component={ConfirmationPage} />
         <Route path={`${BASE_ROUTE}/orderSummary`} exact component={SummaryPage} />
