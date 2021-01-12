@@ -13,7 +13,7 @@ const tagRender = ({ label, onClose }) => (
   </div>
 );
 
-const CustomSelect = ({ options, value, className, suffix, ...other }) => (
+const CustomSelect = ({ options, value, className, suffix, innerSuffix, ...other }) => (
   <div className={cx(styles.root, className)}>
     <Select
       showSearch
@@ -22,6 +22,7 @@ const CustomSelect = ({ options, value, className, suffix, ...other }) => (
       filterOption={(input, option) =>
         option.children && option.children.toLowerCase().indexOf(input.toLowerCase()) > -1
       }
+      suffixIcon={innerSuffix ? <ArrowIcon className={styles.arrowDownin} /> : null}
       {...other}
     >
       {options.map((option) => (
@@ -31,7 +32,7 @@ const CustomSelect = ({ options, value, className, suffix, ...other }) => (
       ))}
     </Select>
     {suffix && <div className={styles.suffix}>{suffix}</div>}
-    {!suffix && <ArrowIcon className={styles.arrowDown} />}
+    {!suffix && !innerSuffix && <ArrowIcon className={styles.arrowDown} />}
   </div>
 );
 

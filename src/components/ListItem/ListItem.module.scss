@@ -12,8 +12,9 @@
   .mainImage {
     flex-shrink: 0;
     overflow: hidden;
-    align-self: stretch;
+    //align-self: stretch;
     width: 260px;
+    height: 260px;
     background-size: cover;
     @media screen and (max-width: 767px) {
       width: 100%;
@@ -34,6 +35,10 @@
     position: relative;
     flex-grow: 1;
     height: 100%;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
 
     .circle {
       position: absolute;
@@ -77,7 +82,7 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 480px) {
           flex-direction: column;
           h3 {
             font-size: 18px !important;
@@ -93,11 +98,12 @@
         .itemName {
           font-weight: 300;
           font-size: 24px;
+          cursor: pointer;
         }
         .rateInfo {
           display: flex;
           flex-direction: column;
-          @media screen and (max-width: 767px) {
+          @media screen and (max-width: 480px) {
             flex-direction: row;
             width: 100%;
             justify-content: space-between;
@@ -117,6 +123,7 @@
             color: $primaryColor;
             font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
           }
           .taxesAndFees {
             display: flex;

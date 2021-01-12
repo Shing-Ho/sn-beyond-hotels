@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button, Popover, Tooltip } from 'antd';
 import Divider from 'components/Divider/Divider';
 import { commaFormat } from 'helpers/utils';
-import { Currencies } from 'helpers/constants';
+import currency from '../../../../helpers/currency';
 import styles from './DetailItem.module.scss';
 
 const PopOverContent = (data) => (
@@ -37,10 +37,9 @@ const PopOverContent = (data) => (
 
 const HotelItem = (props) => {
   const { data, nights, selected, onSelect } = props;
-
   const totalCost = data.total && data.total.amount > 0 ? commaFormat(Number(data.total.amount).toFixed(2)) : 0;
   const nightCost = data.avg_nightly_rate ? commaFormat(Number(data.avg_nightly_rate.amount).toFixed(2)) : 0;
-  const currencySymbol = Currencies[data?.avg_nightly_rate?.currency || 'USD']?.symbol;
+  const currencySymbol = currency[data?.avg_nightly_rate?.currency || 'USD']?.symbol;
   return (
     <div
       className={cx(styles.root, {
@@ -49,13 +48,13 @@ const HotelItem = (props) => {
     >
       <div className={styles.detail}>
         <div className={styles.header}>
-          <span>{data.name}</span>
-        </div>
-        <div className={styles.price}>
+          <span className={styles.name}>{data.name}</span>
           <span className={styles.main}>
             {currencySymbol}
             {commaFormat(Number(nightCost.replace(',', '') * 1).toFixed(2))}
           </span>
+        </div>
+        <div className={styles.price}>
           <div className={styles.night}>
             {currencySymbol}
             {totalCost}
@@ -70,10 +69,10 @@ const HotelItem = (props) => {
         </div>
         <div className={styles.flexWrapper}>
           <div className={styles.learnMore}>
-            <Popover content={PopOverContent(data)}>
+            <Popover content={PopOverContent(data)} placement="bottom">
               <InfoIcon />
             </Popover>
-            <FormattedMessage id="learnMore" defaultMessage="Learn More" />
+            <FormattedMessage id="priceBreakDown" defaultMessage="Price Breakdown" />
           </div>
           {get(data, 'cancellation_policy.summary') && (
             <div className={styles.cancellation}>
