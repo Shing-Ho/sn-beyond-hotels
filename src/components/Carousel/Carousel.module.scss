@@ -16,7 +16,6 @@
 
   .leftArrow, .rightArrow {
     position: absolute;
-    top: 50%;
     transform: translateY(-15px);
     font-size: 24px;
     cursor: pointer;
@@ -47,6 +46,17 @@
     &:global(.react-multi-carousel-item--active) {
       :global(.overlay) {
         background: transparent;
+      }
+    }
+  }
+}
+
+.display {
+  :global(.react-multi-carousel-item) {
+
+    &:global(.react-multi-carousel-item--active) {
+      :global(.overlay) {
+        background: rgba(0, 0, 0, 0.5);
       }
     }
   }
