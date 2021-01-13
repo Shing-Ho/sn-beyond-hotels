@@ -61,3 +61,14 @@
     }
   }
 }
+
+.display {
+  :global(.react-multi-carousel-item) {
+
+    &:global(.react-multi-carousel-item--active) {
+      :global(.overlay) {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}

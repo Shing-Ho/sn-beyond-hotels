@@ -35,6 +35,9 @@
         font-weight: bold;
         color: #565656;
         padding: 0 20px;
+        &:hover {
+          background-color: #B6EEEF;
+        }
 
         svg {
           fill: #565656;

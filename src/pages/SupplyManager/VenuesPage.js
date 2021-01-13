@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import $ from 'jquery';
 
 import Page from 'components/Page/Page';
 import VenuesHeader from './components/VenuesHeader/VenuesHeader';
 import VenuesUploadZone from './components/VenuesUploadZone/VenuesUploadZone';
 import VenuesDetailHeader from './components/VenuesDetailHeader/VenuesDetailHeader';
-import VenuesAvailability from './components/VenuesAvailability/VenuesAvailability';
 import VenuesActions from './components/VenuesActions/VenuesActions';
 import VenuesAssistant from './components/VenuesAssistant/VenuesAssistant';
 import VenuesContentSection from './components/VenuesContentSection/VenuesContentSection';
@@ -50,7 +49,7 @@ export default function VenuesPage() {
             <Col md={8} sm={24} flex={1}>
               <div className={styles.rightContent}>
                 <Row>
-                  <VenuesAvailability />
+                  <Button className={styles.btn}>Publish</Button>
                 </Row>
                 <Row>
                   <VenuesActions />
