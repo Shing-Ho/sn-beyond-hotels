@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
+import { getFormattedGasStation } from 'store/gas/selectors';
+import gasActions from 'store/gas/actions';
 import GasListSection from './components/GasListSection/GasListSection';
 import GasBookingSection from './components/GasBookingSection/GasBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
@@ -41,33 +45,45 @@ const images = [
   },
 ];
 
-const GasDetailPage = () => (
-  <Page>
-    <div className={styles.carousel}>
-      <Carousel image={images} />
-      <DetailHeader className={styles.detailHeader} details={{ name: 'Shell Gas Station 4216' }} isRating />
-    </div>
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <Row justify="center">
-          <Col md={16}>
-            <Row>
-              <DetailHeader className={styles.detailHeader} details={{ name: 'Shell Gas Station 4216' }} isRating />
-            </Row>
-            <Row>
-              <GasListSection className={styles.left} />
-            </Row>
-          </Col>
-          <Col md={8}>
-            <div className={styles.detail}>
-              <GasBookingSection />
-            </div>
-          </Col>
-        </Row>
+const GasDetailPage = () => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const data = useSelector(getFormattedGasStation(params.id));
+
+  console.log(data, params.id);
+
+  useEffect(() => {
+    dispatch(gasActions.getGasStations());
+  }, []);
+
+  return (
+    <Page>
+      <div className={styles.carousel}>
+        <Carousel image={data.images || images} />
+        <DetailHeader className={styles.detailHeader} details={data} isRating />
       </div>
-      <OtherSection className={styles.bottom} />
-    </div>
-  </Page>
-);
+      <div className={styles.root}>
+        <div className={styles.content}>
+          <Row justify="center">
+            <Col md={16}>
+              <Row>
+                <DetailHeader className={styles.detailHeader} details={data} isRating />
+              </Row>
+              <Row>
+                <GasListSection className={styles.left} />
+              </Row>
+            </Col>
+            <Col md={8}>
+              <div className={styles.detail}>
+                <GasBookingSection />
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <OtherSection className={styles.bottom} />
+      </div>
+    </Page>
+  );
+};
 
 export default GasDetailPage;

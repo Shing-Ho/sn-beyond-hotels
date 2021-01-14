@@ -23,7 +23,7 @@ const DetailHeader = ({ className, details, icon, headerOnly, isRating, isFoodDe
     {!headerOnly && (
       <>
         <div className={styles.details}>
-          {isRating && <Rating scoreonly score={details?.star_rating} className={styles.rating} />}
+          {isRating && <Rating scoreonly score={details?.star_rating || details?.rating} className={styles.rating} />}
           {details?.address && (
             <>
               <p>{get(details, 'address.address1')}</p>
