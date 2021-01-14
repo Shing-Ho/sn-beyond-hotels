@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button, Switch, DatePicker } from 'antd';
+import { Row, Col, Button, Switch, DatePicker, Input } from 'antd';
 import cx from 'classnames';
 
 import PaypalImg from 'icons/paypal-logo.png';
@@ -11,12 +11,13 @@ import ChaseImg from 'icons/chase-logo.png';
 import { ReactComponent as TrashIcon } from 'icons/trash.svg';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 
-import Input from 'components/Input/Input';
 import TimePicker from 'components/TimePicker/TimePicker';
 import Select from 'components/Select/Select';
 import { Steps, Step } from 'components/Steps/Steps';
 import styles from './VenuesDetailsSteps.module.scss';
+import { isNumber } from '../../../../helpers/helperMethods';
 
+const { TextArea } = Input;
 const steps = [
   {
     step: 1,
@@ -53,13 +54,44 @@ const searchOptions = [
 
 export default function VenuesDetailsSteps({ onCancel }) {
   const [currentStep, setCurrentStep] = React.useState(0);
+  const [venueCapacity, setVenueCapacity] = React.useState(null);
+  const [days, setDays] = React.useState({
+    mon: true,
+    tue: true,
+    wed: true,
+    thu: true,
+    fri: true,
+  });
+  const [reOpen, setReOpen] = React.useState({
+    mon: true,
+    tue: false,
+    wed: false,
+    thu: false,
+    fri: false,
+  });
 
   const handleStep = (step) => {
     if (step < 0 || step > 4) {
       onCancel();
+      setCurrentStep(0);
     } else {
       setCurrentStep(step);
     }
+  };
+
+  const handleNumber = (e) => {
+    const { value } = e.target;
+    if (isNumber(value) || value === '') {
+      setVenueCapacity(value);
+    }
+  };
+
+  const selectDays = (name) => {
+    setDays({ ...days, [name]: !days[name] });
+  };
+
+  const addReOpenTimings = (name) => {
+    setReOpen({ ...reOpen, [name]: !reOpen[name] });
   };
 
   return (
@@ -76,9 +108,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
           <div className={styles.step1}>
             <h1>Add Venue Description</h1>
             <div className={styles.input}>
-              <Input
+              <TextArea
                 placeholder="Describe Your Venue, Your Way"
-                suffix={<div className={styles.suffix}>500 Word Limit</div>}
+                suffix="500 Word Limit"
+                autoSize
+                maxLength={500}
+                showCount
               />
             </div>
           </div>
@@ -103,6 +138,8 @@ export default function VenuesDetailsSteps({ onCancel }) {
             <h1>Add Venue Capacity</h1>
             <div className={styles.input}>
               <Input
+                onChange={(e) => handleNumber(e)}
+                value={venueCapacity}
                 placeholder="Enter Venue Capacity"
                 prefix={
                   <div className={styles.prefix}>
@@ -157,11 +194,21 @@ export default function VenuesDetailsSteps({ onCancel }) {
               <h3>Select Open Days</h3>
               <div className={styles.days}>
                 <span>Sun</span>
-                <span className={styles.selected}>Mon</span>
-                <span className={styles.selected}>Tue</span>
-                <span className={styles.selected}>Wed</span>
-                <span className={styles.selected}>Thur</span>
-                <span className={styles.selected}>Fir</span>
+                <span className={`${days.mon ? styles.selected : ''}`} onClick={() => selectDays('mon')}>
+                  Mon
+                </span>
+                <span className={`${days.tue ? styles.selected : ''}`} onClick={() => selectDays('tue')}>
+                  Tue
+                </span>
+                <span className={`${days.wed ? styles.selected : ''}`} onClick={() => selectDays('wed')}>
+                  Wed
+                </span>
+                <span className={`${days.thu ? styles.selected : ''}`} onClick={() => selectDays('thu')}>
+                  Thu
+                </span>
+                <span className={`${days.fri ? styles.selected : ''}`} onClick={() => selectDays('fri')}>
+                  Fri
+                </span>
                 <span>Sat</span>
               </div>
             </div>
@@ -198,27 +245,38 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
-                  <Col span={3} offset={1}>
-                    <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
-                    </div>
-                  </Col>
-                  <Col span={3}>
-                    <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
-                    </div>
-                  </Col>
-                  <Col span={2}>
-                    <TrashIcon width={14} style={{ marginLeft: '10px' }} />
-                  </Col>
+                  {reOpen.mon && (
+                    <>
+                      <Col span={3} offset={1}>
+                        <div className={styles.timePicker}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={3}>
+                        <div className={cx(styles.timePicker, styles.second)}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={2}>
+                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('mon')} />
+                      </Col>
+                    </>
+                  )}
+                  {!reOpen.mon && (
+                    <Col span={2} offset={1}>
+                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('mon')}>
+                        <i className="fa fa-plus" aria-hidden="true" /> Add
+                      </Button>
+                    </Col>
+                  )}
                 </Row>
                 <Row className={styles.row}>
                   <Col span={6}>
@@ -231,14 +289,33 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
-                  <Col span={2} offset={1}>
-                    <Button className={styles.addTimeBtn}>
-                      <i className="fa fa-plus" aria-hidden="true" /> Add
-                    </Button>
-                  </Col>
+                  {reOpen.tue && (
+                    <>
+                      <Col span={3} offset={1}>
+                        <div className={styles.timePicker}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={3}>
+                        <div className={cx(styles.timePicker, styles.second)}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={2}>
+                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('tue')} />
+                      </Col>
+                    </>
+                  )}
+                  {!reOpen.tue && (
+                    <Col span={2} offset={1}>
+                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('tue')}>
+                        <i className="fa fa-plus" aria-hidden="true" /> Add
+                      </Button>
+                    </Col>
+                  )}
                 </Row>
                 <Row className={styles.row}>
                   <Col span={6}>
@@ -246,19 +323,38 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
-                  <Col span={2} offset={1}>
-                    <Button className={styles.addTimeBtn}>
-                      <i className="fa fa-plus" aria-hidden="true" /> Add
-                    </Button>
-                  </Col>
+                  {reOpen.wed && (
+                    <>
+                      <Col span={3} offset={1}>
+                        <div className={styles.timePicker}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={3}>
+                        <div className={cx(styles.timePicker, styles.second)}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={2}>
+                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('wed')} />
+                      </Col>
+                    </>
+                  )}
+                  {!reOpen.wed && (
+                    <Col span={2} offset={1}>
+                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('wed')}>
+                        <i className="fa fa-plus" aria-hidden="true" /> Add
+                      </Button>
+                    </Col>
+                  )}
                 </Row>
                 <Row className={styles.row}>
                   <Col span={6}>
@@ -266,19 +362,38 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
-                  <Col span={2} offset={1}>
-                    <Button className={styles.addTimeBtn}>
-                      <i className="fa fa-plus" aria-hidden="true" /> Add
-                    </Button>
-                  </Col>
+                  {reOpen.thu && (
+                    <>
+                      <Col span={3} offset={1}>
+                        <div className={styles.timePicker}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={3}>
+                        <div className={cx(styles.timePicker, styles.second)}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={2}>
+                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('thu')} />
+                      </Col>
+                    </>
+                  )}
+                  {!reOpen.thu && (
+                    <Col span={2} offset={1}>
+                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('thu')}>
+                        <i className="fa fa-plus" aria-hidden="true" /> Add
+                      </Button>
+                    </Col>
+                  )}
                 </Row>
                 <Row className={styles.row}>
                   <Col span={6}>
@@ -286,19 +401,38 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
                     </div>
                   </Col>
-                  <Col span={2} offset={1}>
-                    <Button className={styles.addTimeBtn}>
-                      <i className="fa fa-plus" aria-hidden="true" /> Add
-                    </Button>
-                  </Col>
+                  {reOpen.fri && (
+                    <>
+                      <Col span={3} offset={1}>
+                        <div className={styles.timePicker}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={3}>
+                        <div className={cx(styles.timePicker, styles.second)}>
+                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                        </div>
+                      </Col>
+                      <Col span={2}>
+                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('fri')} />
+                      </Col>
+                    </>
+                  )}
+                  {!reOpen.fri && (
+                    <Col span={2} offset={1}>
+                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('fri')}>
+                        <i className="fa fa-plus" aria-hidden="true" /> Add
+                      </Button>
+                    </Col>
+                  )}
                 </Row>
               </div>
             </div>

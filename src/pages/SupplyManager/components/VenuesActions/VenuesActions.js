@@ -16,9 +16,6 @@ export default function VenuesActions() {
       <Button className={[styles.btn, styles.delete]} icon={<TrashIcon />}>
         Delete Venue
       </Button>
-      <Button className={[styles.btn, styles.publish, styles.disabled]} disabled>
-        PUBLISH
-      </Button>
     </div>
   );
 }

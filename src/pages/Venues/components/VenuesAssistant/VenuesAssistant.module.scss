@@ -22,6 +22,9 @@
       height: 15px;
       fill: white;
       cursor: pointer;
+      &:hover {
+        fill: #B6EEEF;
+      }
     }
   }
 
