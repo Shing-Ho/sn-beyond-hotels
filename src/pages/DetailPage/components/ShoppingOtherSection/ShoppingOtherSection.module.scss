@@ -1,0 +1,16 @@
+.root {
+  .detailHeader {
+    margin-bottom: 33px;
+    
+    svg {
+      fill: #ffffff;
+    }
+  }
+  .content {
+    width: 100%;
+
+    > div {
+      margin-bottom: 30px;
+    }
+  }
+}
