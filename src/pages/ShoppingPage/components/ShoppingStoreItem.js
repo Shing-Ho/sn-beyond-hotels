@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from 'components/Button/Button';
 import cx from 'classnames';
+import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import { ReactComponent as PinIcon } from 'icons/pin.svg';
+import shoppingActions from 'store/shopping/actions';
 import { ReactComponent as ShoppingIcon } from '../../../icons/dashboardIcons/Icon_Category_Shopping.svg';
 import IconButton from '../../../components/IconButton/IconButton';
 import snIcon from '../../../icons/dashboardIcons/Icon_Global_Logo_SN_Icon.svg';
@@ -13,8 +16,13 @@ import styles from './ShoppingStoreItem.module.scss';
 
 export default function ShoppingStoreItem({ item }) {
   const [mapOpened, openMap] = useState(false);
+  const dispatch = useDispatch();
   const toggleMap = () => {
     openMap(!mapOpened);
+  };
+  const onViewClick = () => {
+    dispatch(shoppingActions.selectStore(item));
+    dispatch(push(`${window.BASE_ROUTE || ''}/shopping/store/${item.id}`));
   };
   return (
     <div className={styles.root}>
@@ -57,7 +65,9 @@ export default function ShoppingStoreItem({ item }) {
                 <span className={styles.description}>{item.detail}</span>
                 <div className={styles.actions}>
                   <IconButton Icon={PinIcon} onClick={toggleMap} />
-                  <Button id="view">View </Button>
+                  <Button id="view" onClick={onViewClick}>
+                    View
+                  </Button>
                 </div>
               </div>
             </div>
