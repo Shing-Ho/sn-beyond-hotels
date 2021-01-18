@@ -14,6 +14,8 @@ const bookingActions = createActions(
     SET_BOOKING_HOTEL_PAYLOAD: undefined,
     SET_PAYMENT_TOKEN_PAYLOAD: undefined,
     REMOVE_ITINERARY_ITEM: undefined,
+    SET_SUPPLY_MANAGER_VENUE: undefined,
+    sET_VENUE_DETAILS: undefined,
   },
   options,
 );
