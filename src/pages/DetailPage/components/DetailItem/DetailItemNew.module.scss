@@ -19,7 +19,10 @@
   img {
     width: 45%;
   }
-
+  .productImage{
+      width: 210px;
+      margin-left: 20px;
+  }
   @media screen and (max-width: 767px) {
     padding: 0;
     flex-direction: column;
@@ -101,6 +104,14 @@
           font-weight: 300;
         }
       }
+      .targetIcon{
+        height:18px;
+        width:20px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+
       .personCapacity {
         font-family: Lato;
         font-size: 14px;
