@@ -20,7 +20,7 @@ const images = Array(7)
 export default function VenuesUploadZone({ onboarding }) {
   return (
     <div className={styles.carousel}>
-      <Carousel image={images} />
+      <Carousel image={images} isDisplay />
       <div
         className={cx(styles.uploadZone, {
           [styles.onboarding]: onboarding,
@@ -36,6 +36,7 @@ export default function VenuesUploadZone({ onboarding }) {
             <img src={mentorImg} alt="Arrow for mentoring" />
             <p>Add photos and videos to showcase your venue to customers</p>
           </div>
+          <div className={styles.sample}>Sample images. Add your own!</div>
         </div>
       </div>
     </div>

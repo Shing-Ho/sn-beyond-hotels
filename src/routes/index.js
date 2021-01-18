@@ -14,7 +14,7 @@ import DiningDetailPage from 'pages/DetailPage/DiningDetailPage';
 import FoodDetailPage from 'pages/DetailPage/FoodDetailPage';
 import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
-
+import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
 import VenuesPage from 'pages/Venues/VenuesPage';
 import SupplyManager from 'pages/SupplyManager/VenuesPage';
 
@@ -40,6 +40,8 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
         <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
+        <Route path={`${BASE_ROUTE}/shopping/store/:id`} exact component={ShoppingDetailPage} />
+
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
       </Switch>
     </>

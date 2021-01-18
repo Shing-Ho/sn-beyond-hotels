@@ -2,6 +2,8 @@ import { get } from 'lodash';
 import { ItineraryTypes } from 'helpers/constants';
 import { getRandomImageUrl } from 'helpers/utils';
 
+export const getSupplyManager = (state) => state.booking.supplyManagerVenue;
+export const getVenueDetails = (state) => state.booking.venueDetails;
 export const getLoading = (state) => state.booking.loading;
 export const getBookingPayload = (state) => state.booking.bookingPayload;
 export const getSelectedHotel = (state) => state.hotel.selectedHotel;

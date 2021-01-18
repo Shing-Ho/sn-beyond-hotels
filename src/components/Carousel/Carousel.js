@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
+import cx from 'classnames';
 import { ReactComponent as LeftArrowIcon } from 'icons/arrow-left.svg';
 import { ReactComponent as RightArrowIcon } from 'icons/arrow-right.svg';
 import styles from './Carousel.module.scss';
@@ -23,7 +24,7 @@ const responsive = {
   },
 };
 
-const CustomCarousel = ({ image }) => {
+const CustomCarousel = ({ image, isDisplay }) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const CustomCarousel = ({ image }) => {
   }, [image]);
 
   return (
-    <div className={styles.root}>
+    <div className={cx(styles.root, { [styles.display]: isDisplay })}>
       <Carousel
         draggable
         swipeable
