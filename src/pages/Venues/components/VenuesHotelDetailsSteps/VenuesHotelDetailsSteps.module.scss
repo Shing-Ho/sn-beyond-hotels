@@ -1,0 +1,344 @@
+@import 'styles';
+
+.venuesDetailsSteps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .stepsContainer {
+    width: 720px;
+    margin: 0 auto;
+  }
+
+  .content {
+    h1 {
+      font-family: Lato;
+      font-size: 36px;
+      font-weight: bold;
+      color: $secondaryLightColor;
+      text-align: center;
+      padding: 40px 0;
+    }
+    .input {
+      flex: 1;
+      outline: none;
+      box-shadow: none;
+
+      :global(.ant-input-affix-wrapper) {
+        border-radius: 3px;
+        border-color: #a6ccd4;
+        padding: 0 15px;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+      }
+
+      input {
+        width: 100%;
+        height: 50px;
+        font-size: 14px;
+        font-weight: normal;
+        outline: none;
+        box-shadow: none !important;
+        border: none;
+        color: $secondaryColor;
+        background: transparent;
+
+        &::placeholder {
+          font-style: italic;
+          font-family: Arial;
+          color: #a6ccd4;
+        }
+      }
+
+      .suffix {
+        font-size: 12px;
+        color: $secondaryColor;
+      }
+
+      .prefix {
+        font-size: 20px;
+        color: $secondaryColor;
+        padding-right: 15px;
+      }
+    }
+
+    .addBtn {
+      width: 100%;
+      height: 50px;
+      border: 2px solid #44a9bd;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: $secondaryLightColor;
+      margin-top: 30px;
+      i {
+        margin-right: 10px;
+      }
+    }
+    .step2 {
+      max-width: 700px;
+      margin: 0 auto;
+
+      .input {
+        .suffix {
+          font-size: 16px;
+        }
+      }
+    }
+    .step3 {
+      margin: 0 auto;
+    }
+    .step5 {
+      .switch {
+        font-family: Lato;
+        font-size: 16px;
+        font-weight: normal;
+        color: $secondaryLightColor;
+      }
+      :global {
+        .ant-switch {
+          width: 60px;
+          height: 30px;
+
+          &.ant-switch-checked {
+            background-color: $secondaryLightColor;
+
+            .ant-switch-handle {
+              top: 3px;
+              left: calc(100% - 24px - 4px);
+              &::before {
+                color: $secondaryColor;
+              }
+            }
+          }
+
+          .ant-switch-handle {
+            width: 24px;
+            height: 24px;
+            &::before {
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+      h3 {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: normal;
+        color: $grayColor;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+      }
+      .openDays {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 25px;
+        border-bottom: 1px solid $lightGrayColor;
+
+        .days {
+          display: flex;
+          justify-content: space-between;
+          padding: 15px 0;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 115px;
+            height: 50px;
+            border-radius: 3px;
+            background-color: $lightGrayColor;
+            font-family: Lato;
+            font-size: 20px;
+            font-weight: normal;
+            color: $grayColor;
+            cursor: pointer;
+
+            &.selected {
+              background-color: $secondaryLightColor;
+              color: white;
+            }
+          }
+        }
+      }
+      .openHours,
+      .holidayHours {
+        padding-bottom: 25px;
+        border-bottom: 1px solid $lightGrayColor;
+
+        .hours,
+        .holidayItem {
+          font-family: Lato;
+          font-size: 20px;
+          font-weight: normal;
+          color: $grayColor;
+          .row {
+            padding: 5px 0;
+            .time {
+              padding-right: 20px;
+              display: flex;
+            }
+          }
+          .label {
+            font-size: 14px;
+            font-weight: bold;
+            color: $secondaryColor;
+            flex: 1;
+          }
+          .timePicker {
+            :global {
+              .ant-picker {
+                border-radius: 2px 0 0 2px;
+                border-color: $lightGrayColor;
+
+                .ant-picker-input {
+                  input {
+                    font-family: Lato;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: $grayColor;
+                  }
+                }
+
+                .ant-picker-suffix {
+                  svg {
+                    width: 15px;
+                    path {
+                      fill: $secondaryColor;
+                    }
+                  }
+                }
+
+                &.ant-picker-focused {
+                  outline: none;
+                  box-shadow: none;
+                }
+              }
+            }
+            &.second {
+              :global {
+                .ant-picker {
+                  border-left: none;
+                  border-radius: 0 2px 2px 0;
+                }
+              }
+            }
+          }
+          .addTimeBtn {
+            width: 64px;
+            height: 24px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            border-radius: 3px;
+            background-color: rgba($secondaryLightColor, 0.2);
+            color: $secondaryColor;
+            font-size: 14px;
+            i {
+              font-weight: 300;
+              padding-right: 3px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .holidayHours {
+        border: none;
+        .holidayItem {
+          width: 100%;
+          min-height: 184px;
+          border-radius: 2px;
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+          border: solid 1px #f4f4f4;
+          display: flex;
+
+          .holiday {
+            flex: 1;
+            padding: 20px;
+          }
+          .action {
+            width: 60px;
+            background-color: #dae6e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+              path {
+                fill: $secondaryColor;
+              }
+            }
+          }
+          .select {
+            padding-right: 20px;
+
+            :global {
+              .ant-select {
+                .ant-select-selector {
+                  border-color: $lightGrayColor;
+                  .ant-select-selection-item {
+                    color: $grayColor;
+                  }
+                }
+              }
+            }
+            svg {
+              path {
+                stroke: $secondaryColor;
+              }
+            }
+          }
+          .date {
+            padding-right: 20px;
+            :global {
+              .ant-picker {
+                width: 100%;
+                border-color: $lightGrayColor;
+                .ant-picker-input {
+                  input {
+                    color: $grayColor;
+                  }
+                }
+              }
+            }
+            svg {
+              path {
+                fill: $secondaryColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    width: 100%;
+    margin-top: 80px;
+    .btn {
+      height: 60px;
+      color: white;
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: bold;
+      border-radius: 3px;
+      flex: 1;
+
+      &.continue {
+        background-color: $secondaryLightColor;
+        border: 2px solid $secondaryLightColor;
+        margin-left: 40px;
+      }
+      &.cancel {
+        border: 2px solid $secondaryLightColor;
+        color: $secondaryLightColor;
+        background-color: transparent;
+      }
+    }
+  }
+}
