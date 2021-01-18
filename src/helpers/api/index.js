@@ -11,3 +11,6 @@ export const bookingHotel = (payload) => post('hotels/booking', payload, postHea
 export const locations = (payload) => get(`locations/prefix?prefix=${payload}&lang_code=en`);
 export const cancelLookup = (payload) => post(`hotels/cancel`, payload, postHeader);
 export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, postHeader);
+
+// -- Gas -- //
+export const getGasStations = () => get(`charging/poi`);
