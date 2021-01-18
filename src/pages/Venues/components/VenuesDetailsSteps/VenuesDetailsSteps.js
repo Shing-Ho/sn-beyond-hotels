@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Row, Col, Button, Switch, DatePicker, Input } from 'antd';
 import cx from 'classnames';
-
+import { useDispatch, useSelector } from 'react-redux';
+import PaypalImg from 'icons/paypal-logo.png';
+import AlipayImg from 'icons/alipay-logo.png';
+import VenmoImg from 'icons/venmo-logo.png';
+import WechatImg from 'icons/wechat-logo.png';
+import ApplepayImg from 'icons/applepay-logo.png';
+import ChaseImg from 'icons/chase-logo.png';
 import { ReactComponent as TrashIcon } from 'icons/trash.svg';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 
 import TimePicker from 'components/TimePicker/TimePicker';
 import Select from 'components/Select/Select';
 import { Steps, Step } from 'components/Steps/Steps';
-
-import VenuesPaymentForms from '../VenuesPaymentForms/VenuesPaymentForms';
+import * as moment from 'moment';
 import styles from './VenuesDetailsSteps.module.scss';
 import { isNumber } from '../../../../helpers/helperMethods';
+import bookingActions from '../../../../store/booking/actions';
+import { getVenueDetails } from '../../../../store/booking/selectors';
 
 const { TextArea } = Input;
 const steps = [
@@ -49,24 +56,46 @@ const searchOptions = [
 ];
 
 export default function VenuesDetailsSteps({ onCancel }) {
+  const [venueDetails, setVenueDetails] = React.useState({
+    days: { mon: true, tue: true, wed: true, thu: true, fri: true },
+    paymentMethod: {
+      credit: true,
+    },
+    addSeasonal: false,
+    seasonalDetails: {
+      holiday: null,
+      date: null,
+      specialDay: null,
+      multipleDays: false,
+      open: null,
+      close: null,
+      reOpen: null,
+      reClose: null,
+    },
+    reOpen: { mon: true, tue: false, wed: false, thu: false, fri: false },
+    hoursOpen: {
+      mon: { open: null, close: null, reOpen: null, reClose: null },
+      tue: { open: null, close: null },
+      wed: { open: null, close: null },
+      thu: { open: null, close: null },
+      fri: { open: null, close: null },
+    },
+    description: null,
+    location: null,
+    venueCapacity: null,
+  });
   const [currentStep, setCurrentStep] = React.useState(0);
-  const [venueCapacity, setVenueCapacity] = React.useState(null);
-  const [days, setDays] = React.useState({
-    mon: true,
-    tue: true,
-    wed: true,
-    thu: true,
-    fri: true,
-  });
-  const [reOpen, setReOpen] = React.useState({
-    mon: true,
-    tue: false,
-    wed: false,
-    thu: false,
-    fri: false,
-  });
+  const data = useSelector(getVenueDetails);
+  const dispatch = useDispatch();
+
+  useMemo(() => {
+    if (data) {
+      setVenueDetails(data);
+    }
+  }, [data]);
 
   const handleStep = (step) => {
+    dispatch(bookingActions.setVenueDetails(venueDetails));
     if (step < 0 || step > 4) {
       onCancel();
       setCurrentStep(0);
@@ -75,19 +104,55 @@ export default function VenuesDetailsSteps({ onCancel }) {
     }
   };
 
-  const handleNumber = (e) => {
-    const { value } = e.target;
-    if (isNumber(value) || value === '') {
-      setVenueCapacity(value);
+  const handleChange = (e, type = null, name = null) => {
+    if (typeof e === 'object' && e.target.name === 'venueCapacity') {
+      const { value } = e.target;
+      if (isNumber(value) || value === '') {
+        setVenueDetails({ ...venueDetails, [e.target.name]: e.target.value });
+      }
+    } else if (typeof e === 'string') {
+      if (type === 'reOpen') {
+        setVenueDetails({
+          ...venueDetails,
+          [type]: { ...venueDetails[type], [e]: !venueDetails[type][e] },
+          hoursOpen: { ...venueDetails.hoursOpen, [e]: { open: null, close: null, reOpen: null, reClose: null } },
+        });
+      } else if (type === 'seasonalDetails') {
+        setVenueDetails({ ...venueDetails, [type]: { ...venueDetails.seasonalDetails, [name]: e } });
+      } else if (type === 'paymentMethod') {
+        setVenueDetails({ ...venueDetails, [type]: { [e]: !venueDetails[type][e] } });
+      } else {
+        setVenueDetails({ ...venueDetails, [type]: { ...venueDetails[type], [e]: !venueDetails[type][e] } });
+      }
+    } else if (type === 'addSeasonal') {
+      setVenueDetails({ ...venueDetails, [type]: e });
+    } else {
+      setVenueDetails({ ...venueDetails, [e.target.name]: e.target.value });
     }
   };
 
-  const selectDays = (name) => {
-    setDays({ ...days, [name]: !days[name] });
-  };
-
-  const addReOpenTimings = (name) => {
-    setReOpen({ ...reOpen, [name]: !reOpen[name] });
+  const handleTime = (name = null, e, type = null) => {
+    if (type === 'seasonalDetails') {
+      if (name === 'date') {
+        setVenueDetails({
+          ...venueDetails,
+          [type]: { ...venueDetails.seasonalDetails, [name]: moment(e).format('YYYY/MM/DD') },
+        });
+      } else {
+        setVenueDetails({
+          ...venueDetails,
+          [type]: { ...venueDetails.seasonalDetails, [name]: moment(e).format('LT') },
+        });
+      }
+    } else {
+      setVenueDetails({
+        ...venueDetails,
+        hoursOpen: {
+          ...venueDetails.hoursOpen,
+          [type]: { ...venueDetails.hoursOpen[type], [name]: moment(e).format('LT') },
+        },
+      });
+    }
   };
 
   return (
@@ -105,11 +170,14 @@ export default function VenuesDetailsSteps({ onCancel }) {
             <h1>Add Venue Description</h1>
             <div className={styles.input}>
               <TextArea
+                name="description"
                 placeholder="Describe Your Venue, Your Way"
                 suffix="500 Word Limit"
                 autoSize
                 maxLength={500}
                 showCount
+                value={venueDetails.description}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -119,12 +187,15 @@ export default function VenuesDetailsSteps({ onCancel }) {
             <h1>Add Venue Location</h1>
             <div className={styles.input}>
               <Input
+                name="location"
                 placeholder="Enter Venue Location"
                 suffix={
                   <div className={styles.suffix}>
                     <i className="fa fa-search" />
                   </div>
                 }
+                value={venueDetails.location}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -134,14 +205,15 @@ export default function VenuesDetailsSteps({ onCancel }) {
             <h1>Add Venue Capacity</h1>
             <div className={styles.input}>
               <Input
-                onChange={(e) => handleNumber(e)}
-                value={venueCapacity}
+                name="venueCapacity"
                 placeholder="Enter Venue Capacity"
                 prefix={
                   <div className={styles.prefix}>
                     <i className="fa fa-user" />
                   </div>
                 }
+                value={venueDetails.venueCapacity}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -149,10 +221,73 @@ export default function VenuesDetailsSteps({ onCancel }) {
         {currentStep === 3 && (
           <div className={styles.step4}>
             <h1>Select Forms of Payment Accepted</h1>
-            <VenuesPaymentForms />
-            {/* <Button className={styles.addBtn}>
+            <div className={styles.paymentForms}>
+              <div
+                onClick={() => handleChange('credit', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.credit ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <div className={[styles.name, styles.center]}>CREDIT/DEBIT</div>
+              </div>
+              <div
+                onClick={() => handleChange('payPal', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.payPal ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={PaypalImg} alt="paypal" />
+              </div>
+              <div
+                onClick={() => handleChange('venmo', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.venmo ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={VenmoImg} alt="Venmo" />
+              </div>
+              <div
+                onClick={() => handleChange('applePay', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.applePay ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={ApplepayImg} alt="Apple Pay" />
+              </div>
+              <div
+                onClick={() => handleChange('chase', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.chase ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={ChaseImg} alt="Chase" />
+              </div>
+              <div
+                onClick={() => handleChange('weChatPay', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.weChatPay ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={WechatImg} alt="WeChat Pay" />
+              </div>
+              <div
+                onClick={() => handleChange('aliPay', 'paymentMethod')}
+                className={`${
+                  venueDetails.paymentMethod.aliPay ? cx(styles.paymentItem, styles.active) : styles.paymentItem
+                }`}
+              >
+                <img src={AlipayImg} alt="Alipay" />
+              </div>
+              <div className={styles.paymentItem}>
+                <div className={styles.name}>NAME OF NEW</div>
+                <div className={styles.icon}>
+                  <TrashIcon width={12} />
+                </div>
+              </div>
+            </div>
+            <Button className={styles.addBtn}>
               <i className="fa fa-plus" aria-hidden="true" /> Add New Form Of Payment
-            </Button> */}
+            </Button>
           </div>
         )}
         {currentStep === 4 && (
@@ -162,19 +297,34 @@ export default function VenuesDetailsSteps({ onCancel }) {
               <h3>Select Open Days</h3>
               <div className={styles.days}>
                 <span>Sun</span>
-                <span className={`${days.mon ? styles.selected : ''}`} onClick={() => selectDays('mon')}>
+                <span
+                  className={`${venueDetails.days.mon ? styles.selected : ''}`}
+                  onClick={() => handleChange('mon', 'days')}
+                >
                   Mon
                 </span>
-                <span className={`${days.tue ? styles.selected : ''}`} onClick={() => selectDays('tue')}>
+                <span
+                  className={`${venueDetails.days.tue ? styles.selected : ''}`}
+                  onClick={() => handleChange('tue', 'days')}
+                >
                   Tue
                 </span>
-                <span className={`${days.wed ? styles.selected : ''}`} onClick={() => selectDays('wed')}>
+                <span
+                  className={`${venueDetails.days.wed ? styles.selected : ''}`}
+                  onClick={() => handleChange('wed', 'days')}
+                >
                   Wed
                 </span>
-                <span className={`${days.thu ? styles.selected : ''}`} onClick={() => selectDays('thu')}>
+                <span
+                  className={`${venueDetails.days.thu ? styles.selected : ''}`}
+                  onClick={() => handleChange('thu', 'days')}
+                >
                   Thu
                 </span>
-                <span className={`${days.fri ? styles.selected : ''}`} onClick={() => selectDays('fri')}>
+                <span
+                  className={`${venueDetails.days.fri ? styles.selected : ''}`}
+                  onClick={() => handleChange('fri', 'days')}
+                >
                   Fri
                 </span>
                 <span>Sat</span>
@@ -213,34 +363,70 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        onChange={(e) => handleTime('open', e, 'mon')}
+                        value={venueDetails.hoursOpen.mon?.open && moment(venueDetails.hoursOpen.mon.open, 'LT a')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        onChange={(e) => handleTime('close', e, 'mon')}
+                        value={venueDetails.hoursOpen.mon?.close && moment(venueDetails.hoursOpen.mon.close, 'LT a')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
-                  {reOpen.mon && (
+                  {venueDetails.reOpen.mon && (
                     <>
                       <Col span={3} offset={1}>
                         <div className={styles.timePicker}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            onChange={(e) => handleTime('reOpen', e, 'mon')}
+                            value={
+                              venueDetails.hoursOpen.mon?.reOpen && moment(venueDetails.hoursOpen.mon.reOpen, 'LT a')
+                            }
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={3}>
                         <div className={cx(styles.timePicker, styles.second)}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            onChange={(e) => handleTime('reClose', e, 'mon')}
+                            value={
+                              venueDetails.hoursOpen.mon?.reClose && moment(venueDetails.hoursOpen.mon.reClose, 'LT a')
+                            }
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={2}>
-                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('mon')} />
+                        <TrashIcon
+                          width={14}
+                          style={{ marginLeft: '10px' }}
+                          onClick={() => handleChange('mon', 'reOpen')}
+                        />
                       </Col>
                     </>
                   )}
-                  {!reOpen.mon && (
+                  {!venueDetails.reOpen.mon && (
                     <Col span={2} offset={1}>
-                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('mon')}>
+                      <Button className={styles.addTimeBtn} onClick={() => handleChange('mon', 'reOpen')}>
                         <i className="fa fa-plus" aria-hidden="true" /> Add
                       </Button>
                     </Col>
@@ -252,34 +438,69 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.tue?.open && moment(venueDetails.hoursOpen.tue.open, 'LT a')}
+                        onChange={(e) => handleTime('open', e, 'tue')}
+                        use12Hours
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.tue?.close && moment(venueDetails.hoursOpen.tue.close, 'LT a')}
+                        onChange={(e) => handleTime('close', e, 'tue')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
-                  {reOpen.tue && (
+                  {venueDetails.reOpen.tue && (
                     <>
                       <Col span={3} offset={1}>
                         <div className={styles.timePicker}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.tue?.reOpen && moment(venueDetails.hoursOpen.tue.reOpen, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reOpen', e, 'tue')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={3}>
                         <div className={cx(styles.timePicker, styles.second)}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.tue?.reClose && moment(venueDetails.hoursOpen.tue.reClose, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reClose', e, 'tue')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={2}>
-                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('tue')} />
+                        <TrashIcon
+                          width={14}
+                          style={{ marginLeft: '10px' }}
+                          onClick={() => handleChange('tue', 'reOpen')}
+                        />
                       </Col>
                     </>
                   )}
-                  {!reOpen.tue && (
+                  {!venueDetails.reOpen.tue && (
                     <Col span={2} offset={1}>
-                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('tue')}>
+                      <Button className={styles.addTimeBtn} onClick={() => handleChange('tue', 'reOpen')}>
                         <i className="fa fa-plus" aria-hidden="true" /> Add
                       </Button>
                     </Col>
@@ -291,34 +512,70 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.wed?.open && moment(venueDetails.hoursOpen.wed.open, 'LT a')}
+                        onChange={(e) => handleTime('open', e, 'wed')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.wed?.close && moment(venueDetails.hoursOpen.wed.close, 'LT a')}
+                        onChange={(e) => handleTime('close', e, 'wed')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
-                  {reOpen.wed && (
+                  {venueDetails.reOpen.wed && (
                     <>
                       <Col span={3} offset={1}>
                         <div className={styles.timePicker}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.wed?.reOpen && moment(venueDetails.hoursOpen.wed.reOpen, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reOpen', e, 'wed')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={3}>
                         <div className={cx(styles.timePicker, styles.second)}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.wed?.reClose && moment(venueDetails.hoursOpen.wed.reClose, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reClose', e, 'wed')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={2}>
-                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('wed')} />
+                        <TrashIcon
+                          width={14}
+                          style={{ marginLeft: '10px' }}
+                          onClick={() => handleChange('wed', 'reOpen')}
+                        />
                       </Col>
                     </>
                   )}
-                  {!reOpen.wed && (
+                  {!venueDetails.reOpen.wed && (
                     <Col span={2} offset={1}>
-                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('wed')}>
+                      <Button className={styles.addTimeBtn} onClick={() => handleChange('wed', 'reOpen')}>
                         <i className="fa fa-plus" aria-hidden="true" /> Add
                       </Button>
                     </Col>
@@ -330,34 +587,70 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.thu?.open && moment(venueDetails.hoursOpen.thu.open, 'LT a')}
+                        onChange={(e) => handleTime('open', e, 'thu')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.thu?.close && moment(venueDetails.hoursOpen.thu.close, 'LT a')}
+                        onChange={(e) => handleTime('close', e, 'thu')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
-                  {reOpen.thu && (
+                  {venueDetails.reOpen.thu && (
                     <>
                       <Col span={3} offset={1}>
                         <div className={styles.timePicker}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.thu?.reOpen && moment(venueDetails.hoursOpen.thu.reOpen, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reOpen', e, 'thu')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={3}>
                         <div className={cx(styles.timePicker, styles.second)}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.thu?.reClose && moment(venueDetails.hoursOpen.thu.reClose, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reClose', e, 'thu')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={2}>
-                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('thu')} />
+                        <TrashIcon
+                          width={14}
+                          style={{ marginLeft: '10px' }}
+                          onClick={() => handleChange('thu', 'reOpen')}
+                        />
                       </Col>
                     </>
                   )}
-                  {!reOpen.thu && (
+                  {!venueDetails.reOpen.thu && (
                     <Col span={2} offset={1}>
-                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('thu')}>
+                      <Button className={styles.addTimeBtn} onClick={() => handleChange('thu', 'reOpen')}>
                         <i className="fa fa-plus" aria-hidden="true" /> Add
                       </Button>
                     </Col>
@@ -369,34 +662,70 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   </Col>
                   <Col span={3}>
                     <div className={styles.timePicker}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.fri?.open && moment(venueDetails.hoursOpen.fri.open, 'LT a')}
+                        onChange={(e) => handleTime('open', e, 'fri')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
                   <Col span={3}>
                     <div className={cx(styles.timePicker, styles.second)}>
-                      <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                      <TimePicker
+                        value={venueDetails.hoursOpen.fri?.close && moment(venueDetails.hoursOpen.fri.close, 'LT a')}
+                        onChange={(e) => handleTime('close', e, 'fri')}
+                        use12Hours
+                        variant="secondaryLight"
+                        format="h A"
+                        placeholder="- -"
+                      />
                     </div>
                   </Col>
-                  {reOpen.fri && (
+                  {venueDetails.reOpen.fri && (
                     <>
                       <Col span={3} offset={1}>
                         <div className={styles.timePicker}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.fri?.reOpen && moment(venueDetails.hoursOpen.fri.reOpen, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reOpen', e, 'fri')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={3}>
                         <div className={cx(styles.timePicker, styles.second)}>
-                          <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
+                          <TimePicker
+                            value={
+                              venueDetails.hoursOpen.fri?.reClose && moment(venueDetails.hoursOpen.fri.reClose, 'LT a')
+                            }
+                            onChange={(e) => handleTime('reClose', e, 'fri')}
+                            use12Hours
+                            variant="secondaryLight"
+                            format="h A"
+                            placeholder="- -"
+                          />
                         </div>
                       </Col>
                       <Col span={2}>
-                        <TrashIcon width={14} style={{ marginLeft: '10px' }} onClick={() => addReOpenTimings('fri')} />
+                        <TrashIcon
+                          width={14}
+                          style={{ marginLeft: '10px' }}
+                          onClick={() => handleChange('fri', 'reOpen')}
+                        />
                       </Col>
                     </>
                   )}
-                  {!reOpen.fri && (
+                  {!venueDetails.reOpen.fri && (
                     <Col span={2} offset={1}>
-                      <Button className={styles.addTimeBtn} onClick={() => addReOpenTimings('fri')}>
+                      <Button className={styles.addTimeBtn} onClick={() => handleChange('fri', 'reOpen')}>
                         <i className="fa fa-plus" aria-hidden="true" /> Add
                       </Button>
                     </Col>
@@ -410,84 +739,125 @@ export default function VenuesDetailsSteps({ onCancel }) {
                   <h3>Add Seasonal & Holiday Hours</h3>
                 </div>
                 <div className={styles.switch}>
-                  YES <Switch defaultChecked />
+                  {venueDetails.addSeasonal ? 'Yes' : 'No'}{' '}
+                  <Switch onChange={(e) => handleChange(e, 'addSeasonal')} defaultChecked={venueDetails.addSeasonal} />
                 </div>
               </div>
-              <div className={styles.holidayItem}>
-                <div className={styles.holiday}>
-                  <Row className={styles.row}>
-                    <Col span={6}>
-                      <div className={styles.label}>Holiday Or Season</div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.label}>Name Of Special Day</div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.label}>Date</div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.label}>Multiple Days</div>
-                    </Col>
-                  </Row>
-                  <Row className={styles.row}>
-                    <Col span={6}>
-                      <div className={styles.select}>
-                        <Select placeholder="Select Type" options={searchOptions} />
-                      </div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.select}>
-                        <Select placeholder="Select or Enter Your Own" options={searchOptions} />
-                      </div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.date}>
-                        <DatePicker
-                          placeholder="- -"
-                          suffixIcon={<CalendarIcon className="calendarIcon" width={16} />}
-                        />
-                      </div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.switch}>
-                        <Switch />
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row className={styles.row}>
-                    <Col span={3}>
-                      <div className={styles.label}>Open</div>
-                    </Col>
-                    <Col span={3}>
-                      <div className={styles.label}>Close</div>
-                    </Col>
-                    <Col span={6}>
-                      <div className={styles.label}>Add Re-opening Times</div>
-                    </Col>
-                  </Row>
-                  <Row className={styles.row}>
-                    <Col span={6} className={styles.time}>
-                      <div className={styles.timePicker}>
-                        <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
-                      </div>
-                      <div className={cx(styles.timePicker, styles.second)}>
-                        <TimePicker use12Hours variant="secondaryLight" format="h A" placeholder="- -" />
-                      </div>
-                    </Col>
-                    <Col span={3}>
-                      <Button className={styles.addTimeBtn}>
-                        <i className="fa fa-plus" aria-hidden="true" /> Add
-                      </Button>
-                    </Col>
-                  </Row>
-                </div>
-                <div className={styles.action}>
-                  <TrashIcon width={24} height={24} />
-                </div>
-              </div>
-              <Button className={styles.addBtn}>
-                <i className="fa fa-plus" aria-hidden="true" /> Add Another Season or Holiday
-              </Button>
+              {venueDetails.addSeasonal && (
+                <>
+                  <div className={styles.holidayItem}>
+                    <div className={styles.holiday}>
+                      <Row className={styles.row}>
+                        <Col span={6}>
+                          <div className={styles.label}>Holiday Or Season</div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.label}>Name Of Special Day</div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.label}>Date</div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.label}>Multiple Days</div>
+                        </Col>
+                      </Row>
+                      <Row className={styles.row}>
+                        <Col span={6}>
+                          <div className={styles.select}>
+                            <Select
+                              onChange={(e) => {
+                                handleChange(e, 'seasonalDetails', 'holiday');
+                              }}
+                              defaultValue={venueDetails.seasonalDetails.holiday}
+                              placeholder="Select Type"
+                              options={searchOptions}
+                            />
+                          </div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.select}>
+                            <Select
+                              onChange={(e) => {
+                                handleChange(e, 'seasonalDetails', 'specialDay');
+                              }}
+                              defaultValue={venueDetails.seasonalDetails.specialDay}
+                              placeholder="Select or Enter Your Own"
+                              options={searchOptions}
+                            />
+                          </div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.date}>
+                            <DatePicker
+                              onChange={(e) => handleTime('date', e, 'seasonalDetails')}
+                              defaultValue={
+                                venueDetails.seasonalDetails?.date &&
+                                moment(venueDetails.seasonalDetails.date, 'YYYY/MM/DD')
+                              }
+                              placeholder="- -"
+                              suffixIcon={<CalendarIcon className="calendarIcon" width={16} />}
+                            />
+                          </div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.switch}>
+                            <Switch />
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row className={styles.row}>
+                        <Col span={3}>
+                          <div className={styles.label}>Open</div>
+                        </Col>
+                        <Col span={3}>
+                          <div className={styles.label}>Close</div>
+                        </Col>
+                        <Col span={6}>
+                          <div className={styles.label}>Add Re-opening Times</div>
+                        </Col>
+                      </Row>
+                      <Row className={styles.row}>
+                        <Col span={6} className={styles.time}>
+                          <div className={styles.timePicker}>
+                            <TimePicker
+                              onChange={(e) => handleTime('open', e, 'seasonalDetails')}
+                              value={
+                                venueDetails.seasonalDetails?.open && moment(venueDetails.seasonalDetails.open, 'LT a')
+                              }
+                              use12Hours
+                              format="h A"
+                              placeholder="- -"
+                            />
+                          </div>
+                          <div className={cx(styles.timePicker, styles.second)}>
+                            <TimePicker
+                              onChange={(e) => handleTime('close', e, 'seasonalDetails')}
+                              value={
+                                venueDetails.seasonalDetails?.close &&
+                                moment(venueDetails.seasonalDetails.close, 'LT a')
+                              }
+                              use12Hours
+                              format="h A"
+                              placeholder="- -"
+                            />
+                          </div>
+                        </Col>
+                        <Col span={3}>
+                          <Button className={styles.addTimeBtn}>
+                            <i className="fa fa-plus" aria-hidden="true" /> Add
+                          </Button>
+                        </Col>
+                      </Row>
+                    </div>
+                    <div className={styles.action}>
+                      <TrashIcon width={24} height={24} />
+                    </div>
+                  </div>
+                  <Button className={styles.addBtn}>
+                    <i className="fa fa-plus" aria-hidden="true" /> Add Another Season or Holiday
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}

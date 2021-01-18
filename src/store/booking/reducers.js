@@ -52,6 +52,22 @@ export const bookingReducer = handleActions(
       }),
     ],
     [
+      bookingActions.setSupplyManagerVenue,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        supplyManagerVenue: action.payload,
+      }),
+    ],
+    [
+      bookingActions.setVenueDetails,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        venueDetails: action.payload,
+      }),
+    ],
+    [
       bookingActions.removeItineraryItem,
       (state, action) => {
         const newBookingPayload = {
@@ -75,6 +91,8 @@ export const bookingReducer = handleActions(
     guestContactInformation: null,
     bookingHotelPayload: null,
     paymentPayload: null,
+    supplyManagerVenue: null,
+    venueDetails: null,
   },
 );
 
