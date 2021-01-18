@@ -53,7 +53,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
     }
 
     setItems(data.slice((page - 1) * size, page * size));
-  }, [search, pagination]);
+  }, [search, pagination, initialItems]);
 
   useEffect(() => {}, [filterBy]);
 
