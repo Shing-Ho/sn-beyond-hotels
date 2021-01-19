@@ -1,6 +1,6 @@
 import React from 'react';
-import VenuesPage from 'pages/SupplyManager/VenuesPage';
 import { ReactComponent as NightlifeWhiteIcon } from 'icons/dashboardIcons/NightlifeWhite.svg';
+import VenuesPage from './VenuesPage';
 
 export default function VenueNightlifesPage() {
   const handlePublish = () => {

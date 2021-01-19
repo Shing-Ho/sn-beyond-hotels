@@ -50,8 +50,6 @@ const GasDetailPage = () => {
   const dispatch = useDispatch();
   const data = useSelector(getFormattedGasStation(params.id));
 
-  console.log(data, params.id);
-
   useEffect(() => {
     dispatch(gasActions.getGasStations());
   }, []);

@@ -1,6 +1,6 @@
 import React from 'react';
-import VenuesPage from 'pages/SupplyManager/VenuesPage';
 import { ReactComponent as ToursActivitiesIcon } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
+import VenuesPage from './VenuesPage';
 
 export default function VenueToursPage() {
   const handlePublish = () => {
