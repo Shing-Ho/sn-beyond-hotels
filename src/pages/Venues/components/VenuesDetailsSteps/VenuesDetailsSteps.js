@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Row, Col, Button, Switch, DatePicker, Input } from 'antd';
 import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,10 +15,11 @@ import TimePicker from 'components/TimePicker/TimePicker';
 import Select from 'components/Select/Select';
 import { Steps, Step } from 'components/Steps/Steps';
 import * as moment from 'moment';
-import styles from './VenuesDetailsSteps.module.scss';
 import { isNumber } from '../../../../helpers/helperMethods';
 import bookingActions from '../../../../store/booking/actions';
 import { getVenueDetails } from '../../../../store/booking/selectors';
+import Complete from '../../../../components/AutoComlete/AutoComplete';
+import styles from './VenuesDetailsSteps.module.scss';
 
 const { TextArea } = Input;
 const steps = [
@@ -55,6 +56,14 @@ const searchOptions = [
   },
 ];
 
+const initialState = {
+  location: {
+    location_id: '5128581',
+    location_name: 'New York City',
+    iso_country_code: 'USA',
+  },
+};
+
 export default function VenuesDetailsSteps({ onCancel }) {
   const [venueDetails, setVenueDetails] = React.useState({
     days: { mon: true, tue: true, wed: true, thu: true, fri: true },
@@ -81,11 +90,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
       fri: { open: null, close: null },
     },
     description: null,
-    location: null,
+    location: { ...initialState.location },
     venueCapacity: null,
   });
   const [currentStep, setCurrentStep] = React.useState(0);
   const data = useSelector(getVenueDetails);
+  const locCache = useRef(initialState.location);
   const dispatch = useDispatch();
 
   useMemo(() => {
@@ -155,6 +165,17 @@ export default function VenuesDetailsSteps({ onCancel }) {
     }
   };
 
+  const onSelect = (location) => {
+    setVenueDetails({ ...venueDetails, location });
+  };
+
+  const clearData = () => {
+    if (venueDetails.location?.location_id) {
+      locCache.current = venueDetails.location || initialState.location;
+    }
+    setVenueDetails({ ...venueDetails, location: {} });
+  };
+
   return (
     <div className={styles.venuesDetailsSteps}>
       <div className={styles.stepsContainer}>
@@ -173,7 +194,6 @@ export default function VenuesDetailsSteps({ onCancel }) {
                 name="description"
                 placeholder="Describe Your Venue, Your Way"
                 suffix="500 Word Limit"
-                autoSize
                 maxLength={500}
                 showCount
                 value={venueDetails.description}
@@ -186,17 +206,12 @@ export default function VenuesDetailsSteps({ onCancel }) {
           <div className={styles.step2}>
             <h1>Add Venue Location</h1>
             <div className={styles.input}>
-              <Input
-                name="location"
-                placeholder="Enter Venue Location"
-                suffix={
-                  <div className={styles.suffix}>
-                    <i className="fa fa-search" />
-                  </div>
-                }
-                value={venueDetails.location}
-                onChange={(e) => handleChange(e)}
-              />
+              <div className={cx('itemWrapper', 'autoCompleteWrapper', styles.autoCompleteWrapper, styles.itemWrapper)}>
+                <Complete value={venueDetails.location} onSelect={onSelect} clearData={() => clearData()} />
+                <div className={styles.suffix}>
+                  <i className="fa fa-search" />
+                </div>
+              </div>
             </div>
           </div>
         )}

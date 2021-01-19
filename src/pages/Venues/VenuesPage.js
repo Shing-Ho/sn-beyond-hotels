@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import $ from 'jquery';
 
@@ -23,6 +23,11 @@ export default function VenuesPage({ mainIcon }) {
       SetOnboarding(1);
     });
   };
+
+  useEffect(() => {
+    openOnboarding();
+  }, []);
+
   const handleOnboarding = (currentStep) => {
     if (currentStep === 2) {
       $('html, body').animate({ scrollTop: 180 }, 100);

@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { Input } from 'antd';
 import styles from './Input.module.scss';
 
-export default function CustomInput({ placeholder = 'Add...', name, propsValue, prefix, suffix, maxLength }) {
+export default function CustomInput({
+  placeholder = 'Add...',
+  name,
+  propsValue,
+  prefix,
+  suffix,
+  maxLength,
+  type = 'text',
+}) {
   const [value, setValue] = useState(propsValue);
   const [currentLength, setCurrentLength] = useState(propsValue ? propsValue.length : 0);
 
@@ -13,6 +21,7 @@ export default function CustomInput({ placeholder = 'Add...', name, propsValue, 
 
   return (
     <Input
+      type={type}
       placeholder={placeholder}
       name={name}
       value={value}

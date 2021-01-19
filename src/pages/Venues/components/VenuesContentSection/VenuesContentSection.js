@@ -26,6 +26,12 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
     setActiveTab(productOnboarding || tabsOnboarding ? '1' : activeTab);
   }, [productOnboarding, tabsOnboarding]);
 
+  useEffect(() => {
+    if (activeTab === '2') {
+      setModalVisible(true);
+    }
+  }, [activeTab]);
+
   return (
     <div className={styles.root}>
       <div
@@ -54,10 +60,20 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
             collapsedHeader={<ProductsGroupCollapsedHeader title="Main" amount={0} trash equal />}
           >
             <ProductItem onboarding={productOnboarding} />
-            <Button className={[styles.addBtn, styles.product]}>
+            <Button className={[styles.addBtn, styles.product]} onClick={() => setModalVisible(true)}>
               <i className="fa fa-plus" aria-hidden="true" /> Add Product
             </Button>
           </ProductsGroupCollapse>
+          <Modal
+            title="Venue Details"
+            visible={modalVisible}
+            footer={null}
+            centered
+            width={1000}
+            onCancel={() => setModalVisible(false)}
+          >
+            <VenuesDetailsSteps onCancel={() => setModalVisible(false)} />
+          </Modal>
 
           <div className={styles.description}>
             <p>

@@ -65,6 +65,12 @@
           color: $secondaryLightColor;
         }
       }
+      .sample {
+        margin-top: 80px;
+        font-size: 20px;
+        opacity: 0.7;
+        font-style: italic;
+      }
     }
 
     &.onboarding {

@@ -75,13 +75,6 @@
         border: 2px solid $secondaryColor;
         border-radius: 3px;
 
-        &.btnHover {
-          &:hover {
-            border: 2px solid  #1DA5A8;
-            color:  #1DA5A8;
-          }
-        }
-
         &.primary {
           background-color: $secondaryColor;
           color: white;
