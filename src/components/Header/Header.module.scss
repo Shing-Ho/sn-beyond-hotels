@@ -37,65 +37,63 @@
           }
         }
       }
+    }
 
-      .menus {
-        display: flex;
-        height: 100%;
-        line-height: 80px;
+    .menus {
+      display: flex;
+      height: 100%;
+      line-height: 80px;
+      background-color: transparent;
+      border: none;
+
+      :global(.ant-menu-item):not(:hover) {
+        border: none !important;
+      }
+      :global(.ant-menu-item-active) {
+        border-width: 0 !important;
+        color: $secondaryLightColor !important;
+      }
+      :global(.ant-menu-item-selected) {
+        border-bottom: 5px solid #1da5a8 !important;
+        color: #1da5a8 !important;
+      }
+
+      .menuItem {
+        margin: 0;
+        top: 0;
+        padding: 0 20px;
         background-color: transparent;
-        border: none;
+        font-size: 20px;
+        font-family: Lato;
+        font-weight: bold;
+        color: $grayColor;
+      }
+    }
 
-        .menuItem {
-          margin: 0;
-          top: 0;
-          padding: 0 20px;
-          background-color: transparent;
-          font-size: 20px;
-          font-family: Lato;
-          font-weight: bold;
-          color: $grayColor;
+    .itemWrapper {
+      display: flex;
 
-          &:global(.ant-menu-item):not(:hover) {
-            border: none;
-          }
-
-          &:global(.ant-menu-item-active) {
-            border-width: 0;
-            color: $secondaryLightColor;
-          }
-
-          &:global(.ant-menu-item-selected) {
-            border-bottom: 5px solid #1DA5A8 !important;
-            color: #1DA5A8;
-          }
+      .langWrapper {
+        padding: 0 15px;
+        @media (max-width: $bp-mobile) {
+          padding: 0 2px;
         }
       }
 
-      .itemWrapper {
-        display: flex;
+      .cartWrapper {
+        position: relative;
 
-        .langWrapper {
-          padding: 0 15px;
-          @media (max-width: $bp-mobile) {
-            padding: 0 2px;
-          }
+        span {
+          position: absolute;
+          top: 26%;
+          left: 60%;
+          transform: translate(-50%, -50%);
+          font-size: 16px;
         }
 
-        .cartWrapper {
-          position: relative;
-
-          span {
-            position: absolute;
-            top: 26%;
-            left: 60%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
-          }
-
-          img {
-            height: 24px;
-            width: 24px;
-          }
+        img {
+          height: 24px;
+          width: 24px;
         }
       }
     }
