@@ -13,7 +13,7 @@ import VenuesContentSection from './components/VenuesContentSection/VenuesConten
 import VenuesAssistantOnboarding from './components/VenuesAssistantOnboarding/VenuesAssistantOnboarding';
 import styles from './VenuesPage.module.scss';
 
-export default function VenuesPage() {
+export default function VenuesPage({ mainIcon }) {
   const [onboarding, SetOnboarding] = useState(0);
   const [showMe, setShowMe] = useState(true);
 
@@ -46,7 +46,7 @@ export default function VenuesPage() {
           <Row justify="center">
             <Col md={16} sm={24} flex={1}>
               <Row>
-                <VenuesDetailHeader onboarding={onboarding === 3} />
+                <VenuesDetailHeader mainIcon={mainIcon} onboarding={onboarding === 3} />
               </Row>
               <Row>
                 <VenuesContentSection productOnboarding={onboarding === 4} tabsOnboarding={onboarding === 5} />
