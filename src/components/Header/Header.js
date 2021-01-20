@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
 import coreActions from 'store/core/actions';
-import { getSelectedRoomItems } from '../../store/booking/selectors';
+import { ReactComponent as ArrowIcon } from 'icons/arrow-down-small.svg';
 import { getLocale, getCurrentMenu } from '../../store/core/selectors';
-import logo from '../../images/simplenight-logo.png';
-import CartIcon from '../../icons/cart.svg';
-import styles from './Header.module.scss';
+import slogo from '../../images/snlogo.png';
+import unitedLogo from '../../images/united-logo.png';
+import profile from '../../images/profile.png';
 import Select from '../Select/Select';
 import { Languages } from '../../helpers/constants';
+import styles from './Header.module.scss';
 
 const languageOptions = Object.keys(Languages).map((value) => ({
   title: value,
   value: Languages[value],
 }));
 
-const Header = () => {
+const Header = ({ location }) => {
   const dispatch = useDispatch();
-  const selectedRooms = useSelector(getSelectedRoomItems);
+  // const selectedRooms = useSelector(getSelectedRoomItems);
   const locale = useSelector(getLocale);
   const currentMenu = useSelector(getCurrentMenu);
+
+  useEffect(() => {
+    if (location?.pathname.includes('venues')) {
+      dispatch(coreActions.setCurrentMenu('/venues'));
+    } else {
+      dispatch(coreActions.setCurrentMenu('/'));
+    }
+  }, []);
 
   const handleMenuButtonClick = () => {
     // dispatch(coreActions.toggleDrawerOpen());
@@ -43,7 +52,7 @@ const Header = () => {
         <div className={styles.mainContainer}>
           <MenuOutlined className={styles.menubtn} onClick={handleMenuButtonClick} />
           <div className={styles.logo}>
-            <img className={styles.logoImage} src={logo} alt="logo" />
+            <img className={styles.logoImage} src={slogo} alt="logo" />
           </div>
         </div>
         <Menu onClick={onMenuChange} className={styles.menus} selectedKeys={[currentMenu]} mode="horizontal">
@@ -54,6 +63,18 @@ const Header = () => {
             <FormattedMessage id="venues" defaultMessage="Venues" />
           </Menu.Item>
         </Menu>
+        <div className={styles.profileWrapperMain}>
+          <div className={styles.profileWrapper}>
+            <img src={unitedLogo} alt="logo" />
+            <div className={styles.bar} />
+            <div>
+              <img src={profile} alt="profile" />
+            </div>
+          </div>
+          <div className={styles.dropdown}>
+            <ArrowIcon />
+          </div>
+        </div>
         <div className={styles.itemWrapper}>
           <div className={styles.langWrapper}>
             <Select
@@ -66,10 +87,10 @@ const Header = () => {
               onChange={onLanguageChange}
             />
           </div>
-          <div className={styles.cartWrapper} onClick={() => dispatch(coreActions.toggleDrawer(true))}>
-            <span>{selectedRooms.length}</span>
-            <img src={CartIcon} alt="" />
-          </div>
+          {/* <div className={styles.cartWrapper} onClick={() => dispatch(coreActions.toggleDrawer(true))}> */}
+          {/*  <span>{selectedRooms.length}</span> */}
+          {/*  <img src={CartIcon} alt="" /> */}
+          {/* </div> */}
         </div>
       </div>
     </header>

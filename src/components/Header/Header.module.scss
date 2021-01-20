@@ -3,10 +3,10 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: $bgGrayColor;
-  height: 80px;
-  padding: 0 30px;
+  height: 100px;
+  padding: 20px;
   color: $primaryColor;
   font-weight: bold;
   font-size: 20px;
@@ -18,8 +18,24 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    max-width: 1400px;
-    //flex-wrap: wrap;
+    :global(.ant-menu-horizontal){
+      line-height: 93px;
+    }
+    :global(.ant-menu){
+      font-family: Lato;
+      font-size: 20px;
+      font-weight: bold;
+      color: #7b7c7e;
+      background: transparent;
+    }
+    :global(.ant-menu-item-selected){
+      color: #3dc2cc !important;
+      border-bottom: 5px solid #3dc2cc !important;
+    }
+    :global(.ant-menu-item-active){
+      color: #3dc2cc !important;
+      border-bottom: 5px solid #3dc2cc !important;
+    }
     .mainContainer {
       display: flex;
       align-items: center;
@@ -37,7 +53,6 @@
           }
         }
       }
-    }
 
     .menus {
       display: flex;
@@ -46,32 +61,36 @@
       background-color: transparent;
       border: none;
 
-      :global(.ant-menu-item):not(:hover) {
-        border: none !important;
-      }
-      :global(.ant-menu-item-active) {
-        border-width: 0 !important;
-        color: $secondaryLightColor !important;
-      }
-      :global(.ant-menu-item-selected) {
-        border-bottom: 5px solid #1da5a8 !important;
-        color: #1da5a8 !important;
-      }
+        .menuItem {
+          margin: 0;
+          top: 0;
+          padding: 0 20px;
+          background-color: transparent;
+          font-size: 20px;
+          font-family: Lato;
+          font-weight: bold;
+          color: $grayColor;
 
-      .menuItem {
-        margin: 0;
-        top: 0;
-        padding: 0 20px;
-        background-color: transparent;
-        font-size: 20px;
-        font-family: Lato;
-        font-weight: bold;
-        color: $grayColor;
+          &:global(.ant-menu-item):not(:hover) {
+            border: none;
+          }
+
+          &:global(.ant-menu-item-active) {
+            border-width: 0;
+            color: $secondaryLightColor;
+          }
+
+          &:global(.ant-menu-item-selected) {
+            border-bottom: 5px solid #1DA5A8 !important;
+            color: #1DA5A8;
+          }
+        }
       }
     }
 
     .itemWrapper {
-      display: flex;
+      display: none;
+
 
       .langWrapper {
         padding: 0 15px;
@@ -95,6 +114,28 @@
           height: 24px;
           width: 24px;
         }
+      }
+    }
+    .profileWrapperMain {
+      display: flex;
+      background-color: #ffffff;
+      .profileWrapper {
+        display: flex;
+        padding: 9px 16px 9px 18px;
+        align-items: center;
+        .bar {
+          width: 2px;
+          height: 46px;
+          margin: 0 16px 0 18px;
+          background-color: #dedede;
+        }
+      }
+      .dropdown {
+        display: flex;
+        width: 40px;
+        background: #49838f;
+        align-items: center;
+        justify-content: center;
       }
     }
 

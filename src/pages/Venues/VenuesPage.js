@@ -13,7 +13,7 @@ import VenuesContentSection from './components/VenuesContentSection/VenuesConten
 import VenuesAssistantOnboarding from './components/VenuesAssistantOnboarding/VenuesAssistantOnboarding';
 import styles from './VenuesPage.module.scss';
 
-export default function VenuesPage({ mainIcon }) {
+export default function VenuesPage({ location = {}, mainIcon }) {
   const [onboarding, SetOnboarding] = useState(0);
   const [showMe, setShowMe] = useState(true);
 
@@ -43,7 +43,7 @@ export default function VenuesPage({ mainIcon }) {
   };
 
   return (
-    <Page>
+    <Page param={location}>
       <div className={styles.root}>
         <VenuesHeader />
         <VenuesUploadZone onboarding={onboarding === 2} />

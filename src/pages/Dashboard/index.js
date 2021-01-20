@@ -170,7 +170,7 @@ const initialData = Array(30)
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
   }));
 
-const DashboardPage = () => {
+const DashboardPage = ({ location = {} }) => {
   const [filter, setFilter] = useState(initialFilterData);
   const params = useParams();
   const dispatch = useDispatch();
@@ -229,7 +229,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <Page>
+    <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
           <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
