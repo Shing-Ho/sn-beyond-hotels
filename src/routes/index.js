@@ -15,6 +15,7 @@ import FoodDetailPage from 'pages/DetailPage/FoodDetailPage';
 import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
+import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
 import VenueEventsPage from 'pages/Venues/VenueEventsPage';
 import VenueToursPage from 'pages/Venues/VenueToursPage';
 import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
@@ -47,6 +48,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
         <Route path={`${BASE_ROUTE}/shopping/store/:id`} exact component={ShoppingDetailPage} />
+        <Route path={`${BASE_ROUTE}/shopping/product/:id`} exact component={ShoppingProductPage} />
         <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
         {/* End of Dashboard routes */}
