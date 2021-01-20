@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as EventsIcon } from 'icons/dashboardIcons/ShowsEventsWhite.svg';
 import VenuesPage from './VenuesPage';
 
-export default function VenueEventsPage() {
+export default function VenueEventsPage({ location = {} }) {
   const handlePublish = () => {
     alert('on add product group');
   };
@@ -52,6 +52,7 @@ export default function VenueEventsPage() {
       onAddDetails={handleAddDetails}
       onPaymentProviderSelection={handlePaymentProviderSelection}
       onAddContact={handleAddContact}
+      location={location}
     />
   );
 }

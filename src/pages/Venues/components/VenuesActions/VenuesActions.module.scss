@@ -24,8 +24,12 @@
       border: 2px solid $secondaryColor;
     }
     &.copy {
-      border: 2px solid $secondaryLightColor;
-      color: $secondaryLightColor;
+      border: 2px solid #49838f;
+      color: #49838f;
+      &:hover {
+        border: 2px solid $secondaryLightColor;
+        color: $secondaryLightColor;
+      }
     }
     &.delete {
       border: 2px solid #cc513d;

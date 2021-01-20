@@ -42,7 +42,7 @@ export default function VenuesHeader() {
         </Col>
         <Col md={24} lg={10}>
           <div className={styles.actions}>
-            <Button className={[styles.btn, styles.btnHover]}>Cancel</Button>
+            <Button className={styles.btn}>Cancel</Button>
             <Button className={[styles.btn, styles.primary]} type="primary">
               Start Over
             </Button>

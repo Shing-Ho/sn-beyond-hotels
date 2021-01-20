@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import $ from 'jquery';
 
@@ -13,7 +13,8 @@ import VenuesContentSection from './components/VenuesContentSection/VenuesConten
 import VenuesAssistantOnboarding from './components/VenuesAssistantOnboarding/VenuesAssistantOnboarding';
 import styles from './VenuesPage.module.scss';
 
-export default function VenuesPage({ mainIcon }) {
+export default function VenuesPage(props) {
+  const { location = {}, mainIcon } = props;
   const [onboarding, SetOnboarding] = useState(0);
   const [showMe, setShowMe] = useState(true);
 
@@ -23,6 +24,11 @@ export default function VenuesPage({ mainIcon }) {
       SetOnboarding(1);
     });
   };
+
+  useEffect(() => {
+    openOnboarding();
+  }, []);
+
   const handleOnboarding = (currentStep) => {
     if (currentStep === 2) {
       $('html, body').animate({ scrollTop: 180 }, 100);
@@ -38,7 +44,7 @@ export default function VenuesPage({ mainIcon }) {
   };
 
   return (
-    <Page>
+    <Page param={location}>
       <div className={styles.root}>
         <VenuesHeader />
         <VenuesUploadZone onboarding={onboarding === 2} />
