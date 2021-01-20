@@ -9,9 +9,9 @@ import { ReactComponent as PinIcon } from 'icons/pin.svg';
 import shoppingActions from 'store/shopping/actions';
 import { ReactComponent as ShoppingIcon } from '../../../icons/dashboardIcons/Icon_Category_Shopping.svg';
 import IconButton from '../../../components/IconButton/IconButton';
-import snIcon from '../../../icons/dashboardIcons/Icon_Global_Logo_SN_Icon.svg';
-import deliveryIcon from '../../../icons/dashboardIcons/Icon_Special_Delivery.svg';
-import inStoreIcon from '../../../icons/dashboardIcons/Icon_Special_InStore.svg';
+import snIcon from '../../../icons/Icon_Global_Logo_SN_Icon.svg';
+import deliveryIcon from '../../../icons/Icon_Special_Delivery.svg';
+import inStoreIcon from '../../../icons/Icon_Special_InStore.svg';
 import styles from './ShoppingStoreItem.module.scss';
 
 export default function ShoppingStoreItem({ item }) {

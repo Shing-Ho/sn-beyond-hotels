@@ -17,6 +17,7 @@ import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
 import VenuesPage from 'pages/Venues/VenuesPage';
 import SupplyManager from 'pages/SupplyManager/VenuesPage';
+import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -41,7 +42,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
         <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Route path={`${BASE_ROUTE}/shopping/store/:id`} exact component={ShoppingDetailPage} />
-
+        <Route path={`${BASE_ROUTE}/shopping/product/:id`} exact component={ShoppingProductPage} />
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
       </Switch>
     </>

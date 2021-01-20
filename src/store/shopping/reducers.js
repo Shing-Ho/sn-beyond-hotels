@@ -71,6 +71,14 @@ export const shoppingReducer = handleActions(
         loading: false,
       }),
     ],
+    [
+      shoppingActions.selectProduct,
+      (state, action) => ({
+        ...state,
+        selectedProduct: action.payload,
+        loading: false,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -81,6 +89,7 @@ export const shoppingReducer = handleActions(
     selectedCategory: -1,
     shopbyView: 'PRODUCTS',
     selectedStore: {},
+    selectedProduct: {},
   },
 );
 

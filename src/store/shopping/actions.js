@@ -13,6 +13,7 @@ const shoppingActions = createActions(
     CLEAR_FILTERS: undefined,
     SET_SHOP_BY_VIEW: undefined,
     SELECT_STORE: undefined,
+    SELECT_PRODUCT: undefined,
   },
   options,
 );

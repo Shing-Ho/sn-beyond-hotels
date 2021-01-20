@@ -12,7 +12,6 @@ import { getSelectedStore } from '../../store/shopping/selectors';
 
 const ShoppingDetailPage = () => {
   const selectedStore = useSelector(getSelectedStore);
-  console.log(selectedStore);
   const images = [
     {
       url: selectedStore.image,
