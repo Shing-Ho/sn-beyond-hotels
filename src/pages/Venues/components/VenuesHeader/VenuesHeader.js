@@ -24,7 +24,7 @@ export default function VenuesHeader() {
           <div className={styles.modes}>
             <Button
               className={cx(styles.btn, styles.btnInactive, {
-                [styles.active]: mode === 'inactive',
+                [styles.inActiveBtn]: mode === 'inactive',
               })}
               onClick={() => setMode('inactive')}
             >
@@ -32,17 +32,17 @@ export default function VenuesHeader() {
             </Button>
             <Button
               className={cx([styles.btn, styles.btnActive], {
-                [styles.active]: mode === 'active',
+                [styles.activeBtn]: mode === 'active',
               })}
               onClick={() => setMode('active')}
             >
-              <FormattedMessage id="active" defaultMessage="Active" />
+              <i className="fa fa-eye" /> <FormattedMessage id="active" defaultMessage="Active" />
             </Button>
           </div>
         </Col>
         <Col md={24} lg={10}>
           <div className={styles.actions}>
-            <Button className={styles.btn}>Cancel</Button>
+            <Button className={[styles.btn, styles.btnHover]}>Cancel</Button>
             <Button className={[styles.btn, styles.primary]} type="primary">
               Start Over
             </Button>

@@ -47,16 +47,17 @@
         i {
           padding-right: 5px;
         }
-
         &.btnInactive {
           border-radius: 20px 0 0 20px;
-          background-color: #cc513d
         }
         &.btnActive {
           border-radius: 0 20px 20px 0;
         }
-        &.active {
-          background-color: $grayColor;
+        &.inActiveBtn {
+          background-color: #cc513d;
+        }
+        &.activeBtn {
+          background-color: #3dcc63;
         }
       }
     }

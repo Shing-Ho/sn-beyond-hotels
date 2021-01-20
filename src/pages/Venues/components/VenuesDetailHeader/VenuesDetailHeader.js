@@ -4,11 +4,10 @@ import cx from 'classnames';
 
 import Input from 'components/Input/Input';
 import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Large.png';
-import { ReactComponent as NightlifeWhiteIcon } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import { ReactComponent as SafetyIcon } from 'icons/Icon_SupMan_Safety.svg';
 import styles from './VenuesDetailHeader.module.scss';
 
-export default function VenuesDetailHeader({ onboarding }) {
+export default function VenuesDetailHeader({ onboarding, mainIcon }) {
   return (
     <div
       className={cx(styles.detailHeader, {
@@ -20,9 +19,7 @@ export default function VenuesDetailHeader({ onboarding }) {
           <p>Add the name of your venue</p>
           <img src={mentorImg} alt="Arrow for mentoring" />
         </div>
-        <div className={styles.icon}>
-          <NightlifeWhiteIcon />
-        </div>
+        <div className={styles.icon}>{mainIcon}</div>
         <div className={styles.input}>
           <Input placeholder="Add the name of the venue here..." maxLength={40} />
         </div>

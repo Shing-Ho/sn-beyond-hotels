@@ -7,10 +7,13 @@ import { ReactComponent as DragIcon } from 'icons/Icon_SupMan_Drag.svg';
 import { ReactComponent as TrashIcon } from 'icons/trash.svg';
 import { ReactComponent as ArrowIcon } from 'icons/arrow-down-small.svg';
 import Input from 'components/Input/Input';
+import Modal from 'components/Modal/Modal';
 import styles from './ProductItem.module.scss';
+import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
 
 export default function ProductItem({ onboarding }) {
   const [mode, setMode] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <div
       className={cx(styles.productItem, {
@@ -28,7 +31,7 @@ export default function ProductItem({ onboarding }) {
           <div className={styles.initContent}>
             <h3 className={styles.title}>Add Products</h3>
             <p className={styles.description}>Add Products to your venue to show what you offer.</p>
-            <Button className={styles.btn} onClick={() => setMode(false)}>
+            <Button className={styles.btn} onClick={() => setModalVisible(true)}>
               <i className="fa fa-plus" aria-hidden="true" /> Add Product
             </Button>
           </div>
@@ -43,6 +46,7 @@ export default function ProductItem({ onboarding }) {
               <Row>
                 <Col span={12} className={styles.input}>
                   <Input
+                    type="number"
                     placeholder="Price"
                     prefix={<div className={styles.prefix}>$</div>}
                     suffix={<div className={styles.suffix}>USD</div>}
@@ -50,6 +54,7 @@ export default function ProductItem({ onboarding }) {
                 </Col>
                 <Col span={12} className={[styles.input, styles.user]}>
                   <Input
+                    type="number"
                     propsValue="10"
                     prefix={
                       <div className={styles.prefix}>
@@ -80,6 +85,16 @@ export default function ProductItem({ onboarding }) {
           </div>
         )}
       </div>
+      <Modal
+        title="Venue Details"
+        visible={modalVisible}
+        footer={null}
+        centered
+        width={1000}
+        onCancel={() => setModalVisible(false)}
+      >
+        <VenuesDetailsSteps onCancel={() => setModalVisible(false)} />
+      </Modal>
     </div>
   );
 }

@@ -113,10 +113,14 @@
       background-color: $secondaryLightColor;
     }
     &.product {
-      color: $secondaryLightColor;
+      color: #49838f;
       background-color: white;
-      border-color: $secondaryLightColor;
+      border-color: #49838f;
       margin-top: 10px;
+      &:hover {
+        border: 2px solid  #1DA5A8;
+        color:  #1DA5A8;
+      }
     }
   }
 }

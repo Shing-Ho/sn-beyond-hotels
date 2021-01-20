@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
@@ -33,10 +33,13 @@ import { ReactComponent as ShoppingWhite } from 'icons/dashboardIcons/Icon_Categ
 import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
 import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
+import gasActions from 'store/gas/actions';
+import { getFormattedGasStations } from 'store/gas/selectors';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
 import HotelSearchPage from './SearchPage/HotelSearchPage';
 import ShoppingSearchPage from './SearchPage/ShoppingSearchPage';
+
 import styles from './index.module.scss';
 
 const initialFilterData = {
@@ -167,13 +170,14 @@ const initialData = Array(30)
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
   }));
 
-const DashboardPage = () => {
+const DashboardPage = ({ location = {} }) => {
   const [filter, setFilter] = useState(initialFilterData);
   const params = useParams();
   const dispatch = useDispatch();
   const searchType = params.type;
+  const gasStations = useSelector(getFormattedGasStations);
   const [items, setItems] = useState([]);
-  const [gasType, setGasType] = useState('all');
+  const [, setGasType] = useState('all');
   const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
@@ -181,31 +185,42 @@ const DashboardPage = () => {
   };
 
   useEffect(() => {
-    let filteredItems = initialData;
-    if (searchType !== 'all') {
-      filteredItems = initialData.filter((item) => {
-        let valid = item.type === searchType;
-        if (searchType === 'gas') {
-          valid = valid && (gasType === 'all' || item.subType === gasType);
-        }
-        return valid;
-      });
+    let filteredItems = [];
+
+    switch (searchType) {
+      case 'all':
+        filteredItems = initialData;
+        break;
+      case 'gas':
+        filteredItems = gasStations.map((item) => ({
+          subIcons: [<FuelCombo />, <ChargePlug />, <FuleValve />].slice(
+            Math.ceil(Math.random() * 2),
+            Math.round(Math.random() * 3),
+          ),
+          ...item,
+        }));
+        break;
+      default:
+        filteredItems = initialData.filter((item) => item.type === searchType);
+        break;
     }
 
     setItems(
-      filteredItems.map((item) => {
-        const searchTypeInfo = searchTypeOptions.find((option) => option.value === item.type);
-        let subIcons = [];
-
-        if (searchType === 'gas') {
-          subIcons = [<FuelCombo />, <ChargePlug />, <FuleValve />].slice(
-            Math.ceil(Math.random() * 2),
-            Math.round(Math.random() * 3),
-          );
-        }
-        return { icon: searchTypeInfo.selectedIcon, subIcons, ...item };
-      }),
+      filteredItems.map((item) => ({
+        icon: searchTypeOptions.find((option) => option.value === item.type).selectedIcon,
+        ...item,
+      })),
     );
+  }, [gasStations, searchType]);
+
+  useEffect(() => {
+    switch (searchType) {
+      case 'gas':
+        dispatch(gasActions.getGasStations());
+        break;
+      default:
+        break;
+    }
   }, [searchType]);
 
   let subHeader;
@@ -214,7 +229,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <Page>
+    <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
           <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />

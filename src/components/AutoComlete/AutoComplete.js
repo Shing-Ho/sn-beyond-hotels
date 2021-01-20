@@ -11,7 +11,7 @@ const getLocationText = (value) =>
     value.iso_country_code
   }`;
 
-const Complete = ({ onSelect, value, clearData, styles: inputStyle = {}, placeholder }) => {
+const Complete = ({ onSelect, value, clearData, styles: inputStyle = {}, placeholder, ...props }) => {
   const [text, setText] = useState('');
   const [locationData, setLocationData] = useState([]);
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ const Complete = ({ onSelect, value, clearData, styles: inputStyle = {}, placeho
       onChange={onCompleteChange}
       placeholder={placeholder || intl.formatMessage({ id: 'location' })}
       onSelect={onSelected}
+      {...props}
     />
   );
 };

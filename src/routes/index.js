@@ -15,9 +15,10 @@ import FoodDetailPage from 'pages/DetailPage/FoodDetailPage';
 import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
-import VenuesPage from 'pages/Venues/VenuesPage';
-import SupplyManager from 'pages/SupplyManager/VenuesPage';
 import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
+import VenueEventsPage from 'pages/Venues/VenueEventsPage';
+import VenueToursPage from 'pages/Venues/VenueToursPage';
+import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -25,8 +26,14 @@ export default function Routes() {
   return (
     <>
       <Switch>
-        <Route path={`${BASE_ROUTE}/venues`} exact component={VenuesPage} />
-        <Route path={`${BASE_ROUTE}/tours/supply-manager`} exact component={SupplyManager} />
+        {/* Venue routes */}
+        <Route path={`${BASE_ROUTE}/venues/event`} exact component={VenueEventsPage} />
+        <Route path={`${BASE_ROUTE}/venues/tour`} exact component={VenueToursPage} />
+        <Route path={`${BASE_ROUTE}/venues/nightlife`} exact component={VenueNightlifesPage} />
+        <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/event`} />
+        {/* End of Vunue routes */}
+
+        {/* Dashboard routes */}
         <Route path={`${BASE_ROUTE}/payments`} exact component={PaymentsPage} />
         <Route path={`${BASE_ROUTE}/confirmation`} exact component={ConfirmationPage} />
         <Route path={`${BASE_ROUTE}/orderSummary`} exact component={SummaryPage} />
@@ -40,10 +47,11 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
-        <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Route path={`${BASE_ROUTE}/shopping/store/:id`} exact component={ShoppingDetailPage} />
         <Route path={`${BASE_ROUTE}/shopping/product/:id`} exact component={ShoppingProductPage} />
+        <Route path={`${BASE_ROUTE}/:type`} exact component={DashboardPage} />
         <Redirect exact from={`${BASE_ROUTE}`} to={`${BASE_ROUTE}/hotels`} />
+        {/* End of Dashboard routes */}
       </Switch>
     </>
   );

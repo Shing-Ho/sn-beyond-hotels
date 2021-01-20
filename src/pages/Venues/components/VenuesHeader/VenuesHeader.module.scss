@@ -47,15 +47,17 @@
         i {
           padding-right: 5px;
         }
-
         &.btnInactive {
           border-radius: 20px 0 0 20px;
         }
         &.btnActive {
           border-radius: 0 20px 20px 0;
         }
-        &.active {
-          background-color: $grayColor;
+        &.inActiveBtn {
+          background-color: #cc513d;
+        }
+        &.activeBtn {
+          background-color: #3dcc63;
         }
       }
     }
@@ -73,19 +75,34 @@
         border: 2px solid $secondaryColor;
         border-radius: 3px;
 
+        &.btnHover {
+          &:hover {
+            border: 2px solid  #1DA5A8;
+            color:  #1DA5A8;
+          }
+        }
+
         &.primary {
           background-color: $secondaryColor;
           color: white;
+          &:hover{
+            background-color: $secondaryGreen;
+            border: 2px solid $secondaryGreen;
+          }
         }
         &.disabled {
           color: white;
-          border-color: $lightGrayColor;
-          background-color: $lightGrayColor;
+          border-color: $lightGrayColor !important;
+          background-color: $lightGrayColor !important;
         }
         &.publish {
           background-color: #3dcc63;
           border-color: #3dcc63;
           color: white;
+          &:hover{
+            background-color: #189b37 !important;
+            border-color: #189b37 !important;
+          }
         }
       }
     }

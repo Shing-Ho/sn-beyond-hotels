@@ -36,6 +36,7 @@ export default function VenuesUploadZone({ onboarding }) {
             <img src={mentorImg} alt="Arrow for mentoring" />
             <p>Add photos and videos to showcase your venue to customers</p>
           </div>
+          <div className={styles.sample}>Sample images. Add your own!</div>
         </div>
       </div>
     </div>
