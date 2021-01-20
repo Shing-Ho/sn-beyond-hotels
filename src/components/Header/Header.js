@@ -21,21 +21,16 @@ const languageOptions = Object.keys(Languages).map((value) => ({
 
 const Header = ({ location }) => {
   const dispatch = useDispatch();
-  // const selectedRooms = useSelector(getSelectedRoomItems);
   const locale = useSelector(getLocale);
   const currentMenu = useSelector(getCurrentMenu);
 
   useEffect(() => {
-    if (location?.pathname.includes('venues')) {
+    if (location?.pathname?.includes('venues')) {
       dispatch(coreActions.setCurrentMenu('/venues'));
     } else {
       dispatch(coreActions.setCurrentMenu('/'));
     }
   }, []);
-
-  const handleMenuButtonClick = () => {
-    // dispatch(coreActions.toggleDrawerOpen());
-  };
 
   const onLanguageChange = (_locale) => {
     dispatch(coreActions.setLocale(_locale));
@@ -50,7 +45,7 @@ const Header = ({ location }) => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.mainContainer}>
-          <MenuOutlined className={styles.menubtn} onClick={handleMenuButtonClick} />
+          <MenuOutlined className={styles.menubtn} />
           <div className={styles.logo}>
             <img className={styles.logoImage} src={slogo} alt="logo" />
           </div>

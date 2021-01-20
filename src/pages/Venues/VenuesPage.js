@@ -13,7 +13,8 @@ import VenuesContentSection from './components/VenuesContentSection/VenuesConten
 import VenuesAssistantOnboarding from './components/VenuesAssistantOnboarding/VenuesAssistantOnboarding';
 import styles from './VenuesPage.module.scss';
 
-export default function VenuesPage({ location = {}, mainIcon }) {
+export default function VenuesPage(props) {
+  const { location = {}, mainIcon } = props;
   const [onboarding, SetOnboarding] = useState(0);
   const [showMe, setShowMe] = useState(true);
 
