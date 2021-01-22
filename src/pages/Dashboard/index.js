@@ -30,6 +30,16 @@ import { ReactComponent as FlightsTransparent } from 'icons/dashboardIcons/Fligh
 import { ReactComponent as FlightsOutline } from 'icons/dashboardIcons/FlightsOutline.svg';
 import { ReactComponent as Shopping } from 'icons/dashboardIcons/Icon_Category_Shopping.svg';
 import { ReactComponent as ShoppingWhite } from 'icons/dashboardIcons/Icon_Category_Shopping_White.svg';
+import { ReactComponent as TranBike } from 'icons/transports/Icon_Tran_Bike.svg';
+import { ReactComponent as TranBoat } from 'icons/transports/Icon_Tran_Boat.svg';
+import { ReactComponent as TranBus } from 'icons/transports/Icon_Tran_Bus.svg';
+import { ReactComponent as TranHire } from 'icons/transports/Icon_Tran_Hire.svg';
+import { ReactComponent as TranMetro } from 'icons/transports/Icon_Tran_Metro.svg';
+import { ReactComponent as TranRail } from 'icons/transports/Icon_Tran_Rail.svg';
+import { ReactComponent as TranRental } from 'icons/transports/Icon_Tran_Rental.svg';
+import { ReactComponent as TranRideShare } from 'icons/transports/Icon_Tran_RideShare.svg';
+import { ReactComponent as TranScooter } from 'icons/transports/Icon_Tran_Scooter.svg';
+import { ReactComponent as TranTransfer } from 'icons/transports/Icon_Tran_Transfer.svg';
 import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
 import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
@@ -140,6 +150,65 @@ const gasSelectOptions = [
   },
 ];
 
+const transportSelectOptions = [
+  {
+    label: 'Show All',
+    value: 'all',
+    icon: <ShowAllFillGray />,
+    selectedIcon: <ShowAllWhite />,
+  },
+  {
+    label: 'Rental Car',
+    value: 'rental',
+    icon: <TranRental />,
+  },
+  {
+    label: 'RAIL',
+    value: 'rail',
+    icon: <TranRail />,
+  },
+  {
+    label: 'Ride Share',
+    value: 'rideshare',
+    icon: <TranRideShare />,
+  },
+  {
+    label: 'Car Hire',
+    value: 'hire',
+    icon: <TranHire />,
+  },
+  {
+    label: 'Transfers',
+    value: 'transfers',
+    icon: <TranTransfer />,
+  },
+  {
+    label: 'Metro',
+    value: 'metro',
+    icon: <TranMetro />,
+  },
+  {
+    label: 'Bus',
+    value: 'bus',
+    icon: <TranBus />,
+  },
+  {
+    label: 'Scooter',
+    value: 'scooter',
+    icon: <TranScooter />,
+  },
+  {
+    label: 'Bike',
+    value: 'bike',
+    icon: <TranBike />,
+  },
+  {
+    label: 'Boat',
+    value: 'boat',
+    icon: <TranBoat />,
+  },
+];
+
 const initialState = {
   location: {
     location_id: '5128581',
@@ -178,6 +247,7 @@ const DashboardPage = ({ location = {} }) => {
   const gasStations = useSelector(getFormattedGasStations);
   const [items, setItems] = useState([]);
   const [, setGasType] = useState('all');
+  const [, setTransportType] = useState('all');
   const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
@@ -226,6 +296,10 @@ const DashboardPage = ({ location = {} }) => {
   let subHeader;
   if (searchType === 'gas') {
     subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
+  } else if (searchType === 'transports') {
+    subHeader = (
+      <TabSelect uppercase stretch thin custom options={transportSelectOptions} onChange={setTransportType} />
+    );
   }
 
   return (
