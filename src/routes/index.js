@@ -5,6 +5,7 @@ import DashboardPage from 'pages/Dashboard';
 import HotelDetailPage from 'pages/DetailPage/HotelDetailPage';
 import EventDetailPage from 'pages/DetailPage/EventDetailPage';
 import ToursDetailPage from 'pages/DetailPage/ToursDetailPage';
+import CarHireDetailPage from 'pages/DetailPage/CarHireDetailPage';
 import PaymentsPage from 'pages/PaymentsPage/PaymentsPage';
 import ConfirmationPage from 'pages/ConfirmationPage/ConfirmationPage';
 import SummaryPage from 'pages/SummaryPage/SummaryPage';
@@ -44,6 +45,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/events/:id`} exact component={EventDetailPage} />
         <Route path={`${BASE_ROUTE}/foods/:id`} exact component={FoodDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
+        <Route path={`${BASE_ROUTE}/transports/carhire/:id`} exact component={CarHireDetailPage} />
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />

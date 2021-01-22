@@ -16,7 +16,7 @@ const ListView = ({ items = [], currency, total, onPageChange, onItemClick }) =>
     <div className={styles.listContainer}>
       <Row gutter={24} className={styles.row}>
         {items.map((item) => (
-          <Col lg={24} className={styles.column} onClick={onHandleClick(item.id)}>
+          <Col lg={24} className={styles.column} onClick={() => onHandleClick(item.id)}>
             <ListItem currency={currency} data={item} />
           </Col>
         ))}

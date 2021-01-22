@@ -239,6 +239,40 @@ const initialData = Array(30)
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
   }));
 
+// temp data for transportation car hire
+const tempCarHireData = [
+  {
+    id: 1,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/2f83353b-2624-4e33-8840-9fa262d41f0d.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+  {
+    id: 2,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/16e308d3-0f15-4d0a-8e16-0d2be8f77a25.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+  {
+    id: 3,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/08cca3aa-2980-4159-a5aa-6aafa47faef8.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+];
+
 const DashboardPage = ({ location = {} }) => {
   const [filter, setFilter] = useState(initialFilterData);
   const params = useParams();
@@ -247,11 +281,15 @@ const DashboardPage = ({ location = {} }) => {
   const gasStations = useSelector(getFormattedGasStations);
   const [items, setItems] = useState([]);
   const [, setGasType] = useState('all');
-  const [, setTransportType] = useState('all');
+  const [transportType, setTransportType] = useState('all');
   const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));
+  };
+
+  const handleTransportChange = (id) => {
+    dispatch(push(`/transports/carhire/${id}`));
   };
 
   useEffect(() => {
@@ -293,6 +331,12 @@ const DashboardPage = ({ location = {} }) => {
     }
   }, [searchType]);
 
+  useEffect(() => {
+    if (transportType === 'hire') {
+      setItems(tempCarHireData);
+    } else setItems(initialData);
+  }, transportType);
+
   let subHeader;
   if (searchType === 'gas') {
     subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
@@ -315,8 +359,19 @@ const DashboardPage = ({ location = {} }) => {
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}
-          {searchType !== 'hotels' && searchType !== 'flights' && searchType !== 'shopping' && (
-            <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
+          {searchType !== 'hotels' &&
+            searchType !== 'flights' &&
+            searchType !== 'shopping' &&
+            searchType !== 'transports' && (
+              <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
+            )}
+          {searchType === 'transports' && (
+            <ContainerView
+              items={items}
+              searchType={searchType}
+              subHeader={subHeader}
+              onItemClick={handleTransportChange}
+            />
           )}
         </div>
         {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}
