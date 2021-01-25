@@ -11,6 +11,8 @@ import hotelReducer from 'store/hotel/reducers';
 import bookingReducer from 'store/booking/reducers';
 import shoppingReducer from 'store/shopping/reducers';
 import gasReducer from 'store/gas/reducers';
+import authReducer from 'store/auth/reducers';
+import usersReducer from 'store/admin/reducers';
 
 const rootPersistConfig = {
   key: 'root',
@@ -23,17 +25,17 @@ const corePersistConfig = {
   storage,
   whitelist: ['locale', 'currentMenu'],
 };
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['user', 'token'],
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['user', 'token'],
+};
 
 const rootReducer = persistReducer(
   rootPersistConfig,
   combineReducers({
     core: persistReducer(corePersistConfig, coreReducer),
-    // auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
     hotel: persistReducer(
       {
         key: 'hotel',
@@ -61,6 +63,13 @@ const rootReducer = persistReducer(
         storage,
       },
       gasReducer,
+    ),
+    admin: persistReducer(
+      {
+        key: 'admin',
+        storage,
+      },
+      usersReducer,
     ),
     router: connectRouter(history),
   }),

@@ -1,0 +1,21 @@
+@import "styles";
+
+.btnCreate {
+  float: right;
+  margin: 15px;
+}
+
+.createForm {
+  max-width: 400px;
+  margin: auto !important;
+}
+
+.userCreateContainer {
+  padding-top: 50px;
+}
+
+.flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
