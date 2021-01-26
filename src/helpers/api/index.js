@@ -14,3 +14,6 @@ export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, p
 
 // -- Gas -- //
 export const getGasStations = () => get(`charging/poi`);
+
+// ---Carey --- //
+export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
