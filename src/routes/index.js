@@ -21,6 +21,10 @@ import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
 import VenueEventsPage from 'pages/Venues/VenueEventsPage';
 import VenueToursPage from 'pages/Venues/VenueToursPage';
 import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import UserListPage from 'pages/UserManagementPage/UserListPage';
+import UserCreatePage from 'pages/UserManagementPage/UserCreate';
+import ProtectedRoute from 'helpers/routes/ProtectedRoute';
 
 export const BASE_ROUTE = window.BASE_ROUTE || '';
 
@@ -28,6 +32,12 @@ export default function Routes() {
   return (
     <>
       <Switch>
+        {/* Authenticaton routes */}
+        <Route path={`${BASE_ROUTE}/login`} exact component={LoginPage} />
+        <ProtectedRoute path={`${BASE_ROUTE}/users`} exact component={UserListPage} />
+        <ProtectedRoute path={`${BASE_ROUTE}/users/:id`} exact component={UserCreatePage} />
+        {/* End of Authenticaton routes */}
+
         {/* Venue routes */}
         <Route path={`${BASE_ROUTE}/venues/event`} exact component={VenueEventsPage} />
         <Route path={`${BASE_ROUTE}/venues/tour`} exact component={VenueToursPage} />

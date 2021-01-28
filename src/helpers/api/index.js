@@ -1,4 +1,4 @@
-import { post, get } from './api-helper';
+import { post, get, put, remove } from './api-helper';
 
 const postHeader = {
   'X-API-KEY': 'XeTNthwT.42v4L87XoyQ1Odfg10BTpIBGT2qr3gvN',
@@ -14,6 +14,17 @@ export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, p
 
 // -- Gas -- //
 export const getGasStations = () => get(`charging/poi`);
+
+// Authentication
+export const login = (payload) => post(`accounts/login`, payload);
+export const getUser = () => get(`accounts/user`);
+
+// Admin user management
+export const getUsers = () => get(`users`);
+export const getOneUser = (id) => get(`users/${id}`);
+export const createUser = (payload) => post(`users`, payload);
+export const updateUser = (payload) => put(`users/${payload.id}`, payload);
+export const deleteUser = (id) => remove(`users/${id}`);
 
 // ---Carey --- //
 export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
