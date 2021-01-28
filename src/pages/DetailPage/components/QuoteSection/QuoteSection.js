@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import moment from 'moment';
-import { Button, DatePicker, Input, Spin } from 'antd';
-import { isEmpty } from 'lodash';
-
+import { Button, DatePicker, TimePicker, Input, Spin } from 'antd';
+import PlaceAutoComplete from 'components/PlaceAutoComplete/PlaceAutoComplete';
 import NumberInput from 'components/NumberInput/NumberInput';
-import Complete from 'components/AutoComlete/AutoComplete';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
 import careyActions from 'store/carey/actions';
 import { getLoading, getError } from 'store/carey/selectors';
@@ -15,14 +13,10 @@ import styles from './QuoteSection.module.scss';
 export default function QuoteSection({ className }) {
   const dispatch = useDispatch();
   const [pickUpDate, setPickUpDate] = useState(moment());
+  const [pickUpTime, setPickUpTime] = useState(moment());
   const [passengerCount, setPassengerCount] = useState(1);
   const [bagCount, setBagCount] = useState(1);
   const [tripType, setTripType] = useState('Point-To-Point');
-  const [pickUp, setPickUp] = useState({});
-  const [dropOff, setDropOff] = useState({});
-  const pickUpCache = useRef({});
-  const dropOffCache = useRef({});
-  const [validate, setValidate] = useState(false);
   const [errorShow, setErrorShow] = useState('');
 
   const loading = useSelector(getLoading);
@@ -36,73 +30,21 @@ export default function QuoteSection({ className }) {
     setBagCount(value);
   };
 
-  const clearPickUpData = () => {
-    if (pickUp?.location_id) {
-      pickUpCache.current = pickUp || {};
-    }
-    setPickUp({});
-  };
-  const clearDropOffData = () => {
-    if (dropOff?.location_id) {
-      dropOffCache.current = dropOff || {};
-    }
-    setDropOff({});
+  const handleTimeChange = (time) => {
+    setPickUpTime(time);
   };
 
   const handleGetQuote = () => {
+    const pickUpDateTime = `${moment(pickUpDate).format('YYYY-MM-DD')}T${moment(pickUpTime).format('hh:mm:ss')}`;
     const payload = {
-      Version: '1.0',
-      POS: {
-        Source: {
-          BookingChannel: {
-            Type: 'TA',
-            CompanyName: {
-              _value_1: 'CSI - SimpleNight',
-              Code: '',
-              CodeContext: '52969',
-              CompanyShortName: 'PM744',
-            },
-          },
-        },
-      },
-      Service: {
-        Pickup: {
-          DateTime: moment(pickUpDate).format('YYYY-MM-DDThh:mm:ss'),
-          AirportInfo: {
-            Departure: {
-              AirportName: '',
-              LocationCode: 'SEA',
-            },
-          },
-        },
-        Dropoff: {
-          AirportInfo: {
-            Departure: {
-              AirportName: '',
-              LocationCode: 'SEA',
-            },
-          },
-          Airline: {
-            FlightDateTime: '',
-            FlightNumber: 'SEA',
-            Code: '',
-          },
-        },
-      },
-      ServiceType: {
-        Code: 'Point-To-Point',
-        Description: 'ALL',
-      },
-      PassengerPrefs: {
-        MaximumBaggage: '1',
-        MaximumPassengers: '1',
-        GreetingSignInd: 'false',
-      },
-      RateQualifier: {
-        AccountID: '',
-      },
+      DateTime: pickUpDateTime,
     };
     dispatch(careyActions.getRateInquiry(payload));
+  };
+
+  const handleAutoCompleteChange = (locations) => {
+    // eslint-disable-next-line no-console
+    console.log(locations);
   };
 
   useEffect(() => {
@@ -113,10 +55,6 @@ export default function QuoteSection({ className }) {
     }
     return () => clearTimeout(timeout);
   }, [error, dispatch]);
-
-  useEffect(() => {
-    if (!isEmpty(pickUp) && !isEmpty(dropOff)) setValidate(true);
-  }, [pickUp, dropOff]);
 
   return (
     <>
@@ -134,12 +72,19 @@ export default function QuoteSection({ className }) {
             </div>
             <div className={styles.datePickerWrapper}>
               <DatePicker
-                showTime
                 onChange={(value) => {
                   setPickUpDate(value);
                 }}
                 value={pickUpDate}
                 suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
+                className={styles.datePicker}
+              />
+              <TimePicker
+                onChange={handleTimeChange}
+                value={moment(pickUpTime, 'LT a')}
+                use12Hours
+                variant="secondaryLight"
+                format="hh:mm a"
                 className={styles.datePicker}
               />
             </div>
@@ -164,45 +109,23 @@ export default function QuoteSection({ className }) {
                 >
                   POINT-TO-POINT
                 </Button>
-                <Button
-                  className={tripType === 'direct' ? styles.roundSelectedBtn : styles.roundBtn}
-                  onClick={() => setTripType('direct')}
-                >
-                  AS DIRECTED
-                </Button>
               </Button.Group>
             </div>
           </div>
           <div className={styles.location}>
             <h3>Pickup Location:</h3>
-            <div className={styles.autoComplete}>
-              <Complete
-                value={pickUp}
-                onSelect={(place) => setPickUp(place)}
-                clearData={clearPickUpData}
-                placeholder="Search or enter location..."
-              />
-            </div>
+            <PlaceAutoComplete onLocationChange={handleAutoCompleteChange} />
           </div>
           <div className={styles.location}>
             <h3>DropOff Location:</h3>
-            <div className={styles.autoComplete}>
-              <Complete
-                value={dropOff}
-                onSelect={(place) => setDropOff(place)}
-                clearData={clearDropOffData}
-                placeholder="Search or enter location..."
-              />
-            </div>
+            <PlaceAutoComplete onLocationChange={handleAutoCompleteChange} />
           </div>
           <div className={styles.special}>
             <Input.TextArea placeholder="Special Instructions" rows={4} />
           </div>
-          {validate && (
-            <Button className={styles.btn} onClick={handleGetQuote}>
-              Continue
-            </Button>
-          )}
+          <Button className={styles.btn} onClick={handleGetQuote}>
+            Continue
+          </Button>
         </div>
       </>
     </>

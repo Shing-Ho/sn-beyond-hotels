@@ -28,6 +28,14 @@ export const careyReducer = handleActions(
       }),
     ],
     [
+      careyActions.cancelReservation,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        cancelReservation: action.payload || [],
+      }),
+    ],
+    [
       careyActions.clearState,
       (state) => ({
         ...state,

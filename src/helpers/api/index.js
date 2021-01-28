@@ -17,3 +17,4 @@ export const getGasStations = () => get(`charging/poi`);
 
 // ---Carey --- //
 export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
+export const cancelReservation = (payload) => post('carey/cancel-reservation', payload, postHeader);
