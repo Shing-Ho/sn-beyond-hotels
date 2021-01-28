@@ -89,6 +89,32 @@
     }
     .step3 {
       margin: 0 auto;
+      .tabPane {
+        position: relative;
+    
+        :global(.ant-tabs) {
+          :global(.ant-tabs-nav) {
+            :global(.ant-tabs-tab) {
+              &:global(.ant-tabs-tab-active) {
+                :global(.ant-tabs-tab-btn) {
+                  color: $secondaryLightColor;
+                }
+              }
+            }
+            :global(.ant-tabs-ink-bar) {
+              height: 4px;
+              background: $secondaryLightColor;
+            }
+          }
+        }
+
+        .tabPaneData {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
     .step5 {
       .switch {

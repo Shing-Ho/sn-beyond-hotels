@@ -1,0 +1,155 @@
+@import "styles";
+
+.main {
+  border-radius: 2px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+  border: solid 1px #f4f4f4;
+  background-color: var(--white);
+  padding: 10px;
+  margin-bottom: 40px;
+  .tabPane {
+    position: relative;
+
+    :global(.ant-tabs) {
+      :global(.ant-tabs-nav) {
+        :global(.ant-tabs-tab) {
+          &:global(.ant-tabs-tab-active) {
+            :global(.ant-tabs-tab-btn) {
+              color: $secondaryLightColor;
+            }
+          }
+        }
+        :global(.ant-tabs-ink-bar) {
+          height: 4px;
+          background: $secondaryLightColor;
+        }
+      }
+    }
+
+    .tabPaneData {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .inputItem {
+        margin-right: 20px;
+        width: 150px;
+        span {
+          color: $secondaryLightColor;
+          font-weight: 500;
+        }
+        .suffix {
+          i {
+            margin-left: 10px;
+          }
+        }
+        .numberInput {
+          button {
+            background-color: $secondaryLightColor;
+            border-color: $secondaryLightColor;
+          }
+          input {
+            border-color: $secondaryLightColor;
+            color: $secondaryLightColor;
+          }
+        }
+      }
+      .dateItem {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-right: 20px;
+        width: 300px;
+        &>div {
+          width: 100%;
+        }
+        :global(.ant-picker-focused) {
+          border-color: $secondaryLightColor !important;
+          box-shadow: $secondaryLightColor !important;
+        }
+        :global(.ant-picker:hover) {
+          border-color: $secondaryLightColor !important;
+        }
+        span {
+          color: $secondaryLightColor;
+          font-weight: 500;
+        }
+      }
+      .bigInputItem {
+        margin-right: 20px;
+        span {
+          color: $secondaryLightColor;
+          font-weight: 500;
+        }
+        .suffix {
+          i {
+            margin-left: 10px;
+          }
+        }
+      }
+      .switchItem {
+        margin-right: 20px;
+        border-left: 1px solid $borderGrayColor;
+        border-right: 1px solid $borderGrayColor;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        span {
+          color: $secondaryLightColor;
+          font-weight: 500;
+        }
+      }
+      :global {
+        .ant-switch {
+          width: 60px;
+          height: 30px;
+
+          &.ant-switch-checked {
+            background-color: $secondaryLightColor;
+
+            .ant-switch-handle {
+              top: 3px;
+              left: calc(100% - 24px - 4px);
+              &::before {
+                color: $secondaryLightColor;
+              }
+            }
+          }
+
+          .ant-switch-handle {
+            width: 24px;
+            height: 24px;
+            &::before {
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.addCustom {
+  width: 100%;
+  height: 50px;
+  margin: 5px;
+  border: solid 2px #3dc2cc;
+  background-color: $secondaryLightColor;
+  border: 2px solid $secondaryLightColor;
+  color: white;
+  font-size: 16px;
+  font-family: Lato;
+  font-weight: bold;
+  border-radius: 3px;
+  flex: 1;
+  &:hover {
+    background-color: $secondaryLightColor;
+    color: white;
+  }
+  i {
+    margin-right: 10px;
+  }
+}
