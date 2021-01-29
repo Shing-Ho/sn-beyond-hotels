@@ -53,10 +53,15 @@ const ListItem = ({ data, className, currency }) => {
                   </div>
                 )}
                 <div className="flex-vertical-center">
-                  <span>
-                    <FormattedMessage id="average" defaultMessage="AVERAGE" />
-                  </span>
-                  <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                  {data?.type !== 'gas' && (
+                    <span>
+                      <FormattedMessage id="average" defaultMessage="AVERAGE" />
+                    </span>
+                  )}
+                  {data?.type === 'gas' && <span className={styles.itemRate}>{data.rate}</span>}
+                  {data?.type !== 'gas' && (
+                    <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                  )}
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
