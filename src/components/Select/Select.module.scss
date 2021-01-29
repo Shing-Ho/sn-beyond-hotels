@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 :global(::selection) {
   background: $primaryColor;
@@ -12,7 +12,7 @@
     width: 100%;
   }
   :global(.ant-select-arrow) {
-    display: none;
+    //display: none;
   }
   :global(.ant-select),
   :global(.ant-select-selector) {
@@ -26,8 +26,8 @@
     line-height: 36px !important;
   }
   :global(.ant-select.ant-select-focused .ant-select-selector) {
-    border-color: $primaryColor !important;
-    box-shadow: $primaryFocusBoxShadow !important;
+    border-color: $primaryColor;
+    box-shadow: $primaryFocusBoxShadow;
   }
   :global(.ant-select:not(.ant-select-disabled):hover .ant-select-selector) {
     border-color: $primaryColor;
@@ -44,6 +44,12 @@
   .arrowDown {
     @extend .suffix;
     top: 15px;
+    path {
+      stroke: $primaryColor;
+    }
+  }
+  .arrowDownin {
+    @extend .suffix;
     path {
       stroke: $primaryColor;
     }

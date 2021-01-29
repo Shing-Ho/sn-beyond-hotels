@@ -17,6 +17,7 @@ import BookingSection from './components/BookingSection/BookingSection';
 import RoomListSection from './components/RoomListSection/RoomListSection';
 import styles from './HotelDetailPage.module.scss';
 import { getBookingPayload, getSelectedHotel } from '../../store/booking/selectors';
+import { getSearchData } from '../../store/hotel/selectors';
 
 const DetailPage = () => {
   const [selectedRooms, setSelectedRooms] = useState([]);
@@ -32,6 +33,8 @@ const DetailPage = () => {
   const intl = useIntl();
   const urlParams = useLocation();
 
+  const searchData = useSelector(getSearchData);
+
   useMemo(() => {
     if (!preSelectedRooms) {
       return;
@@ -46,6 +49,11 @@ const DetailPage = () => {
     setSelectedRooms(newData);
     setRoomCounts(countObj);
   }, [preSelectedRooms]);
+
+  useEffect(() => {
+    setStartDate(moment(searchData?.start_date));
+    setEndDate(moment(searchData?.end_date));
+  }, [searchData]);
 
   useEffect(() => {
     if (urlParams.search) {
@@ -82,8 +90,6 @@ const DetailPage = () => {
       if (urls.currency) {
         payload.currency = urls.currency;
       }
-      // eslint-disable-next-line no-debugger
-      debugger;
       dispatch(hotelActions.searchHotelById(params.id, payload));
       // dispatch(hotelActions.searchHotels(payload));
     } else {
@@ -208,7 +214,7 @@ const DetailPage = () => {
       <>
         <div className={styles.carousel}>
           <Carousel image={hotel?.hotel_details?.photos || []} />
-          <DetailHeader className={styles.detailHeader} details={hotel.hotel_details} />
+          <DetailHeader className={styles.detailHeader} details={hotel.hotel_details} isRating />
         </div>
         <div className={styles.root}>
           <div className={styles.content}>

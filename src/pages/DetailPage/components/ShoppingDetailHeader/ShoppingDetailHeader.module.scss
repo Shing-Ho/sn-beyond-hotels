@@ -1,0 +1,154 @@
+@import 'styles';
+
+.root {
+  width: 100%;
+  margin-bottom: 20px;
+
+  .title {
+    font-size: 48px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    margin-bottom: 27px;
+
+    .bedIcon {
+      height: 60px;
+      width: 60px;
+      min-width: 60px;
+      background-color: $primaryColor;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      
+      svg {
+        fill: #ffffff;
+      }
+    }
+  }
+
+  .details {
+    max-width: 300px;
+    margin: 10px 0 0 80px;
+
+    &.headerOnly {
+      display: none;
+    }
+
+    > p {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .rating {
+      margin-bottom: 20px;
+      width: 150px;
+      @media (max-width: $bp-mobile) {
+        margin-bottom: 0;
+      }
+      @media screen and (max-width: 467px) {
+        width: 100px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    .right > div {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .root {
+    padding: 0 25px;
+    &:not(.headerOnly) {
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.03);
+      background-color: #000000;
+      margin-bottom: 0 !important;
+      opacity: 0.7;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details {
+      margin: 0px 0 0 56px;
+      p {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      .bedIcon {
+        height: 45px;
+        width: 45px;
+        min-width: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > svg {
+          text-align: center;
+        }
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .tags {
+      flex-direction: column;
+      margin-top: 10px;
+
+      > div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .right > div:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-mobile-landscape) {
+  .root {
+    flex-direction: column;
+    .details {
+      max-width: none;
+      flex-wrap: wrap;
+    }
+    .title {
+      font-size: 18px;
+
+      .bedIcon {
+        height: 35px;
+        width: 35px;
+        min-width: 35px;
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > svg {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

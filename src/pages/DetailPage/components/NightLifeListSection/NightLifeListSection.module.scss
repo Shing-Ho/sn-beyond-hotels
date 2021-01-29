@@ -1,0 +1,45 @@
+@import 'styles';
+
+.root {
+  width: 100%;
+  height: 100%;
+  .detailHeader {
+    margin-bottom: 50px;
+
+    @media (max-width: $bp-mobile) {
+      justify-content: center;
+      padding: 20px;
+    }
+  }
+  .collapse {
+    margin: 10px 0;
+  }
+  .tabPane {
+    .title {
+      font-family: Lato;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.21;
+      text-align: left;
+      color: #7b7c7e;
+      margin-bottom: 26px;
+      border-bottom: 1px solid #dedede !important;
+
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+    .googleMapContainer {
+      .googleMap {
+        height: 320px;
+      }
+    }
+  }
+}
+.amenities {
+  padding: 0 20px;
+  .amenitiesWrapper {
+    font-size: 24px;
+    color: #013398;
+  }
+}

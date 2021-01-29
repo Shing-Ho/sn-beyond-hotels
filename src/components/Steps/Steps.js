@@ -6,12 +6,14 @@ import styles from './Steps.module.scss';
 
 const { Step: DefaultStep } = DefaultSteps;
 
-const Steps = ({ className, children, ...others }) => (
-  <DefaultSteps className={cx(styles.root, className)} {...others}>
+const Steps = ({ className, children, venuesMode = false, ...others }) => (
+  <DefaultSteps className={cx(styles.root, className, { [styles.venues]: venuesMode })} {...others}>
     {children}
   </DefaultSteps>
 );
 
-const Step = ({ className, ...others }) => <DefaultStep className={cx(styles.step, className)} {...others} />;
+const Step = ({ className, icon = null, ...others }) => (
+  <DefaultStep className={cx(styles.step, className)} icon={icon} {...others} />
+);
 
 export { Steps, Step };

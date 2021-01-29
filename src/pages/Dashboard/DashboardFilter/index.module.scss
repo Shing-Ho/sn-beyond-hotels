@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .content {
   display: flex;
@@ -8,6 +8,7 @@
   border-left: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   height: 80px;
+  margin-bottom: 30px;
   @media screen and (max-width: 991px) {
     overflow-x: auto;
     width: 100%;
@@ -26,6 +27,7 @@
     font-weight: bold;
     line-height: 1.43;
     padding: 10px 6px;
+    text-align: center;
     cursor: pointer;
     @media screen and (max-width: 991px) {
       min-width: 130px;
@@ -34,7 +36,7 @@
       svg {
         width: 25px;
         height: 25px;
-        fill: #ffffff;
+        fill: rgb(123, 124, 126);
         color: #ffffff;
       }
     }
@@ -42,6 +44,7 @@
       svg {
         width: 25px;
         height: 25px;
+        fill: #ffffff;
       }
     }
   }

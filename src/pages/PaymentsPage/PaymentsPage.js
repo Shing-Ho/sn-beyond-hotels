@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Row, Col } from 'antd';
 import Page from 'components/Page/Page';
 import history from 'store/history';
@@ -18,6 +19,7 @@ export default function PaymentsPage() {
   const dispatch = useDispatch();
   const selectedRooms = useSelector(getSelectedRoomItems);
   const currency = useSelector(getCurrency);
+  const intl = useIntl();
 
   const toggleTosAgreed = () => setTosAgreed(!tosAgreed);
 
@@ -35,7 +37,13 @@ export default function PaymentsPage() {
         <PaymentsHeader />
         <Row gutter={{ xs: 0, md: 40 }} className={styles.detail}>
           <Col md={16} xs={24} className={styles.left}>
-            <PaymentsForm title="Primary Payment Method" formKey="primary" />
+            <PaymentsForm
+              title={intl.formatMessage({
+                id: 'paymentsPage.PrimaryPaymentMethod',
+                defaultValue: 'Primary Payment Method',
+              })}
+              formKey="primary"
+            />
           </Col>
           <Col className={styles.right} md={8} xs={24}>
             <ItineraryDetail showDiscount currency={currency} items={selectedRooms} width="375px" />
@@ -45,15 +53,17 @@ export default function PaymentsPage() {
       <div className={styles.bottom}>
         <div className={styles.wrapper}>
           <Checkbox invert value={tosAgreed} onChange={toggleTosAgreed}>
-            I understand that some items might not be available any longer, that I will be refunded and notified right
-            after check out, and have reviewed the Terms of Use and Privacy Policy.
+            <FormattedMessage
+              id="paymentsPage.TermsAndPrivacyMessage"
+              defaultMessage="I understand that some items might not be available any longer, that I will be refunded and notified right after check out, and have reviewed the Terms of Use and Privacy Policy."
+            />
           </Checkbox>
           <div>
             <Button size="large" invert onClick={goBack}>
-              Back
+              <FormattedMessage id="back" defaultMessage="Back" />
             </Button>
             <Button size="large" onClick={handleFormSubmit('primary')}>
-              Check Out
+              <FormattedMessage id="checkOut" defaultMessage="Check Out" />
             </Button>
           </div>
         </div>

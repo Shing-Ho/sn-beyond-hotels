@@ -2,6 +2,8 @@ import { get } from 'lodash';
 import { ItineraryTypes } from 'helpers/constants';
 import { getRandomImageUrl } from 'helpers/utils';
 
+export const getSupplyManager = (state) => state.booking.supplyManagerVenue;
+export const getVenueDetails = (state) => state.booking.venueDetails;
 export const getLoading = (state) => state.booking.loading;
 export const getBookingPayload = (state) => state.booking.bookingPayload;
 export const getSelectedHotel = (state) => state.hotel.selectedHotel;
@@ -27,7 +29,7 @@ export const getSelectedRoomItems = (state) => {
 
   if (bookings) {
     selectedRoomItems = bookings.room_rate.map((booking) => {
-      const selectedRoom = selectedHotel.room_types.find((room) => room.code === booking.code);
+      const selectedRoom = selectedHotel.room_types?.find((room) => room.code === booking.code);
       // console.log(selectedRoom);
       const photos = selectedRoom?.photos || [];
       if (!photos.length) {

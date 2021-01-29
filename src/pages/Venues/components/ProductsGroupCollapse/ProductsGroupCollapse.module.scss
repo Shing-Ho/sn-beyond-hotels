@@ -1,0 +1,48 @@
+@import 'styles';
+
+.root {
+  width: 100%;
+  border: none !important;
+  margin-bottom: 20px !important;
+
+  :global(.ant-tabs) {
+    overflow: visible !important;
+  }
+  :global(.ant-collapse-header) {
+    background: white !important;
+    color: $secondaryLightColor !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    height: 50px;
+    border: 1px solid $lightGrayColor;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+    border-radius: 0;
+  }
+  :global(.ant-collapse-header svg) {
+    color: $secondaryColor !important;
+  }
+  :global(.ant-collapse-header svg path) {
+    stroke: $secondaryColor;
+  }
+  :global(.ant-collapse-item-active) {
+    border-bottom: 1px solid $lightGrayColor !important;
+  }
+  :global(.ant-collapse-item-active .ant-collapse-header) {
+    padding-left: 0 !important;
+    background: white;
+    color: $primaryColor !important;
+    border: none;
+    box-shadow: none;
+  }
+  :global(.ant-collapse-item-active .ant-collapse-content-box) {
+    padding-bottom: 20px !important;
+  }
+  :global(.ant-collapse-item-active .ant-collapse-arrow) {
+    transform: rotate(180deg) !important;
+  }
+  :global(.ant-collapse-item-active .ant-collapse-arrow svg path) {
+    stroke: $secondaryColor !important;
+  }
+}

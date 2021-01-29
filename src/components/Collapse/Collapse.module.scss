@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 :global {
   .ant-collapse {
@@ -16,6 +16,9 @@
     .ant-collapse-content {
       border: none !important;
     }
+    .ant-collapse-arrow {
+      padding: 0 !important;
+    }
     .ant-collapse-content-box {
       padding: 5px 0 !important;
     }
@@ -30,7 +33,8 @@
       padding: 4px 10px !important;
       font-weight: bold;
 
-      &:after, &:before {
+      &:after,
+      &:before {
         display: none !important;
       }
 
@@ -56,8 +60,11 @@
       transform: rotate(180deg) !important;
 
       > svg path {
-        stroke: $primaryColor !important
+        stroke: $primaryColor !important;
       }
+    }
+    & > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+      top: 0 !important;
     }
     &.invert {
       .ant-collapse-header {
@@ -66,7 +73,7 @@
         padding: 4px 0px !important;
       }
       .ant-collapse-item .ant-collapse-arrow {
-        >svg path {
+        > svg path {
           stroke: $primaryColor !important;
         }
       }

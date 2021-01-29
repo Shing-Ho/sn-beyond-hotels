@@ -4,6 +4,10 @@ export const ItineraryTypes = {
   Car: 'CAR',
   Restaurant: 'RESTAURANT',
 };
+export const Languages = {
+  ENG: 'en',
+  RUS: 'ru',
+};
 export const Currencies = {
   USD: {
     symbol: '$',

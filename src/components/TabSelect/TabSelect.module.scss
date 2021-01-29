@@ -1,0 +1,48 @@
+@import 'styles';
+
+.root {
+  width: 100%;
+  display: flex;
+  border-bottom: 4px solid $borderGrayColor;
+
+  &.thin {
+    border-bottom-width: 2px;
+  }
+
+  .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    min-height: 40px;
+    padding: 15px 20px;
+    margin-bottom: -4px;
+
+    &.stretch {
+      flex: 1;
+    }
+
+    &.active {
+      color: $primaryColor;
+      border-bottom: 4px solid $primaryColor;
+
+      &.thin {
+        margin-bottom: -2px;
+        border-bottom-width: 2px;
+      }
+    }
+
+    .label {
+      font-size: 14px;
+      font-weight: bold;
+
+      &.uppercase {
+        text-transform: uppercase;
+      }
+    }
+    .icon {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  }
+}

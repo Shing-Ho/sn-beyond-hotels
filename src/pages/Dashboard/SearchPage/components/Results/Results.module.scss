@@ -1,0 +1,112 @@
+@import "styles";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  flex-grow: 1;
+  @media screen and (max-width: $bp-mobile){
+    margin-left: 0 !important;
+  }
+
+  .items {
+    .totalWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .total {
+        font-weight: 300;
+        font-size: 22px;
+        color: #7b7c7e;
+      }
+      .filter {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .viewSwitch {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+
+    .radio {
+      line-height: 16px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      @media screen and (min-width: $bp-mobile) {
+        display: none;
+      }
+      label {
+        width: 100%;
+        margin-right: 20px;
+        text-align: center;
+        line-height: 32px;
+        font-size: 16px;
+        font-weight: 600;
+        height: 36px;
+        &:last-child {
+         margin-right: 0;
+        }
+      }
+      .fa {
+        margin-right: 10px;
+      }
+
+      :global(.ant-radio-button-wrapper) {
+        border: 2px solid #003398;
+        color: #003398;
+        font-size: 16px;
+        font-weight: 600;
+        .fa {
+          margin-right: 10px;
+        }
+        &:hover {
+          color: $grayColor;
+        }
+      }
+
+      :global(.ant-radio-button-wrapper-checked) {
+        background-color: $primaryColor !important;
+        border-color: $primaryColor !important;
+        color: white;
+      }
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .items {
+      > :not(first-child) {
+        margin-bottom: 20px;
+      }
+      .noRecordsFound {
+        text-align: center;
+        font-size: 32px;
+        color: #ddd;
+        margin-top: 50px;
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+    align-self: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .total {
+      font-weight: 300;
+      font-size: 24px;
+      color: #7b7c7e;
+    }
+    .content {
+      width: fit-content;
+    }
+  }
+}

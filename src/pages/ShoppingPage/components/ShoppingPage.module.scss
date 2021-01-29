@@ -1,0 +1,93 @@
+@import 'styles';
+
+.root {
+  // width: 100%;
+  height: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  .detailHeader {
+    margin-bottom: 50px;
+
+    @media (max-width: $bp-mobile) {
+      justify-content: center;
+      padding: 20px;
+    }
+  }
+
+  .viewSwitch {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    @media screen and (min-width: $bp-mobile) {
+      display: none;
+    }
+    .radio {
+      line-height: 16px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    
+      label {
+        width: 100%;
+        margin-right: 20px;
+        text-align: center;
+        line-height: 32px;
+        font-size: 16px;
+        font-weight: 600;
+        height: 36px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      .fa {
+        margin-right: 10px;
+      }
+
+      :global(.ant-radio-button-wrapper) {
+        border: 2px solid #003398;
+        color: #003398;
+        font-size: 16px;
+        font-weight: 600;
+        .fa {
+          margin-right: 10px;
+        }
+        &:hover {
+          color: $grayColor;
+        }
+      }
+
+      :global(.ant-radio-button-wrapper-checked) {
+        background-color: $primaryColor !important;
+        border-color: $primaryColor !important;
+        color: white;
+      }
+    }
+  }
+
+  .collapse {
+    margin: 10px 0;
+  }
+  .tabPane {
+    .title {
+      font-family: Lato;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.21;
+      text-align: left;
+      color: #7b7c7e;
+      margin-bottom: 26px;
+    }
+    .googleMapContainer {
+      .googleMap {
+        height: 320px;
+      }
+    }
+  }
+}
+.amenities {
+  padding: 0 20px;
+  .amenitiesWrapper {
+    font-size: 24px;
+    color: #013398;
+  }
+}

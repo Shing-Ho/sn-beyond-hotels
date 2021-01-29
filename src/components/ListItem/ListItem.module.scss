@@ -12,8 +12,9 @@
   .mainImage {
     flex-shrink: 0;
     overflow: hidden;
-    align-self: stretch;
+    //align-self: stretch;
     width: 260px;
+    height: 260px;
     background-size: cover;
     @media screen and (max-width: 767px) {
       width: 100%;
@@ -35,6 +36,10 @@
     flex-grow: 1;
     height: 100%;
 
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+
     .circle {
       position: absolute;
       left: -25px;
@@ -43,17 +48,23 @@
       width: 50px;
       background-color: $primaryColor;
       border-radius: 50%;
-      display: inline-block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border: 2px solid white;
+
       @media screen and (max-width: 992px) {
         top: -25px;
         left: 50%;
         transform: translateX(-50%);
       }
+
       > svg {
         position: relative;
-        left: 8px;
-        top: 12.5px;
+      }
+      > i {
+        font-size: 24px;
+        color: white;
       }
     }
 
@@ -71,7 +82,7 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 480px) {
           flex-direction: column;
           h3 {
             font-size: 18px !important;
@@ -87,11 +98,12 @@
         .itemName {
           font-weight: 300;
           font-size: 24px;
+          cursor: pointer;
         }
         .rateInfo {
           display: flex;
           flex-direction: column;
-          @media screen and (max-width: 767px) {
+          @media screen and (max-width: 480px) {
             flex-direction: row;
             width: 100%;
             justify-content: space-between;
@@ -111,6 +123,7 @@
             color: $primaryColor;
             font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
           }
           .taxesAndFees {
             display: flex;

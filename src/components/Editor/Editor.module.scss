@@ -1,0 +1,12 @@
+.root {
+  position: relative;
+
+  .limit {
+    position: absolute;
+    right: 16px;
+    top: 27px;
+    font-size: 13px;
+    font-weight: 300;
+    z-index: 10;
+  }
+}

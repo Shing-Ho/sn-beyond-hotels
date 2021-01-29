@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "title": "Target - Downtown Main Street",
+        "rating": 4,
+        "image": "https://i.ibb.co/3NK9Qhd/target.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 2,
+        "title": "Best Buy - Downtown - 3rd Blvd.",
+        "rating": 4,
+        "image": "https://i.ibb.co/hYVvxGP/best-buy2.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 3,
+        "title": "Home Depot - Downtown - East",
+        "rating": 4,
+        "image": "https://i.ibb.co/WPQw1GX/home-depot.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 4,
+        "title": "Lululemon - Downtown",
+        "rating": 4,
+        "image": "https://i.ibb.co/9WsPwsh/lululemon-ext2.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 5,
+        "title": "GAP - Downtown - West Coast Mall",
+        "rating": 4,
+        "image": "https://i.ibb.co/K01zhCX/gap4.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 6,
+        "title": "Best Buy - East 12th St.",
+        "rating": 4,
+        "image": "https://i.ibb.co/cTdhDLh/best-buy3.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 7,
+        "title": "ULTA Beauty - Seaview Factory Outlets",
+        "rating": 4,
+        "image": "https://i.ibb.co/GFqxh5Y/ulta-beauty2.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 8,
+        "title": "GAP - Downtown - 2nd St.",
+        "rating": 4,
+        "image": "https://i.ibb.co/1TTDR6y/Gap-Clothing-Store.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    },
+    {
+        "id": 9,
+        "title": "Lululemon - 42nd St.",
+        "rating": 4,
+        "image": "https://i.ibb.co/Bjwk7Vd/lululemon1.jpg",
+        "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Donec orci enim , luctus vel nisl"
+    }
+]

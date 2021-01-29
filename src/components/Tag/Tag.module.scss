@@ -1,4 +1,4 @@
-@import "styles";
+@import 'styles';
 
 .root {
   display: inline-block;
@@ -14,7 +14,7 @@
     padding: 1px 10px;
     display: flex;
     align-items: center;
-
+    margin-right: 10px;
     > span {
       margin-left: 5px;
     }
@@ -32,7 +32,8 @@
       > svg {
         position: absolute;
         left: 3px;
-        top: 3px;
+        height: 11px;
+        // top: 3px;
       }
     }
   }

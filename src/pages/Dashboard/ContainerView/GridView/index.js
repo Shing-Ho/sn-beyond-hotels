@@ -2,21 +2,22 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
-import Item from './Item/index';
+import GridItem from './GridItem/GridItem';
 import styles from './index.module.scss';
 import Button from '../../../../components/Button/Button';
 import Pagination from '../../../../components/Pagination/Pagination';
 
-const GridView = ({ items = [], onPageChange, onHotelItemClick }) => {
+const GridView = ({ items = [], currency, total, onPageChange, onItemClick }) => {
   const onHandleClick = (id) => () => {
-    onHotelItemClick(id);
+    onItemClick(id);
   };
+
   return (
     <div className={styles.gridContainer}>
       <Row gutter={24} className={styles.row}>
         {items.map((item) => (
           <Col lg={24} className={styles.column} onClick={onHandleClick(item.id)}>
-            <Item item={item} />
+            <GridItem currency={currency} data={item} />
           </Col>
         ))}
       </Row>
@@ -27,10 +28,12 @@ const GridView = ({ items = [], onPageChange, onHotelItemClick }) => {
       </Row>
       <Row className={styles.pagination}>
         <Pagination
-          total={items.length}
+          total={total}
           showSizeChanger
           showQuickJumper
           onChange={onPageChange}
+          defaultPageSize={9}
+          pageSizeOptions={[9, 18, 27, 45]}
           onShowSizeChange={(current, size) => onPageChange(0, size)}
         />
       </Row>

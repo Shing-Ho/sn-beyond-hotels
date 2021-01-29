@@ -1,10 +1,10 @@
-import { flatMapDeep } from 'lodash';
+import { filter, flatMapDeep } from 'lodash';
 import popularBrandsJson from './jsons/popular-brands.json';
 
 export const getRandomImageUrl = (width = 500, height = 300) =>
   `http://placeimg.com/${width}/${height}/travel${(Math.random() * 10000).toFixed()}`;
 
-export const filterHotels = (hotels, filters) => {
+export const filterHotels = (hotels, filters, sortBy) => {
   let filteredHotels = hotels;
   if (filters.hotel_id) {
     filteredHotels = filteredHotels.filter((hotel) => hotel.hotel_id === filters.hotel_id);
@@ -87,9 +87,56 @@ export const filterHotels = (hotels, filters) => {
       return chainCodes.includes(hotel.hotel_details.chain_code) || chainName.includes(hotel.hotel_details.chain_name);
     });
   }
+  if (sortBy === 'lowToHigh') {
+    return filteredHotels.sort((a, b) => a.avg_nightly_rate - b.avg_nightly_rate);
+  }
+  if (sortBy === 'highToLow') {
+    return filteredHotels.sort((a, b) => b.avg_nightly_rate - a.avg_nightly_rate);
+  }
+  if (sortBy === 'stars') {
+    return filteredHotels.sort((a, b) => a.hotel_details.star_rating - b.hotel_details.star_rating);
+  }
   return filteredHotels;
 };
 
 export const getVisibleHotels = (hotels, page, pageSize) => hotels.slice((page - 1) * pageSize, page * pageSize);
 
-export const commaFormat = (text) => text.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+export const commaFormat = (text) => text?.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+export const filterShoppingItems = (products, filters) => {
+  let filteredProducts = products;
+  if (filters.keyword && filters.keyword !== '') {
+    filteredProducts = filteredProducts.filter((product) => {
+      if (product.productName && product.productName.toLowerCase().indexOf(filters.keyword) >= 0) return true;
+      if (product.productDetail && product.productDetail.toLowerCase().indexOf(filters.keyword) >= 0) return true;
+      return false;
+    });
+  }
+
+  if (filters.minPrice && parseInt(filters.minPrice, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.price >= filters.minPrice);
+  }
+  if (filters.maxPrice && parseInt(filters.maxPrice, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.price <= filters.maxPrice);
+  }
+  if (filters.starRating && filters.starRating > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.rating <= filters.starRating);
+  }
+  if (filters.categoryid && filters.categoryid > 0) {
+    filteredProducts = filteredProducts.filter(
+      (product) => parseInt(product.categoryid, 10) === parseInt(filters.categoryid, 10),
+    );
+  }
+
+  if (filters.storeid && parseInt(filters.storeid, 10) > 0) {
+    filteredProducts = filteredProducts.filter((product) => product.storeid === filter.storeid);
+  }
+
+  return filteredProducts;
+};
+
+export function extractStringFromHTML(html) {
+  const span = document.createElement('span');
+  span.innerHTML = html;
+  return span.textContent || span.innerText;
+}
