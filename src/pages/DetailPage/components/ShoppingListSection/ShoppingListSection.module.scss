@@ -14,20 +14,23 @@
   .collapse {
     margin: 10px 0;
   }
-
-  .topSpace{
+ 
+  .topSpace {
     margin-top: 50px;
   }
 
   .tabPane {
-    .title {
+    background: transparent;
+
+    .select {
+      background: transparent;
       font-family: Lato;
       font-size: 24px;
       font-weight: 300;
       line-height: 1.21;
       text-align: left;
       color: #7b7c7e;
-      margin-bottom: 26px;
+      margin-bottom: 20px;
     }
     .googleMapContainer {
       .googleMap {
@@ -35,6 +38,8 @@
       }
     }
   }
+
+  
 }
 .amenities {
   padding: 0 20px;
@@ -43,3 +48,6 @@
     color: #013398;
   }
 }
+
+
+

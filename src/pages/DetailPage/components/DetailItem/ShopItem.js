@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button/Button';
 import NumberInput from 'components/NumberInput/NumberInput';
 import snIcon from 'icons/Icon_Global_Logo_SN_Icon.svg';
-import styles from './DetailItemNew.module.scss';
+import styles from './ShopItem.module.scss';
 
 const ShopItem = ({ currency, data }) => (
   <div className={styles.root}>
@@ -31,7 +31,7 @@ const ShopItem = ({ currency, data }) => (
           </span>
         </div>
       </div>
-      <div className={styles.learnDiv}>
+      <div className={styles.viewDetailDiv}>
         <div className={styles.learn}>
           <Button variant="btn btn-success">View</Button>
         </div>

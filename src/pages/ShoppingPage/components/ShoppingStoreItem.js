@@ -9,9 +9,9 @@ import { ReactComponent as PinIcon } from 'icons/pin.svg';
 import shoppingActions from 'store/shopping/actions';
 import { ReactComponent as ShoppingIcon } from '../../../icons/dashboardIcons/Icon_Category_Shopping.svg';
 import IconButton from '../../../components/IconButton/IconButton';
-import snIcon from '../../../icons/Icon_Global_Logo_SN_Icon.svg';
-import deliveryIcon from '../../../icons/Icon_Special_Delivery.svg';
-import inStoreIcon from '../../../icons/Icon_Special_InStore.svg';
+import { ReactComponent as SnIcon } from '../../../icons/Icon_Global_Logo_SN_Icon.svg';
+import { ReactComponent as DeliveryIcon } from '../../../icons/Icon_Special_Delivery.svg';
+import { ReactComponent as InStoreIcon } from '../../../icons/Icon_Special_InStore.svg';
 import styles from './ShoppingStoreItem.module.scss';
 
 export default function ShoppingStoreItem({ item }) {
@@ -20,6 +20,7 @@ export default function ShoppingStoreItem({ item }) {
   const toggleMap = () => {
     openMap(!mapOpened);
   };
+
   const onViewClick = () => {
     dispatch(shoppingActions.selectStore(item));
     dispatch(push(`${window.BASE_ROUTE || ''}/shopping/store/${item.id}`));
@@ -43,13 +44,19 @@ export default function ShoppingStoreItem({ item }) {
                 <div className={styles.rateInfo}>
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
                     <span className={styles.itemRate}>
-                      <img className={styles.targetIcon} src={deliveryIcon} alt="" />
-                      <img className={styles.targetIcon} src={inStoreIcon} alt="" />
+                      <div className={item.delivery ? styles.targetavailable : styles.targetunavailable}>
+                        <DeliveryIcon />
+                      </div>
+                      <div className={item.pickup ? styles.targetavailable : styles.targetunavailable}>
+                        <InStoreIcon />
+                      </div>
                     </span>
                   </div>
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
                     <span>
-                      <img className={styles.targetIcon} src={snIcon} alt="" />
+                      <div className={styles.snIcon}>
+                        <SnIcon />
+                      </div>
                     </span>
                     <span className={styles.itemRate}>{item.rating}/5</span>
                     <span>
@@ -64,7 +71,7 @@ export default function ShoppingStoreItem({ item }) {
               <div className={`${styles.line} ${styles.baseline}`}>
                 <span className={styles.description}>{item.detail}</span>
                 <div className={styles.actions}>
-                  <IconButton Icon={PinIcon} onClick={toggleMap} />
+                  <IconButton Icon={PinIcon} onClick={toggleMap} className={mapOpened && styles.activeLocationButton} />
                   <Button id="view" onClick={onViewClick}>
                     View
                   </Button>

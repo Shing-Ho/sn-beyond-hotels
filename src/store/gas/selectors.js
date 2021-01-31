@@ -19,7 +19,7 @@ function formatItem(item, index) {
       type: '',
       display_order: i,
     }));
-    result.image = result.images[0]?.url;
+    result.image = item.images[0]?.url;
   }
   if (item.AddressInfo) {
     result.address = {

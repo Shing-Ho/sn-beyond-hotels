@@ -3,8 +3,8 @@ import cx from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { getRandomImageUrl } from 'helpers/utils';
 import { ReactComponent as ShoppingIcon } from 'icons/dashboardIcons/Icon_Category_Shopping.svg';
-import snIcon from '../../icons/Icon_Global_Logo_SN_Icon.svg';
-import styles from './GridItem.module.scss';
+import { ReactComponent as SNIcon } from 'icons/Icon_Global_Logo_SN_Icon.svg';
+import styles from './ShoppingGridItems.module.scss';
 
 export default function ShoppingGridItem({ className, data = {} }) {
   return (
@@ -22,11 +22,11 @@ export default function ShoppingGridItem({ className, data = {} }) {
         )}
         <span className={styles.textAlign}>{data.store.title}</span>
         <br />
-        <div>
-          <span>
-            <img className={styles.targetIcon} src={snIcon} alt="" />
+        <div className={styles.ratingInfo}>
+          <span className={styles.snicon}>
+            <SNIcon />
           </span>
-          <span>4/5</span>
+          <span className={styles.rating}>{data.store.rating}/5 </span>
           <FormattedMessage id="rating" defaultMessage="User Rating" />
         </div>
         <span className={styles.description}>

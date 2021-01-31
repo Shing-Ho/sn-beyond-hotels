@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px !important;
+  // width: 860px;
+  margin-top: 20px !important;
   border: solid 1px $borderGrayColor;
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -35,8 +36,6 @@
   }
 
   .bagIconImg {
-    height: 20px;
-    width: 20px;
     object-fit: cover;
 
     svg {
@@ -57,7 +56,30 @@
     margin-bottom: 10px;
     margin-top: 10px;
   }
-
+  .snIcon{
+    > svg{
+      height:20px;
+      margin-top: 5px;
+    }
+  }
+  .targetunavailable{
+    display: inline;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    >svg{
+      fill: #dedede;
+    }
+  }
+  .targetavailable{
+    display: inline;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    >svg{
+      fill: #003398;
+    }
+  }
   img {
     height: 100%;
     width: 100%;
@@ -129,11 +151,14 @@
           font-weight: 300;
           font-size: 24px;
           flex:auto;
+          line-height: 1.21;
+          margin-bottom: 18px;
         }
         .rateInfo {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
+          margin-left: 37px;
 
           @media screen and (max-width: 767px) {
             flex-direction: row;
@@ -141,6 +166,7 @@
             justify-content: space-between;
             display: flex;
             flex-wrap: wrap;
+            margin-left: 0px;
             .flex-vertical-center,
             .itemRate {
               font-size: 16px !important;
@@ -149,17 +175,35 @@
             span {
               color: #003398;
             }
+            .targetInfo{
+              width: 100%;
+            }
+           
+            
           }
           .itemRate {
             margin-left: 1px;
             color: $primaryColor;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
           }
-
+          .itemRating{
+            margin-left: 1px;
+            color: $primaryColor;
+            font-size: 14px;
+            font-weight: bold;
+          }
           .textRating{
             font-size: 10px;
           }
+          .targetInfo{
+            display: flex;
+            flex-direction: row;
+            text-align: right;
+            margin-bottom: 20px;
+            margin-top: 8px;
+          }
+
           .taxesAndFees {
             display: flex;
             flex-direction: row;
@@ -206,6 +250,13 @@
             display: flex;
             width: 100%;
             margin: 10px 0;
+          }
+          .activeLocationButton {
+            color: #fff;
+            background: $primaryColor;
+            svg path {
+              fill: #fff;
+            }
           }
 
           > :not(:first-child) {

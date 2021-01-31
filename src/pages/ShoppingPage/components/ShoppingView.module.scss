@@ -1,16 +1,17 @@
-@import "styles";
+@import 'styles';
 
 .content {
   display: flex;
   justify-content: space-between;
-  margin-top: 31px;
+  margin-top: 2px;
+
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
   .searchBar {
     display: flex;
     width: 50%;
-    margin:12px 0;
+    margin: 12px 0;
     height: 36px;
     max-width: 570px;
     @media screen and (max-width: 600px) {
@@ -35,7 +36,7 @@
     .filter {
       display: flex;
       width: 30%;
-      .dropdown{
+      .dropdown {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -53,7 +54,7 @@
     .sort {
       display: flex;
       width: 30%;
-      .dropdown{
+      .dropdown {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -87,6 +88,7 @@
       width: 36px;
       max-width: 36px;
       font-size: 16px;
+      // margin-bottom: -10px;
     }
     .selectedIcon {
       background-color: #003398;

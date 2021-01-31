@@ -13,8 +13,7 @@ export const cancelLookup = (payload) => post(`hotels/cancel`, payload, postHead
 export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, postHeader);
 
 // -- Gas -- //
-export const getGasStations = ({ latitude, longitude }) =>
-  get(`charging/poi?maxresults=200&latitude=${latitude}&longitude=${longitude}`);
+export const getGasStations = () => get(`charging/poi`);
 
 // Authentication
 export const login = (payload) => post(`accounts/login`, payload);
