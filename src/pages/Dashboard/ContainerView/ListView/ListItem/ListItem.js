@@ -15,7 +15,7 @@ import Rating from 'components/Rating/Rating';
 import TaxAndFees from '../../../../../components/TaxAndFees/TaxAndFees';
 import styles from './ListItem.module.scss';
 
-const ListItem = ({ data, className, currency }) => {
+const ListItem = ({ data, className, currency, type }) => {
   const [mapOpened, openMap] = useState(false);
   const dispatch = useDispatch();
 
@@ -26,6 +26,28 @@ const ListItem = ({ data, className, currency }) => {
   const onViewClick = () => {
     dispatch(hotelActions.selectHotel(data));
     dispatch(push(`${window.BASE_ROUTE || ''}/hotels/${data.id}`));
+  };
+
+  const getName = (dataName) => {
+    let name;
+    switch (type) {
+      case 'tours':
+        name = 'ATV Riding Tours';
+        break;
+      case 'events':
+        name = 'Hamilton - The Musical';
+        break;
+      case 'nightlife':
+        name = 'Encore Beach Club';
+        break;
+      case 'dining':
+        name = 'Taix Restaurant';
+        break;
+      default:
+        name = dataName;
+        break;
+    }
+    return name;
   };
 
   return (
@@ -39,7 +61,7 @@ const ListItem = ({ data, className, currency }) => {
           <div className={styles.circle}>{data.icon}</div>
           <div className={styles.content}>
             <div className={styles.line}>
-              <h3 className={styles.itemName}>{data.name}</h3>
+              <h3 className={styles.itemName}>{getName(data.name)}</h3>
               <div className={styles.rateInfo}>
                 {data.subIcons?.length > 0 && (
                   <div className={styles.subInfo}>
