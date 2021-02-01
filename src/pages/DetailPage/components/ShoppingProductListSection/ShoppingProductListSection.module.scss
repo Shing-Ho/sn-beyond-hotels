@@ -15,7 +15,7 @@
     margin: 10px 0;
   }
 
-  .topSpace{
+  .topSpace {
     margin-top: 50px;
   }
 
@@ -48,6 +48,8 @@
   width: 100%;
   border: 1px solid $borderGrayColor;
   line-height: 1;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  background: #fff;
 
   .banner {
     width: 100%;
@@ -79,16 +81,16 @@
         margin-left: 0px;
       }
     }
-    .contentheader{
+    .contentheader {
       display: flex;
       flex-direction: row;
       width: 100%;
       margin-bottom: 20px;
 
-      .leftcontent{
-       flex: 1;
+      .leftcontent {
+        flex: 1;
 
-        .headertitle{
+        .headertitle {
           font-family: Lato;
           font-size: 24px;
           font-weight: 300;
@@ -101,18 +103,18 @@
         }
       }
 
-      .rightcontent{
+      .rightcontent {
         margin-right: 30px;
       }
     }
-  
-    .textSize{
+
+    .textSize {
       font-size: 15px;
     }
 
-    .targetIcon{
-      height:18px;
-      width:20px;
+    .targetIcon {
+      height: 18px;
+      width: 20px;
       margin-left: 10px;
       margin-bottom: 10px;
       margin-top: 10px;
@@ -125,11 +127,11 @@
       margin-right: 35px;
       margin-bottom: 33px;
       object-fit: cover;
-  
+
       > svg {
         height: 16px;
         width: 16px;
-        margin-left:10px;
+        margin-left: 10px;
         margin-top: 8px;
         fill: #ffffff;
       }
@@ -140,14 +142,14 @@
       width: 2px;
       margin-right: 10px;
       object-fit: cover;
-  
+
       svg {
         fill: #ffffff;
       }
     }
 
-    .textAlign{
-     text-align: left;
+    .textAlign {
+      text-align: left;
     }
 
     .icon {
@@ -194,10 +196,10 @@
 
     .right {
       margin-left: 0px;
+      padding-bottom: 10px;
     }
 
-    .icon
-    {
+    .icon {
       margin-left: 0px;
     }
   }

@@ -13,7 +13,6 @@ import shoppingReducer from 'store/shopping/reducers';
 import gasReducer from 'store/gas/reducers';
 import authReducer from 'store/auth/reducers';
 import usersReducer from 'store/admin/reducers';
-
 import careyReducer from 'store/carey/reducers';
 
 const rootPersistConfig = {

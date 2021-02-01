@@ -10,9 +10,9 @@ import shoppingActions from 'store/shopping/actions';
 import styles from './ShoppingItem.module.scss';
 import IconButton from '../../../components/IconButton/IconButton';
 import { ReactComponent as ShoppingIcon } from '../../../icons/dashboardIcons/Icon_Category_Shopping.svg';
-import snIcon from '../../../icons/Icon_Global_Logo_SN_Icon.svg';
-import deliveryIcon from '../../../icons/Icon_Special_Delivery.svg';
-import inStoreIcon from '../../../icons/Icon_Special_InStore.svg';
+import { ReactComponent as SnIcon } from '../../../icons/Icon_Global_Logo_SN_Icon.svg';
+import { ReactComponent as DeliveryIcon } from '../../../icons/Icon_Special_Delivery.svg';
+import { ReactComponent as InStoreIcon } from '../../../icons/Icon_Special_InStore.svg';
 
 const ShoppingItems = ({ item }) => {
   const [mapOpened, openMap] = useState(false);
@@ -28,7 +28,7 @@ const ShoppingItems = ({ item }) => {
 
   const shoppingItem = (
     <div className={cx(styles.resultContainer)} key={item.id}>
-      <div className={styles.resultItem}>
+      <div className={[styles.resultItem, mapOpened && styles.noMarginBottom].join(' ')}>
         <div className={styles.mainimagecontainer}>
           <div className={styles.mainImage}>
             <img src={item.productImage} alt="Result Item" />
@@ -54,23 +54,27 @@ const ShoppingItems = ({ item }) => {
                   <span className={styles.itemRate}> ${item.price}</span>
                 </div>
                 <div className={`${styles.taxesAndFees} flex-vertical-center`}>
-                  <span>
-                    <img className={styles.targetIcon} src={snIcon} alt="" />
-                  </span>
-                  <span className={styles.itemRate}>{item.rating}/5</span>
-                  <span>
+                  <div className={styles.snIcon}>
+                    <SnIcon />
+                  </div>
+                  <div className={styles.itemRating}>{item.rating}/5</div>
+                  <div>
                     <FormattedMessage id="userRating" defaultMessage="Rating" />
-                  </span>
+                  </div>
                 </div>
-                <div className={`${styles.taxesAndFees} flex-vertical-center`}>
-                  <span className={styles.itemRate}>
+                <div className={`${styles.targetInfo} flex-vertical-center`}>
+                  <span className={styles.itemRating}>
                     Target
-                    <img className={styles.targetIcon} src={deliveryIcon} alt="" />
-                    <img className={styles.targetIcon} src={inStoreIcon} alt="" />
+                    <div className={item.delivery ? styles.targetavailable : styles.targetunavailable}>
+                      <DeliveryIcon />
+                    </div>
+                    <div className={item.pickup ? styles.targetavailable : styles.targetunavailable}>
+                      <InStoreIcon />
+                    </div>
                   </span>
                 </div>
                 <div className={styles.actions}>
-                  <IconButton Icon={PinIcon} onClick={toggleMap} />
+                  <IconButton Icon={PinIcon} onClick={toggleMap} className={mapOpened && styles.activeLocationButton} />
                   <Button id="view" onClick={onViewClick}>
                     View
                   </Button>

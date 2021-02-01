@@ -7,12 +7,12 @@ import styles from './Collapse.module.scss';
 const { Panel } = Collapse;
 
 const CustomCollapse = ({ children, className, header, invert, type = 'normal', activeKey = 'default' }) => {
-  const size = type === 'large' ? 18 : 14;
-
+  const size = type === 'large' || type === 'detail' ? 18 : 14;
   return (
     <Collapse
       className={cx(styles.root, className, {
         large: type === 'large',
+        detail: type === 'detail',
         invert,
       })}
       defaultActiveKey={[activeKey]}

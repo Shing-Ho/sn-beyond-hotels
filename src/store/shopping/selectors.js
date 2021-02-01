@@ -4,4 +4,5 @@ export const getSelectedCategory = (state) => state.shopping.selectedCategory;
 export const getFilters = (state) => state.shopping.filters;
 export const getShopBy = (state) => state.shopping.shopbyView;
 export const getSelectedStore = (state) => state.shopping.selectedStore;
+export const getStores = (state) => state.shopping.stores;
 export const getSelectedProduct = (state) => state.shopping.selectedProduct;

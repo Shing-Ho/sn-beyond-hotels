@@ -1,10 +1,11 @@
 @import 'styles';
 
 .root {
-  // width: 100%;
   height: 100%;
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: -65px;
+
   .detailHeader {
     margin-bottom: 50px;
 
@@ -26,7 +27,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-    
+
       label {
         width: 100%;
         margin-right: 20px;
@@ -63,11 +64,18 @@
       }
     }
   }
-
+  .tabitem{
+    background-color: red !important;
+  }
   .collapse {
     margin: 10px 0;
   }
   .tabPane {
+    // padding-right: 50px;
+    padding-top: 50px;
+    width: 860px;
+    margin-bottom: 30px;
+    
     .title {
       font-family: Lato;
       font-size: 24px;
@@ -89,5 +97,30 @@
   .amenitiesWrapper {
     font-size: 24px;
     color: #013398;
+  }
+}
+
+@media screen and (max-width: $bp-mobile) {
+  .root {
+    margin-top: 0px;
+    overflow-x: auto;
+  }
+
+  .tabPane {
+    padding-right: 20px;
+    .title {
+      font-family: Lato;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.21;
+      text-align: left;
+      color: #7b7c7e;
+      margin-bottom: 26px;
+    }
+    .googleMapContainer {
+      .googleMap {
+        height: 320px;
+      }
+    }
   }
 }

@@ -6,7 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import NumberInput from 'components/NumberInput/NumberInput';
 import snIcon from 'icons/Icon_Global_Logo_SN_Icon.svg';
 import ShoppingProductRightGridItem from 'components/GridItem/ShoppingProductRightGridItem';
-import products from '../../../ShoppingPage/ProductJson/product.json';
+// import products from '../../../ShoppingPage/ProductJson/product.json';
+import stores from '../../../ShoppingPage/ProductJson/store.json';
 import { getSelectedProduct } from '../../../../store/shopping/selectors';
 import styles from './ShoppingProductBookingSection.module.scss';
 
@@ -45,7 +46,7 @@ export default function ShoppingProductBookingSection({ className, currency }) {
           <FormattedMessage id="addToItinerary" defaultMessage="Add to Itinerary" />
         </Button>
       </div>
-      <ShoppingProductRightGridItem currency={currency} data={{ product: products[0] }} />
+      <ShoppingProductRightGridItem currency={currency} data={{ store: stores[0] }} />
     </div>
   );
 }

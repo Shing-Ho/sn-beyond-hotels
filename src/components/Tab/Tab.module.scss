@@ -1,17 +1,24 @@
-@import "styles";
+@import 'styles';
 
 .root {
   .tabs {
     &:global(.ant-tabs) {
       :global(.ant-tabs-nav) {
+        margin-bottom: 30px;
+
         &:before {
           border-bottom-width: 4px;
           border-bottom-color: $borderGrayColor;
           // right: 100px;
         }
+        :global(.ant-tabs-nav-list) {
+          width: max-content;
+        }
 
         :global(.ant-tabs-tab) {
           padding: 0 20px 20px 20px;
+          align-items: flex-start;
+          justify-content: flex-start;
 
           :global(.ant-tabs-tab-btn) {
             color: $grayColor;
