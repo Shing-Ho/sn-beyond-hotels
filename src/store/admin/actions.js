@@ -67,7 +67,6 @@ const deleteUser = (payload) => async (dispatch) => {
     dispatch(adminActions.setLoading(false));
     dispatch(getUsers());
   } catch (error) {
-    console.log(error);
     dispatch(adminActions.setFailure(error));
   }
 };

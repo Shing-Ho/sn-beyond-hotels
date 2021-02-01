@@ -1,0 +1,216 @@
+@import 'styles';
+
+.loaderContainerAbsolute {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.root {
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  height: auto;
+  margin-left: 10px;
+  .errorText {
+    // z-index: 5;
+    // position: absolute;
+    // top: 0;
+    background: #b94b18aa;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+  .pickUpDate {
+    padding: 10px;
+    border: 1px solid $borderGrayColor;
+    .label {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .datePickerWrapper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .datePicker {
+        :global(.ant-picker-input) {
+          input {
+            font-size: 18px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.44;
+            letter-spacing: normal;
+            text-align: left;
+            color: #003398;
+          }
+          input::-webkit-input-placeholder {
+            color: #003398;
+          }
+          :global(.ant-picker-clear) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .passengers {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    .passengerInput {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h3 {
+        margin-right: 10px;
+      }
+    }
+  }
+  .tripKind {
+    margin: 20px 0;
+    border: 1px solid $borderGrayColor;
+    padding: 10px;
+    border-radius: 3px;
+    outline: none;
+    h3 {
+      margin-bottom: 10px;
+    }
+    .tripType {
+      outline: none;
+      :global(.ant-btn-group) {
+        width: 100%;
+      }
+      .roundSelectedBtn {
+        width: 50%;
+        height: 44px;
+        border-radius: 3px;
+        outline: none;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        text-align: center;
+        background-color: #003398;
+        color: #ffffff;
+        &:focus,
+        &:hover {
+          background-color: #003398;
+          color: #ffffff;
+        }
+      }
+      .roundBtn {
+        width: 50%;
+        height: 44px;
+        border-radius: 3px;
+        outline: none;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        text-align: center;
+        color: #003398;
+        background: #c7d1e5;
+        &:focus,
+        &:hover {
+          background-color: #003398;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .location {
+    margin-top: 10px;
+    .autoCompleteWrapper {
+      margin-top: 10px;
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      @media (max-width: $bp-mobile) {
+        width: 80%;
+      }
+      :global(.ant-select) {
+        width: 100%;
+        height: 50px;
+        :global(.ant-select-selector) {
+          border: none !important;
+          height: 50px;
+          display: flex;
+          align-items: center;
+        }
+        :global(.ant-select-selection-search) {
+          border: none !important;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          input {
+            font-family: Arial;
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            line-height: 1.17;
+            letter-spacing: normal;
+            text-align: left;
+            color: #003398;
+          }
+          input:focus {
+            border: none;
+          }
+        }
+        :global(.ant-select-selection-placeholder) {
+          font-family: Arial;
+          font-size: 18px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: italic;
+          line-height: 1.17;
+          letter-spacing: normal;
+          text-align: left;
+          color: #003398;
+        }
+      }
+      .pinIcon {
+        margin-right: 8px;
+      }
+    }
+  }
+  .flight {
+    margin-top: 10px;
+  }
+  .special {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .btn {
+    margin-top: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #003398;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 16px;
+  }
+
+  .errorText {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

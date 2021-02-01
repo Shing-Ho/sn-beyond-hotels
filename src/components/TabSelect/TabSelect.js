@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import styles from './TabSelect.module.scss';
 
-export default function TabSelect({ options, thin, stretch, uppercase, onChange }) {
+export default function TabSelect({ options, thin, stretch, uppercase, onChange, custom }) {
   const [tab, setTab] = useState(options[0].value);
 
   const handleChange = (value) => {
@@ -22,6 +22,7 @@ export default function TabSelect({ options, thin, stretch, uppercase, onChange 
             [styles.active]: tab === option.value,
             [styles.stretch]: stretch,
             [styles.thin]: thin,
+            [styles.custom]: custom,
           })}
           onClick={() => handleChange(option.value)}
         >
@@ -32,7 +33,9 @@ export default function TabSelect({ options, thin, stretch, uppercase, onChange 
           >
             {option.label}
           </span>
-          {option.icon && <span className={styles.icon}>{option.icon}</span>}
+          {option.icon && (
+            <span className={tab === option.value ? styles.selectedIcon : styles.icon}>{option.icon}</span>
+          )}
         </div>
       ))}
     </div>

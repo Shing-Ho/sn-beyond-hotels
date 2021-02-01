@@ -32,6 +32,7 @@
     "react-intl": "^5.4.4",
     "react-lz-editor": "^0.12.1",
     "react-multi-carousel": "^2.5.5",
+    "react-places-autocomplete": "^7.3.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",

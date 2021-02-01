@@ -5,11 +5,13 @@ import DashboardPage from 'pages/Dashboard';
 import HotelDetailPage from 'pages/DetailPage/HotelDetailPage';
 import EventDetailPage from 'pages/DetailPage/EventDetailPage';
 import ToursDetailPage from 'pages/DetailPage/ToursDetailPage';
+import CarHireDetailPage from 'pages/DetailPage/CarHireDetailPage';
 import PaymentsPage from 'pages/PaymentsPage/PaymentsPage';
 import ConfirmationPage from 'pages/ConfirmationPage/ConfirmationPage';
 import SummaryPage from 'pages/SummaryPage/SummaryPage';
 import GuestPage from 'pages/GuestPage/GuestPage';
 import OrderLookup from 'pages/OrderLookup/OrderLookup';
+import ReservationLookup from 'pages/ReservationLookup/ReservationLookup';
 import DiningDetailPage from 'pages/DetailPage/DiningDetailPage';
 import FoodDetailPage from 'pages/DetailPage/FoodDetailPage';
 import GasDetailPage from 'pages/DetailPage/GasDetailPage';
@@ -49,11 +51,13 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/orderSummary`} exact component={SummaryPage} />
         <Route path={`${BASE_ROUTE}/guest`} exact component={GuestPage} />
         <Route path={`${BASE_ROUTE}/orderLookup`} exact component={OrderLookup} />
+        <Route path={`${BASE_ROUTE}/reservationLookup`} exact component={ReservationLookup} />
         <Route path={`${BASE_ROUTE}/search`} exact component={HotelDetailPage} />
         <Route path={`${BASE_ROUTE}/hotels/:id`} exact component={HotelDetailPage} />
         <Route path={`${BASE_ROUTE}/events/:id`} exact component={EventDetailPage} />
         <Route path={`${BASE_ROUTE}/foods/:id`} exact component={FoodDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
+        <Route path={`${BASE_ROUTE}/transports/carhire/:id`} exact component={CarHireDetailPage} />
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />
