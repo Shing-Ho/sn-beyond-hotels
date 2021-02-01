@@ -4,21 +4,25 @@
   .autoCompleteContainer {
     input {
       width: 100%;
-      height: 40px;
+      height: 50px;
       margin-top: 10px;
       padding-left: 10px;
       border: 1px solid $borderGrayColor;
-      font-size: 16px;
+      font-size: 18px;
       color: #003398;
       &:focus {
         outline: none;
+      }
+      &::placeholder {
+        color: #003398;
+        opacity: 1;
       }
     }
     .dropdownContainer {
       position: absolute;
       border: 1px solid $borderGrayColor;
       z-index: 1;
-      font-size: 16px;
+      font-size: 18px;
       background-color: #ffffff;
       .suggestionActive {
         background-color: $borderGrayColor;

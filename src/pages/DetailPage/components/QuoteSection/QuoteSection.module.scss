@@ -131,6 +131,62 @@
   }
   .location {
     margin-top: 10px;
+    .autoCompleteWrapper {
+      margin-top: 10px;
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      @media (max-width: $bp-mobile) {
+        width: 80%;
+      }
+      :global(.ant-select) {
+        width: 100%;
+        height: 50px;
+        :global(.ant-select-selector) {
+          border: none !important;
+          height: 50px;
+          display: flex;
+          align-items: center;
+        }
+        :global(.ant-select-selection-search) {
+          border: none !important;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          input {
+            font-family: Arial;
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            line-height: 1.17;
+            letter-spacing: normal;
+            text-align: left;
+            color: #003398;
+          }
+          input:focus {
+            border: none;
+          }
+        }
+        :global(.ant-select-selection-placeholder) {
+          font-family: Arial;
+          font-size: 18px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: italic;
+          line-height: 1.17;
+          letter-spacing: normal;
+          text-align: left;
+          color: #003398;
+        }
+      }
+      .pinIcon {
+        margin-right: 8px;
+      }
+    }
+  }
+  .flight {
+    margin-top: 10px;
   }
   .special {
     margin-top: 10px;
