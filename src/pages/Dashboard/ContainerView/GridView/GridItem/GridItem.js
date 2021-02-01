@@ -12,6 +12,15 @@ export default function GridItem({ className, data, type }) {
       case 'tours':
         name = 'ATV Riding Tours';
         break;
+      case 'events':
+        name = 'Hamilton - The Musical';
+        break;
+      case 'nightlife':
+        name = 'Encore Beach Club';
+        break;
+      case 'dining':
+        name = 'Taix Restaurant';
+        break;
       default:
         name = dataName;
         break;

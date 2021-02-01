@@ -3,15 +3,17 @@ import { FormattedMessage } from 'react-intl';
 import NumberInput from 'components/NumberInput/NumberInput';
 import Divider from 'components/Divider/Divider';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
-import Ride1 from '../../../../images/ride1.png';
-import Ride2 from '../../../../images/ride2.png';
-import Ride3 from '../../../../images/ride3.png';
+import Tours1 from '../../../../images/tours1.jpeg';
+import Tours2 from '../../../../images/tours2.jpeg';
+import Tours3 from '../../../../images/tours3.jpeg';
+import Tours4 from '../../../../images/tours4.jpeg';
+import Tours5 from '../../../../images/tours5.jpeg';
 
 import styles from './DetailItemNew.module.scss';
 
 const TicketsItem = ({ currency }) => {
   const getRandomImage = () => {
-    const images = [Ride1, Ride2, Ride3];
+    const images = [Tours1, Tours2, Tours3, Tours4, Tours5];
     const number = Math.floor(Math.random() * Math.floor(3));
     return images[number];
   };

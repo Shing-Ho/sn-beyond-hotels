@@ -8,12 +8,14 @@ import EventBookingSection from './components/EventBookingSection/EventBookingSe
 import DetailHeader from './components/DetailHeader/DetailHeader';
 import OtherSection from './components/OtherSection/OtherSection';
 import styles from './ToursDetailPage.module.scss';
-import Ride1 from '../../images/ride1.png';
-import Ride2 from '../../images/ride2.png';
-import Ride3 from '../../images/ride3.png';
+import Tours1 from '../../images/tours1.jpeg';
+import Tours2 from '../../images/tours2.jpeg';
+import Tours3 from '../../images/tours3.jpeg';
+import Tours4 from '../../images/tours4.jpeg';
+import Tours5 from '../../images/tours5.jpeg';
 
 const getRandomImage = () => {
-  const images = [Ride1, Ride2, Ride3];
+  const images = [Tours1, Tours2, Tours3, Tours4, Tours5];
   const number = Math.floor(Math.random() * Math.floor(3));
   return images[number];
 };
