@@ -26,7 +26,6 @@ export const createUser = (payload) => post(`users`, payload);
 export const updateUser = (payload) => put(`users/${payload.id}`, payload);
 export const deleteUser = (id) => remove(`users/${id}`);
 
-
 // ---Carey --- //
 export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
 export const cancelReservation = (payload) => post('carey/cancel-reservation', payload, postHeader);
