@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { Switch, DatePicker } from 'antd';
 import moment from 'moment';
 
 import { Tabs, TabPane } from 'components/Tab/Tab';
 import Input from 'components/Input/Input';
-import Button from 'components/Button/Button';
 import { ReactComponent as CalendarIcon } from 'icons/calendarGreen.svg';
 
 import NumberInput from 'components/NumberInput/NumberInput';
 import styles from './VenueAddRoomPricing.module.scss';
 
-export default function VenueAddRoomPricing() {
-  const [activeTab, setActiveTab] = useState('1');
-  const [roomDate, setRoomDate] = useState();
+export default function VenueAddRoomPricing({ data, setData }) {
+  const { activeTab, roomDate } = data;
+  // const [roomDate, setRoomDate] = useState();
   return (
     <div>
       <div className={styles.main}>
@@ -21,7 +20,7 @@ export default function VenueAddRoomPricing() {
           className={cx(styles.tabPane)}
           defaultActiveKey="1"
           activeKey={activeTab}
-          onChange={(key) => setActiveTab(key)}
+          onChange={(key) => setData({ ...data, activeTab: key })}
         >
           <TabPane tab="RATE" key="1">
             <div className={styles.tabPaneData}>
@@ -104,7 +103,7 @@ export default function VenueAddRoomPricing() {
               <div className={styles.dateItem}>
                 <span>Date</span>
                 <DatePicker
-                  onChange={(e) => setRoomDate(e)}
+                  onChange={(e) => setData({ ...data, roomDate: e })}
                   defaultValue={moment(roomDate)}
                   value={moment(roomDate)}
                   suffixIcon={<CalendarIcon className="calendarIcon" />}
@@ -122,10 +121,6 @@ export default function VenueAddRoomPricing() {
           </TabPane>
         </Tabs>
       </div>
-      <Button className={styles.addCustom}>
-        <i className="fa fa-plus" aria-hidden="true" />
-        Add Another Price Set
-      </Button>
     </div>
   );
 }
