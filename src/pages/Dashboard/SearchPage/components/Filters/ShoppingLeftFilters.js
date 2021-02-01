@@ -1,14 +1,72 @@
-import React from 'react';
-import { Form, Input, InputNumber, Select, Radio } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Form, Input, InputNumber, Select, Radio, Checkbox } from 'antd';
+import { chunk } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import FormItem from 'components/FormItem/FormItem';
-import shoppingActions from 'store/shopping/actions';
+import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getFilters, getShopBy } from 'store/shopping/selectors';
 import Collapse from 'components/Collapse/Collapse';
+import Button from 'components/Button/Button';
 import Rating from 'components/Rating/Rating';
-import styles from './ShoppingLeftFilters.module.scss';
+import shoppingActions from 'store/shopping/actions';
 import productStores from '../../../../ShoppingPage/ProductJson/store.json';
+import styles from './ShoppingLeftFilters.module.scss';
+
+const CustomFormInputs = ({ items, title, id }) => {
+  const [showMoreButton, setShowMoreButton] = useState(false);
+  const [showLessButton, setShowLessButton] = useState(false);
+  const [allItems, setAllItems] = useState();
+  useEffect(() => {
+    if (items) setAllItems(items);
+    if (items && items.length > 10) {
+      setShowLessButton(true);
+    }
+  }, [items]);
+  // Show less button & hide more button
+  const onShowMoreToggleHandler = () => {
+    const updatedItems = items;
+    setAllItems(updatedItems);
+    setShowLessButton(true);
+    setShowMoreButton(false);
+  };
+  // Show more button & hide less button
+  const onShowLessToggleHandler = () => {
+    const updatedItems = items;
+    const newItems = chunk(updatedItems, 10);
+    setAllItems(newItems[0]);
+    setShowLessButton(false);
+    setShowMoreButton(true);
+  };
+  return (
+    <>
+      {allItems &&
+        allItems.map((item) => (
+          <div key={item[id]}>
+            <Checkbox className={styles.filterCustomCheckbox}>
+              <div className={styles.filterCheckboxLabel}>
+                <span>{item[title]}</span>
+              </div>
+            </Checkbox>
+          </div>
+        ))}
+      {showLessButton && (
+        <Button onClick={onShowLessToggleHandler} className={styles.showLessButton}>
+          <UpOutlined />
+          Show less
+          <UpOutlined />
+        </Button>
+      )}
+      {showMoreButton && (
+        <Button onClick={onShowMoreToggleHandler} className={styles.showLessButton}>
+          <DownOutlined />
+          Show more
+          <DownOutlined />
+        </Button>
+      )}
+    </>
+  );
+};
 
 const ShoppingLeftFilters = ({ currency }) => {
   const intl = useIntl();
@@ -25,17 +83,21 @@ const ShoppingLeftFilters = ({ currency }) => {
     { label: 'DELIVER', value: 'DELIVERY' },
   ];
   const onMinChange = (value) => {
-    dispatch(shoppingActions.onSearchFilterChange({ minPrice: value }));
-  };
-  const onShopByChange = (event) => {
-    dispatch(shoppingActions.setShopByView(event.target.value));
+    const timer = setTimeout(() => {
+      dispatch(shoppingActions.onSearchFilterChange({ minPrice: value }));
+      clearTimeout(timer);
+    }, 1000);
   };
   const onMaxChange = (value) => {
     dispatch(shoppingActions.onSearchFilterChange({ maxPrice: value }));
   };
+  const onShopByChange = (event) => {
+    dispatch(shoppingActions.setShopByView(event.target.value));
+  };
   const onRateChange = (value) => {
     dispatch(shoppingActions.onSearchFilterChange({ starRating: value }));
   };
+
   return (
     <div className={styles.root}>
       <div className={styles.summary}>
@@ -60,7 +122,7 @@ const ShoppingLeftFilters = ({ currency }) => {
           >
             <InputNumber
               defaultValue={0}
-              formatter={(value) => `${currency?.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              formatter={(value) => `${currency && currency.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
               style={{ width: '44%' }}
               onChange={onMinChange}
@@ -114,60 +176,97 @@ const ShoppingLeftFilters = ({ currency }) => {
             />
           </FormItem>
           <FormItem>
-            <Collapse header="NAME OF FILTER">
+            <Collapse header="NAME OF FILTER" className={styles.shoppigLeftCollaper}>
               <div>
-                <input type="checkbox" name="dataHere" value="Data Here" />
-                <span className={styles.spacingLeft}>Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="moreDataHere" value="More Data Here" />
-                <span className={styles.spacingLeft}>More Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>More Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="evenMoreDataHere" value="Even More Data Here" />
-                <span className={styles.spacingLeft}>Even More Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Even More Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="dataHere" value="Data Here" />
-                <span className={styles.spacingLeft}>Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
+              <div className={styles.divider} />
             </Collapse>
           </FormItem>
           <FormItem>
             <Collapse header={intl.formatMessage({ id: 'shopping.filterbystores', defaultValue: 'FILTER BY STORES' })}>
-              {productStores.map((store) => (
+              {/* {productStores.map((store) => (
                 <div>
                   <input type="checkbox" name="target" value={store.id} />
                   <span className={styles.spacingLeft}>{store.title}</span>
                 </div>
-              ))}
+              ))} */}
+              <CustomFormInputs items={productStores && productStores} title="title" id="id" />
+              <div className={styles.divider} />
             </Collapse>
           </FormItem>
           <FormItem>
-            <Collapse header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })}>
+            <Collapse
+              header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })}
+              activeKey={null}
+            >
               <div>
-                <input type="checkbox" name="dataHere" value="Data Here" />
-                <span className={styles.spacingLeft}>Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="moreDataHere" value="More Data Here" />
-                <span className={styles.spacingLeft}>More Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>More Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="evenMoreDataHere" value="Even More Data Here" />
-                <span className={styles.spacingLeft}>Even More Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Even More Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
               <div>
-                <input type="checkbox" name="dataHere" value="Data Here" />
-                <span className={styles.spacingLeft}>Data Here</span>
+                <Checkbox className={styles.filterCustomCheckbox}>
+                  <div className={styles.filterCheckboxLabel}>
+                    <span>Data Here</span>
+                  </div>
+                </Checkbox>
               </div>
+              <div className={styles.divider} />
             </Collapse>
           </FormItem>
           <FormItem>
-            <Collapse header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })} />
+            <Collapse
+              header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })}
+              activeKey={null}
+            />
           </FormItem>
           <FormItem>
-            <Collapse header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })} />
+            <Collapse
+              header={intl.formatMessage({ id: 'shopping.allcategories', defaultValue: 'ALL CATEGORIES' })}
+              activeKey={null}
+            />
           </FormItem>
         </Form>
       </div>

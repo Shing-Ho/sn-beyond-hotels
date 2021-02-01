@@ -11,14 +11,11 @@
   }
 
   .mainImage {
+    flex-shrink: 0;
     overflow: hidden;
+    align-self: stretch;
     width: 260px;
     background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-height: 100%;
-    height: 100%;
     @media screen and (max-width: 767px) {
       width: 100%;
     }

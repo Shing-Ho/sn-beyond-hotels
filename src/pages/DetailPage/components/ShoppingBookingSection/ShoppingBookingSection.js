@@ -32,12 +32,14 @@ export default function ShoppingBookingSection({ className }) {
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Pickup" key="1">
           <div className={styles.bookContent}>
-            <h3>
+            <span className={styles.textStyle}>
               <FormattedMessage id="dateAndTime" defaultMessage="Date & Time" />
-            </h3>
+            </span>
+            <span className={styles.spacing} />
             <div className="w-100">
-              <DatePicker defaultValue={moment()} className="w-100" format="MMMM DD, YYYY" />
+              <DatePicker defaultValue={moment()} className={styles.dateText} format="MMMM DD, YYYY" />
             </div>
+            <span className={styles.spacing} />
             <div className={styles.timeWrapper}>
               {showTimings.map((time) => (
                 <div
@@ -49,22 +51,26 @@ export default function ShoppingBookingSection({ className }) {
                 </div>
               ))}
             </div>
+            <span className={styles.spacing} />
             <Button className={styles.differentTime} onClick={() => setDifferentTime(true)}>
               <FormattedMessage id="differentTime" defaultMessage="Request different time" />
             </Button>
+            <span className={styles.spacing} />
             <Divider margin={20} />
             <div className={styles.yourOrder}>
-              <span>
+              <span className={styles.textStyle}>
                 <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
               </span>
               <div>
-                <FormattedMessage id="NoProductadded" defaultMessage="No Products Added" />
-                <span>0</span>
+                <span className={styles.NoProductAdded}>
+                  <FormattedMessage id="NoProductadded" defaultMessage="No Products Added" />
+                </span>
+                <span className={styles.spanColor}>0</span>
               </div>
             </div>
             <div className={styles.total}>
-              <span>
-                <FormattedMessage id="total" defaultMessage="Total" />
+              <span className={styles.textTotal}>
+                <FormattedMessage id="TOTAL" defaultMessage="TOTAL" />
               </span>
               <span className={styles.totalCost}>$ 0.00</span>
             </div>
@@ -78,12 +84,14 @@ export default function ShoppingBookingSection({ className }) {
         </TabPane>
         <TabPane tab="Delivery" key="2">
           <div className={styles.bookContent}>
-            <h3>
+            <span className={styles.textStyle}>
               <FormattedMessage id="dateAndTime" defaultMessage="Date & Time" />
-            </h3>
+            </span>
+            <span className={styles.spacing} />
             <div className="w-100">
               <DatePicker defaultValue={moment()} className="w-100" format="MMMM DD, YYYY" />
             </div>
+            <span className={styles.spacing} />
             <div className={styles.timeWrapper}>
               {showTimings.map((time) => (
                 <div
@@ -95,19 +103,26 @@ export default function ShoppingBookingSection({ className }) {
                 </div>
               ))}
             </div>
+            <span className={styles.spacing} />
+            <Button className={styles.differentTime} onClick={() => setDifferentTime(true)}>
+              <FormattedMessage id="differentTime" defaultMessage="Request different time" />
+            </Button>
+            <span className={styles.spacing} />
             <Divider margin={20} />
             <div className={styles.yourOrder}>
-              <span>
+              <span className={styles.textStyle}>
                 <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
               </span>
               <div>
-                <FormattedMessage id="NoProductadded" defaultMessage="No Products Added" />
-                <span>0</span>
+                <span className={styles.NoProductAdded}>
+                  <FormattedMessage id="NoProductadded" defaultMessage="No Products Added" />
+                </span>
+                <span className={styles.spanColor}>0</span>
               </div>
             </div>
             <div className={styles.total}>
-              <span>
-                <FormattedMessage id="total" defaultMessage="Total" />
+              <span className={styles.textTotal}>
+                <FormattedMessage id="TOTAL" defaultMessage="TOTAL" />
               </span>
               <span className={styles.totalCost}>$ 0.00</span>
             </div>

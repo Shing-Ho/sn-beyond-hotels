@@ -47,18 +47,9 @@ const initialFilterData = {
     location_id: '5128581',
     location_name: 'New York City',
     iso_country_code: 'USA',
-    latitude: 40.73,
-    longitude: -73.93,
   },
   start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
   end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
-  occupancy: {
-    adults: 2,
-    children: 0,
-  },
-  nights: 1,
-  language: 'en',
-  currency: 'USD',
 };
 
 const searchTypeOptions = [
@@ -149,6 +140,23 @@ const gasSelectOptions = [
   },
 ];
 
+const initialState = {
+  location: {
+    location_id: '5128581',
+    location_name: 'New York City',
+    iso_country_code: 'USA',
+  },
+  start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+  end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
+  occupancy: {
+    adults: 2,
+    children: 0,
+  },
+  nights: 1,
+  language: 'en',
+  currency: 'USD',
+};
+
 const initialData = Array(30)
   .fill(0)
   .map((_, id) => ({
@@ -208,19 +216,12 @@ const DashboardPage = ({ location = {} }) => {
   useEffect(() => {
     switch (searchType) {
       case 'gas':
-        if (filter.location.latitude && filter.location.longitude) {
-          dispatch(
-            gasActions.getGasStations({
-              latitude: filter.location.latitude,
-              longitude: filter.location.longitude,
-            }),
-          );
-        }
+        dispatch(gasActions.getGasStations());
         break;
       default:
         break;
     }
-  }, [searchType, filter]);
+  }, [searchType]);
 
   let subHeader;
   if (searchType === 'gas') {
@@ -231,7 +232,7 @@ const DashboardPage = ({ location = {} }) => {
     <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
-          <TopFilters filter={filter} setFilter={setFilter} displayCount />
+          <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
           <DashboardFilter
             searchType={searchType}
             searchTypeData={searchTypeOptions}

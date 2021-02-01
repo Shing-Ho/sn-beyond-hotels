@@ -111,7 +111,6 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
       )}
       {itemView === 'list' && (
         <ListView
-          total={initialItems.length}
           items={items}
           onPageChange={handlePageChange}
           currency={currency}

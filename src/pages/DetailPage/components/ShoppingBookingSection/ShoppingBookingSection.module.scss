@@ -5,7 +5,7 @@
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
   height: max-content;
   width: 100%;
-   
+   background-color: #ffffff;
   .bookContent {
     padding: 20px;
     font-size: 20px;
@@ -57,6 +57,7 @@
       > span {
         margin: 0;
         margin-bottom: 28px;
+        color: #7b7c7e;
       }
 
       > div {
@@ -84,6 +85,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      margin-top: -20px;
       .totalCost {
         color: $primaryColor;
         font-size: 24px;
@@ -166,5 +168,57 @@
     font-size: 16px;
     text-align: center;
     margin-bottom: 0;
+  }
+  .spacing{
+    padding-bottom: 10px;
+  }
+  .textStyle{
+    margin: 0 98px 5px 0px;
+    font-size: 24px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    font-weight: 300;   
+    color: #7b7c7e; 
+  }
+  .NoProductAdded
+  {
+    width: 112px;
+    height: 17px;
+    margin: 2px 2px 32px 0px;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: italic;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #7b7c7e !important; 
+  }
+  .spanColor{
+    color: #7b7c7e !important;
+    margin: 2px 2px 32px 0px;
+  }
+  .textTotal{
+    font-size: 24px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    font-weight: 300;   
+    color: #7b7c7e; 
+  }
+  .dateText{
+    width: 100%;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 800 !important;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: left;
+    color:  #7b7c7e;
   }
 }

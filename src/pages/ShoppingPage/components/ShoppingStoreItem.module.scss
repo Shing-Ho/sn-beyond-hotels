@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px !important;
+  margin-top: 20px !important;
   border: solid 1px $borderGrayColor;
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -33,8 +33,6 @@
   }
 
   .bagIconImg {
-    height: 20px;
-    width: 20px;
     object-fit: cover;
 
     svg {
@@ -50,7 +48,30 @@
     margin-top: 10px;
     text-align: right;
   }
-
+  .snIcon{
+    > svg{
+      height:20px;
+      margin-top: 5px;
+    }
+  }
+  .targetunavailable{
+    display: inline;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    >svg{
+      fill: #dedede;
+    }
+  }
+  .targetavailable{
+    display: inline;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    >svg{
+      fill: #003398;
+    }
+  }
   .iconImage{
     height: 10%;
     width: 10%;
@@ -200,7 +221,13 @@
             width: 100%;
             margin: 10px 0;
           }
-
+          .activeLocationButton {
+            color: #fff;
+            background: $primaryColor;
+            svg path {
+              fill: #fff;
+            }
+          }
           > :not(:first-child) {
             margin-left: 20px;
           }

@@ -3,19 +3,12 @@
 .root {
   max-width: 360px;
   width: 100%;
-  height: 100%;
   border: 1px solid $borderGrayColor;
   line-height: 1;
-  display: flex;
-  flex-direction: column;
-
+  height: 100%;
   .banner {
     width: 100%;
     height: 258px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid $borderGrayColor;
 
     > img {
       object-fit: cover;
@@ -32,23 +25,75 @@
     flex-direction: column;
     align-items: center;
     line-height: 1.5;
-    flex: 1;
-
+    background-color: #ffffff;
     > div {
       font-size: 16px;
-      display: flex;
-      align-items: center;
 
       > span {
         font-size: 20px;
         font-weight: bold;
         color: $primaryColor;
         margin-left: 5px;
-        height: 2.2rem;
-        overflow: hidden;
-        white-space: nowrap;
-        width: calc(100% - 60px);
-        text-overflow: ellipsis;
+      }
+    }
+    .ratinginfo{
+      font-size: 14px;
+      display:flex;
+      flex-direction: row;
+      margin-bottom: 20px;
+      .rating{
+        font-weight: bold;
+        color: $primaryColor;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+    .targetIcon{
+      height:18px;
+      width:20px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      // margin-top: 10px;
+      text-align: right;
+    }
+
+    .bagIconImg {
+      height: 20px;
+      width: 20px;
+      margin-bottom: 6px !important;
+      object-fit: cover;
+  
+      svg {
+        fill: #ffffff;
+      }
+    }
+
+    .textAlign{
+      text-align: center;
+    }
+    .productname{
+      text-align: center;
+      line-height: 1.21;
+      margin-bottom: 30px;
+    }
+
+    .ratingInfo{
+      font-size: 14px;
+      margin-bottom: 25px;
+      display: flex;
+      
+      .rating{
+        font-size: 14px;
+        font-weight: bold;
+        color: $primaryColor;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    .snicon{
+      > svg{
+        height: 20px;
       }
     }
     .icon {
@@ -71,17 +116,7 @@
         height: 24px;
       }
     }
-    .name {
-      height: 2.2rem;
-      overflow: hidden;
-      white-space: nowrap;
-      width: 100%;
-      text-overflow: ellipsis;
-      text-align: center;
-    }
     .description {
-      flex: 1;
-      min-height: 40px;
       font-size: 14px;
       font-weight: bold;
     }
@@ -98,7 +133,7 @@
     max-width: unset;
 
     .content {
-      padding: 20px 10px 0 10px;
+      padding: 20px 10px 10px 10px;
     }
   }
 }
