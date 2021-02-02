@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Rating from 'components/Rating/Rating';
 import styles from './GridItem.module.scss';
 
-export default function GridItem({ className, data, type }) {
+export default function GridItem({ className, data, type, currency }) {
   const getName = (dataName, dataType) => {
     let name;
     const switchType = type === 'all' ? dataType : type;
@@ -21,6 +21,9 @@ export default function GridItem({ className, data, type }) {
         break;
       case 'dining':
         name = 'Taix Restaurant';
+        break;
+      case 'transports':
+        name = 'Taxi';
         break;
       default:
         name = dataName;
@@ -42,7 +45,7 @@ export default function GridItem({ className, data, type }) {
         <div className={styles.row}>
           {data?.rate && <FormattedMessage id="from" defaultMessage="FROM" />}
           <span>
-            {/* {currency?.symbol} */}
+            {currency?.symbol}
             {data?.rate}
           </span>
         </div>

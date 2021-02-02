@@ -28,9 +28,10 @@ const ListItem = ({ data, className, currency, type }) => {
     dispatch(push(`${window.BASE_ROUTE || ''}/hotels/${data.id}`));
   };
 
-  const getName = (dataName) => {
+  const getName = (dataName, dataType) => {
     let name;
-    switch (type) {
+    const switchType = type === 'all' ? dataType : type;
+    switch (switchType) {
       case 'tours':
         name = 'ATV Riding Tours';
         break;
@@ -42,6 +43,9 @@ const ListItem = ({ data, className, currency, type }) => {
         break;
       case 'dining':
         name = 'Taix Restaurant';
+        break;
+      case 'transports':
+        name = 'Taxi';
         break;
       default:
         name = dataName;
@@ -61,7 +65,7 @@ const ListItem = ({ data, className, currency, type }) => {
           <div className={styles.circle}>{data.icon}</div>
           <div className={styles.content}>
             <div className={styles.line}>
-              <h3 className={styles.itemName}>{getName(data.name)}</h3>
+              <h3 className={styles.itemName}>{getName(data?.name, data?.type)}</h3>
               <div className={styles.rateInfo}>
                 {data.subIcons?.length > 0 && (
                   <div className={styles.subInfo}>
