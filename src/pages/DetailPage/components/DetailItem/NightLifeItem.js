@@ -3,10 +3,14 @@ import { FormattedMessage } from 'react-intl';
 import cx from 'classnames';
 import NumberInput from 'components/NumberInput/NumberInput';
 import Divider from 'components/Divider/Divider';
-import { getRandomImageUrl } from 'helpers/utils';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
 import { ReactComponent as CloseFillGrayIcon } from 'icons/close-fill-gray.svg';
 import { ReactComponent as CheckFillIcon } from 'icons/check-fill.svg';
+import night1 from '../../../../images/night1.jpeg';
+import night2 from '../../../../images/night2.jpeg';
+import night3 from '../../../../images/night3.jpeg';
+import night4 from '../../../../images/night4.jpeg';
+import night5 from '../../../../images/night5.jpeg';
 import styles from './DetailItemNew.module.scss';
 
 const NightLifeItem = ({ details, setData }) => {
@@ -15,9 +19,15 @@ const NightLifeItem = ({ details, setData }) => {
     obj.guests = value;
     setData(details.key, obj);
   };
+
+  const getRandomImage = () => {
+    const images = [night1, night2, night3, night4, night5];
+    const number = Math.floor(Math.random() * Math.floor(5));
+    return images[number];
+  };
   return (
     <div className={cx(styles.root, { [styles.active]: details && details.guests > 0 })}>
-      <img src={getRandomImageUrl()} alt={details && details.title && details.title.toLocaleLowerCase()} />
+      <img src={getRandomImage()} alt={details && details.title && details.title.toLocaleLowerCase()} />
       <div className={styles.detail}>
         <div className={styles.title}>
           <div className={styles.header}>{details.title || <FormattedMessage id="right" defaultMessage="Right" />}</div>

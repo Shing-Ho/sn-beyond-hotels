@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, InputNumber, Select, Radio, Checkbox } from 'antd';
+import { Form, Input, Select, Radio, Checkbox } from 'antd';
 import { chunk } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import FormItem from 'components/FormItem/FormItem';
@@ -73,6 +73,8 @@ const ShoppingLeftFilters = ({ currency }) => {
   const dispatch = useDispatch();
   const filters = useSelector(getFilters);
   const shopyBy = useSelector(getShopBy);
+  const [minValue, setMinValue] = useState(1);
+  const [maxValue, setMaxValue] = useState(1000);
   const shopByOptions = [
     { label: 'PRODUCTS', value: 'PRODUCTS' },
     { label: 'STORE', value: 'STORE' },
@@ -82,13 +84,19 @@ const ShoppingLeftFilters = ({ currency }) => {
     { label: 'PICKUP', value: 'PICKUP' },
     { label: 'DELIVER', value: 'DELIVERY' },
   ];
-  const onMinChange = (value) => {
+  const onMinChange = (event) => {
+    event.persist();
+    const { value } = event.target;
+    setMinValue(value);
     const timer = setTimeout(() => {
       dispatch(shoppingActions.onSearchFilterChange({ minPrice: value }));
       clearTimeout(timer);
     }, 1000);
   };
-  const onMaxChange = (value) => {
+  const onMaxChange = (event) => {
+    event.persist();
+    const { value } = event.target;
+    setMaxValue(value);
     dispatch(shoppingActions.onSearchFilterChange({ maxPrice: value }));
   };
   const onShopByChange = (event) => {
@@ -120,22 +128,24 @@ const ShoppingLeftFilters = ({ currency }) => {
             className="item-content"
             label={intl.formatMessage({ id: 'priceRange', defaultValue: 'Price Range' })}
           >
-            <InputNumber
-              defaultValue={0}
-              formatter={(value) => `${currency && currency.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-              parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-              style={{ width: '44%' }}
+            <Input
+              size="large"
+              placeholder="1"
+              value={minValue}
+              prefix={<span>{currency?.symbol}</span>}
               onChange={onMinChange}
+              type="number"
             />
             <div className={styles.inputDivider}>
               <span />
             </div>
-            <InputNumber
-              defaultValue={1000}
-              style={{ width: '44%' }}
-              parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+            <Input
+              size="large"
+              placeholder="1000"
+              value={maxValue}
+              prefix={<span>{currency?.symbol}</span>}
               onChange={onMaxChange}
-              formatter={(value) => `${currency?.symbol} ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              type="number"
             />
           </FormItem>
           <FormItem label="POPULAR FILTERS">

@@ -2,43 +2,28 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
+import cover1 from 'images/coverEvent1.jpeg';
+import cover2 from 'images/coverEvent2.jpeg';
+import cover3 from 'images/coverEvent3.jpeg';
+import cover4 from 'images/coverEvent4.jpeg';
 import EventsListSection from './components/EventsListSection/EventsListSection';
 import EventBookingSection from './components/EventBookingSection/EventBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
 import styles from './EventsDetailPage.module.scss';
 
-const images = [
-  {
-    url: '//media.iceportal.com/34323/photos/60150742_XL.jpg',
+const getRandomImage = () => {
+  const images = [cover1, cover2, cover3, cover4];
+  const number = Math.floor(Math.random() * Math.floor(3));
+  return images[number];
+};
+
+const images = Array(4)
+  .fill(0)
+  .map((_, i) => ({
+    url: getRandomImage(),
     type: '',
-    display_order: 0,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150744_XL.jpg',
-    type: '',
-    display_order: 1,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150756_XL.jpg',
-    type: '',
-    display_order: 2,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150758_XL.jpg',
-    type: '',
-    display_order: 3,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150750_XL.jpg',
-    type: '',
-    display_order: 4,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150752_XL.jpg',
-    type: '',
-    display_order: 5,
-  },
-];
+    display_order: i,
+  }));
 
 const EventsDetailPage = () => (
   <Page>

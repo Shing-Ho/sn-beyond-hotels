@@ -13,44 +13,19 @@ import Carousel from 'components/Carousel/Carousel';
 import hotelActions from 'store/hotel/actions';
 // import bookingActions from 'store/booking/actions';
 // import { getLoading } from 'store/hotel/selectors';
-import DiningSection from './components/DiningSection/DiningSection';
 // import BookingSection from './components/BookingSection/BookingSection';
+import coverDining1 from 'images/coverDining1.png';
+import dining1 from 'images/dining1.jpg';
+import dining2 from 'images/dining2.jpeg';
+import dining3 from 'images/dining3.jpeg';
+import dining4 from 'images/dining4.jpeg';
+import dining5 from 'images/dining5.jpeg';
+// import { ReactComponent as DiningWhiteIcon } from 'icons/dashboardIcons/DiningWhite.svg';
 import DiningListSection from './components/DiningListSection/DiningListSection';
+import DiningSection from './components/DiningSection/DiningSection';
+
 import styles from './DiningDetailPage.module.scss';
 import { getBookingPayload, getSelectedHotel } from '../../store/booking/selectors';
-
-const images = [
-  {
-    url: '//media.iceportal.com/34323/photos/60150742_XL.jpg',
-    type: '',
-    display_order: 0,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150744_XL.jpg',
-    type: '',
-    display_order: 1,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150756_XL.jpg',
-    type: '',
-    display_order: 2,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150758_XL.jpg',
-    type: '',
-    display_order: 3,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150750_XL.jpg',
-    type: '',
-    display_order: 4,
-  },
-  {
-    url: '//media.iceportal.com/34323/photos/60150752_XL.jpg',
-    type: '',
-    display_order: 5,
-  },
-];
 
 const DetailPage = () => {
   const [selectedRooms, setSelectedRooms] = useState([]);
@@ -229,6 +204,21 @@ const DetailPage = () => {
   //     </div>
   //   );
   // }
+
+  const getRandomImage = () => {
+    const imagesArr = [coverDining1, dining1, dining2, dining3, dining4, dining5];
+    const number = Math.floor(Math.random() * Math.floor(4));
+    return imagesArr[number];
+  };
+
+  const coverImages = Array(4)
+    .fill(0)
+    .map((_, i) => ({
+      url: getRandomImage(),
+      type: '',
+      display_order: i,
+    }));
+
   return (
     <Page>
       {/* {loading && (
@@ -237,7 +227,7 @@ const DetailPage = () => {
         </div>
       )} */}
       <>
-        <Carousel image={hotel?.hotel_details?.photos || images} />
+        <Carousel image={coverImages} />
         <div className={styles.root}>
           <div className={styles.content}>
             <div className={styles.detail}>
