@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
-import { Popover } from 'antd';
+import { Popover, Empty } from 'antd';
 import cx from 'classnames';
 import { ReactComponent as PinIcon } from 'icons/pin.svg';
 import { ReactComponent as InfoIcon } from 'icons/info.svg';
@@ -58,7 +58,8 @@ const ListItem = ({ data, className, currency, type }) => {
     <div className={cx(styles.resultContainer, className)}>
       <div className={styles.resultItem}>
         <div className={styles.mainImage}>
-          <img src={data.image} alt="Result Item" />
+          {data?.image && <img src={data?.image} alt="Result Item" />}
+          {!data?.image && <Empty description="No Image" image={Empty.PRESENTED_IMAGE_SIMPLE} />}
         </div>
 
         <div className={styles.right}>
@@ -78,10 +79,15 @@ const ListItem = ({ data, className, currency, type }) => {
                   </div>
                 )}
                 <div className="flex-vertical-center">
-                  <span>
-                    <FormattedMessage id="average" defaultMessage="AVERAGE" />
-                  </span>
-                  <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                  {data?.type !== 'gas' && (
+                    <span>
+                      <FormattedMessage id="average" defaultMessage="AVERAGE" />
+                    </span>
+                  )}
+                  {data?.type === 'gas' && <span className={styles.itemRate}>{data.rate}</span>}
+                  {data?.type !== 'gas' && (
+                    <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                  )}
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
