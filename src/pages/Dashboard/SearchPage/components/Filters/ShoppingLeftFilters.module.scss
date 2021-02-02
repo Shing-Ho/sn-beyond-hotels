@@ -196,9 +196,10 @@
       width: 100% !important;
       display: flex;
       justify-content: center;
-      color: #003398 !important;
+      color: $primaryColor !important;
       font-weight: bold;
-      background-color: rgba(199, 209, 229, 1) !important;
+      background-color: rgba($primaryColor, 0.2) !important;
+      border-color: rgba($primaryColor, 0.2) !important;;
 
       &:hover {
         color: $grayColor;
