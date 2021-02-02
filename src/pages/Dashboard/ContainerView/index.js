@@ -106,6 +106,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
           onPageChange={handlePageChange}
           total={initialItems.length}
           currency={currency}
+          searchType={searchType}
           onItemClick={onItemClick || handleItemClick}
         />
       )}
@@ -114,6 +115,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
           items={items}
           onPageChange={handlePageChange}
           currency={currency}
+          searchType={searchType}
           onItemClick={onItemClick || handleItemClick}
         />
       )}
