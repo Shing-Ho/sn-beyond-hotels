@@ -10,7 +10,7 @@ import Modal from 'components/Modal/Modal';
 import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollapse';
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
-// import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
+import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
 import VenuesHotelDetailsSteps from '../VenuesHotelDetailsSteps/VenuesHotelDetailsSteps';
 import ProductItem from '../ProductItem/ProductItem';
 import VenuesProductsDetails from '../VenuesProductsDetails/VenuesProductsDetails';
