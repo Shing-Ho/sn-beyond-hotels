@@ -13,7 +13,7 @@ import styles from './EventsDetailPage.module.scss';
 
 const getRandomImage = () => {
   const images = [cover1, cover2, cover3, cover4];
-  const number = Math.floor(Math.random() * Math.floor(3));
+  const number = Math.floor(Math.random() * Math.floor(4));
   return images[number];
 };
 
