@@ -10,6 +10,7 @@ export default function CustomInput({
   suffix,
   maxLength,
   type = 'text',
+  ...props
 }) {
   const [value, setValue] = useState(propsValue);
   const [currentLength, setCurrentLength] = useState(propsValue ? propsValue.length : 0);
@@ -29,6 +30,7 @@ export default function CustomInput({
       maxLength={maxLength}
       prefix={prefix}
       suffix={suffix || <div className={styles.suffix}>{maxLength ? `${currentLength}/${maxLength}` : ''}</div>}
+      {...props}
     />
   );
 }

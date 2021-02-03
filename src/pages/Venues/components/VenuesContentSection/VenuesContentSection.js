@@ -11,6 +11,7 @@ import ProductsGroupCollapse from '../ProductsGroupCollapse/ProductsGroupCollaps
 import ProductsGroupCollapsedHeader from '../ProductsGroupCollapsedHeader/ProductsGroupCollapsedHeader';
 import ProductsGroupHeader from '../ProductsGroupHeader/ProductsGroupHeader';
 import VenuesDetailsSteps from '../VenuesDetailsSteps/VenuesDetailsSteps';
+import VenuesHotelDetailsSteps from '../VenuesHotelDetailsSteps/VenuesHotelDetailsSteps';
 import ProductItem from '../ProductItem/ProductItem';
 import VenuesProductsDetails from '../VenuesProductsDetails/VenuesProductsDetails';
 import VenuesProductsContacts from '../VenuesProductsContacts/VenuesProductsContacts';
@@ -113,7 +114,8 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
             width={1000}
             onCancel={() => setModalVisible(false)}
           >
-            <VenuesDetailsSteps onCancel={() => setModalVisible(false)} />
+            {/* <VenuesDetailsSteps onCancel={() => setModalVisible(false)} /> */}
+            <VenuesHotelDetailsSteps onCancel={() => setModalVisible(false)} />
           </Modal>
         </TabPane>
         <TabPane tab="Contacts" key="3">
