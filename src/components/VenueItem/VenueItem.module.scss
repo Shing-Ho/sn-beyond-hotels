@@ -1,0 +1,106 @@
+@import 'styles';
+.root {
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .leftText {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.43;
+      letter-spacing: normal;
+      text-align: left;
+      color: $secondaryColor;
+    }
+    .rightText {
+      font-family: Lato;
+      font-size: 13px;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.23;
+      letter-spacing: normal;
+      text-align: right;
+      color: #3dc2cc;
+    }
+  }
+  input {
+    padding: 11px 15px;
+    border-radius: 3px;
+    border: solid 1px #a6ccd4 !important;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: left;
+  }
+  :global(.ant-select) {
+    width: 100%;
+  }
+  :global(.ant-select-arrow) {
+    //display: none;
+    color: $secondaryColor;
+  }
+  :global(.ant-select),
+  :global(.ant-select-selector) {
+    height: 44px !important;
+
+    input {
+      height: 44px !important;
+    }
+  }
+  :global(.ant-select-selector) {
+    border: 1px solid rgb(166, 204, 212) !important;
+  }
+  :global(.ant-select-selection-placeholder) {
+    padding-top: 5px !important;
+  }
+  :global(.ant-select-selection-item) {
+    line-height: 36px !important;
+    padding-top: 3px !important;
+  }
+  :global(.ant-select.ant-select-focused) {
+    border-color: $secondaryColor;
+    box-shadow: $SecondaryFocusBoxShadow;
+  }
+  :global(.ant-select:not(.ant-select-disabled):hover .ant-select-selector) {
+    border-color: $secondaryColor;
+  }
+  :global(.ant-select-item-option-active) {
+    background-color: $secondaryLightColor !important;
+  }
+
+  :global {
+    .ant-switch {
+      width: 60px;
+      height: 30px;
+
+      &.ant-switch-checked {
+        background-color: $secondaryLightColor;
+
+        .ant-switch-handle {
+          top: 3px;
+          left: calc(100% - 24px - 4px);
+          &::before {
+            color: $secondaryLightColor;
+          }
+        }
+      }
+
+      .ant-switch-handle {
+        width: 24px;
+        height: 24px;
+        &::before {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

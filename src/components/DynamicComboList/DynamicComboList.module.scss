@@ -1,0 +1,45 @@
+@import "styles";
+
+.wrapper {
+  width: 360px;
+  height: 50px;
+  margin: 10px 5px 12px 4px;
+  padding: 13px 15px 13px 15px;
+  border-radius: 7px;
+  border: solid 2px #dedede;
+  .combo {
+    :global(.ant-checkbox .ant-checkbox-inner) {
+      background-color: white;
+      border: 2px solid $secondaryLightColor;
+
+      &::after {
+        border-color: $secondaryLightColor;
+      }
+    }
+    .text {
+      color: $grayColor;
+      font-size: 14px;
+    }
+  }
+}
+.addCustom {
+  width: 360px;
+  height: 50px;
+  margin: 5px;
+  border: solid 2px #3dc2cc;
+  background-color: $secondaryLightColor;
+  border: 2px solid $secondaryLightColor;
+  color: white;
+  font-size: 16px;
+  font-family: Lato;
+  font-weight: bold;
+  border-radius: 3px;
+  flex: 1;
+  &:hover {
+    background-color: $secondaryLightColor;
+    color: white;
+  }
+  i {
+    margin-right: 10px;
+  }
+}

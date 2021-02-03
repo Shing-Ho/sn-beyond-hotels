@@ -30,6 +30,16 @@ import { ReactComponent as FlightsTransparent } from 'icons/dashboardIcons/Fligh
 import { ReactComponent as FlightsOutline } from 'icons/dashboardIcons/FlightsOutline.svg';
 import { ReactComponent as Shopping } from 'icons/dashboardIcons/Icon_Category_Shopping.svg';
 import { ReactComponent as ShoppingWhite } from 'icons/dashboardIcons/Icon_Category_Shopping_White.svg';
+import { ReactComponent as TranBike } from 'icons/transports/Icon_Tran_Bike.svg';
+import { ReactComponent as TranBoat } from 'icons/transports/Icon_Tran_Boat.svg';
+import { ReactComponent as TranBus } from 'icons/transports/Icon_Tran_Bus.svg';
+import { ReactComponent as TranHire } from 'icons/transports/Icon_Tran_Hire.svg';
+import { ReactComponent as TranMetro } from 'icons/transports/Icon_Tran_Metro.svg';
+import { ReactComponent as TranRail } from 'icons/transports/Icon_Tran_Rail.svg';
+import { ReactComponent as TranRental } from 'icons/transports/Icon_Tran_Rental.svg';
+import { ReactComponent as TranRideShare } from 'icons/transports/Icon_Tran_RideShare.svg';
+import { ReactComponent as TranScooter } from 'icons/transports/Icon_Tran_Scooter.svg';
+import { ReactComponent as TranTransfer } from 'icons/transports/Icon_Tran_Transfer.svg';
 import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
 import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
@@ -47,18 +57,9 @@ const initialFilterData = {
     location_id: '5128581',
     location_name: 'New York City',
     iso_country_code: 'USA',
-    latitude: 40.73,
-    longitude: -73.93,
   },
   start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
   end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
-  occupancy: {
-    adults: 2,
-    children: 0,
-  },
-  nights: 1,
-  language: 'en',
-  currency: 'USD',
 };
 
 const searchTypeOptions = [
@@ -134,6 +135,44 @@ const searchTypeOptions = [
   },
 ];
 
+const allTypeOptions = [
+  {
+    id: 4,
+    name: 'transportation',
+    value: 'transports',
+    icon: <TransportationOutline />,
+    selectedIcon: <TransportationTransparent />,
+  },
+  {
+    id: 6,
+    name: 'toursAndActivities',
+    value: 'tours',
+    icon: <ToursActivities />,
+    selectedIcon: <ToursActivitiesWhite />,
+  },
+  {
+    id: 7,
+    name: 'showsAndEvents',
+    value: 'events',
+    icon: <ShowsEvents />,
+    selectedIcon: <ShowsEventsWhite />,
+  },
+  {
+    id: 8,
+    name: 'dining',
+    value: 'dining',
+    icon: <DiningSvg />,
+    selectedIcon: <DiningWhiteSvg />,
+  },
+  {
+    id: 9,
+    name: 'nightLife',
+    value: 'nightlife',
+    icon: <Nightlife />,
+    selectedIcon: <NightlifeWhite />,
+  },
+];
+
 const gasSelectOptions = [
   {
     label: 'Show All',
@@ -149,18 +188,128 @@ const gasSelectOptions = [
   },
 ];
 
+const transportSelectOptions = [
+  {
+    label: 'Show All',
+    value: 'all',
+    icon: <ShowAllFillGray />,
+    selectedIcon: <ShowAllWhite />,
+  },
+  {
+    label: 'Rental Car',
+    value: 'rental',
+    icon: <TranRental />,
+  },
+  {
+    label: 'RAIL',
+    value: 'rail',
+    icon: <TranRail />,
+  },
+  {
+    label: 'Ride Share',
+    value: 'rideshare',
+    icon: <TranRideShare />,
+  },
+  {
+    label: 'Car Hire',
+    value: 'hire',
+    icon: <TranHire />,
+  },
+  {
+    label: 'Transfers',
+    value: 'transfers',
+    icon: <TranTransfer />,
+  },
+  {
+    label: 'Metro',
+    value: 'metro',
+    icon: <TranMetro />,
+  },
+  {
+    label: 'Bus',
+    value: 'bus',
+    icon: <TranBus />,
+  },
+  {
+    label: 'Scooter',
+    value: 'scooter',
+    icon: <TranScooter />,
+  },
+  {
+    label: 'Bike',
+    value: 'bike',
+    icon: <TranBike />,
+  },
+  {
+    label: 'Boat',
+    value: 'boat',
+    icon: <TranBoat />,
+  },
+];
+
+const initialState = {
+  location: {
+    location_id: '5128581',
+    location_name: 'New York City',
+    iso_country_code: 'USA',
+  },
+  start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
+  end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
+  occupancy: {
+    adults: 2,
+    children: 0,
+  },
+  nights: 1,
+  language: 'en',
+  currency: 'USD',
+};
+
 const initialData = Array(30)
   .fill(0)
   .map((_, id) => ({
     id,
     rate: (Math.random() * 2000).toFixed(2),
     image: getRandomImageUrl(),
-    type: searchTypeOptions[Math.ceil(Math.random() * 8)].value,
+    type: allTypeOptions[Math.floor(Math.random() * 5)]?.value,
     name: `Fake Item ${id}`,
     rating: Math.round(Math.random() * 5),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
   }));
+
+// temp data for transportation car hire
+const tempCarHireData = [
+  {
+    id: 1,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/2f83353b-2624-4e33-8840-9fa262d41f0d.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+  {
+    id: 2,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/16e308d3-0f15-4d0a-8e16-0d2be8f77a25.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+  {
+    id: 3,
+    rate: (Math.random() * 2000).toFixed(2),
+    icon: <TranHire />,
+    image: 'https://cdn.zeplin.io/5f0cc065251be480ada0fb9a/assets/08cca3aa-2980-4159-a5aa-6aafa47faef8.svg',
+    name: '',
+    rating: Math.round(Math.random() * 5),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam facilisis pharetra. Fusce eu lorem vel mi cursus efficitur. Vivamus sodales tempus venenatis. ',
+  },
+];
 
 const DashboardPage = ({ location = {} }) => {
   const [filter, setFilter] = useState(initialFilterData);
@@ -170,10 +319,15 @@ const DashboardPage = ({ location = {} }) => {
   const gasStations = useSelector(getFormattedGasStations);
   const [items, setItems] = useState([]);
   const [, setGasType] = useState('all');
+  const [transportType, setTransportType] = useState('all');
   const intl = useIntl();
 
   const handleSearchTypeChange = (type) => {
     dispatch(push(`/${type}`));
+  };
+
+  const handleTransportChange = (id) => {
+    dispatch(push(`/transports/carhire/${id}`));
   };
 
   useEffect(() => {
@@ -208,30 +362,33 @@ const DashboardPage = ({ location = {} }) => {
   useEffect(() => {
     switch (searchType) {
       case 'gas':
-        if (filter.location.latitude && filter.location.longitude) {
-          dispatch(
-            gasActions.getGasStations({
-              latitude: filter.location.latitude,
-              longitude: filter.location.longitude,
-            }),
-          );
-        }
+        dispatch(gasActions.getGasStations());
         break;
       default:
         break;
     }
-  }, [searchType, filter]);
+  }, [searchType]);
+
+  useEffect(() => {
+    if (transportType === 'hire') {
+      setItems(tempCarHireData);
+    } else setItems(initialData);
+  }, transportType);
 
   let subHeader;
   if (searchType === 'gas') {
     subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
+  } else if (searchType === 'transports') {
+    subHeader = (
+      <TabSelect uppercase stretch thin custom options={transportSelectOptions} onChange={setTransportType} />
+    );
   }
 
   return (
     <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
-          <TopFilters filter={filter} setFilter={setFilter} displayCount />
+          <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
           <DashboardFilter
             searchType={searchType}
             searchTypeData={searchTypeOptions}
@@ -240,8 +397,19 @@ const DashboardPage = ({ location = {} }) => {
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
           {/* TODO: remove temporary page after we create whole pages */}
-          {searchType !== 'hotels' && searchType !== 'flights' && searchType !== 'shopping' && (
-            <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
+          {searchType !== 'hotels' &&
+            searchType !== 'flights' &&
+            searchType !== 'shopping' &&
+            searchType !== 'transports' && (
+              <ContainerView items={items} searchType={searchType} subHeader={subHeader} />
+            )}
+          {searchType === 'transports' && (
+            <ContainerView
+              items={items}
+              searchType={searchType}
+              subHeader={subHeader}
+              onItemClick={handleTransportChange}
+            />
           )}
         </div>
         {searchType === 'flights' && <FlightSearchPage noHeader noFooter />}

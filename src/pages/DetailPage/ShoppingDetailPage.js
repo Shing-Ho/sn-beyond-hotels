@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
+import cx from 'classnames';
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
 import ShoppingListSection from './components/ShoppingListSection/ShoppingListSection';
@@ -12,6 +13,9 @@ import { getSelectedStore } from '../../store/shopping/selectors';
 
 const ShoppingDetailPage = () => {
   const selectedStore = useSelector(getSelectedStore);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const images = [
     {
       url: selectedStore.image,
@@ -33,15 +37,12 @@ const ShoppingDetailPage = () => {
     <Page>
       <div className={styles.carousel}>
         <Carousel image={images} />
-        <ShoppingDetailHeader className={styles.detailHeader} details={{ name: selectedStore.title }} />
+        <ShoppingDetailHeader details={{ name: selectedStore.title }} />
       </div>
       <div className={styles.root}>
         <div className={styles.content}>
           <Row justify="center">
             <Col md={16} sm={24} flex={1}>
-              <Row>
-                <ShoppingDetailHeader className={styles.detailHeader} details={{ name: selectedStore.title }} />
-              </Row>
               <Row>
                 <ShoppingListSection className={styles.left} />
               </Row>
@@ -53,7 +54,11 @@ const ShoppingDetailPage = () => {
             </Col>
           </Row>
         </div>
-        <ShoppingOtherSection className={styles.bottom} />
+      </div>
+      <div className={cx(styles.root, styles.otherProducts)}>
+        <div className={styles.content}>
+          <ShoppingOtherSection className={styles.bottom} />
+        </div>
       </div>
     </Page>
   );

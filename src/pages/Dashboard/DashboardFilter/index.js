@@ -13,7 +13,7 @@ const DashboardFilter = ({ searchTypeData, searchType, onItemClick, intl }) => (
         <div className={item.value === searchType ? styles.selectedIcon : styles.icon}>
           {item.value === searchType ? item.selectedIcon : item.icon}
         </div>
-        <div>{intl.formatMessage({ id: item.name, defaultValue: item.name })}</div>
+        <div className={styles.text}>{intl.formatMessage({ id: item.name, defaultValue: item.name })}</div>
       </div>
     ))}
   </div>

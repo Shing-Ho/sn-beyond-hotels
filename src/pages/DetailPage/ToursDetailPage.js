@@ -2,18 +2,28 @@ import React from 'react';
 import { Row, Col } from 'antd';
 
 import Page from 'components/Page/Page';
-import { getRandomImageUrl } from 'helpers/utils';
 import Carousel from 'components/Carousel/Carousel';
 import ToursListSection from './components/ToursListSection/ToursListSection';
 import EventBookingSection from './components/EventBookingSection/EventBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
 import OtherSection from './components/OtherSection/OtherSection';
 import styles from './ToursDetailPage.module.scss';
+import Tours1 from '../../images/tours1.jpeg';
+import Tours2 from '../../images/tours2.jpeg';
+import Tours3 from '../../images/tours3.jpeg';
+import Tours4 from '../../images/tours4.jpeg';
+import Tours5 from '../../images/tours5.jpeg';
 
-const images = Array(7)
+const getRandomImage = () => {
+  const images = [Tours1, Tours2, Tours3, Tours4, Tours5];
+  const number = Math.floor(Math.random() * Math.floor(5));
+  return images[number];
+};
+
+const images = Array(5)
   .fill(0)
   .map((_, i) => ({
-    url: getRandomImageUrl(),
+    url: getRandomImage(),
     type: '',
     display_order: i,
   }));

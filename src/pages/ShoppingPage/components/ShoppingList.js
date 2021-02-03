@@ -32,23 +32,25 @@ export default function ShoppingList() {
             <div className={styles.leftFilter}>
               <ShoppingLeftFilters className={styles.left} currency={currency} />
             </div>
-            <ShoppingPage toggleDrawer={toggleDrawer} />
+            <div className={styles.right}>
+              <ShoppingPage toggleDrawer={toggleDrawer} />
+            </div>
           </div>
           <Row className={styles.buttonWrap}>
             <Button className={styles.btn}>
               <FormattedMessage id="showMore" defaultMessage="Show More" />
             </Button>
           </Row>
-          <Row className={styles.pagination}>
-            <Pagination
-              total={10}
-              showSizeChanger
-              showQuickJumper
-              defaultPageSize={9}
-              pageSizeOptions={[9, 18, 27, 45]}
-            />
-          </Row>
         </div>
+      </div>
+      <div className={styles.pagination}>
+        <Pagination
+          total={10}
+          showSizeChanger
+          defaultPageSize={9}
+          pageSizeOptions={[9, 18, 27, 45]}
+          className={styles.paginationContent}
+        />
       </div>
     </Page>
   );

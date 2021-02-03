@@ -4,38 +4,47 @@ import VenuesPage from './VenuesPage';
 
 export default function VenueEventsPage({ location = {} }) {
   const handlePublish = () => {
+    // eslint-disable-next-line
     alert('on add product group');
   };
 
   const handleAddRule = () => {
+    // eslint-disable-next-line
     alert('on add rule');
   };
 
   const handleEditSafety = () => {
+    // eslint-disable-next-line
     alert('on edit safety');
   };
 
   const handleCopy = () => {
+    // eslint-disable-next-line
     alert('on copy');
   };
 
   const handleDelete = () => {
+    // eslint-disable-next-line
     alert('on delete');
   };
 
   const handleAddProductGroup = () => {
+    // eslint-disable-next-line
     alert('on add product group');
   };
 
   const handleAddDetails = () => {
+    // eslint-disable-next-line
     alert('on add details');
   };
 
   const handlePaymentProviderSelection = () => {
+    // eslint-disable-next-line
     alert('on payment provider selection');
   };
 
   const handleAddContact = () => {
+    // eslint-disable-next-line
     alert('on add contact');
   };
 

@@ -14,10 +14,9 @@ const gasActions = createActions(
   options,
 );
 
-const getGasStations = (params) => async (dispatch) => {
+const getGasStations = () => async (dispatch) => {
   try {
-    const data = await API.getGasStations(params);
-    console.log('gas action response', data);
+    const data = await API.getGasStations();
     dispatch(gasActions.setGasStations(data));
   } catch (error) {
     dispatch(gasActions.setFailure(error));

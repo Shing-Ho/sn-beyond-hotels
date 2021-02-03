@@ -1,0 +1,43 @@
+@import 'styles';
+
+.addressContainer {
+  .autoCompleteContainer {
+    input {
+      width: 100%;
+      height: 50px;
+      margin-top: 10px;
+      padding-left: 10px;
+      border: 1px solid $borderGrayColor;
+      font-size: 18px;
+      color: #003398;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: #003398;
+        opacity: 1;
+      }
+    }
+    .dropdownContainer {
+      position: absolute;
+      border: 1px solid $borderGrayColor;
+      z-index: 1;
+      font-size: 18px;
+      background-color: #ffffff;
+      .suggestionActive {
+        background-color: $borderGrayColor;
+        color: #003398;
+        cursor: pointer;
+      }
+      .suggestionItem {
+        background-color: #ffffff;
+        cursor: 'pointer';
+      }
+      .pinImg {
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+      }
+    }
+  }
+}

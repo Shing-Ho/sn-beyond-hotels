@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 import Button from '../../../../components/Button/Button';
 import Pagination from '../../../../components/Pagination/Pagination';
 
-const ListView = ({ items = [], currency, total, onPageChange, onItemClick }) => {
+const ListView = ({ items = [], currency, total, onPageChange, onItemClick, searchType }) => {
   const onHandleClick = (id) => () => {
     onItemClick(id);
   };
@@ -16,8 +16,8 @@ const ListView = ({ items = [], currency, total, onPageChange, onItemClick }) =>
     <div className={styles.listContainer}>
       <Row gutter={24} className={styles.row}>
         {items.map((item) => (
-          <Col lg={24} className={styles.column} onClick={onHandleClick(item.id)}>
-            <ListItem currency={currency} data={item} />
+          <Col lg={24} className={styles.column} onClick={() => onHandleClick(item.id)}>
+            <ListItem currency={currency} data={item} type={searchType} />
           </Col>
         ))}
       </Row>
