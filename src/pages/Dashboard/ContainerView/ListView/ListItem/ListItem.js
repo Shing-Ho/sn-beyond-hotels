@@ -12,6 +12,30 @@ import { commaFormat } from 'helpers/utils';
 import IconButton from 'components/IconButton/IconButton';
 import Button from 'components/Button/Button';
 import Rating from 'components/Rating/Rating';
+import night1 from 'images/night1.jpeg';
+import night2 from 'images/night2.jpeg';
+import night3 from 'images/night3.jpeg';
+import night4 from 'images/night4.jpeg';
+import night5 from 'images/night5.jpeg';
+import cover1 from 'images/coverEvent1.jpeg';
+import cover2 from 'images/coverEvent2.jpeg';
+import cover3 from 'images/coverEvent3.jpeg';
+import cover4 from 'images/coverEvent4.jpeg';
+import Tours1 from 'images/tours1.jpeg';
+import Tours2 from 'images/tours2.jpeg';
+import Tours3 from 'images/tours3.jpeg';
+import Tours4 from 'images/tours4.jpeg';
+import Tours5 from 'images/tours5.jpeg';
+import dining1 from 'images/dining1.jpg';
+import dining2 from 'images/dining2.jpeg';
+import dining3 from 'images/dining3.jpeg';
+import dining4 from 'images/dining4.jpeg';
+import dining5 from 'images/dining5.jpeg';
+import transport1 from 'images/transport1.jpg';
+import transport2 from 'images/transport2.jpg';
+import transport3 from 'images/transport3.jpeg';
+import transport4 from 'images/transport4.jpeg';
+import transport5 from 'images/transport5.jpeg';
 import TaxAndFees from '../../../../../components/TaxAndFees/TaxAndFees';
 import styles from './ListItem.module.scss';
 
@@ -54,12 +78,52 @@ const ListItem = ({ data, className, currency, type }) => {
     return name;
   };
 
+  // eslint-disable-next-line consistent-return
+  const getRandomImageUrl = (dataImage, dataType) => {
+    let imagesArr = [];
+    let number = 0;
+    let image;
+    const switchType = type === 'all' ? dataType : type;
+    switch (switchType) {
+      case 'tours':
+        imagesArr = [Tours1, Tours2, Tours3, Tours4, Tours5];
+        number = Math.floor(Math.random() * Math.floor(5));
+        image = imagesArr[number];
+        break;
+      case 'events':
+        imagesArr = [cover1, cover2, cover3, cover4];
+        number = Math.floor(Math.random() * Math.floor(4));
+        image = imagesArr[number];
+        break;
+      case 'nightlife':
+        imagesArr = [night1, night2, night3, night4, night5];
+        number = Math.floor(Math.random() * Math.floor(5));
+        image = imagesArr[number];
+        break;
+      case 'dining':
+        imagesArr = [dining1, dining2, dining3, dining4, dining5];
+        number = Math.floor(Math.random() * Math.floor(5));
+        image = imagesArr[number];
+        break;
+      case 'transports':
+        imagesArr = [transport1, transport2, transport3, transport4, transport5];
+        number = Math.floor(Math.random() * Math.floor(5));
+        image = imagesArr[number];
+        break;
+      default:
+        image = dataImage;
+        break;
+    }
+    return image;
+  };
+
   return (
     <div className={cx(styles.resultContainer, className)}>
       <div className={styles.resultItem}>
         <div className={styles.mainImage}>
-          {data?.image && <img src={data?.image} alt="Result Item" />}
+          {data?.image && <img src={getRandomImageUrl(data?.image, data?.type)} alt="Result Item" />}
           {!data?.image && <Empty description="No Image" image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+          <img src={getRandomImageUrl(data?.image, data?.type)} alt="Result Item" />
         </div>
 
         <div className={styles.right}>

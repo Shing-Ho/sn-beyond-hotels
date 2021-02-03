@@ -16,11 +16,11 @@ import Tours5 from '../../images/tours5.jpeg';
 
 const getRandomImage = () => {
   const images = [Tours1, Tours2, Tours3, Tours4, Tours5];
-  const number = Math.floor(Math.random() * Math.floor(3));
+  const number = Math.floor(Math.random() * Math.floor(5));
   return images[number];
 };
 
-const images = Array(3)
+const images = Array(5)
   .fill(0)
   .map((_, i) => ({
     url: getRandomImage(),

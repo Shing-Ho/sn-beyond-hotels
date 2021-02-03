@@ -207,11 +207,11 @@ const DetailPage = () => {
 
   const getRandomImage = () => {
     const imagesArr = [coverDining1, dining1, dining2, dining3, dining4, dining5];
-    const number = Math.floor(Math.random() * Math.floor(4));
+    const number = Math.floor(Math.random() * Math.floor(6));
     return imagesArr[number];
   };
 
-  const coverImages = Array(4)
+  const coverImages = Array(6)
     .fill(0)
     .map((_, i) => ({
       url: getRandomImage(),

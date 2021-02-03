@@ -17,11 +17,11 @@ import night5 from '../../images/night5.jpeg';
 
 const getRandomImage = () => {
   const images = [night1, night2, night3, night4, night5];
-  const number = Math.floor(Math.random() * Math.floor(4));
+  const number = Math.floor(Math.random() * Math.floor(5));
   return images[number];
 };
 
-const images = Array(3)
+const images = Array(5)
   .fill(0)
   .map((_, i) => ({
     url: getRandomImage(),
