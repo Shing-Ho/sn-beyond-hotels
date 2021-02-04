@@ -5,7 +5,52 @@
     width: 100%;
     max-width: 1180px;
     margin: auto;
-    padding: 0 20px;
+    padding: 40px 20px 0;
     box-sizing: border-box;
   }
+}
+
+.buttonWrap {
+  text-align: end;
+  display: flex;
+  justify-content: flex-end;
+  height: 36px;
+  .btn {
+    height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #003398;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 16px;
+    width: 200px;
+    max-width: 200px;
+    &:hover {
+      background-color: #003398;
+    }
+  }
+}
+
+.dropdown{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  margin-right: 20px;
+  max-width: 180px;
+  cursor: pointer;
+  span {
+    color: #003398;
+  }
+}
+
+.menu {
+  max-height: 400px;
+  overflow-y: auto;
 }

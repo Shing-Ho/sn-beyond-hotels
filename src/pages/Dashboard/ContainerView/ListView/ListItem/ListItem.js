@@ -21,11 +21,6 @@ import cover1 from 'images/coverEvent1.jpeg';
 import cover2 from 'images/coverEvent2.jpeg';
 import cover3 from 'images/coverEvent3.jpeg';
 import cover4 from 'images/coverEvent4.jpeg';
-import Tours1 from 'images/tours1.jpeg';
-import Tours2 from 'images/tours2.jpeg';
-import Tours3 from 'images/tours3.jpeg';
-import Tours4 from 'images/tours4.jpeg';
-import Tours5 from 'images/tours5.jpeg';
 import dining1 from 'images/dining1.jpg';
 import dining2 from 'images/dining2.jpeg';
 import dining3 from 'images/dining3.jpeg';
@@ -56,9 +51,6 @@ const ListItem = ({ data, className, currency, type }) => {
     let name;
     const switchType = type === 'all' ? dataType : type;
     switch (switchType) {
-      case 'tours':
-        name = 'ATV Riding Tours';
-        break;
       case 'events':
         name = 'Hamilton - The Musical';
         break;
@@ -85,11 +77,6 @@ const ListItem = ({ data, className, currency, type }) => {
     let image;
     const switchType = type === 'all' ? dataType : type;
     switch (switchType) {
-      case 'tours':
-        imagesArr = [Tours1, Tours2, Tours3, Tours4, Tours5];
-        number = Math.floor(Math.random() * Math.floor(5));
-        image = imagesArr[number];
-        break;
       case 'events':
         imagesArr = [cover1, cover2, cover3, cover4];
         number = Math.floor(Math.random() * Math.floor(4));
@@ -123,7 +110,6 @@ const ListItem = ({ data, className, currency, type }) => {
         <div className={styles.mainImage}>
           {data?.image && <img src={getRandomImageUrl(data?.image, data?.type)} alt="Result Item" />}
           {!data?.image && <Empty description="No Image" image={Empty.PRESENTED_IMAGE_SIMPLE} />}
-          <img src={getRandomImageUrl(data?.image, data?.type)} alt="Result Item" />
         </div>
 
         <div className={styles.right}>
@@ -143,15 +129,23 @@ const ListItem = ({ data, className, currency, type }) => {
                   </div>
                 )}
                 <div className="flex-vertical-center">
-                  {data?.type !== 'gas' && (
-                    <span>
-                      <FormattedMessage id="average" defaultMessage="AVERAGE" />
-                    </span>
+                  {data?.type !== 'gas' && data?.type !== 'tours' && (
+                    <>
+                      <span>
+                        <FormattedMessage id="average" defaultMessage="AVERAGE" />
+                      </span>
+                      <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
+                    </>
+                  )}
+                  {data?.type === 'tours' && (
+                    <>
+                      <span>
+                        <FormattedMessage id="duration" defaultMessage="DURATION" />
+                      </span>
+                      <span className={styles.itemRate}>{data.duration}</span>
+                    </>
                   )}
                   {data?.type === 'gas' && <span className={styles.itemRate}>{data.rate}</span>}
-                  {data?.type !== 'gas' && (
-                    <span className={styles.itemRate}>{currency?.symbol + commaFormat(data.rate)}</span>
-                  )}
                 </div>
                 {(data.base || data.tax) && (
                   <div className={`${styles.taxesAndFees} flex-vertical-center`}>
@@ -166,11 +160,21 @@ const ListItem = ({ data, className, currency, type }) => {
               </div>
             </div>
 
-            <div>
-              <Rating scoreonly score={data.rating} className={styles.rating} />
-            </div>
+            {data?.type !== 'tours' && (
+              <div>
+                <Rating scoreonly score={data.rating} className={styles.rating} />
+              </div>
+            )}
             <div className={`${styles.line} ${styles.baseline}`}>
-              <span className={styles.description}>{data.description}</span>
+              {data?.type !== 'tours' && (
+                <span className={styles.description}>{data.description || 'No description provided'}</span>
+              )}
+              {data?.type === 'tours' && (
+                <div>
+                  <span>{data.style}</span>
+                  <div className={styles.tourDescription} dangerouslySetInnerHTML={{ __html: data.description }} />
+                </div>
+              )}
               <div className={styles.actions}>
                 {data.geolocation && <IconButton Icon={PinIcon} onClick={toggleMap} />}
                 <Button onClick={onViewClick}>

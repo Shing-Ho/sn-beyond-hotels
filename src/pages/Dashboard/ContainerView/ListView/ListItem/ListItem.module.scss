@@ -36,7 +36,7 @@
 
   .right {
     position: relative;
-    flex-grow: 1;
+    flex: 1;
     height: 100%;
 
     .circle {
@@ -153,6 +153,13 @@
           overflow: hidden;
           text-overflow: ellipsis;
           max-height: 44px;
+        }
+        .tourDescription {
+          font-size: 14px;
+          font-weight: bold;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 66px;
         }
         .actions {
           display: flex;

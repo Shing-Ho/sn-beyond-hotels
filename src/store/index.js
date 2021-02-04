@@ -11,6 +11,7 @@ import hotelReducer from 'store/hotel/reducers';
 import bookingReducer from 'store/booking/reducers';
 import shoppingReducer from 'store/shopping/reducers';
 import gasReducer from 'store/gas/reducers';
+import adventureReducer from 'store/adventure/reducers';
 import authReducer from 'store/auth/reducers';
 import usersReducer from 'store/admin/reducers';
 import careyReducer from 'store/carey/reducers';
@@ -64,6 +65,13 @@ const rootReducer = persistReducer(
         storage,
       },
       gasReducer,
+    ),
+    adventure: persistReducer(
+      {
+        key: 'adventure',
+        storage,
+      },
+      adventureReducer,
     ),
     admin: persistReducer(
       {
