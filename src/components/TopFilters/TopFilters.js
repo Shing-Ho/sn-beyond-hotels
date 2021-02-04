@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -13,12 +13,16 @@ import cal from 'icons/calendar.png';
 import EditPanel from './EditPanel';
 import styles from './TopFilters.module.scss';
 
-const TopFilters = ({ currency, displayCount, initialState }) => {
+const TopFilters = ({ currency, displayCount, filter, setFilter }) => {
   const topFilters = useSelector(getTopFilters);
-  const [isEdit, toggleEdit] = useState(false);
-  const [data, setData] = useState({ ...initialState, ...topFilters });
+  const [isEdit, toggleEdit] = useState(true);
+  const [data, setData] = useState({ ...filter, ...topFilters });
   const dispatch = useDispatch();
-  const locCache = useRef(initialState.location);
+  const locCache = useRef(filter.location);
+
+  useEffect(() => {
+    setFilter(data);
+  }, [data]);
 
   const onDateChange = (name) => (e) => {
     if (name === 'start_date' && moment(data.end_date).diff(e._d, 'day') <= 0) {
@@ -49,7 +53,7 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
 
   const clearData = () => {
     if (data.location?.location_id) {
-      locCache.current = data.location || initialState.location;
+      locCache.current = data.location || filter.location;
     }
     setData({ ...data, location: {} });
   };

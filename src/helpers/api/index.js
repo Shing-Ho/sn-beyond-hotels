@@ -13,7 +13,12 @@ export const cancelLookup = (payload) => post(`hotels/cancel`, payload, postHead
 export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, postHeader);
 
 // -- Gas -- //
-export const getGasStations = () => get(`charging/poi`);
+export const getGasStations = (params) => get(`charging/poi?maxresults=200`, params);
+
+// -- Adventures -- //
+export const getAdventureCountries = () => get(`urban/get_ua_countries`);
+export const getAdventureDestinations = (params) => get(`urban/get_ua_destinations`, params);
+export const getAdventureTrips = (params) => get(`urban/get_trips`, params);
 
 // Authentication
 export const login = (payload) => post(`accounts/login`, payload);

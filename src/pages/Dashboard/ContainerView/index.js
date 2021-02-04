@@ -5,11 +5,10 @@ import { Menu } from 'antd';
 import * as _ from 'lodash';
 import { getCurrency } from 'store/core/selectors';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import SearchAndView from '../SearchAndView';
 import GridView from './GridView';
 import ListView from './ListView';
-import Button from '../../../components/Button/Button';
 
 import styles from './index.module.scss';
 
@@ -73,21 +72,10 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
     dispatch(push(`/${searchType}/${id}`));
   };
 
-  const navigatePage = () => {
-    dispatch(push(`/tours/supply-manager`));
-  };
-
   if (items.length === 0) return <div className={styles.container}>No results found...</div>;
 
   return (
     <div>
-      {searchType === 'tours' && (
-        <div className={styles.buttonWrap} onClick={navigatePage}>
-          <Button className={styles.btn}>
-            <FormattedMessage id="supplyManager" defaultMessage="Supply Manager" />
-          </Button>
-        </div>
-      )}
       <SearchAndView
         search={search}
         filterBy={filterBy}
@@ -113,6 +101,7 @@ const ContainerView = ({ items: initialItems, searchType, subHeader, onItemClick
       {itemView === 'list' && (
         <ListView
           items={items}
+          total={initialItems.length}
           onPageChange={handlePageChange}
           currency={currency}
           searchType={searchType}

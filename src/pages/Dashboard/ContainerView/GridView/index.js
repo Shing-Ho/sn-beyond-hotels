@@ -16,7 +16,7 @@ const GridView = ({ items = [], currency, total, onPageChange, onItemClick, sear
     <div className={styles.gridContainer}>
       <Row gutter={24} className={styles.row}>
         {items.map((item) => (
-          <Col lg={24} className={styles.column} onClick={() => onHandleClick(item.id)}>
+          <Col lg={24} key={item.id} className={styles.column} onClick={() => onHandleClick(item.id)}>
             <GridItem currency={currency} data={item} type={searchType} />
           </Col>
         ))}
