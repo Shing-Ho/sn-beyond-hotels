@@ -6,7 +6,7 @@ export const hotelItemFormatter = (data) => ({
   tax: data.avg_nightly_tax,
   image: data.hotel_details?.thumbnail_url,
   name: data.hotel_details?.name,
-  rating: data.hotel_details?.review_rating / 2,
+  rating: data.hotel_details?.review_rating / 2 || data.hotel_details?.star_rating,
   description: data.hotel_details?.property_description,
   geolocation: data.hotel_details?.geolocation,
   detail: data.hotel_details,
