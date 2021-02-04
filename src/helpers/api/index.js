@@ -1,7 +1,23 @@
+import queryString from 'query-string';
 import { post, get, put, remove } from './api-helper';
 
 const postHeader = {
-  'X-API-KEY': 'XeTNthwT.42v4L87XoyQ1Odfg10BTpIBGT2qr3gvN',
+  'X-API-KEY': '',
+};
+
+export const setAuthHeaders = () => {
+  const queryParams = queryString.parse(window.location.search);
+  const oldKey = localStorage.getItem('SIMPLENIGHT-X-API-KEY');
+  let newKey;
+  if (queryParams.apiKey) {
+    newKey = queryParams.apiKey;
+  } else if (oldKey) {
+    newKey = oldKey;
+  } else {
+    newKey = 'XeTNthwT.42v4L87XoyQ1Odfg10BTpIBGT2qr3gvN';
+  }
+  postHeader['X-API-KEY'] = newKey;
+  localStorage.setItem('SIMPLENIGHT-X-API-KEY', newKey);
 };
 
 export const searchHotels = (search) => post('hotels/search-by-location', search, postHeader);
