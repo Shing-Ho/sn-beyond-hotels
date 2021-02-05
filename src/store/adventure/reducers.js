@@ -43,6 +43,22 @@ export const adventureReducer = handleActions(
         destinations: action.payload || [],
       }),
     ],
+    [
+      adventureActions.setTripInfo,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        tripInfo: action.payload,
+      }),
+    ],
+    [
+      adventureActions.setTripAvailabilities,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        tripAvailabilities: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -50,6 +66,8 @@ export const adventureReducer = handleActions(
     trips: [],
     countries: [],
     destinations: [],
+    tripInfo: null,
+    tripAvailabilities: null,
   },
 );
 

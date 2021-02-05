@@ -402,6 +402,11 @@ const DashboardPage = ({ location = {} }) => {
           );
         }
         break;
+      case 'tours':
+        if (!adventureCountries || adventureCountries.length === 0) {
+          dispatch(adventureActions.getAdventureCountries());
+        }
+        break;
       default:
         break;
     }
