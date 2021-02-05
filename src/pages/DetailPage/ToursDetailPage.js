@@ -1,60 +1,92 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
+import adventureActions from 'store/adventure/actions';
+import { getTripInfo, getTripAvailabilities } from 'store/adventure/selectors';
+import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
 
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
 import ToursListSection from './components/ToursListSection/ToursListSection';
 import EventBookingSection from './components/EventBookingSection/EventBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
-import OtherSection from './components/OtherSection/OtherSection';
 import styles from './ToursDetailPage.module.scss';
-import Tours1 from '../../images/tours1.jpeg';
-import Tours2 from '../../images/tours2.jpeg';
-import Tours3 from '../../images/tours3.jpeg';
-import Tours4 from '../../images/tours4.jpeg';
-import Tours5 from '../../images/tours5.jpeg';
 
-const getRandomImage = () => {
-  const images = [Tours1, Tours2, Tours3, Tours4, Tours5];
-  const number = Math.floor(Math.random() * Math.floor(5));
-  return images[number];
-};
+const ToursDetailPage = () => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const data = useSelector(getTripInfo);
+  const availabilities = useSelector(getTripAvailabilities);
+  const [images, setImages] = useState([]);
 
-const images = Array(5)
-  .fill(0)
-  .map((_, i) => ({
-    url: getRandomImage(),
-    type: '',
-    display_order: i,
-  }));
+  useEffect(() => {
+    dispatch(adventureActions.getTripInfo({ trip_code: params.id }));
+    dispatch(adventureActions.getTripAvailabilities({ trip_code: params.id }));
+  }, []);
 
-const ToursDetailPage = () => (
-  <Page>
-    <div className={styles.carousel}>
-      <Carousel image={images} />
-      <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} />
-    </div>
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <Row justify="center">
-          <Col md={16} sm={24} flex={1}>
-            <Row>
-              <DetailHeader className={styles.detailHeader} details={{ name: 'ATV Riding Tours' }} />
-            </Row>
-            <Row>
-              <ToursListSection className={styles.left} />
-            </Row>
-          </Col>
-          <Col md={8} sm={24} flex={1}>
-            <div className={styles.detail}>
-              <EventBookingSection />
-            </div>
-          </Col>
-        </Row>
+  useEffect(() => {
+    if (data) {
+      if (data.Photo) {
+        setImages(
+          data.Photo.map((p, i) => ({
+            url: p.Url,
+            type: '',
+            display_order: i,
+          })),
+        );
+      }
+    }
+  }, [data]);
+
+  useEffect(() => {
+    console.log(availabilities);
+  }, [availabilities]);
+
+  return (
+    <Page>
+      <div className={styles.carousel}>
+        <Carousel image={images} />
+        <DetailHeader
+          className={styles.detailHeader}
+          details={{ name: data.TripName }}
+          icon={<ToursActivitiesWhite width="26px" height="29px" />}
+        />
       </div>
-      <OtherSection className={styles.bottom} />
-    </div>
-  </Page>
-);
+      <div className={styles.root}>
+        <div className={styles.content}>
+          <Row justify="center">
+            <Col md={16} sm={24} flex={1}>
+              <Row>
+                <DetailHeader
+                  className={styles.detailHeader}
+                  details={{
+                    name: data.TripName,
+                    tags: data.Style.split(','),
+                    duration: data.Duration,
+                    startTime: data.Departure?.DepMin,
+                    cultureShock: data.CulturalRate,
+                    physicality: data.PhysicalRate,
+                    type: 'tours',
+                  }}
+                  icon={<ToursActivitiesWhite width="26px" height="29px" />}
+                />
+              </Row>
+              <Row>
+                <ToursListSection className={styles.left} data={data} />
+              </Row>
+            </Col>
+            <Col md={8} sm={24} flex={1}>
+              <div className={styles.detail}>
+                {availabilities && <EventBookingSection />}
+                {!availabilities && <h3 className={styles.noAvailable}>Not available</h3>}
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+    </Page>
+  );
+};
 
 export default ToursDetailPage;

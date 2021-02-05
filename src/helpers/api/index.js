@@ -35,6 +35,8 @@ export const getGasStations = (params) => get(`charging/poi?maxresults=200`, par
 export const getAdventureCountries = () => get(`urban/get_ua_countries`);
 export const getAdventureDestinations = (params) => get(`urban/get_ua_destinations`, params);
 export const getAdventureTrips = (params) => get(`urban/get_trips`, params);
+export const getTripInfo = (params) => get(`urban/get_trip_info`, params);
+export const getTripAvailabilities = (params) => get(`urban/get_trip_availabilities`, params);
 
 // Authentication
 export const login = (payload) => post(`accounts/login`, payload);

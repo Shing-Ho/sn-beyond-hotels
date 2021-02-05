@@ -48,6 +48,11 @@
   }
 }
 
+.noAvailable {
+  text-align: center;
+  width: 100%;
+}
+
 @media (max-width: $bp-mobile) {
   .root {
     .content {
