@@ -12,6 +12,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Form, Input, notification, Row, Col } from 'antd';
 import cx from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import ReactGA from 'react-ga';
 
 import { getFormSubmitted } from 'store/core/selectors';
 import FormItem from 'components/FormItem/FormItem';
@@ -126,9 +127,14 @@ function PaymentsForm({ formKey }) {
         description: 'Form Data is invalid',
       });
     } else {
+      const transactionId = uuidv4();
+      ReactGA.event({
+        category: 'Payment',
+        action: 'Payment Submit',
+      });
       const bookingPayload = {
         api_version: 1,
-        transaction_id: uuidv4(),
+        transaction_id: transactionId,
         hotel_id: payload.hotel_id,
         room_code: payload.room_rate[0].code, // there could be many rooms so why room code is only one?
         language: 'en_US',
