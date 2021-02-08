@@ -325,6 +325,7 @@ const DashboardPage = ({ location = {} }) => {
 
   useEffect(() => {
     dispatch(adventureActions.getAdventureCountries());
+    dispatch(adventureActions.getStandardCountries());
   }, []);
 
   useEffect(() => {

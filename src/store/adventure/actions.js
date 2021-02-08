@@ -11,9 +11,11 @@ const adventureActions = createActions(
     SET_FAILURE: undefined,
     SET_TRIPS: undefined,
     SET_COUNTRIES: undefined,
+    SET_STANDARD_COUNTRIES: undefined,
     SET_DESTINATIONS: undefined,
     SET_TRIP_INFO: undefined,
     SET_TRIP_AVAILABILITIES: undefined,
+    SET_BOOK_INFO: undefined,
   },
   options,
 );
@@ -44,10 +46,28 @@ const getAdventureCountries = (params) => async (dispatch) => {
   }
 };
 
+const getStandardCountries = (params) => async (dispatch) => {
+  try {
+    const data = await API.getStandardCountries(params);
+    dispatch(adventureActions.setStandardCountries(data.data.StandardCountryList));
+  } catch (error) {
+    dispatch(adventureActions.setFailure(error));
+  }
+};
+
 const getTripInfo = (params) => async (dispatch) => {
   try {
     const data = await API.getTripInfo(params);
     dispatch(adventureActions.setTripInfo(data.data.TripInfo));
+  } catch (error) {
+    dispatch(adventureActions.setFailure(error));
+  }
+};
+
+const bookTrip = (params) => async (dispatch) => {
+  try {
+    const data = await API.bookTrip(params);
+    dispatch(adventureActions.setBookInfo(data.data));
   } catch (error) {
     dispatch(adventureActions.setFailure(error));
   }
@@ -86,4 +106,6 @@ export default {
   getAdventureDestinations,
   getTripInfo,
   getTripAvailabilities,
+  getStandardCountries,
+  bookTrip,
 };

@@ -36,6 +36,14 @@ export const adventureReducer = handleActions(
       }),
     ],
     [
+      adventureActions.setStandardCountries,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        standardCountries: action.payload || [],
+      }),
+    ],
+    [
       adventureActions.setDestinations,
       (state, action) => ({
         ...state,
@@ -52,6 +60,14 @@ export const adventureReducer = handleActions(
       }),
     ],
     [
+      adventureActions.setBookInfo,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        bookInfo: action.payload,
+      }),
+    ],
+    [
       adventureActions.setTripAvailabilities,
       (state, action) => ({
         ...state,
@@ -65,8 +81,10 @@ export const adventureReducer = handleActions(
     error: null,
     trips: [],
     countries: [],
+    standardCountries: [],
     destinations: [],
     tripInfo: null,
+    bookInfo: null,
     tripAvailabilities: null,
   },
 );
