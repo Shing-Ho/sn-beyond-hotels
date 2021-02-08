@@ -32,11 +32,13 @@ export const cancelOrder = (payload) => post(`hotels/cancel-confirm`, payload, p
 export const getGasStations = (params) => get(`charging/poi?maxresults=200`, params);
 
 // -- Adventures -- //
+export const getStandardCountries = () => get(`urban/get_standard_countries`);
 export const getAdventureCountries = () => get(`urban/get_ua_countries`);
 export const getAdventureDestinations = (params) => get(`urban/get_ua_destinations`, params);
 export const getAdventureTrips = (params) => get(`urban/get_trips`, params);
 export const getTripInfo = (params) => get(`urban/get_trip_info`, params);
 export const getTripAvailabilities = (params) => get(`urban/get_trip_availabilities`, params);
+export const bookTrip = (params) => get(`urban/book_trip`, params);
 
 // Authentication
 export const login = (payload) => post(`accounts/login`, payload);

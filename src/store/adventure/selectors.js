@@ -22,5 +22,6 @@ export const getTrips = (state) => state.adventure.trips;
 export const getTripInfo = (state) => state.adventure.tripInfo;
 export const getTripAvailabilities = (state) => state.adventure.tripAvailabilities;
 export const getCountries = (state) => state.adventure.countries;
+export const getStandardCountries = (state) => state.adventure.standardCountries;
 export const getDestinations = (state) => state.adventure.destinations;
 export const getFormattedTrips = (state) => getTrips(state).map(formatItem);

@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
 import adventureActions from 'store/adventure/actions';
-import { getTripInfo, getTripAvailabilities } from 'store/adventure/selectors';
+import { getTripInfo, getTripAvailabilities, getStandardCountries } from 'store/adventure/selectors';
 import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
 
 import Page from 'components/Page/Page';
 import Carousel from 'components/Carousel/Carousel';
 import ToursListSection from './components/ToursListSection/ToursListSection';
-import EventBookingSection from './components/EventBookingSection/EventBookingSection';
+import ToursBookingSection from './components/ToursBookingSection/ToursBookingSection';
 import DetailHeader from './components/DetailHeader/DetailHeader';
 import styles from './ToursDetailPage.module.scss';
 
@@ -19,8 +19,12 @@ const ToursDetailPage = () => {
   const data = useSelector(getTripInfo);
   const availabilities = useSelector(getTripAvailabilities);
   const [images, setImages] = useState([]);
+  const standardCountries = useSelector(getStandardCountries);
 
   useEffect(() => {
+    if (standardCountries.length === 0) {
+      dispatch(adventureActions.getStandardCountries());
+    }
     dispatch(adventureActions.getTripInfo({ trip_code: params.id }));
     dispatch(adventureActions.getTripAvailabilities({ trip_code: params.id }));
   }, []);
@@ -78,7 +82,7 @@ const ToursDetailPage = () => {
             </Col>
             <Col md={8} sm={24} flex={1}>
               <div className={styles.detail}>
-                {availabilities && <EventBookingSection />}
+                {availabilities && <ToursBookingSection tourInfo={data} />}
                 {!availabilities && <h3 className={styles.noAvailable}>Not available</h3>}
               </div>
             </Col>
