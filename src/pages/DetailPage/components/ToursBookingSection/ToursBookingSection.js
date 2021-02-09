@@ -7,7 +7,7 @@ import DatePicker from 'components/DatePicker/DatePicker';
 import Divider from 'components/Divider/Divider';
 import Complete from 'components/AutoComlete/AutoComplete';
 import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
-import { getStandardCountries } from 'store/adventure/selectors';
+import { getStandardCountries, getBookingError } from 'store/adventure/selectors';
 import adventureActions from 'store/adventure/actions';
 import styles from './ToursBookingSection.module.scss';
 
@@ -15,6 +15,7 @@ const { Option } = Select;
 
 export default function ToursBookingSection({ className, tourInfo }) {
   const standardCountries = useSelector(getStandardCountries);
+  const errorMessage = useSelector(getBookingError);
   const salutations = ['Mr.', 'Mrs.', 'Ms.'];
   const [formValues, setFormValues] = useState({});
   const dispatch = useDispatch();
@@ -232,6 +233,7 @@ export default function ToursBookingSection({ className, tourInfo }) {
           <span className={styles.totalCost}>$ {getTotalPrice()}</span>
         </div>
       </div>
+      {errorMessage && <p className={styles.errorText}>{errorMessage}</p>}
       <Button className={styles.bookNow} onClick={onBookNowClick}>
         <FormattedMessage id="orderNow" defaultMessage="Order Now" />
       </Button>

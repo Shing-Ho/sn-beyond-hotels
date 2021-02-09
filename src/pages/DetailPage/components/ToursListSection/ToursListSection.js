@@ -7,57 +7,57 @@ export default function ToursListSection({ data }) {
     <div className={styles.root}>
       <Tabs className={styles.tabPane} defaultActiveKey="1">
         <TabPane tab="Details" key="1">
-          <div dangerouslySetInnerHTML={{ __html: data.Introduction }} />
+          <div dangerouslySetInnerHTML={{ __html: data?.Introduction }} />
           <h3>Highlights</h3>
-          <div dangerouslySetInnerHTML={{ __html: data.HighLights }} />
+          <div dangerouslySetInnerHTML={{ __html: data?.HighLights }} />
           <div className={styles.inline}>
             <span>Language:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.ActiveLang }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.ActiveLang }} />
           </div>
           <div className={styles.inline}>
             <span>Inclusions:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.Inclusion }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.Inclusion }} />
           </div>
           <div className={styles.inline}>
             <span>Exclusions:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.Exclusion }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.Exclusion }} />
           </div>
           <div className={styles.inline}>
             <span>Pickup location:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.PickupLocation }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.PickupLocation }} />
           </div>
           <div className={styles.inline}>
             <span>Drop off location:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.DropoffLocation }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.DropoffLocation }} />
           </div>
         </TabPane>
         <TabPane tab="ITINERARY" key="2">
-          <div dangerouslySetInnerHTML={{ __html: data.Itinerary }} />
+          <div dangerouslySetInnerHTML={{ __html: data?.Itinerary }} />
           <h3>Additional information</h3>
           <div className={styles.inline}>
             <span>Dress standard:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.DressStandard }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.DressStandard }} />
           </div>
           <div className={styles.inline}>
             <span>Your Trip:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.YourTrip }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.YourTrip }} />
           </div>
           <div className={styles.inline}>
             <span>Confirmation of booking:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.Confirmation }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.Confirmation }} />
           </div>
           <div className={styles.inline}>
             <span>Child Policy:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.ChildPolicy }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.ChildPolicy }} />
           </div>
           <div className={styles.inline}>
             <span>Drop off location:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.DropoffLocation }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.DropoffLocation }} />
           </div>
           <h3>Local contact</h3>
           <div className={styles.inline}>
             <span>Office phone number:</span>
-            <div dangerouslySetInnerHTML={{ __html: data.ContactPhone }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.ContactPhone }} />
           </div>
         </TabPane>
         <TabPane tab="CULTURE SHOCK" key="3">
