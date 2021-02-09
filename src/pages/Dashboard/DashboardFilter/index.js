@@ -9,6 +9,7 @@ const DashboardFilter = ({ searchTypeData, searchType, onItemClick, intl }) => (
       <div
         className={cx(styles.searchType, { [styles.selectedSearchType]: item.value === searchType })}
         onClick={() => onItemClick(item.value)}
+        key={item.name}
       >
         <div className={item.value === searchType ? styles.selectedIcon : styles.icon}>
           {item.value === searchType ? item.selectedIcon : item.icon}
