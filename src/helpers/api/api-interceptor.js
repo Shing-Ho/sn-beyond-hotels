@@ -41,7 +41,7 @@ api.interceptors.request.use((config) => {
       ...config,
       headers: {
         ...config.headers,
-        Authorization: `Token ${state.auth.token}`,
+        Authorization: `Bearer ${state.auth.token}`,
       },
     };
   }

@@ -14,7 +14,7 @@ import VenuesAssistantOnboarding from './components/VenuesAssistantOnboarding/Ve
 import styles from './VenuesPage.module.scss';
 
 export default function VenuesPage(props) {
-  const { location = {}, mainIcon } = props;
+  const { location = {}, mainIcon, venue, onActive, onUpdateVenue } = props;
   const [onboarding, SetOnboarding] = useState(0);
   const [showMe, setShowMe] = useState(true);
 
@@ -46,13 +46,13 @@ export default function VenuesPage(props) {
   return (
     <Page param={location}>
       <div className={styles.root}>
-        <VenuesHeader />
+        <VenuesHeader {...{ venue, onActive }} />
         <VenuesUploadZone onboarding={onboarding === 2} />
         <div className={styles.container}>
           <Row justify="center">
             <Col md={16} sm={24} flex={1}>
               <Row>
-                <VenuesDetailHeader mainIcon={mainIcon} onboarding={onboarding === 3} />
+                <VenuesDetailHeader mainIcon={mainIcon} onboarding={onboarding === 3} {...{ venue, onUpdateVenue }} />
               </Row>
               <Row>
                 <VenuesContentSection productOnboarding={onboarding === 4} tabsOnboarding={onboarding === 5} />

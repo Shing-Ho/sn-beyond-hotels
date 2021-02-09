@@ -22,6 +22,7 @@ import QuoteViewPage from 'pages/DetailPage/QuoteViewPage';
 import VenueEventsPage from 'pages/Venues/VenueEventsPage';
 import VenueToursPage from 'pages/Venues/VenueToursPage';
 import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
+import VenueContainer from 'pages/Venues/VenueContainer';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import UserListPage from 'pages/UserManagementPage/UserListPage';
 import UserCreatePage from 'pages/UserManagementPage/UserCreate';
@@ -42,8 +43,9 @@ export default function Routes() {
         {/* Venue routes */}
         <Route path={`${BASE_ROUTE}/venues/event`} exact component={VenueEventsPage} />
         <Route path={`${BASE_ROUTE}/venues/tour`} exact component={VenueToursPage} />
-        <Route path={`${BASE_ROUTE}/venues/nightlife`} exact component={VenueNightlifesPage} />
-        <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/event`} />
+        <Route path={`${BASE_ROUTE}/venues/night_life/:id`} exact component={VenueNightlifesPage} />
+        <Route path={`${BASE_ROUTE}/venues/add`} exact component={VenueContainer} />
+        <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/add`} />
         {/* End of Vunue routes */}
 
         {/* Dashboard routes */}

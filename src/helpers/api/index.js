@@ -65,3 +65,9 @@ export const getDiningAvailabilities = (payload) => post('dinings/available-time
 export const getDiningReviews = (payload) => post('dinings/reviews', payload, postHeader);
 export const createDiningBooking = (payload) => post('dinings/booking', payload, postHeader);
 export const cancelDiningBooking = (payload) => post('dinings/cancel-booking', payload, postHeader);
+
+// Venues
+export const getVenues = () => get(`venues`);
+export const getVenue = (id) => get(`venues/${id}`);
+export const createVenue = (payload) => post(`venues`, payload);
+export const updateVenue = (payload) => put(`venues/${payload.id}`, payload);

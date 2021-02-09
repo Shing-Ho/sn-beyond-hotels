@@ -78,7 +78,7 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
 
           <div className={styles.description}>
             <p>
-              <b>Default porduct groups.</b> Create product groups to easily bundle similar types of products. Showcase
+              <b>Default product groups.</b> Create product groups to easily bundle similar types of products. Showcase
               featured products in the Highlights group. Add available offers for customers to add on to their selected
               products in the Offers group.
             </p>
