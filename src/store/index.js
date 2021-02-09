@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { connectRouter } from 'connected-react-router';
-import storage from 'redux-persist/lib/storage';
+import storage from 'localforage';
 
 import configureStore from 'store/config';
 import history from 'store/history';
