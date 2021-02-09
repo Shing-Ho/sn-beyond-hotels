@@ -39,6 +39,7 @@ export const getAdventureTrips = (params) => get(`urban/get_trips`, params);
 export const getTripInfo = (params) => get(`urban/get_trip_info`, params);
 export const getTripAvailabilities = (params) => get(`urban/get_trip_availabilities`, params);
 export const bookTrip = (params) => get(`urban/book_trip`, params);
+export const cancelBook = (params) => get(`urban/cancel_booking`, params);
 
 // Authentication
 export const login = (payload) => post(`accounts/login`, payload);

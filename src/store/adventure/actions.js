@@ -82,6 +82,15 @@ const getTripAvailabilities = (params) => async (dispatch) => {
   }
 };
 
+const cancelBook = (params) => async (dispatch) => {
+  try {
+    await API.cancelBook(params);
+    dispatch(adventureActions.setBookInfo(null));
+  } catch (error) {
+    dispatch(adventureActions.setFailure(error));
+  }
+};
+
 const getAdventureDestinations = (params) => async (dispatch) => {
   try {
     const data = await API.getAdventureDestinations(params);
@@ -108,4 +117,5 @@ export default {
   getTripAvailabilities,
   getStandardCountries,
   bookTrip,
+  cancelBook,
 };
