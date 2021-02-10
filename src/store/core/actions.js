@@ -16,6 +16,7 @@ export const coreActions = createActions(
     SET_CURRENCY: undefined,
     TOGGLE_DRAWER: undefined,
     SET_CURRENT_MENU: undefined,
+    SET_TOP_FILTERS: undefined,
   },
   options,
 );

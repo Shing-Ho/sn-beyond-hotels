@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import pick from 'lodash/pick';
+import get from 'lodash/get';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
 import { useIntl, FormattedMessage } from 'react-intl';
@@ -47,7 +49,10 @@ import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
 import gasActions from 'store/gas/actions';
 import adventureActions from 'store/adventure/actions';
+import diningActions from 'store/dining/actions';
+import hotelActions from 'store/hotel/actions';
 import { getFormattedGasStations } from 'store/gas/selectors';
+import { getFormattedDinings } from 'store/dining/selectors';
 import { getCountries, getFormattedTrips, getDestinations } from 'store/adventure/selectors';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
@@ -314,6 +319,7 @@ const DashboardPage = ({ location = {} }) => {
   const searchType = params.type;
   const gasStations = useSelector(getFormattedGasStations);
   const adventureTrips = useSelector(getFormattedTrips);
+  const dinings = useSelector(getFormattedDinings);
   const adventureCountries = useSelector(getCountries);
   const adventureDestinations = useSelector(getDestinations);
   const [items, setItems] = useState([]);
@@ -378,6 +384,9 @@ const DashboardPage = ({ location = {} }) => {
       case 'tours':
         filteredItems = adventureTrips;
         break;
+      case 'dining':
+        filteredItems = dinings;
+        break;
       default:
         filteredItems = initialData.filter((item) => item.type === searchType);
         break;
@@ -389,25 +398,35 @@ const DashboardPage = ({ location = {} }) => {
         ...item,
       })),
     );
-  }, [gasStations, searchType]);
+  }, [gasStations, dinings, searchType]);
 
   useEffect(() => {
+    let searchPayload = {};
     switch (searchType) {
       case 'gas':
         if (filter.location.latitude && filter.location.longitude) {
-          dispatch(
-            gasActions.getGasStations({
-              latitude: filter.location.latitude,
-              longitude: filter.location.longitude,
-            }),
-          );
+          searchPayload = pick(filter.location, ['latitude', 'longitude']);
+          dispatch(gasActions.getGasStations(searchPayload));
         }
         break;
+
       case 'tours':
         if (!adventureCountries || adventureCountries.length === 0) {
           dispatch(adventureActions.getAdventureCountries());
         }
         break;
+
+      case 'dining':
+        searchPayload = pick(filter.location || {}, ['latitude', 'longitude']);
+        searchPayload.date = get(filter, 'start_date');
+        searchPayload.time = get(filter, 'time');
+        searchPayload.covers = get(filter, 'occupancy.adults');
+
+        if (searchPayload.latitude && searchPayload.longitude) {
+          dispatch(diningActions.getDinings(searchPayload));
+        }
+        break;
+
       default:
         break;
     }
@@ -469,6 +488,22 @@ const DashboardPage = ({ location = {} }) => {
     dispatch(push(`/transports/carhire/${id}`));
   };
 
+  const handleTopFilterSubmit = (payload) => {
+    switch (searchType) {
+      case 'hotels':
+        dispatch(hotelActions.searchHotels(payload));
+        break;
+
+      case 'gas':
+      case 'dining':
+        setFilter(payload);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   let subHeader;
   if (searchType === 'gas') {
     subHeader = <TabSelect uppercase options={gasSelectOptions} onChange={setGasType} />;
@@ -482,7 +517,7 @@ const DashboardPage = ({ location = {} }) => {
     <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
-          {searchType !== 'tours' && <TopFilters filter={filter} setFilter={setFilter} displayCount />}
+          {searchType !== 'tours' && <TopFilters filter={filter} onSubmit={handleTopFilterSubmit} displayCount />}
           <DashboardFilter
             searchType={searchType}
             searchTypeData={searchTypeOptions}

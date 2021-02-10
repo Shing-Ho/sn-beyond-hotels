@@ -33,7 +33,7 @@ const EditPanelBody = ({
   onChange,
   onDateChange,
   data,
-  searchHotels,
+  onSubmit,
   displayCount,
 }) => {
   const disableStartDate = (current) =>
@@ -124,13 +124,13 @@ const EditPanelBody = ({
         </div>
       )}
       <div className="footer-wrapper">
-        <EditPanelFooter searchHotels={searchHotels} />
+        <EditPanelFooter onSubmit={onSubmit} />
       </div>
     </div>
   );
 };
 
-const EditPanelFooter = ({ searchHotels }) => (
+const EditPanelFooter = ({ onSubmit }) => (
   <div className={classNames('itemWrapper', 'footer')}>
     <div className="cancel">
       <Button>
@@ -138,7 +138,7 @@ const EditPanelFooter = ({ searchHotels }) => (
       </Button>
     </div>
     <div className="search">
-      <Button onClick={searchHotels}>
+      <Button onClick={onSubmit}>
         <FormattedMessage id="search" defaultMessage="Search" />
       </Button>
     </div>

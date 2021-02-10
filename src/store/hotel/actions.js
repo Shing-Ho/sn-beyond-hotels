@@ -41,10 +41,6 @@ const onPageChange = (page, pageSize) => (dispatch, getState) => {
   dispatch(hotelActions.setVisibleHotels(visibleHotels));
 };
 
-const topFilterData = (payload) => (dispatch) => {
-  dispatch(hotelActions.setTopFilters(payload));
-};
-
 const onFilterChange = (changes, search) => (dispatch, getState) => {
   const {
     hotel: { hotels, page, pageSize, filters },
@@ -162,7 +158,6 @@ export default {
   searchHotelById,
   onPageChange,
   onFilterChange,
-  topFilterData,
   getLocationData,
   cancelLookup,
   cancelOrder,

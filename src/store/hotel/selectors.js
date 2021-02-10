@@ -23,7 +23,6 @@ export const getLoading = (state) => state.hotel.loading;
 export const getFetchingRecords = (state) => state.hotel.fetchingRecords;
 export const getSelectedHotel = (state) => state.hotel.selectedHotel;
 export const getLocationData = (state) => state.hotel.locationData;
-export const getTopFilters = (state) => state.hotel.topFilters;
 export const getCancelLookupResponse = (state) => state.hotel.cancelLookupResponse;
 export const getCancelOrderResponse = (state) => state.hotel.cancelOrderResponse;
 export const getError = (state) => state.hotel.error;

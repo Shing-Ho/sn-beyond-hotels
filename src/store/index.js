@@ -15,6 +15,7 @@ import adventureReducer from 'store/adventure/reducers';
 import authReducer from 'store/auth/reducers';
 import usersReducer from 'store/admin/reducers';
 import careyReducer from 'store/carey/reducers';
+import diningReducer from 'store/dining/reducers';
 
 const rootPersistConfig = {
   key: 'root',
@@ -86,6 +87,13 @@ const rootReducer = persistReducer(
         storage,
       },
       careyReducer,
+    ),
+    dining: persistReducer(
+      {
+        key: 'dining',
+        storage,
+      },
+      diningReducer,
     ),
     router: connectRouter(history),
   }),

@@ -21,11 +21,6 @@ import cover1 from 'images/coverEvent1.jpeg';
 import cover2 from 'images/coverEvent2.jpeg';
 import cover3 from 'images/coverEvent3.jpeg';
 import cover4 from 'images/coverEvent4.jpeg';
-import dining1 from 'images/dining1.jpg';
-import dining2 from 'images/dining2.jpeg';
-import dining3 from 'images/dining3.jpeg';
-import dining4 from 'images/dining4.jpeg';
-import dining5 from 'images/dining5.jpeg';
 import transport1 from 'images/transport1.jpg';
 import transport2 from 'images/transport2.jpg';
 import transport3 from 'images/transport3.jpeg';
@@ -57,9 +52,6 @@ const ListItem = ({ data, className, currency, type }) => {
       case 'nightlife':
         name = 'Encore Beach Club';
         break;
-      case 'dining':
-        name = 'Taix Restaurant';
-        break;
       case 'transports':
         name = 'Taxi';
         break;
@@ -84,11 +76,6 @@ const ListItem = ({ data, className, currency, type }) => {
         break;
       case 'nightlife':
         imagesArr = [night1, night2, night3, night4, night5];
-        number = Math.floor(Math.random() * Math.floor(5));
-        image = imagesArr[number];
-        break;
-      case 'dining':
-        imagesArr = [dining1, dining2, dining3, dining4, dining5];
         number = Math.floor(Math.random() * Math.floor(5));
         image = imagesArr[number];
         break;
@@ -129,7 +116,7 @@ const ListItem = ({ data, className, currency, type }) => {
                   </div>
                 )}
                 <div className="flex-vertical-center">
-                  {data?.type !== 'gas' && data?.type !== 'tours' && (
+                  {data?.type !== 'gas' && data?.type !== 'tours' && data?.type !== 'dining' && (
                     <>
                       <span>
                         <FormattedMessage id="average" defaultMessage="AVERAGE" />
