@@ -59,7 +59,7 @@ export default function SummaryDetailForm(props) {
   };
 
   const handleOk = () => {
-    dispatch(hotelActions.cancelOrder({ bookingId, lastName }));
+    dispatch(hotelActions.cancelOrder({ booking_id: bookingId, last_name: lastName }));
     setVisible(false);
   };
 
