@@ -194,7 +194,14 @@ function PaymentsForm({ formKey }) {
   }, [form, formKey, formSubmitted]);
 
   return (
-    <Form className={styles.form} layout="vertical" form={form} name={formKey} onFinish={handleSubmit}>
+    <Form
+      className={styles.form}
+      layout="vertical"
+      form={form}
+      name={formKey}
+      onFinish={handleSubmit}
+      initialValues={{ amount: totalAmount }}
+    >
       <Row>
         <Col md={12} xs={24}>
           <FormItem className={styles.leftItem} name="cardName" label="Name on Card" size="large" required>
@@ -249,7 +256,7 @@ function PaymentsForm({ formKey }) {
       <Row>
         <Col md={12} xs={24}>
           <FormItem className={styles.leftItem} name="amount" label="Amount for This Card" size="large" required="Req">
-            <Input placeholder="Enter amount to split with this card..." type="number" defaultValue={totalAmount} />
+            <Input placeholder="Enter amount to split with this card..." type="number" />
           </FormItem>
         </Col>
       </Row>
