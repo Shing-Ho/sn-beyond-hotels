@@ -11,3 +11,4 @@ export const getCurrency = (state) => ({
   decimal: Currencies[state.core.currency || 'USD']?.decimal_digits,
 });
 export const getCurrentMenu = (state) => state.core.currentMenu;
+export const getTopFilters = (state) => state.core.topFilters;

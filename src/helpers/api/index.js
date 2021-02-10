@@ -55,3 +55,11 @@ export const deleteUser = (id) => remove(`users/${id}`);
 // ---Carey --- //
 export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
 export const cancelReservation = (payload) => post('carey/cancel-reservation', payload, postHeader);
+
+// --- Dining --- //
+export const getDining = (payload) => post('dinings/search-by-id', payload, postHeader);
+export const getDinings = (payload) => post('dinings/search', payload, postHeader);
+export const getDiningAvailabilities = (payload) => post('dinings/available-times', payload, postHeader);
+export const getDiningReviews = (payload) => post('dinings/reviews', payload, postHeader);
+export const createDiningBooking = (payload) => post('dinings/booking', payload, postHeader);
+export const cancelDiningBooking = (payload) => post('dinings/cancel-booking', payload, postHeader);
