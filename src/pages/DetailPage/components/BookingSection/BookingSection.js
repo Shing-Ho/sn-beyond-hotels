@@ -26,14 +26,16 @@ export default function BookingSection({
   startDate,
   endDate,
 }) {
-  const [bookFormValue, setBookFormValue] = useState({});
+  const [bookFormValue, setBookFormValue] = useState({
+    roomCount: 1,
+  });
   const [showError, toggleError] = useState(null);
   const dispatch = useDispatch();
   const params = useParams();
   const currency = useSelector(getCurrency);
   const totalCost = selectedRooms.reduce((accumulator, room) => {
     const roomCost = room.total && room.total.amount > 0 ? Number(room.total.amount) : 0;
-    return accumulator + roomCost * room.roomCount;
+    return accumulator + roomCost * bookFormValue.roomCount;
   }, 0);
   const currencySymbol = Currencies[selectedRooms[0]?.total?.currency || 'USD']?.symbol;
 
