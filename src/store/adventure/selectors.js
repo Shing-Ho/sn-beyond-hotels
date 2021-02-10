@@ -18,10 +18,12 @@ function formatItem(item, index) {
 }
 
 export const getLoading = (state) => state.adventure.loading;
+export const getBookingError = (state) => state.adventure.bookingError;
 export const getTrips = (state) => state.adventure.trips;
 export const getTripInfo = (state) => state.adventure.tripInfo;
 export const getTripAvailabilities = (state) => state.adventure.tripAvailabilities;
 export const getCountries = (state) => state.adventure.countries;
 export const getStandardCountries = (state) => state.adventure.standardCountries;
 export const getDestinations = (state) => state.adventure.destinations;
+export const getBookInfo = (state) => state.adventure.bookInfo;
 export const getFormattedTrips = (state) => getTrips(state).map(formatItem);

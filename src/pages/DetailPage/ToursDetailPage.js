@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import adventureActions from 'store/adventure/actions';
-import { getTripInfo, getTripAvailabilities, getStandardCountries } from 'store/adventure/selectors';
+import { getTripInfo, getTripAvailabilities, getStandardCountries, getBookInfo } from 'store/adventure/selectors';
 import { ReactComponent as ToursActivitiesWhite } from 'icons/dashboardIcons/ToursActivitiesWhite.svg';
 
 import Page from 'components/Page/Page';
@@ -18,6 +18,7 @@ const ToursDetailPage = () => {
   const dispatch = useDispatch();
   const data = useSelector(getTripInfo);
   const availabilities = useSelector(getTripAvailabilities);
+  const bookInfo = useSelector(getBookInfo);
   const [images, setImages] = useState([]);
   const standardCountries = useSelector(getStandardCountries);
 
@@ -47,13 +48,17 @@ const ToursDetailPage = () => {
     console.log(availabilities);
   }, [availabilities]);
 
+  const cancelBook = () => {
+    dispatch(adventureActions.cancelBook({ ref_no: bookInfo?.RefNo }));
+  };
+
   return (
     <Page>
       <div className={styles.carousel}>
         <Carousel image={images} />
         <DetailHeader
           className={styles.detailHeader}
-          details={{ name: data.TripName }}
+          details={{ name: data?.TripName }}
           icon={<ToursActivitiesWhite width="26px" height="29px" />}
         />
       </div>
@@ -65,12 +70,12 @@ const ToursDetailPage = () => {
                 <DetailHeader
                   className={styles.detailHeader}
                   details={{
-                    name: data.TripName,
-                    tags: data.Style.split(','),
-                    duration: data.Duration,
-                    startTime: data.Departure?.DepMin,
-                    cultureShock: data.CulturalRate,
-                    physicality: data.PhysicalRate,
+                    name: data?.TripName,
+                    tags: data?.Style.split(','),
+                    duration: data?.Duration,
+                    startTime: data?.Departure?.DepMin,
+                    cultureShock: data?.CulturalRate,
+                    physicality: data?.PhysicalRate,
                     type: 'tours',
                   }}
                   icon={<ToursActivitiesWhite width="26px" height="29px" />}
@@ -82,8 +87,15 @@ const ToursDetailPage = () => {
             </Col>
             <Col md={8} sm={24} flex={1}>
               <div className={styles.detail}>
-                {availabilities && <ToursBookingSection tourInfo={data} />}
-                {!availabilities && <h3 className={styles.noAvailable}>Not available</h3>}
+                {!bookInfo?.RefNo && <ToursBookingSection tourInfo={data} />}
+                {bookInfo?.RefNo && (
+                  <div>
+                    <p>Successfully booked your trip! Your reference number is {bookInfo?.RefNo}.</p>
+                    <Button onClick={cancelBook}>Cancel</Button>
+                  </div>
+                )}
+                {/* {availabilities && <ToursBookingSection tourInfo={data} />}
+                {!availabilities && <h3 className={styles.noAvailable}>Not available</h3>} */}
               </div>
             </Col>
           </Row>

@@ -9,6 +9,7 @@ const adventureActions = createActions(
   {
     SET_LOADING: undefined,
     SET_FAILURE: undefined,
+    SET_BOOKING_ERROR: undefined,
     SET_TRIPS: undefined,
     SET_COUNTRIES: undefined,
     SET_STANDARD_COUNTRIES: undefined,
@@ -66,8 +67,12 @@ const getTripInfo = (params) => async (dispatch) => {
 
 const bookTrip = (params) => async (dispatch) => {
   try {
+    dispatch(adventureActions.setBookingError(null));
     const data = await API.bookTrip(params);
     dispatch(adventureActions.setBookInfo(data.data));
+    if (data.data?.OpResult?.Code !== '0') {
+      dispatch(adventureActions.setBookingError(data.data?.OpResult?.Message));
+    }
   } catch (error) {
     dispatch(adventureActions.setFailure(error));
   }
@@ -77,6 +82,15 @@ const getTripAvailabilities = (params) => async (dispatch) => {
   try {
     const data = await API.getTripAvailabilities(params);
     dispatch(adventureActions.setTripAvailabilities(data.data.TripAvai));
+  } catch (error) {
+    dispatch(adventureActions.setFailure(error));
+  }
+};
+
+const cancelBook = (params) => async (dispatch) => {
+  try {
+    await API.cancelBook(params);
+    dispatch(adventureActions.setBookInfo(null));
   } catch (error) {
     dispatch(adventureActions.setFailure(error));
   }
@@ -108,4 +122,5 @@ export default {
   getTripAvailabilities,
   getStandardCountries,
   bookTrip,
+  cancelBook,
 };

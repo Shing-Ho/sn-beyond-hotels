@@ -18,13 +18,13 @@ import styles from './DiningDetailItem.module.scss';
 const PopOverContent = () => (
   <div>
     <p>
-      <FormattedMessage id="detailPage.info.rate" values={{ rate: 10 }} />
+      <FormattedMessage id="detailPage.info.rate" values={{ rate: 10, currency: '$' }} />
     </p>
     <p>
-      <FormattedMessage id="detailPage.info.taxes" values={{ taxes: 5 }} />
+      <FormattedMessage id="detailPage.info.taxes" values={{ taxes: 5, currency: '$' }} />
     </p>
     <p>
-      <FormattedMessage id="detailPage.info.total" values={{ total: 15 }} />
+      <FormattedMessage id="detailPage.info.total" values={{ total: 15, currency: '$' }} />
     </p>
   </div>
 );

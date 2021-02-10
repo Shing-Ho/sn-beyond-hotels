@@ -7,7 +7,7 @@ import DatePicker from 'components/DatePicker/DatePicker';
 import Divider from 'components/Divider/Divider';
 import Complete from 'components/AutoComlete/AutoComplete';
 import { ReactComponent as CloseIcon } from 'icons/close-fill.svg';
-import { getStandardCountries } from 'store/adventure/selectors';
+import { getStandardCountries, getBookingError } from 'store/adventure/selectors';
 import adventureActions from 'store/adventure/actions';
 import styles from './ToursBookingSection.module.scss';
 
@@ -15,18 +15,20 @@ const { Option } = Select;
 
 export default function ToursBookingSection({ className, tourInfo }) {
   const standardCountries = useSelector(getStandardCountries);
+  const errorMessage = useSelector(getBookingError);
   const salutations = ['Mr.', 'Mrs.', 'Ms.'];
   const [formValues, setFormValues] = useState({});
   const dispatch = useDispatch();
 
   const onBookNowClick = () => {
-    dispatch(
-      adventureActions.bookTrip({
-        ...formValues,
-        trip_code: tourInfo.TripCode,
-        dep_id: tourInfo.Departure?.Id,
-      }),
-    );
+    const params = {
+      ...formValues,
+      trip_code: tourInfo?.TripCode,
+    };
+    if (!params.dep_id) {
+      params.dep_id = tourInfo?.Departure?.Id;
+    }
+    dispatch(adventureActions.bookTrip(params));
   };
   const onLocationSelect = (e) => {
     setFormValues({
@@ -54,12 +56,12 @@ export default function ToursBookingSection({ className, tourInfo }) {
   };
   const clearData = () => {};
   const getTotalPrice = () => {
-    if (!tourInfo.AdultPrice || !tourInfo.ChildPrice || formValues.num_adult < 1) {
+    if (!tourInfo?.AdultPrice || !tourInfo?.ChildPrice || formValues.num_adult < 1) {
       return 0;
     }
-    let price = tourInfo.AdultPrice * formValues.num_adult;
+    let price = tourInfo?.AdultPrice * formValues.num_adult;
     if (formValues.num_child > 0) {
-      price += tourInfo.ChildPrice * formValues.num_child;
+      price += tourInfo?.ChildPrice * formValues.num_child;
     }
     return price;
   };
@@ -74,6 +76,15 @@ export default function ToursBookingSection({ className, tourInfo }) {
             format="DD/MM/YYYY"
             onChange={(_, date) => onDateChange(date, 'dep_date')}
           />
+          {tourInfo?.Departure?.length && (
+            <Select className="w-100" placeholder="Select a departure" onChange={(e) => onSelectChange('dep_id', e)}>
+              {tourInfo?.Departure.map((d) => (
+                <Option key={d.Id} value={d.Id}>
+                  {d.DepMin} - {d.EndMin !== '-1' ? d.EndMin : ''}
+                </Option>
+              ))}
+            </Select>
+          )}
           <Input
             className="w-100"
             placeholder="Number of adult"
@@ -105,7 +116,7 @@ export default function ToursBookingSection({ className, tourInfo }) {
           <Complete
             className="w-100"
             value={formValues.hotel_location}
-            placeholder="Hotel location"
+            placeholder="Hotel location (optional)"
             onSelect={onLocationSelect}
             clearData={clearData}
           />
@@ -196,20 +207,20 @@ export default function ToursBookingSection({ className, tourInfo }) {
           <span>
             <FormattedMessage id="yourOrder" defaultMessage="Your Order" />
           </span>
-          {formValues.num_adult > 0 && tourInfo.AdultPrice && (
+          {formValues.num_adult > 0 && tourInfo?.AdultPrice && (
             <div>
               <FormattedMessage id="adult_price" defaultMessage="Adult" />
               <span>
-                {formValues.num_adult * tourInfo.AdultPrice}
+                {formValues.num_adult * tourInfo?.AdultPrice}
                 <CloseIcon />
               </span>
             </div>
           )}
-          {formValues.num_child > 0 && tourInfo.ChildPrice && (
+          {formValues.num_child > 0 && tourInfo?.ChildPrice && (
             <div>
               <FormattedMessage id="child_price" defaultMessage="Child" />
               <span>
-                {formValues.num_child * tourInfo.ChildPrice}
+                {formValues.num_child * tourInfo?.ChildPrice}
                 <CloseIcon />
               </span>
             </div>
@@ -222,6 +233,7 @@ export default function ToursBookingSection({ className, tourInfo }) {
           <span className={styles.totalCost}>$ {getTotalPrice()}</span>
         </div>
       </div>
+      {errorMessage && <p className={styles.errorText}>{errorMessage}</p>}
       <Button className={styles.bookNow} onClick={onBookNowClick}>
         <FormattedMessage id="orderNow" defaultMessage="Order Now" />
       </Button>
