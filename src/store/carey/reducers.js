@@ -58,6 +58,7 @@ export const careyReducer = handleActions(
         careyRateInquiry: [],
         bookReservation: [],
         findReservation: [],
+        cancelReservation: [],
         loading: false,
         error: '',
       }),
@@ -69,6 +70,7 @@ export const careyReducer = handleActions(
     careyRateInquiry: [],
     bookReservation: [],
     findReservation: [],
+    cancelReservation: [],
   },
 );
 
