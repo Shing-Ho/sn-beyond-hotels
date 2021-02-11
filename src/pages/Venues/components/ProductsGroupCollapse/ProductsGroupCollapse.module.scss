@@ -30,10 +30,11 @@
     border-bottom: 1px solid $lightGrayColor !important;
   }
   :global(.ant-collapse-item-active .ant-collapse-header) {
-    padding-left: 0 !important;
+    // padding-left: 0 !important;
+    padding-left: 10px !important;
     background: white;
     color: $primaryColor !important;
-    border: none;
+    // border: none;
     box-shadow: none;
   }
   :global(.ant-collapse-item-active .ant-collapse-content-box) {

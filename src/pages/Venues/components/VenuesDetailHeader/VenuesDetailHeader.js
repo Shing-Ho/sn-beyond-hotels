@@ -9,13 +9,22 @@ import { ReactComponent as SafetyIcon } from 'icons/Icon_SupMan_Safety.svg';
 import styles from './VenuesDetailHeader.module.scss';
 
 export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpdateVenue }) {
-  const [venueName, setVenueName] = useState(venue.name || '');
+  const [venueName, setVenueName] = useState('');
+  const [venueTags, setVenueTags] = useState([]);
+
+  useEffect(() => {
+    if (venue) {
+      setVenueName(venue.name);
+      setVenueTags(JSON.parse(venue.tags));
+    }
+  }, [venue]);
+
   const debouncedFunction = useRef(
     _.debounce((key) => {
       if (venue && key !== '' && venueName !== key) {
         onUpdateVenue(key, null);
       }
-    }, 500),
+    }, 1000),
   );
 
   useEffect(() => debouncedFunction.current(venueName), [venueName]);
@@ -25,6 +34,7 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
       onUpdateVenue(venue.name, JSON.stringify(tags));
     }
   };
+
   return (
     <div
       className={cx(styles.detailHeader, {
@@ -57,7 +67,7 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
             placeholder="Add tags that describe traits of this venue..."
             mode="tags"
             onChange={(e) => handleTags(e)}
-            defaultValue={venue && venue.tags !== '' && JSON.parse(venue.tags).length > 0 ? JSON.parse(venue.tags) : []}
+            value={venueTags}
           />
         </div>
         <div className={styles.button}>

@@ -2,22 +2,22 @@ import React from 'react';
 import { Button } from 'antd';
 import cx from 'classnames';
 
-import { getRandomImageUrl } from 'helpers/utils';
+// import { getRandomImageUrl } from 'helpers/utils';
 import Carousel from 'components/Carousel/Carousel';
 
 import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
 import { ReactComponent as PhotoIcon } from 'icons/Icon_SupMan_Photos.svg';
 import styles from './VenuesUploadZone.module.scss';
 
-const images = Array(7)
-  .fill(0)
-  .map((_, i) => ({
-    url: getRandomImageUrl(),
-    type: '',
-    display_order: i,
-  }));
+// const images = Array(7)
+//   .fill(0)
+//   .map((_, i) => ({
+//     url: getRandomImageUrl(),
+//     type: '',
+//     display_order: i,
+//   }));
 
-export default function VenuesUploadZone({ onboarding }) {
+export default function VenuesUploadZone({ images, onboarding, handleUploadMedia }) {
   return (
     <div className={styles.carousel}>
       <Carousel image={images} />
@@ -29,7 +29,7 @@ export default function VenuesUploadZone({ onboarding }) {
         <div className={styles.container}>
           <h3>Add Photos and Video</h3>
           <p>Add photos and videos to showcase your venue and products.</p>
-          <Button className={styles.uploadBtn} icon={<PhotoIcon />}>
+          <Button className={styles.uploadBtn} onClick={() => handleUploadMedia(true)} icon={<PhotoIcon />}>
             Add Yours Here
           </Button>
           <div className={styles.mentoring}>

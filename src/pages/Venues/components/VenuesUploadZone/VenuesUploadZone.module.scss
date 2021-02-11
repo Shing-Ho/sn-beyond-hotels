@@ -2,7 +2,9 @@
 
 .carousel {
   width: 100%;
+  min-height: 500px;
   position: relative;
+  background-color: $grayColor;
 
   .uploadZone {
     width: 100%;
@@ -36,7 +38,7 @@
         color: #565656;
         padding: 0 20px;
         &:hover {
-          background-color: #B6EEEF;
+          background-color: #b6eeef;
         }
 
         svg {

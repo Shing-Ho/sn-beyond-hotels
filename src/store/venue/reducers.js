@@ -5,9 +5,9 @@ export const venueReducer = handleActions(
   new Map([
     [
       venueActions.setLoading,
-      (state) => ({
+      (state, action) => ({
         ...state,
-        loading: true,
+        loading: action.payload,
         error: null,
       }),
     ],
@@ -35,12 +35,32 @@ export const venueReducer = handleActions(
         venue: action.payload,
       }),
     ],
+    [
+      venueActions.setVenueMedia,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        venue: {
+          ...state.venue,
+          media: action.payload || [],
+        },
+      }),
+    ],
+    [
+      venueActions.setVenueProductGroups,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        productGroups: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
     error: null,
     venues: null,
     venue: null,
+    productGroups: null,
   },
 );
 

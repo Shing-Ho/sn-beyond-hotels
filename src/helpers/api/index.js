@@ -71,3 +71,16 @@ export const getVenues = () => get(`venues`);
 export const getVenue = (id) => get(`venues/${id}`);
 export const createVenue = (payload) => post(`venues`, payload);
 export const updateVenue = (payload) => put(`venues/${payload.id}`, payload);
+export const uploadVenueMedia = (payload) =>
+  post(`venues/${payload.venue}/media`, payload.formData, { 'content-type': 'multipart/form-data' });
+
+// Venue media
+export const getVenueMedia = (id) => get(`venues/${id}/media`);
+export const updateVenueMediaOrder = (payload) => post(`venues/${payload.id}/media/order`, payload);
+export const removeVenueMedia = (payload) => remove(`venues/${payload.venue_id}/media/${payload.id}`);
+
+// Venue Product Group
+export const getVenueProductGroups = (id) => get(`venues/${id}/product-group`);
+export const createVenueProductGroup = (payload) => post(`venues/${payload.venue}/product-group`, payload);
+export const updateVenueProductGroup = (payload) => put(`venues/${payload.venue}/product-group/${payload.id}`, payload);
+export const removeVenueProductGroup = (payload) => remove(`venues/${payload.venue}/product-group/${payload.id}`);

@@ -50,6 +50,7 @@
     }
 
     :global(.ant-tabs) {
+      overflow: visible;
       :global(.ant-tabs-nav) {
         :global(.ant-tabs-tab) {
           &:global(.ant-tabs-tab-active) {
@@ -83,6 +84,10 @@
           }
         }
       }
+    }
+
+    .productsGroupAdd {
+      padding: 10px 0;
     }
   }
 
@@ -118,8 +123,8 @@
       border-color: #49838f;
       margin-top: 10px;
       &:hover {
-        border: 2px solid  #1DA5A8;
-        color:  #1DA5A8;
+        border: 2px solid #1da5a8;
+        color: #1da5a8;
       }
     }
   }

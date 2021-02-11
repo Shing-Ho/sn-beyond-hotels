@@ -20,7 +20,8 @@ export default function CustomInput({
     const val = e.target.value;
     setValue(val);
     setCurrentLength(val.length);
-    onChange(val);
+
+    if (onChange) onChange(val);
   };
 
   return (

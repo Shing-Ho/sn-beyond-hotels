@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import history from 'store/history';
 import venueActions from 'store/venue/actions';
-import { getVenue } from 'store/venue/selectors';
+import { getVenue, getLoading } from 'store/venue/selectors';
 
 import { ReactComponent as NightlifeWhiteIcon } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import VenuesPage from './VenuesPage';
@@ -10,38 +10,16 @@ import VenuesPage from './VenuesPage';
 export default function VenueNightlifesPage({ match: { params } }) {
   const dispatch = useDispatch();
   const venue = useSelector(getVenue);
+  const loading = useSelector(getLoading);
 
   useEffect(() => {
     if (params.id) {
       dispatch(venueActions.getVenue(params.id));
+      dispatch(venueActions.getVenueProductGroups(params.id));
     } else {
-      history.push('venues');
+      history.push(`${window.BASE_ROUTE || ''}/venues`);
     }
   }, []);
-
-  const handleActive = (status) => {
-    if (venue) {
-      const payload = {
-        id: venue.id,
-        name: venue.name,
-        status,
-      };
-      dispatch(venueActions.updateVenue(payload));
-    }
-  };
-
-  const handleUpdateVenue = (name, tags) => {
-    if (venue) {
-      const payload = {
-        id: venue.id,
-        name,
-      };
-      if (tags) {
-        payload.tags = tags;
-      }
-      dispatch(venueActions.updateVenue(payload));
-    }
-  };
 
   const handlePublish = () => {
     // eslint-disable-next-line
@@ -101,9 +79,8 @@ export default function VenueNightlifesPage({ match: { params } }) {
       onAddDetails={handleAddDetails}
       onPaymentProviderSelection={handlePaymentProviderSelection}
       onAddContact={handleAddContact}
-      onActive={handleActive}
-      onUpdateVenue={handleUpdateVenue}
       venue={venue}
+      loading={loading}
     />
   );
 }
