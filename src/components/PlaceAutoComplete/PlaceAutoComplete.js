@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete, { getLatLng, geocodeByAddress } from 'react-places-autocomplete';
+// import PlacesAutocomplete from 'react-places-autocomplete';
+import { isEmpty } from 'lodash';
 import pin from 'icons/pin.png';
 import styles from './PlaceAutoComplete.module.scss';
 
@@ -13,46 +15,62 @@ const PlaceAutoComplete = ({ onLocationChange }) => {
           setStreet(address);
         }}
         onSelect={(address) => {
-          geocodeByAddress(address)
-            .then(async (results) => {
-              const { long_name: postalCode = '' } =
-                results[0].address_components.find((c) => c.types.includes('postal_code')) || {};
-              const { long_name: streetNumber = '' } =
-                results[0].address_components.find((c) => c.types.includes('street_number')) || {};
-              const { long_name: route = '' } =
-                results[0].address_components.find((c) => c.types.includes('route')) || {};
-              const { long_name: cityName = '' } =
-                results[0].address_components.find((c) => c.types.includes('"locality"')) || {};
-              const { long_name: stateLongName = '' } =
-                results[0].address_components.find((c) => c.types.includes('administrative_area_level_1')) || {};
-              const { short_name: stateShortName = '' } =
-                results[0].address_components.find((c) => c.types.includes('administrative_area_level_1')) || {};
-              const { long_name: countryLongName = '' } =
-                results[0].address_components.find((c) => c.types.includes('country')) || {};
-              const { short_name: countryShortName = '' } =
-                results[0].address_components.find((c) => c.types.includes('country')) || {};
-              const latlng = await getLatLng(results[0]);
-              const addressObject = {
-                latitude: latlng.lat,
-                longitude: latlng.lng,
-                locationName: address.split(',')[0],
-                addressLine: `${streetNumber} ${route}`,
-                cityName,
-                postalCode,
-                stateProv: {
-                  value: stateLongName,
-                  StateCode: stateShortName,
-                },
-                countryName: {
-                  value: countryLongName,
-                  stateCode: countryShortName,
-                },
-              };
-              setStreet(address);
-              onLocationChange(addressObject);
-            })
-            // eslint-disable-next-line no-console
-            .catch((error) => console.log(error));
+          if (address) {
+            geocodeByAddress(address)
+              .then(async (results) => {
+                const { long_name: postalCode = '' } =
+                  results[0].address_components.find((c) => c.types.includes('postal_code')) || {};
+                const { long_name: streetNumber = '' } =
+                  results[0].address_components.find((c) => c.types.includes('street_number')) || {};
+                const { long_name: route = '' } =
+                  results[0].address_components.find((c) => c.types.includes('route')) || {};
+                const { long_name: cityName = '' } =
+                  results[0].address_components.find((c) => c.types.includes('locality')) || {};
+                const { long_name: stateLongName = '' } =
+                  results[0].address_components.find((c) => c.types.includes('administrative_area_level_1')) || {};
+                const { short_name: stateShortName = '' } =
+                  results[0].address_components.find((c) => c.types.includes('administrative_area_level_1')) || {};
+                const { long_name: countryLongName = '' } =
+                  results[0].address_components.find((c) => c.types.includes('country')) || {};
+                const { short_name: countryShortName = '' } =
+                  results[0].address_components.find((c) => c.types.includes('country')) || {};
+                const latlng = await getLatLng(results[0]);
+                const airport = !isEmpty(results[0].address_components.find((c) => c.types.includes('airport')));
+                let airportCode;
+                const locationName = address.split(',')[0];
+                if (airport) {
+                  const startIndex = locationName.indexOf('(');
+                  const endIndex = locationName.indexOf(')');
+                  airportCode = locationName.slice(startIndex + 1, endIndex);
+                }
+                const trainStation = !isEmpty(
+                  results[0].address_components.find((c) => c.types.includes('train_station')),
+                );
+                const addressObject = {
+                  latitude: latlng.lat,
+                  longitude: latlng.lng,
+                  locationName,
+                  addressLine: `${streetNumber} ${route}`,
+                  cityName,
+                  postalCode,
+                  stateProv: {
+                    value: stateLongName,
+                    StateCode: stateShortName,
+                  },
+                  countryName: {
+                    value: countryLongName,
+                    stateCode: countryShortName,
+                  },
+                  airport,
+                  airportCode,
+                  trainStation,
+                };
+                setStreet(address);
+                onLocationChange(addressObject);
+              })
+              // eslint-disable-next-line no-console
+              .catch((error) => console.log(error));
+          }
         }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (

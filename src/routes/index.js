@@ -18,6 +18,7 @@ import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
 import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
+import QuoteViewPage from 'pages/DetailPage/QuoteViewPage';
 import VenueEventsPage from 'pages/Venues/VenueEventsPage';
 import VenueToursPage from 'pages/Venues/VenueToursPage';
 import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
@@ -58,6 +59,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/foods/:id`} exact component={FoodDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
         <Route path={`${BASE_ROUTE}/transports/carhire/:id`} exact component={CarHireDetailPage} />
+        <Route path={`${BASE_ROUTE}/transports/carhire/:id/viewquote`} exact component={QuoteViewPage} />
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />

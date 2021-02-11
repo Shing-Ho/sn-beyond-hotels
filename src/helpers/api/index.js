@@ -54,6 +54,8 @@ export const deleteUser = (id) => remove(`users/${id}`);
 
 // ---Carey --- //
 export const rateInquiry = (payload) => post('carey/rate-inqury', payload, postHeader);
+export const bookReservation = (payload) => post('carey/book-reservation', payload, postHeader);
+export const findReservation = (payload) => post('carey/find-reservation', payload, postHeader);
 export const cancelReservation = (payload) => post('carey/cancel-reservation', payload, postHeader);
 
 // --- Dining --- //
