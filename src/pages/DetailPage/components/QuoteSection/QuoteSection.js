@@ -97,13 +97,12 @@ export default function QuoteSection({ className }) {
   useEffect(() => {
     if (error) {
       setErrorShow(error?.message);
-      dispatch(careyActions.clearState());
+      // dispatch(careyActions.clearState());
     }
   }, [error, dispatch]);
 
   useEffect(() => {
     dispatch(careyActions.clearState());
-    if (!visible) setSelectVehicle('');
   }, [
     pickUpDate,
     pickUpTime,
@@ -115,12 +114,12 @@ export default function QuoteSection({ className }) {
     passengerCount,
     bagCount,
     special,
-    visible,
   ]);
 
   useEffect(() => {
     if (!isEmpty(quotes)) setVisible(true);
-  }, [quotes]);
+    if (!visible) setSelectVehicle('');
+  }, [quotes, visible]);
 
   return (
     <>
@@ -227,55 +226,53 @@ export default function QuoteSection({ className }) {
           </Button>
         </div>
       </>
-      {visible && !isEmpty(quotes) && (
-        <Modal
-          title={<div className={styles.modalHeader}>Select Vehicle</div>}
-          visible={visible}
-          onCancel={handleCancel}
-          footer={false}
-        >
-          <div>
+      {/* {visible && !isEmpty(quotes) && ( */}
+      <Modal
+        title={<div className={styles.modalHeader}>Select Vehicle</div>}
+        visible={visible && !isEmpty(quotes)}
+        onCancel={handleCancel}
+        footer={false}
+      >
+        <div>
+          <Row>
+            <Col lg={12} className={styles.column}>
+              <div>
+                {pickUpLoacation?.locationName} {pickUpLoacation?.addressLine} {pickUpLoacation?.cityName}{' '}
+                {pickUpLoacation?.postalCode} {pickUpLoacation?.stateProv?.value} {pickUpLoacation?.countryName?.value}
+              </div>
+            </Col>
+            <Col lg={12} className={styles.column}>
+              <div>
+                {dropOffLocation?.locationName} {dropOffLocation?.addressLine} {dropOffLocation?.cityName}{' '}
+                {dropOffLocation?.postalCode} {dropOffLocation?.stateProv?.value} {dropOffLocation?.countryName?.value}
+              </div>
+            </Col>
+          </Row>
+          <Radio.Group
+            defaultValue="accommodations"
+            buttonStyle="solid"
+            className={styles.radio}
+            onChange={handleSelectVehicleChange}
+          >
             <Row>
-              <Col lg={12} className={styles.column}>
-                <div>
-                  {pickUpLoacation?.locationName} {pickUpLoacation?.addressLine} {pickUpLoacation?.cityName}{' '}
-                  {pickUpLoacation?.postalCode} {pickUpLoacation?.stateProv?.value}{' '}
-                  {pickUpLoacation?.countryName?.value}
-                </div>
-              </Col>
-              <Col lg={12} className={styles.column}>
-                <div>
-                  {dropOffLocation?.locationName} {dropOffLocation?.addressLine} {dropOffLocation?.cityName}{' '}
-                  {dropOffLocation?.postalCode} {dropOffLocation?.stateProv?.value}{' '}
-                  {dropOffLocation?.countryName?.value}
-                </div>
-              </Col>
+              {quotes.map((quote) => (
+                <Col lg={12} className={styles.column}>
+                  <Radio value={quote.vehicleDetails.vehicleCode}>
+                    <div>
+                      <div>{quote?.vehicleDetails?.vehicleName}</div>
+                      <div>{quote?.total?.totalAmountDescription}</div>
+                    </div>
+                  </Radio>
+                </Col>
+              ))}
             </Row>
-            <Radio.Group
-              defaultValue="accommodations"
-              buttonStyle="solid"
-              className={styles.radio}
-              onChange={handleSelectVehicleChange}
-            >
-              <Row>
-                {quotes.map((quote) => (
-                  <Col lg={12} className={styles.column}>
-                    <Radio value={quote.vehicleDetails.vehicleCode}>
-                      <div>
-                        <div>{quote?.vehicleDetails?.vehicleName}</div>
-                        <div>{quote?.total?.totalAmountDescription}</div>
-                      </div>
-                    </Radio>
-                  </Col>
-                ))}
-              </Row>
-            </Radio.Group>
-            <Row>
-              <Col>{selectVehicle && <Button onClick={handleViewQuote}>View Quotes</Button>}</Col>
-            </Row>
-          </div>
-        </Modal>
-      )}
+          </Radio.Group>
+          <Row>
+            <Col>{selectVehicle && <Button onClick={handleViewQuote}>View Quotes</Button>}</Col>
+          </Row>
+        </div>
+      </Modal>
+      {/* )} */}
     </>
   );
 }

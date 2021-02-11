@@ -1,24 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { isEmpty } from 'lodash';
 import { Button, Modal, Row, Col, Input } from 'antd';
 
+import careyActions from 'store/carey/actions';
 import { getCareyRateInquiry } from 'store/carey/selectors';
 
 import Page from 'components/Page/Page';
 import GoogleMap from 'components/GoogleMap/GoogleMap';
 import PlaceAutoComplete from 'components/PlaceAutoComplete/PlaceAutoComplete';
+import Select from 'components/Select/Select';
 import styles from './QuoteViewPage.module.scss';
+
+const cardOptions = [
+  { title: '', value: '' },
+  { title: 'AMEX', value: 'AMEX' },
+  { title: 'VISA', value: 'VISA' },
+  { title: 'MASTERCARD', value: 'MASTERCARD' },
+  { title: 'DINERS', value: 'DINERS' },
+  { title: 'DISCOVER', value: 'DISCOVER' },
+];
+
+const expMonths = [
+  { title: '', value: '' },
+  { title: '01', value: '01' },
+  { title: '02', value: '02' },
+  { title: '03', value: '03' },
+  { title: '04', value: '04' },
+  { title: '05', value: '05' },
+  { title: '06', value: '06' },
+  { title: '07', value: '07' },
+  { title: '08', value: '08' },
+  { title: '09', value: '09' },
+  { title: '10', value: '10' },
+  { title: '11', value: '11' },
+  { title: '12', value: '12' },
+];
+
+const expYears = [
+  { title: '', value: '' },
+  { title: '2021', value: '2021' },
+  { title: '2022', value: '2022' },
+  { title: '2023', value: '2023' },
+  { title: '2024', value: '2024' },
+];
 
 const QuoteViewPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const quotes = useSelector(getCareyRateInquiry);
-
   const [inputInfo, setInputInfo] = useState(false);
-  const handleModalClose = () => {
+  const [billingAddress, setBillingAddress] = useState({});
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
+  const [cardType, setCardType] = useState('');
+  const [cardNum, setCardNum] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [expCVV, setExpCVV] = useState('');
+  const [expMonth, setExpMonth] = useState('');
+  const [expYear, setExpYear] = useState('');
+  const [bookReservation, setBookReservation] = useState(false);
+  const handleCloseNavigate = () => {
     dispatch(push('/transports'));
   };
 
@@ -47,14 +92,56 @@ const QuoteViewPage = () => {
     setInputInfo(false);
   };
 
+  const handleBillingAddress = (locations) => {
+    setBillingAddress(locations);
+  };
+
+  const handleBookReservation = () => {
+    const payload = {
+      passengerInfo: {
+        firstName,
+        lastName,
+        phoneNum,
+      },
+      paymentInfo: {
+        cardType,
+        cardNum,
+        cardName,
+        expCVV,
+        expDate: `${expMonth}/${expYear}`,
+        billingAddress,
+      },
+      quoteInfo: quoteData,
+    };
+    dispatch(careyActions.bookReservation(payload));
+  };
+
+  useEffect(() => {
+    if (
+      firstName &&
+      lastName &&
+      phoneNum &&
+      cardType &&
+      cardNum &&
+      cardName &&
+      expCVV &&
+      expMonth &&
+      expYear &&
+      !isEmpty(billingAddress)
+    )
+      setBookReservation(true);
+    else setBookReservation(false);
+  }, [firstName, lastName, phoneNum, cardType, cardNum, cardName, expCVV, expMonth, expYear, billingAddress]);
+
   return (
     <Page>
       {isEmpty(quotes) ? (
         <Modal
           title={<div className={styles.modalHeader}>Did you get quotes?</div>}
-          onCancel={handleModalClose}
+          visible={isEmpty(quotes)}
+          onCancel={handleCloseNavigate}
           footer={[
-            <Button size="large" halfWidth onClick={handleModalClose}>
+            <Button size="large" halfWidth onClick={handleCloseNavigate}>
               OK
             </Button>,
           ]}
@@ -167,54 +254,75 @@ const QuoteViewPage = () => {
                 <div>Passenger Information:</div>
                 <Row>
                   <Col lg={8}>
-                    <Input placeholder="First Name" />
+                    <Input placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                   </Col>
                   <Col lg={8}>
-                    <Input placeholder="Last Name" />
+                    <Input placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                   </Col>
                   <Col lg={8}>
-                    <Input placeholder="Phone Number" />
+                    <Input placeholder="Phone Number" value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
                   </Col>
                 </Row>
                 <div>Payment Information:</div>
                 <Row>
                   <Col lg={8}>
-                    <div>Card Type</div>
+                    <div>
+                      <div>Card Type</div>
+                      <Select
+                        options={cardOptions}
+                        placeholder="Choose Card Type"
+                        value={cardType}
+                        onChange={setCardType}
+                      />
+                    </div>
                   </Col>
                   <Col lg={16}>
-                    <div>Card Number</div>
+                    <div>
+                      <div>Card Number</div>
+                      <Input value={cardNum} onChange={(e) => setCardNum(e.target.value)} />
+                    </div>
                   </Col>
                 </Row>
                 <Row>
+                  <Col lg={24}>
+                    <div>Name on Card</div>
+                    <Input value={cardName} onChange={(e) => setCardName(e.target.value)} />
+                  </Col>
+                </Row>
+                <Row gutter={4}>
                   <Col lg={8}>
-                    <div>Card Type</div>
+                    <div>Exp.Month</div>
+                    <Select
+                      options={expMonths}
+                      placeholder="Exp.Month"
+                      value={expMonth}
+                      onChange={(value) => setExpMonth(value)}
+                    />
                   </Col>
-                  <Col lg={16}>
-                    <div>Card Number</div>
+                  <Col lg={8}>
+                    <div>Exp.Year</div>
+                    <Select
+                      options={expYears}
+                      placeholder="Exp.Year"
+                      value={expYear}
+                      onChange={(value) => setExpYear(value)}
+                    />
+                  </Col>
+                  <Col lg={8}>
+                    <div>Exp.CVV</div>
+                    <Input value={expCVV} onChange={(e) => setExpCVV(e.target.value)} />
                   </Col>
                 </Row>
                 <Row>
                   <Col lg={24}>
-                    <div>Name on Card</div>
+                    <div>Billing Address Information</div>
+                    <PlaceAutoComplete onLocationChange={handleBillingAddress} />
                   </Col>
                 </Row>
                 <Row>
                   <Col lg={24}>
-                    <div>Name on Card</div>
+                    {bookReservation && <Button onClick={handleBookReservation}>Book Reservation</Button>}
                   </Col>
-                </Row>
-                <Row gutter={3}>
-                  <Col lg={8}>Exp.Month</Col>
-                  <Col lg={8}>Exp.Year</Col>
-                  <Col lg={8}>Exp.CVV</Col>
-                </Row>
-                <Row gutter={3}>
-                  <Col lg={8}>Exp.Month</Col>
-                  <Col lg={8}>Exp.Year</Col>
-                  <Col lg={8}>Exp.CVV</Col>
-                </Row>
-                <Row>
-                  <PlaceAutoComplete />
                 </Row>
               </div>
             </Modal>
