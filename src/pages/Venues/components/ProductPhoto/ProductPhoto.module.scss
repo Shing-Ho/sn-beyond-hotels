@@ -1,0 +1,134 @@
+@import "styles";
+
+.main {
+  .dropzone {
+    width: 100%;
+    padding: 25px;
+    border-radius: 2px;
+    border: solid 1px #a6ccd4;
+    background-color: $bgLightGrayColor;
+    .dropzoneText {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .topText {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: italic;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: center;
+        color: #49838f;
+      }
+      .boldText {
+        font-weight: 600;
+        font-style: normal;
+      }
+    }
+    .smallText {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.21;
+      letter-spacing: normal;
+      text-align: center;
+      color: #a6ccd4;
+    }
+  }
+  .descriptionDiv {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .description {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.21;
+      letter-spacing: normal;
+      text-align: left;
+      color: $grayColor;
+    }
+    .count {
+      font-family: Lato;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.21;
+      letter-spacing: normal;
+      text-align: left;
+      color: $secondaryColor;
+    }
+  }
+  .imgItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+    border: solid 1px #f4f4f4;
+    .imgItemLeft {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      img {
+        width: 125px;
+        height: 95px;
+        object-fit: contain;
+      }
+      .imgName {
+        font-family: Lato;
+        font-size: 24px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.21;
+        letter-spacing: normal;
+        text-align: left;
+        color: #3dc2cc;
+        margin-left: 10px ;
+      }
+    }
+    .imgItemRight {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .mainPhoto {
+        margin-right: 20px;
+        color: $secondaryGreen;
+        font-weight: bold;
+      }
+      .trashIcon {
+        margin-right: 20px;
+        padding: 0px;
+        border: none;
+        svg {
+          fill: $secondaryGreen;
+        }
+
+      }
+      .dragDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        height: 95px;
+        background-color: #dae6e9;
+        svg {
+          fill: $secondaryGreen;
+        }
+      }
+    }
+  }
+}

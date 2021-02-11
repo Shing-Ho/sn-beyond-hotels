@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 import Button from '../../../../components/Button/Button';
 import Pagination from '../../../../components/Pagination/Pagination';
 
-const GridView = ({ items = [], currency, total, onPageChange, onItemClick }) => {
+const GridView = ({ items = [], currency, total, onPageChange, onItemClick, searchType }) => {
   const onHandleClick = (id) => {
     onItemClick(id);
   };
@@ -16,8 +16,8 @@ const GridView = ({ items = [], currency, total, onPageChange, onItemClick }) =>
     <div className={styles.gridContainer}>
       <Row gutter={24} className={styles.row}>
         {items.map((item) => (
-          <Col lg={24} className={styles.column} onClick={() => onHandleClick(item.id)}>
-            <GridItem currency={currency} data={item} />
+          <Col lg={24} key={item.id} className={styles.column} onClick={() => onHandleClick(item.id)}>
+            <GridItem currency={currency} data={item} type={searchType} />
           </Col>
         ))}
       </Row>

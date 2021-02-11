@@ -12,6 +12,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Form, Input, notification, Row, Col } from 'antd';
 import cx from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import ReactGA from 'react-ga';
 
 import { getFormSubmitted } from 'store/core/selectors';
 import FormItem from 'components/FormItem/FormItem';
@@ -39,7 +40,8 @@ import bookingActions from 'store/booking/actions';
 import history from 'store/history';
 import styles from './PaymentsForm.module.scss';
 
-const stripePromise = loadStripe('pk_live_G9QVMp1nE2XgMKFY8FL8nEP2');
+const STRIPE_API_KEY = window.REACT_APP_STRIPE_API_KEY || 'pk_test_6pRNASCoBOKtIshFeQd4XMUh';
+const stripePromise = loadStripe(STRIPE_API_KEY);
 
 const providers = [
   { id: 'credit', title: 'credit/debit' },
@@ -126,22 +128,27 @@ function PaymentsForm({ formKey }) {
         description: 'Form Data is invalid',
       });
     } else {
+      const transactionId = uuidv4();
+      ReactGA.event({
+        category: 'Payment',
+        action: 'Payment Submit',
+      });
       const bookingPayload = {
         api_version: 1,
-        transaction_id: uuidv4(),
+        transaction_id: transactionId,
         hotel_id: payload.hotel_id,
         room_code: payload.room_rate[0].code, // there could be many rooms so why room code is only one?
         language: 'en_US',
         customer: {
-          first_name: guestContact.primaryContact.firstName,
-          last_name: guestContact.primaryContact.lastName,
-          phone_number: guestContact.primaryContact.phone,
-          email: guestContact.primaryContact.email,
-          country: guestContact.primaryContact.country,
+          first_name: guestContact.primaryContact.firstName_0,
+          last_name: guestContact.primaryContact.lastName_0,
+          phone_number: guestContact.primaryContact.phoneNumber_0,
+          email: guestContact.primaryContact.email_0,
+          country: guestContact.primaryContact.country_0,
         },
         traveler: {
-          first_name: guestContact.primaryContact.firstName,
-          last_name: guestContact.primaryContact.lastName,
+          first_name: guestContact.primaryContact.firstName_0,
+          last_name: guestContact.primaryContact.lastName_0,
           occupancy: {
             adults: 2,
             children: 0,
@@ -187,7 +194,14 @@ function PaymentsForm({ formKey }) {
   }, [form, formKey, formSubmitted]);
 
   return (
-    <Form className={styles.form} layout="vertical" form={form} name={formKey} onFinish={handleSubmit}>
+    <Form
+      className={styles.form}
+      layout="vertical"
+      form={form}
+      name={formKey}
+      onFinish={handleSubmit}
+      initialValues={{ amount: totalAmount }}
+    >
       <Row>
         <Col md={12} xs={24}>
           <FormItem className={styles.leftItem} name="cardName" label="Name on Card" size="large" required>
@@ -242,7 +256,7 @@ function PaymentsForm({ formKey }) {
       <Row>
         <Col md={12} xs={24}>
           <FormItem className={styles.leftItem} name="amount" label="Amount for This Card" size="large" required="Req">
-            <Input placeholder="Enter amount to split with this card..." type="number" defaultValue={totalAmount} />
+            <Input placeholder="Enter amount to split with this card..." type="number" />
           </FormItem>
         </Col>
       </Row>

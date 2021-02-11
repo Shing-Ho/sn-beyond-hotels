@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import pick from 'lodash/pick';
+import get from 'lodash/get';
 import { push } from 'connected-react-router';
 import { useParams } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
+import { Dropdown, Button, Menu } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import Page from 'components/Page/Page';
 import FlightSearchPage from 'pages/FlightSearchPage/FlightSearchPage';
@@ -44,7 +48,12 @@ import { ReactComponent as FuelCombo } from 'icons/fuel-combo.svg';
 import { ReactComponent as ChargePlug } from 'icons/charge-plug.svg';
 import { ReactComponent as FuleValve } from 'icons/fuel-valve.svg';
 import gasActions from 'store/gas/actions';
+import adventureActions from 'store/adventure/actions';
+import diningActions from 'store/dining/actions';
+import hotelActions from 'store/hotel/actions';
 import { getFormattedGasStations } from 'store/gas/selectors';
+import { getFormattedDinings } from 'store/dining/selectors';
+import { getCountries, getFormattedTrips, getDestinations } from 'store/adventure/selectors';
 import DashboardFilter from './DashboardFilter';
 import ContainerView from './ContainerView';
 import HotelSearchPage from './SearchPage/HotelSearchPage';
@@ -57,9 +66,18 @@ const initialFilterData = {
     location_id: '5128581',
     location_name: 'New York City',
     iso_country_code: 'USA',
+    latitude: 40.73,
+    longitude: -73.93,
   },
   start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
   end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
+  occupancy: {
+    adults: 2,
+    children: 0,
+  },
+  nights: 1,
+  language: 'en',
+  currency: 'USD',
 };
 
 const searchTypeOptions = [
@@ -132,6 +150,44 @@ const searchTypeOptions = [
     value: 'shopping',
     icon: <Shopping />,
     selectedIcon: <ShoppingWhite />,
+  },
+];
+
+const allTypeOptions = [
+  {
+    id: 4,
+    name: 'transportation',
+    value: 'transports',
+    icon: <TransportationOutline />,
+    selectedIcon: <TransportationTransparent />,
+  },
+  {
+    id: 6,
+    name: 'toursAndActivities',
+    value: 'tours',
+    icon: <ToursActivities />,
+    selectedIcon: <ToursActivitiesWhite />,
+  },
+  {
+    id: 7,
+    name: 'showsAndEvents',
+    value: 'events',
+    icon: <ShowsEvents />,
+    selectedIcon: <ShowsEventsWhite />,
+  },
+  {
+    id: 8,
+    name: 'dining',
+    value: 'dining',
+    icon: <DiningSvg />,
+    selectedIcon: <DiningWhiteSvg />,
+  },
+  {
+    id: 9,
+    name: 'nightLife',
+    value: 'nightlife',
+    icon: <Nightlife />,
+    selectedIcon: <NightlifeWhite />,
   },
 ];
 
@@ -209,30 +265,13 @@ const transportSelectOptions = [
   },
 ];
 
-const initialState = {
-  location: {
-    location_id: '5128581',
-    location_name: 'New York City',
-    iso_country_code: 'USA',
-  },
-  start_date: moment().add(1, 'day').format('YYYY-MM-DD'),
-  end_date: moment().add(2, 'day').format('YYYY-MM-DD'),
-  occupancy: {
-    adults: 2,
-    children: 0,
-  },
-  nights: 1,
-  language: 'en',
-  currency: 'USD',
-};
-
 const initialData = Array(30)
   .fill(0)
   .map((_, id) => ({
     id,
     rate: (Math.random() * 2000).toFixed(2),
     image: getRandomImageUrl(),
-    type: searchTypeOptions[Math.ceil(Math.random() * 8)].value,
+    type: allTypeOptions[Math.floor(Math.random() * 5)]?.value,
     name: `Fake Item ${id}`,
     rating: Math.round(Math.random() * 5),
     description:
@@ -279,18 +318,52 @@ const DashboardPage = ({ location = {} }) => {
   const dispatch = useDispatch();
   const searchType = params.type;
   const gasStations = useSelector(getFormattedGasStations);
+  const adventureTrips = useSelector(getFormattedTrips);
+  const dinings = useSelector(getFormattedDinings);
+  const adventureCountries = useSelector(getCountries);
+  const adventureDestinations = useSelector(getDestinations);
   const [items, setItems] = useState([]);
   const [, setGasType] = useState('all');
   const [transportType, setTransportType] = useState('all');
   const intl = useIntl();
+  const [selectedCountry, setSelectedCountry] = useState();
+  const [selectedDestination, setSelectedDestination] = useState();
 
-  const handleSearchTypeChange = (type) => {
-    dispatch(push(`/${type}`));
-  };
+  useEffect(() => {
+    dispatch(adventureActions.getAdventureCountries());
+    dispatch(adventureActions.getStandardCountries());
+  }, []);
 
-  const handleTransportChange = (id) => {
-    dispatch(push(`/transports/carhire/${id}`));
-  };
+  useEffect(() => {
+    setSelectedCountry(adventureCountries.find((c) => c.Name === 'USA'));
+  }, [adventureCountries]);
+
+  useEffect(() => {
+    setSelectedDestination(adventureDestinations[0]);
+    if (adventureDestinations.length === 0) {
+      dispatch(adventureActions.setTrips([]));
+    }
+  }, [adventureDestinations]);
+
+  useEffect(() => {
+    if (selectedDestination) {
+      dispatch(
+        adventureActions.getAdventureTrips({
+          ua_destination_id: selectedDestination.Id,
+        }),
+      );
+    }
+  }, [selectedDestination]);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      dispatch(
+        adventureActions.getAdventureDestinations({
+          ua_country_id: selectedCountry.Id,
+        }),
+      );
+    }
+  }, [selectedCountry]);
 
   useEffect(() => {
     let filteredItems = [];
@@ -308,6 +381,12 @@ const DashboardPage = ({ location = {} }) => {
           ...item,
         }));
         break;
+      case 'tours':
+        filteredItems = adventureTrips;
+        break;
+      case 'dining':
+        filteredItems = dinings;
+        break;
       default:
         filteredItems = initialData.filter((item) => item.type === searchType);
         break;
@@ -319,23 +398,111 @@ const DashboardPage = ({ location = {} }) => {
         ...item,
       })),
     );
-  }, [gasStations, searchType]);
+  }, [gasStations, dinings, searchType]);
 
   useEffect(() => {
+    let searchPayload = {};
     switch (searchType) {
       case 'gas':
-        dispatch(gasActions.getGasStations());
+        if (filter.location.latitude && filter.location.longitude) {
+          searchPayload = pick(filter.location, ['latitude', 'longitude']);
+          dispatch(gasActions.getGasStations(searchPayload));
+        }
         break;
+
+      case 'tours':
+        if (!adventureCountries || adventureCountries.length === 0) {
+          dispatch(adventureActions.getAdventureCountries());
+        }
+        break;
+
+      case 'dining':
+        searchPayload = pick(filter.location || {}, ['latitude', 'longitude']);
+        searchPayload.date = get(filter, 'start_date');
+        searchPayload.time = get(filter, 'time');
+        searchPayload.covers = get(filter, 'occupancy.adults');
+
+        if (searchPayload.latitude && searchPayload.longitude) {
+          dispatch(diningActions.getDinings(searchPayload));
+        }
+        break;
+
       default:
         break;
     }
-  }, [searchType]);
+  }, [searchType, filter]);
 
   useEffect(() => {
     if (transportType === 'hire') {
       setItems(tempCarHireData);
     } else setItems(initialData);
   }, transportType);
+
+  const countrySortFunc = (a, b) => {
+    if (a.Name > b.Name) {
+      return 1;
+    }
+    if (a.Name < b.Name) {
+      return -1;
+    }
+    return 0;
+  };
+
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+  };
+
+  const handleDestinationSelect = (destination) => {
+    setSelectedDestination(destination);
+  };
+
+  const countriesMenu = (click) => (
+    <Menu onClick={click} className={styles.menu} selectedKeys={[selectedCountry?.Name]}>
+      {adventureCountries.sort(countrySortFunc).map((c) => (
+        <Menu.Item key={c.Name} onClick={() => handleCountrySelect(c)}>
+          {c.Name}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  const destinationsMenu = (click) => (
+    <Menu onClick={click} className={styles.menu} selectedKeys={[selectedDestination?.Name]}>
+      {adventureDestinations.sort(countrySortFunc).map((d) => (
+        <Menu.Item key={d.Name} onClick={() => handleDestinationSelect(d)}>
+          {d.Name}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  const navigatePage = () => {
+    dispatch(push(`/tours/supply-manager`));
+  };
+
+  const handleSearchTypeChange = (type) => {
+    dispatch(push(`/${type}`));
+  };
+
+  const handleTransportChange = (id) => {
+    dispatch(push(`/transports/carhire/${id}`));
+  };
+
+  const handleTopFilterSubmit = (payload) => {
+    switch (searchType) {
+      case 'hotels':
+        dispatch(hotelActions.searchHotels(payload));
+        break;
+
+      case 'gas':
+      case 'dining':
+        setFilter(payload);
+        break;
+
+      default:
+        break;
+    }
+  };
 
   let subHeader;
   if (searchType === 'gas') {
@@ -350,7 +517,7 @@ const DashboardPage = ({ location = {} }) => {
     <Page param={location}>
       <div className={styles.root}>
         <div className={styles.container}>
-          <TopFilters filter={filter} setFilter={setFilter} initialState={initialState} displayCount />
+          {searchType !== 'tours' && <TopFilters filter={filter} onSubmit={handleTopFilterSubmit} displayCount />}
           <DashboardFilter
             searchType={searchType}
             searchTypeData={searchTypeOptions}
@@ -358,6 +525,29 @@ const DashboardPage = ({ location = {} }) => {
             intl={intl}
           />
           {searchType === 'hotels' && <HotelSearchPage noHeader noFooter />}
+          {searchType === 'tours' && (
+            <div className={styles.buttonWrap}>
+              <Dropdown overlay={countriesMenu} trigger={['click']} className={styles.dropdown}>
+                <div onClick={(e) => e.preventDefault()}>
+                  <div>
+                    <FormattedMessage id="countries" defaultMessage={selectedCountry?.Name || 'Countries'} />
+                  </div>
+                  <DownOutlined />
+                </div>
+              </Dropdown>
+              <Dropdown overlay={destinationsMenu} trigger={['click']} className={styles.dropdown}>
+                <div onClick={(e) => e.preventDefault()}>
+                  <div>
+                    <FormattedMessage id="destinations" defaultMessage={selectedDestination?.Name || 'Destinations'} />
+                  </div>
+                  <DownOutlined />
+                </div>
+              </Dropdown>
+              <Button className={styles.btn} onClick={navigatePage}>
+                <FormattedMessage id="supplyManager" defaultMessage="Supply Manager" />
+              </Button>
+            </div>
+          )}
           {/* TODO: remove temporary page after we create whole pages */}
           {searchType !== 'hotels' &&
             searchType !== 'flights' &&

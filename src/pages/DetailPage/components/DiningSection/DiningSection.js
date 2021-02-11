@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
+
+import { isEmpty } from 'lodash';
+import { getTopFilters } from 'store/core/selectors';
 
 import { ReactComponent as RedClose } from 'icons/close-fill-large.svg';
 import DatePicker from 'components/DatePicker/DatePicker';
@@ -41,6 +45,7 @@ export default function DiningSection() {
   const [waitList, setWatiList] = useState(false);
   const [activeTime, setActiveTime] = useState(defaultTime[0]);
   const [differentTime, setDifferentTime] = useState(false);
+  const topFilters = useSelector(getTopFilters);
 
   const handleChange = (key) => (value) => {
     setForm({
@@ -76,7 +81,10 @@ export default function DiningSection() {
             </div>
             <div className={styles.dateContainer}>
               <span className={styles.dateTimeText}>Date & Time</span>
-              <DatePicker defaultValue={moment()} onChange={handleChange('date')} />
+              <DatePicker
+                defaultValue={isEmpty(topFilters) ? moment() : moment(topFilters.start_date)}
+                onChange={handleChange('date')}
+              />
               <div className={styles.timeSelectContainer}>
                 <TimeSelect
                   times={defaultTime}

@@ -9,27 +9,27 @@ import { commaFormat } from 'helpers/utils';
 import currency from '../../../../helpers/currency';
 import styles from './DetailItem.module.scss';
 
-const PopOverContent = (data) => (
+const PopOverContent = (data, currencySymbol = '$') => (
   <div>
     <p>
       <FormattedMessage
         id="detailPage.info.rate"
         defaultMessage={`Rate: ${commaFormat(data.total_base_rate.amount)}`}
-        values={{ rate: commaFormat(data.total_base_rate.amount) }}
+        values={{ rate: commaFormat(data.total_base_rate.amount), currency: currencySymbol }}
       />
     </p>
     <p>
       <FormattedMessage
         id="detailPage.info.taxes"
         defaultMessage={`Taxes: ${commaFormat(data.total_tax_rate.amount)}`}
-        values={{ taxes: commaFormat(data.total_tax_rate.amount) }}
+        values={{ taxes: commaFormat(data.total_tax_rate.amount), currency: currencySymbol }}
       />
     </p>
     <p>
       <FormattedMessage
         id="detailPage.info.total"
         defaultMessage={`Total: ${commaFormat(data.total.amount)}`}
-        values={{ total: commaFormat(data.total.amount) }}
+        values={{ total: commaFormat(data.total.amount), currency: currencySymbol }}
       />
     </p>
   </div>
@@ -69,7 +69,7 @@ const HotelItem = (props) => {
         </div>
         <div className={styles.flexWrapper}>
           <div className={styles.learnMore}>
-            <Popover content={PopOverContent(data)} placement="bottom">
+            <Popover content={PopOverContent(data, currencySymbol)} placement="bottom">
               <InfoIcon />
             </Popover>
             <FormattedMessage id="priceBreakDown" defaultMessage="Price Breakdown" />

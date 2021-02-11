@@ -22,13 +22,12 @@ const MenuList = (click) => (
 const ResultsList = ({ filteredHotels, currency }) => {
   const [sortBy, setSortBy] = useState('');
   let hotels = useSelector(getHotels);
-  let visibleHotels = useSelector(getFormattedVisibleHotels);
+  const visibleHotels = useSelector(getFormattedVisibleHotels);
   const count = useSelector(getTotalCount);
   const dispatch = useDispatch();
 
   if (filteredHotels) {
     hotels = filteredHotels;
-    visibleHotels = filteredHotels;
   }
 
   if (!hotels || !hotels.length === 0) return null;
@@ -48,10 +47,10 @@ const ResultsList = ({ filteredHotels, currency }) => {
   return (
     <>
       <div className={styles.items}>
-        {!!visibleHotels.length && (
+        {!!hotels.length && (
           <div className={styles.totalWrapper}>
             <h3 className={styles.total}>
-              {visibleHotels.length} <FormattedMessage id="totalResultsFound" defaultMessage="Total results found" />{' '}
+              {hotels.length} <FormattedMessage id="totalResultsFound" defaultMessage="Total results found" />{' '}
             </h3>
             <Dropdown
               overlay={MenuList(onclick)}

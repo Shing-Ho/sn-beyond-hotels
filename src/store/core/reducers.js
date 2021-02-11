@@ -80,6 +80,20 @@ export const coreReducer = handleActions(
         currentMenu: action.payload,
       }),
     ],
+    [
+      coreActions.setTopFilters,
+      (state, action) => ({
+        ...state,
+        topFilters: action.payload,
+      }),
+    ],
+    [
+      coreActions.setTopFilterType,
+      (state, action) => ({
+        ...state,
+        topFilterType: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -87,6 +101,8 @@ export const coreReducer = handleActions(
     locale: 'en',
     languages: [],
     formSubmitted: {},
+    topFilterType: 'hotel',
+    topFilters: {},
     drawerOpen: false,
     currency: 'USD',
     cartDrawer: false,
