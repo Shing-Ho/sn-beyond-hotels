@@ -68,7 +68,7 @@ const ListItem = ({ data, className, currency }) => {
             </div>
 
             <div>
-              <Rating scoreonly score={data.rating} className={styles.rating} />
+              <Rating scoreonly score={data.hotel_details.star_rating} className={styles.rating} />
             </div>
             <div className={`${styles.line} ${styles.baseline}`}>
               <span className={styles.description}>
