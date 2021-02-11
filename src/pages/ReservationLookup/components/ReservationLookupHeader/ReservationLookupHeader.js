@@ -5,8 +5,8 @@ import { Button, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import RightIconInput from 'components/RightIconInput/RightIconInput';
-import hotelActions from 'store/hotel/actions';
-import { getCancelLookupResponse, getLoading, getError } from 'store/hotel/selectors';
+import careyActions from 'store/carey/actions';
+import { getCancelReservation, getLoading, getError } from 'store/carey/selectors';
 import headerImg from 'images/withBlue.png';
 import { ReactComponent as SearchIcon } from 'icons/search.svg';
 import { ReactComponent as UserIcon } from 'icons/user.svg';
@@ -21,7 +21,7 @@ export default function ReservationLookupHeader() {
   const [errorShow, setErrorShow] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
-  const cancelLookupResponse = useSelector(getCancelLookupResponse);
+  const cancelLookupResponse = useSelector(getCancelReservation);
   const hotelLoading = useSelector(getLoading);
   const error = useSelector(getError);
 
@@ -34,14 +34,14 @@ export default function ReservationLookupHeader() {
   useEffect(() => {
     if (error) {
       setErrorShow('The order number or last name could not be located. Please try again.');
-      dispatch(hotelActions.clearState());
+      dispatch(careyActions.clearState());
     } else {
       // setErrorShow('')
     }
   }, [error, reservationNum, lastName, dispatch]);
 
   const onSearch = () => {
-    dispatch(hotelActions.cancelLookup({ booking_id: reservationNum, last_name: lastName }));
+    dispatch(careyActions.cancelReservation({ reservation_id: reservationNum, last_name: lastName }));
   };
 
   return (
@@ -52,7 +52,7 @@ export default function ReservationLookupHeader() {
           <div className={styles.searchIconWrapper}>
             <SearchIcon className={styles.searchIcon} />
           </div>
-          <div className={styles.orderText}>Reservation Cancellation Lookup</div>
+          <div className={styles.orderText}>Reservation Lookup</div>
         </div>
         <div className={styles.orderInput}>
           <RightIconInput
