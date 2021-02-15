@@ -18,7 +18,7 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
       setVenueName(venue.name);
       setVenueTags(JSON.parse(venue.tags));
     }
-  }, [venue]);
+  }, [venue.name, venue.tags]);
 
   const handleVenueNameChange = (newName) => {
     setVenueName(newName);

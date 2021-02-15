@@ -29,7 +29,7 @@ export default function VenueMediaUpload({
     if (venue && venue.media) {
       setVenueMedia(venue.media.sort((a, b) => a.order - b.order));
     }
-  }, [venue]);
+  }, [venue.media]);
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);

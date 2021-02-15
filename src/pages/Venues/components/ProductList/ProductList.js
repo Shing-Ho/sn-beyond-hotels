@@ -88,10 +88,19 @@ export default function ProductList({ venue, group, products }) {
         product_group: group.id,
       };
       if (product.isCreate) {
-        dispatch(venueActions.createVenueProductNightLife(payload));
+        if (venue.type === 'NIGHT_LIFE') {
+          dispatch(venueActions.createVenueProductNightLife(payload));
+        } else if (venue.type === 'HOTELS') {
+          // do for hotels
+        }
       } else {
         payload.id = product.id;
-        dispatch(venueActions.updateVenueProductNightLife(payload));
+
+        if (venue.type === 'NIGHT_LIFE') {
+          dispatch(venueActions.updateVenueProductNightLife(payload));
+        } else if (venue.type === 'HOTELS') {
+          // do for hotels
+        }
       }
     }
   };
@@ -126,7 +135,11 @@ export default function ProductList({ venue, group, products }) {
         okType: 'danger',
         cancelText: 'No',
         onOk() {
-          dispatch(venueActions.removeVenueProductNightLife(payload));
+          if (venue.type === 'NIGHT_LIFE') {
+            dispatch(venueActions.removeVenueProductNightLife(payload));
+          } else if (venue.type === 'HOTELS') {
+            // do for hotels
+          }
         },
         onCancel() {
           console.log('Cancel');
@@ -165,7 +178,11 @@ export default function ProductList({ venue, group, products }) {
         order: orders,
       };
       setOrderedProducts(ordered);
-      dispatch(venueActions.updateVenueProductNightLifeOrder(payload));
+      if (venue.type === 'NIGHT_LIFE') {
+        dispatch(venueActions.updateVenueProductNightLifeOrder(payload));
+      } else if (venue.type === 'HOTELS') {
+        // do for hotels
+      }
     }
   };
 
@@ -200,7 +217,11 @@ export default function ProductList({ venue, group, products }) {
         formData,
       };
 
-      dispatch(venueActions.uploadVenueProductNightLifeMedia(payload));
+      if (venue.type === 'NIGHT_LIFE') {
+        dispatch(venueActions.uploadVenueProductNightLifeMedia(payload));
+      } else if (venue.type === 'HOTELS') {
+        // do for hotels
+      }
     }
   };
 
@@ -210,7 +231,12 @@ export default function ProductList({ venue, group, products }) {
         venue: venue.id,
         order: orders,
       };
-      dispatch(venueActions.updateVenueProductNightLifeMediaOrder(payload));
+
+      if (venue.type === 'NIGHT_LIFE') {
+        dispatch(venueActions.updateVenueProductNightLifeMediaOrder(payload));
+      } else if (venue.type === 'HOTELS') {
+        // do for hotels
+      }
     }
   };
 
@@ -220,7 +246,11 @@ export default function ProductList({ venue, group, products }) {
         venue: venue.id,
         id,
       };
-      dispatch(venueActions.removeVenueProductNightLifeMedia(payload));
+      if (venue.type === 'NIGHT_LIFE') {
+        dispatch(venueActions.removeVenueProductNightLifeMedia(payload));
+      } else if (venue.type === 'HOTELS') {
+        // do for hotels
+      }
     }
   };
 

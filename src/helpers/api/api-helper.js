@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// export const BASEURL = window.REACT_APP_BASE_URL || 'https://simplenight-api-278418.ue.r.appspot.com/api/v1';
-export const BASEURL = window.REACT_APP_BASE_URL || 'http://localhost:8000/api/v1';
+export const BASEURL = window.REACT_APP_BASE_URL || 'https://simplenight-api-278418.ue.r.appspot.com/api/v1';
 
 export const api = axios.create({
   baseURL: BASEURL,
