@@ -46,7 +46,7 @@ export default function ProductsGroupAdd({
           <p>Add similar products to Product Groups</p>
           <img src={mentorImg} alt="Arrow for mentoring" />
         </div>
-        <Input placeholder={placeholder} value={groupName} isTrigger onChange={setGroupName} maxLength={30} />
+        <Input placeholder={placeholder} value={groupName} onChange={setGroupName} maxLength={30} />
       </div>
       <div className={styles.actions}>
         {trash && (

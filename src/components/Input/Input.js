@@ -10,7 +10,6 @@ export default function CustomInput({
   suffix,
   maxLength,
   type = 'text',
-  isTrigger = false,
   onChange,
   ...props
 }) {
@@ -21,10 +20,7 @@ export default function CustomInput({
     const val = e.target.value;
     setValue(val);
     setCurrentLength(val.length);
-
-    if (isTrigger) {
-      onChange(val);
-    }
+    onChange(val);
   };
 
   return (

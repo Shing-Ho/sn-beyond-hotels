@@ -77,7 +77,7 @@ export default function ProductsGroupCollapsedHeader({
       {isEdit ? (
         <>
           <div className={styles.input}>
-            <Input value={groupName} isTrigger onChange={handleGroupNameChange} maxLength={30} />
+            <Input value={groupName} onChange={handleGroupNameChange} maxLength={30} />
           </div>
           <div
             className={cx(styles.actions, {
