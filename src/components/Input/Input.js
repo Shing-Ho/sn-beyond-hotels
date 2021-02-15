@@ -10,14 +10,21 @@ export default function CustomInput({
   suffix,
   maxLength,
   type = 'text',
+  isTrigger = false,
+  onChange,
   ...props
 }) {
   const [value, setValue] = useState(propsValue);
   const [currentLength, setCurrentLength] = useState(propsValue ? propsValue.length : 0);
 
-  const handleChange = (val) => {
+  const handleChange = (e) => {
+    const val = e.target.value;
     setValue(val);
     setCurrentLength(val.length);
+
+    if (isTrigger) {
+      onChange(val);
+    }
   };
 
   return (
@@ -26,7 +33,7 @@ export default function CustomInput({
       placeholder={placeholder}
       name={name}
       value={value}
-      onChange={(e) => handleChange(e.target.value)}
+      onChange={handleChange}
       maxLength={maxLength}
       prefix={prefix}
       suffix={suffix || <div className={styles.suffix}>{maxLength ? `${currentLength}/${maxLength}` : ''}</div>}

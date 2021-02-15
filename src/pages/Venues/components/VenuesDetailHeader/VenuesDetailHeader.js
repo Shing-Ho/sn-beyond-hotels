@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Select, Button } from 'antd';
 import cx from 'classnames';
+import _ from 'lodash';
 
 import Input from 'components/Input/Input';
 import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Large.png';
 import { ReactComponent as SafetyIcon } from 'icons/Icon_SupMan_Safety.svg';
 import styles from './VenuesDetailHeader.module.scss';
 
-export default function VenuesDetailHeader({ onboarding, mainIcon }) {
+export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpdateVenue }) {
+  const [venueName, setVenueName] = useState((venue && venue.name) || '');
+  const [venueTags, setVenueTags] = useState([]);
+  const debouncedFunction = useRef(_.debounce(onUpdateVenue, 1000));
+
+  useEffect(() => {
+    if (venue) {
+      setVenueName(venue.name);
+      setVenueTags(JSON.parse(venue.tags));
+    }
+  }, [venue.name, venue.tags]);
+
+  const handleVenueNameChange = (newName) => {
+    setVenueName(newName);
+    debouncedFunction.current(newName, null);
+  };
+
+  const handleTags = (tags) => {
+    if (venue) {
+      onUpdateVenue(venue.name, JSON.stringify(tags));
+    }
+  };
   return (
     <div
       className={cx(styles.detailHeader, {
@@ -21,7 +43,13 @@ export default function VenuesDetailHeader({ onboarding, mainIcon }) {
         </div>
         <div className={styles.icon}>{mainIcon}</div>
         <div className={styles.input}>
-          <Input placeholder="Add the name of the venue here..." maxLength={40} />
+          <Input
+            value={venueName}
+            placeholder="Add the name of the venue here..."
+            maxLength={40}
+            isTrigger
+            onChange={handleVenueNameChange}
+          />
         </div>
       </div>
       <div className={styles.tags}>
@@ -30,7 +58,13 @@ export default function VenuesDetailHeader({ onboarding, mainIcon }) {
           <p>Add tags that describe your venue</p>
         </div>
         <div className={styles.select}>
-          <Select className={styles.tagsBox} placeholder="Add tags that describe traits of this venue..." mode="tags" />
+          <Select
+            className={styles.tagsBox}
+            placeholder="Add tags that describe traits of this venue..."
+            mode="tags"
+            onChange={(e) => handleTags(e)}
+            value={venueTags}
+          />
         </div>
         <div className={styles.button}>
           <Button className={styles.btn} icon={<SafetyIcon width={11} height={14} />}>

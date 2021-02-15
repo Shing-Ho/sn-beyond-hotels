@@ -1,0 +1,276 @@
+@import 'styles';
+
+.venuesProductsSteps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .stepsContainer {
+    width: 570px;
+    margin: 0 auto;
+  }
+
+  .content {
+    h1 {
+      font-family: Lato;
+      font-size: 36px;
+      font-weight: bold;
+      color: $secondaryLightColor;
+      text-align: center;
+      padding: 40px 0;
+    }
+    .input {
+      flex: 1;
+      outline: none;
+      box-shadow: none;
+
+      .itemWrapper {
+        .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+          box-shadow: none;
+        }
+      }
+
+      :global(.ant-input-affix-wrapper) {
+        border-radius: 3px;
+        border-color: #a6ccd4;
+        padding: 0 15px;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+      }
+
+      :global(.ant-input) {
+        border-radius: 3px;
+        border-color: #a6ccd4;
+        color: #a6ccd4;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        &:focus {
+          border-radius: 3px;
+          border-color: #a6ccd4 !important;
+          background: transparent;
+          outline: none;
+          box-shadow: none !important;
+        }
+      }
+
+      :global(.ant-input:focus) {
+        border-radius: 3px;
+        border-color: #a6ccd4;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+      }
+
+      input {
+        width: 100%;
+        height: 50px;
+        font-size: 14px;
+        font-weight: normal;
+        outline: none;
+        box-shadow: none !important;
+        border: none;
+        color: $secondaryColor;
+        background: transparent;
+
+        &::placeholder {
+          font-style: italic;
+          font-family: Arial;
+          color: #a6ccd4;
+        }
+      }
+
+      .suffix {
+        font-size: 12px;
+        color: $secondaryColor;
+      }
+
+      .prefix {
+        font-size: 20px;
+        color: $secondaryColor;
+        padding-right: 15px;
+      }
+    }
+
+    .error {
+      :global(.ant-input) {
+        border-color: red;
+        &:focus {
+          border-color: red !important;
+        }
+      }
+      :global(.ant-input-affix-wrapper) {
+        border-color: red;
+      }
+    }
+
+    .addBtn {
+      width: 100%;
+      height: 50px;
+      border: 2px solid #44a9bd;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: $secondaryLightColor;
+      margin-top: 30px;
+      i {
+        margin-right: 10px;
+      }
+    }
+    .step1 {
+      max-width: 700px;
+      margin: 0 auto;
+
+      .input {
+        .suffix {
+          font-size: 16px;
+        }
+      }
+    }
+    .step2 {
+      max-width: 700px;
+      margin: 0 auto;
+
+      .input {
+        .suffix {
+          font-size: 16px;
+        }
+      }
+    }
+    .step3 {
+      max-width: 370px;
+      margin: 0 auto;
+    }
+    .step4 {
+      .uploadContainer {
+        width: 100%;
+        position: relative;
+
+        :global(.ant-spin) {
+          position: absolute;
+          z-index: 10;
+          background-color: rgba(0, 0, 0, 0.05);
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .draggerContainer {
+          width: 100%;
+
+          .dragTitle {
+            font-size: 24px;
+            font-style: italic;
+            color: $secondaryColor;
+            b {
+              font-style: normal;
+            }
+          }
+
+          .dragDescription {
+            font-size: 14px;
+            color: rgba($secondaryColor, 0.5);
+          }
+        }
+
+        .listDescription {
+          padding-top: 40px;
+          font-size: 14px;
+          color: $grayColor;
+          display: flex;
+          justify-content: space-between;
+          p {
+            flex: 1;
+            margin: 0;
+          }
+          b {
+            color: $secondaryColor;
+            font-size: 16px;
+          }
+        }
+
+        .listContainer {
+          padding-top: 20px;
+          .imgItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+            border: solid 1px #f4f4f4;
+            .imgItemLeft {
+              display: flex;
+              align-items: center;
+              img {
+                width: 125px;
+                height: 95px;
+                object-fit: cover;
+              }
+              .imgName {
+                font-size: 22px;
+                font-weight: 300;
+                text-align: left;
+                color: $secondaryLightColor;
+                margin-left: 10px;
+              }
+            }
+            .imgItemRight {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              .trashIcon {
+                margin-right: 20px;
+                padding: 0px;
+                border: none;
+                svg {
+                  fill: $secondaryColor;
+                }
+              }
+              .dragDiv {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
+                height: 95px;
+                background-color: #dae6e9;
+                svg {
+                  fill: $secondaryColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    width: 100%;
+    margin-top: 80px;
+    .btn {
+      height: 60px;
+      color: white;
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: bold;
+      border-radius: 3px;
+      flex: 1;
+
+      &.continue {
+        background-color: $secondaryLightColor;
+        border: 2px solid $secondaryLightColor;
+        margin-left: 40px;
+      }
+      &.cancel {
+        border: 2px solid $secondaryLightColor;
+        color: $secondaryLightColor;
+        background-color: transparent;
+      }
+    }
+  }
+}

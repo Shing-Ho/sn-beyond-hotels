@@ -16,6 +16,7 @@ import authReducer from 'store/auth/reducers';
 import usersReducer from 'store/admin/reducers';
 import careyReducer from 'store/carey/reducers';
 import diningReducer from 'store/dining/reducers';
+import venueReducer from 'store/venue/reducers';
 
 const rootPersistConfig = {
   key: 'root',
@@ -94,6 +95,13 @@ const rootReducer = persistReducer(
         storage,
       },
       diningReducer,
+    ),
+    venue: persistReducer(
+      {
+        key: 'venue',
+        storage,
+      },
+      venueReducer,
     ),
     router: connectRouter(history),
   }),
