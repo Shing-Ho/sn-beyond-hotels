@@ -4,7 +4,7 @@ import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 
 import { isEmpty } from 'lodash';
-import { getTopFilters } from 'store/hotel/selectors';
+import { getTopFilters } from 'store/core/selectors';
 
 import { ReactComponent as RedClose } from 'icons/close-fill-large.svg';
 import DatePicker from 'components/DatePicker/DatePicker';

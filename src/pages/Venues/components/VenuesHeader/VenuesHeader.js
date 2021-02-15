@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col, Button } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import cx from 'classnames';
@@ -6,8 +6,12 @@ import cx from 'classnames';
 import { ReactComponent as SupplyIcon } from 'icons/Icon_SupMan_SupplyManager.svg';
 import styles from './VenuesHeader.module.scss';
 
-export default function VenuesHeader() {
-  const [mode, setMode] = useState('inactive');
+export default function VenuesHeader({ venue, onActive, onCancel }) {
+  const handleActive = (status) => {
+    if (venue) {
+      onActive(status);
+    }
+  };
 
   return (
     <div className={styles.root}>
@@ -24,17 +28,17 @@ export default function VenuesHeader() {
           <div className={styles.modes}>
             <Button
               className={cx(styles.btn, styles.btnInactive, {
-                [styles.inActiveBtn]: mode === 'inactive',
+                [styles.inActiveBtn]: !venue || !venue.status,
               })}
-              onClick={() => setMode('inactive')}
+              onClick={() => handleActive(false)}
             >
               <i className="fa fa-eye-slash" /> <FormattedMessage id="inactive" defaultMessage="Inactive" />
             </Button>
             <Button
               className={cx([styles.btn, styles.btnActive], {
-                [styles.activeBtn]: mode === 'active',
+                [styles.activeBtn]: venue && venue.status,
               })}
-              onClick={() => setMode('active')}
+              onClick={() => handleActive(true)}
             >
               <i className="fa fa-eye" /> <FormattedMessage id="active" defaultMessage="Active" />
             </Button>
@@ -42,7 +46,9 @@ export default function VenuesHeader() {
         </Col>
         <Col md={24} lg={10}>
           <div className={styles.actions}>
-            <Button className={[styles.btn, styles.btnHover]}>Cancel</Button>
+            <Button className={[styles.btn, styles.btnHover]} onClick={() => onCancel()}>
+              Cancel
+            </Button>
             <Button className={[styles.btn, styles.primary]} type="primary">
               Start Over
             </Button>

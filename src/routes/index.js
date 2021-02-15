@@ -18,9 +18,11 @@ import GasDetailPage from 'pages/DetailPage/GasDetailPage';
 import NightLifeDetailPage from 'pages/DetailPage/NightLifeDetailPage';
 import ShoppingDetailPage from 'pages/DetailPage/ShoppingDetailPage';
 import ShoppingProductPage from 'pages/DetailPage/ShoppingProductPage';
+import QuoteViewPage from 'pages/DetailPage/QuoteViewPage';
 import VenueEventsPage from 'pages/Venues/VenueEventsPage';
 import VenueToursPage from 'pages/Venues/VenueToursPage';
 import VenueNightlifesPage from 'pages/Venues/VenueNightlifesPage';
+import VenueContainer from 'pages/Venues/VenueContainer';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import UserListPage from 'pages/UserManagementPage/UserListPage';
 import UserCreatePage from 'pages/UserManagementPage/UserCreate';
@@ -41,8 +43,9 @@ export default function Routes() {
         {/* Venue routes */}
         <Route path={`${BASE_ROUTE}/venues/event`} exact component={VenueEventsPage} />
         <Route path={`${BASE_ROUTE}/venues/tour`} exact component={VenueToursPage} />
-        <Route path={`${BASE_ROUTE}/venues/nightlife`} exact component={VenueNightlifesPage} />
-        <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/event`} />
+        <ProtectedRoute path={`${BASE_ROUTE}/venues/night_life/:id`} exact component={VenueNightlifesPage} />
+        <ProtectedRoute path={`${BASE_ROUTE}/venues/add`} exact component={VenueContainer} />
+        <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/add`} />
         {/* End of Vunue routes */}
 
         {/* Dashboard routes */}
@@ -58,6 +61,7 @@ export default function Routes() {
         <Route path={`${BASE_ROUTE}/foods/:id`} exact component={FoodDetailPage} />
         <Route path={`${BASE_ROUTE}/tours/:id`} exact component={ToursDetailPage} />
         <Route path={`${BASE_ROUTE}/transports/carhire/:id`} exact component={CarHireDetailPage} />
+        <Route path={`${BASE_ROUTE}/transports/carhire/:id/viewquote`} exact component={QuoteViewPage} />
         <Route path={`${BASE_ROUTE}/dining/:id`} exact component={DiningDetailPage} />
         <Route path={`${BASE_ROUTE}/gas/:id`} exact component={GasDetailPage} />
         <Route path={`${BASE_ROUTE}/nightlife/:id`} exact component={NightLifeDetailPage} />

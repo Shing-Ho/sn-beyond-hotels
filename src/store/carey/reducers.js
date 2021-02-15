@@ -28,6 +28,22 @@ export const careyReducer = handleActions(
       }),
     ],
     [
+      careyActions.bookReservation,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        bookReservation: action.payload || [],
+      }),
+    ],
+    [
+      careyActions.findReservation,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        findReservation: action.payload || [],
+      }),
+    ],
+    [
       careyActions.cancelReservation,
       (state, action) => ({
         ...state,
@@ -40,6 +56,9 @@ export const careyReducer = handleActions(
       (state) => ({
         ...state,
         careyRateInquiry: [],
+        bookReservation: [],
+        findReservation: [],
+        cancelReservation: [],
         loading: false,
         error: '',
       }),
@@ -49,6 +68,9 @@ export const careyReducer = handleActions(
     loading: false,
     error: null,
     careyRateInquiry: [],
+    bookReservation: [],
+    findReservation: [],
+    cancelReservation: [],
   },
 );
 

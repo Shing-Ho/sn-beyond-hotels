@@ -1,0 +1,103 @@
+@import 'styles';
+
+.uploadContainer {
+  width: 100%;
+  position: relative;
+
+  :global(.ant-spin) {
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .draggerContainer {
+    width: 100%;
+
+    .dragTitle {
+      font-size: 24px;
+      font-style: italic;
+      color: $secondaryColor;
+      b {
+        font-style: normal;
+      }
+    }
+
+    .dragDescription {
+      font-size: 14px;
+      color: rgba($secondaryColor, 0.5);
+    }
+  }
+
+  .listDescription {
+    padding-top: 40px;
+    font-size: 14px;
+    color: $grayColor;
+    display: flex;
+    justify-content: space-between;
+    p {
+      flex: 1;
+      margin: 0;
+    }
+    b {
+      color: $secondaryColor;
+      font-size: 16px;
+    }
+  }
+
+  .listContainer {
+    padding-top: 20px;
+    .imgItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.02);
+      border: solid 1px #f4f4f4;
+      .imgItemLeft {
+        display: flex;
+        align-items: center;
+        img {
+          width: 125px;
+          height: 95px;
+          object-fit: cover;
+        }
+        .imgName {
+          font-size: 22px;
+          font-weight: 300;
+          text-align: left;
+          color: $secondaryLightColor;
+          margin-left: 10px;
+        }
+      }
+      .imgItemRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .trashIcon {
+          margin-right: 20px;
+          padding: 0px;
+          border: none;
+          svg {
+            fill: $secondaryColor;
+          }
+        }
+        .dragDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+          height: 95px;
+          background-color: #dae6e9;
+          svg {
+            fill: $secondaryColor;
+          }
+        }
+      }
+    }
+  }
+}

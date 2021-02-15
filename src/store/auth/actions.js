@@ -20,7 +20,7 @@ const login = (payload) => async (dispatch) => {
   try {
     dispatch(authActions.setLoading(true));
     const data = await API.login(payload);
-    dispatch(authActions.setToken(data.token));
+    dispatch(authActions.setToken(data.access_token));
     const user = await API.getUser();
     dispatch(authActions.setUser(user));
     dispatch(push('/users'));

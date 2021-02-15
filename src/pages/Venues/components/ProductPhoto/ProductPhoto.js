@@ -59,7 +59,6 @@ export default function ProductPhoto() {
     if (!result.destination) {
       return;
     }
-
     setImages(reorder(images, result.source.index, result.destination.index));
   };
 

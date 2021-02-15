@@ -1,22 +1,5 @@
 @import 'styles';
 
-.buttonWrap {
-  text-align: end;
-  .btn {
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #003398;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 3px;
-    cursor: pointer;
-    line-height: 16px;
-    width: 200px;
-    max-width: 200px;
-  }
-}
-
 .container {
   display: flex;
   justify-content: center;

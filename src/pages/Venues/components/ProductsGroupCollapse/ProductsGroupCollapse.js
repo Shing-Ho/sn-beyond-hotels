@@ -5,7 +5,7 @@ import styles from './ProductsGroupCollapse.module.scss';
 
 const { Panel } = Collapse;
 
-const ProductsGroupCollapse = ({ children, header, collapsedHeader, collapsed = 'open', onboarding }) => {
+const ProductsGroupCollapse = ({ children, header, collapsed = 'open', onboarding }) => {
   const [activeKey, setActiveKey] = useState(collapsed === 'open' ? 'default' : '');
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const ProductsGroupCollapse = ({ children, header, collapsedHeader, collapsed = 
       )}
       onChange={(key) => handleChange(key)}
     >
-      <Panel header={activeKey === 'default' ? header : collapsedHeader} key="default">
+      <Panel header={header} key="default">
         {children}
       </Panel>
     </Collapse>

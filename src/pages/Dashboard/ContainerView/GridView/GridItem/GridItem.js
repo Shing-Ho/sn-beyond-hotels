@@ -12,16 +12,6 @@ import cover1 from 'images/coverEvent1.jpeg';
 import cover2 from 'images/coverEvent2.jpeg';
 import cover3 from 'images/coverEvent3.jpeg';
 import cover4 from 'images/coverEvent4.jpeg';
-import Tours1 from 'images/tours1.jpeg';
-import Tours2 from 'images/tours2.jpeg';
-import Tours3 from 'images/tours3.jpeg';
-import Tours4 from 'images/tours4.jpeg';
-import Tours5 from 'images/tours5.jpeg';
-import dining1 from 'images/dining1.jpg';
-import dining2 from 'images/dining2.jpeg';
-import dining3 from 'images/dining3.jpeg';
-import dining4 from 'images/dining4.jpeg';
-import dining5 from 'images/dining5.jpeg';
 import transport1 from 'images/transport1.jpg';
 import transport2 from 'images/transport2.jpg';
 import transport3 from 'images/transport3.jpeg';
@@ -35,17 +25,11 @@ export default function GridItem({ className, data, type, currency }) {
     let name;
     const switchType = type === 'all' ? dataType : type;
     switch (switchType) {
-      case 'tours':
-        name = 'ATV Riding Tours';
-        break;
       case 'events':
         name = 'Hamilton - The Musical';
         break;
       case 'nightlife':
         name = 'Encore Beach Club';
-        break;
-      case 'dining':
-        name = 'Taix Restaurant';
         break;
       case 'transports':
         name = 'Taxi';
@@ -63,11 +47,6 @@ export default function GridItem({ className, data, type, currency }) {
     let image;
     const switchType = type === 'all' ? dataType : type;
     switch (switchType) {
-      case 'tours':
-        imagesArr = [Tours1, Tours2, Tours3, Tours4, Tours5];
-        number = Math.floor(Math.random() * Math.floor(5));
-        image = imagesArr[number];
-        break;
       case 'events':
         imagesArr = [cover1, cover2, cover3, cover4];
         number = Math.floor(Math.random() * Math.floor(4));
@@ -75,11 +54,6 @@ export default function GridItem({ className, data, type, currency }) {
         break;
       case 'nightlife':
         imagesArr = [night1, night2, night3, night4, night5];
-        number = Math.floor(Math.random() * Math.floor(5));
-        image = imagesArr[number];
-        break;
-      case 'dining':
-        imagesArr = [dining1, dining2, dining3, dining4, dining5];
         number = Math.floor(Math.random() * Math.floor(5));
         image = imagesArr[number];
         break;
@@ -103,12 +77,26 @@ export default function GridItem({ className, data, type, currency }) {
       <div className={styles.content}>
         {data?.icon && <span className={styles.icon}>{data?.icon}</span>}
         <span className={styles.name}>{getName(data?.name, data?.type)}</span>
-        <Rating scoreonly outlined score={data.rating || 0} className={styles.row} />
-        <span className={styles.description}>{data?.description || 'No description provided'}</span>
+        {data?.type !== 'tours' && <Rating scoreonly outlined score={data.rating || 0} className={styles.row} />}
+        {data?.type !== 'tours' && (
+          <span className={styles.description}>{data.description || 'No description provided'}</span>
+        )}
+        {data?.type === 'tours' && (
+          <>
+            <span className={styles.tourStyle}>{data.style}</span>
+            <div className={styles.description} dangerouslySetInnerHTML={{ __html: data.description }} />
+          </>
+        )}
         <div className={styles.row}>
-          {data?.rate && data?.type !== 'gas' && <FormattedMessage id="from" defaultMessage="FROM" />}
+          {data?.rate && data?.type !== 'gas' && data?.type !== 'tours' && data?.type !== 'dining' && (
+            <FormattedMessage id="from" defaultMessage="FROM" />
+          )}
+          {data?.type === 'tours' && <FormattedMessage id="duration" defaultMessage="DURATION" />}
           {data?.type === 'gas' && <span>{data.rate}</span>}
-          {data?.type !== 'gas' && <span>{data?.rate ? currency?.symbol + commaFormat(data.rate) : ''}</span>}
+          {data?.type !== 'gas' && data?.type !== 'tours' && (
+            <span>{data?.rate ? currency?.symbol + commaFormat(data.rate) : ''}</span>
+          )}
+          {data?.type === 'tours' && <span>{data.duration}</span>}
         </div>
       </div>
     </div>

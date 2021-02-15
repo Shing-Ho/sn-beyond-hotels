@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 import { store } from 'store';
 import { api } from './api-helper';
+import { setAuthHeaders } from './index';
+
+setAuthHeaders();
 
 const UNKNOWN_ERROR_CODE = 'UNKNOWN_ERROR_CODE';
 const UNKNOWN_ERROR_STATUS = 504;
@@ -38,7 +41,7 @@ api.interceptors.request.use((config) => {
       ...config,
       headers: {
         ...config.headers,
-        Authorization: `Token ${state.auth.token}`,
+        Authorization: `Bearer ${state.auth.token}`,
       },
     };
   }

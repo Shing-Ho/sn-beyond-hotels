@@ -1,10 +1,10 @@
-import React, { useState, useRef, Fragment } from 'react';
+import React, { useState, useRef } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import hotelActions from 'store/hotel/actions';
-import { getTopFilters } from 'store/hotel/selectors';
+import coreActions from 'store/core/actions';
+import { getTopFilters } from 'store/core/selectors';
 import bed from 'icons/bed.svg';
 import dad from 'icons/Adult.svg';
 import kid from 'icons/Child.svg';
@@ -13,12 +13,12 @@ import cal from 'icons/calendar.png';
 import EditPanel from './EditPanel';
 import styles from './TopFilters.module.scss';
 
-const TopFilters = ({ currency, displayCount, initialState }) => {
+const TopFilters = ({ currency, type = 'hotel', displayCount, filter, onSubmit }) => {
   const topFilters = useSelector(getTopFilters);
-  const [isEdit, toggleEdit] = useState(false);
-  const [data, setData] = useState({ ...initialState, ...topFilters });
+  const [isEdit, toggleEdit] = useState(true);
+  const [data, setData] = useState({ ...filter, ...topFilters });
   const dispatch = useDispatch();
-  const locCache = useRef(initialState.location);
+  const locCache = useRef(filter.location);
 
   const onDateChange = (name) => (e) => {
     if (name === 'start_date' && moment(data.end_date).diff(e._d, 'day') <= 0) {
@@ -49,14 +49,15 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
 
   const clearData = () => {
     if (data.location?.location_id) {
-      locCache.current = data.location || initialState.location;
+      locCache.current = data.location || filter.location;
     }
     setData({ ...data, location: {} });
   };
 
-  const searchHotels = (_currency) => {
+  const handleSubmit = (_currency) => {
     const payload = {
       location_id: data.location.location_id,
+      location: data.location,
       start_date: data.start_date,
       end_date: data.end_date,
       occupancy: {
@@ -66,13 +67,13 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
       language: 'en',
       currency: _currency.bubbles ? data.currency : _currency,
     };
-    dispatch(hotelActions.searchHotels(payload));
-    dispatch(hotelActions.topFilterData(payload));
+    onSubmit(payload);
+    dispatch(coreActions.setTopFilters(payload));
   };
 
   const onCurrencyChange = (_currency) => {
     setData({ ...data, currency: _currency });
-    searchHotels(_currency);
+    handleSubmit(_currency);
   };
 
   return (
@@ -87,8 +88,9 @@ const TopFilters = ({ currency, displayCount, initialState }) => {
             onChange={onChange}
             onDateChange={onDateChange}
             data={data}
-            searchHotels={searchHotels}
+            onSubmit={handleSubmit}
             displayCount={displayCount}
+            type={type}
           />
         ) : (
           <div className={styles.display}>

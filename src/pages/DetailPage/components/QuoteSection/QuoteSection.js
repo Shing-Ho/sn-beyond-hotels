@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { push } from 'connected-react-router';
 import cx from 'classnames';
 import moment from 'moment';
-import { Button, DatePicker, TimePicker, Input, Spin, Row, Col } from 'antd';
-import Complete from 'components/AutoComlete/AutoComplete';
+import { Button, DatePicker, TimePicker, Input, Spin, Row, Col, Modal, Radio } from 'antd';
+import { isEmpty } from 'lodash';
 import PlaceAutoComplete from 'components/PlaceAutoComplete/PlaceAutoComplete';
 import NumberInput from 'components/NumberInput/NumberInput';
 import { ReactComponent as CalendarIcon } from 'icons/calendar.svg';
-import { ReactComponent as PinIcon } from 'icons/pin.svg';
 
 import careyActions from 'store/carey/actions';
-import { getLoading, getError } from 'store/carey/selectors';
+import { getLoading, getError, getCareyRateInquiry } from 'store/carey/selectors';
 import styles from './QuoteSection.module.scss';
 
 export default function QuoteSection({ className }) {
@@ -29,12 +29,12 @@ export default function QuoteSection({ className }) {
   const [tripType, setTripType] = useState('Point-To-Point');
   const [special, setSpecial] = useState('');
   const [errorShow, setErrorShow] = useState('');
-  const pickUpCache = useRef({});
+  const [visible, setVisible] = useState(false);
+  const [selectVehicle, setSelectVehicle] = useState('');
 
   const loading = useSelector(getLoading);
   const error = useSelector(getError);
-
-  const [testVehicle, setTestVehicle] = useState({});
+  const quotes = useSelector(getCareyRateInquiry);
 
   const handlePassengerChange = (value) => {
     setPassengerCount(value);
@@ -48,15 +48,14 @@ export default function QuoteSection({ className }) {
     setPickUpTime(time);
   };
 
-  const handleAutoCompleteChange = (locations) => {
-    setDropOffLocation(locations);
+  const handlePickUpAutoCompleteChange = (locations) => {
+    setPickUpLoacation(locations);
+    if (locations?.airport) setShowFlight(true);
+    else setShowFlight(false);
   };
 
-  const clearPickUpData = () => {
-    if (pickUpLoacation.location_id) {
-      pickUpCache.current = pickUpLoacation || {};
-    }
-    setPickUpLoacation({});
+  const handleAutoCompleteChange = (locations) => {
+    setDropOffLocation(locations);
   };
 
   const handleGetQuote = () => {
@@ -67,31 +66,60 @@ export default function QuoteSection({ className }) {
       bags: bagCount,
       tripType,
       pickUpLoacation,
-      flightInfo: {
-        flightDate,
-        flightNum,
-        flightCode,
-      },
       dropOffLocation,
       special,
     };
+    if (pickUpLoacation?.airport) {
+      const flightInfo = {
+        flightDate: moment(flightDate).format('YYYY-MM-DDTHH:mm:ss'),
+        flightNum,
+        flightCode,
+      };
+
+      payload.flightInfo = flightInfo;
+    }
     dispatch(careyActions.getRateInquiry(payload));
-    setTestVehicle({
-      mockData: {
-        test: '123',
-      },
-    });
+  };
+
+  const handleCancel = () => {
+    dispatch(careyActions.clearState());
+    setVisible(false);
+  };
+
+  const handleSelectVehicleChange = (e) => {
+    setSelectVehicle(e.target.value);
+  };
+
+  const handleViewQuote = () => {
+    dispatch(push(`/transports/carhire/${selectVehicle}/viewquote`));
   };
 
   useEffect(() => {
-    let timeout;
     if (error) {
       setErrorShow(error?.message);
-    } else {
-      setErrorShow('');
+      // dispatch(careyActions.clearState());
     }
-    return () => clearTimeout(timeout);
   }, [error, dispatch]);
+
+  useEffect(() => {
+    dispatch(careyActions.clearState());
+  }, [
+    pickUpDate,
+    pickUpTime,
+    flightDate,
+    flightNum,
+    flightCode,
+    pickUpLoacation,
+    dropOffLocation,
+    passengerCount,
+    bagCount,
+    special,
+  ]);
+
+  useEffect(() => {
+    if (!isEmpty(quotes)) setVisible(true);
+    if (!visible) setSelectVehicle('');
+  }, [quotes, visible]);
 
   return (
     <>
@@ -156,24 +184,7 @@ export default function QuoteSection({ className }) {
           </div>
           <div className={styles.location}>
             <h3>Pickup Location:</h3>
-            <div className={styles.autoCompleteWrapper}>
-              <Complete
-                value={pickUpLoacation}
-                onSelect={(place) => {
-                  if (place?.location_type !== 'AIRPORT') {
-                    setErrorShow('Please pick up airport location');
-                    setShowFlight(false);
-                  } else {
-                    setErrorShow('');
-                    setShowFlight(true);
-                  }
-                  setPickUpLoacation(place);
-                }}
-                clearData={clearPickUpData}
-                placeholder="Search or enter location..."
-              />
-              <PinIcon className={styles.pinIcon} width={24} height={24} />
-            </div>
+            <PlaceAutoComplete onLocationChange={handlePickUpAutoCompleteChange} />
           </div>
           {showFlight && (
             <div className={styles.flight}>
@@ -186,6 +197,7 @@ export default function QuoteSection({ className }) {
                     value={flightDate}
                     suffixIcon={<CalendarIcon className="calendarIcon" width={20} height={20} />}
                     showTime
+                    format="YYYY-MM-DD HH:mm"
                   />
                 </Col>
                 <Col span={6}>
@@ -213,8 +225,54 @@ export default function QuoteSection({ className }) {
             Continue
           </Button>
         </div>
-        {!!testVehicle && <div>asdf</div>}
       </>
+      {/* {visible && !isEmpty(quotes) && ( */}
+      <Modal
+        title={<div className={styles.modalHeader}>Select Vehicle</div>}
+        visible={visible && !isEmpty(quotes)}
+        onCancel={handleCancel}
+        footer={false}
+      >
+        <div>
+          <Row>
+            <Col lg={12} className={styles.column}>
+              <div>
+                {pickUpLoacation?.locationName} {pickUpLoacation?.addressLine} {pickUpLoacation?.cityName}{' '}
+                {pickUpLoacation?.postalCode} {pickUpLoacation?.stateProv?.value} {pickUpLoacation?.countryName?.value}
+              </div>
+            </Col>
+            <Col lg={12} className={styles.column}>
+              <div>
+                {dropOffLocation?.locationName} {dropOffLocation?.addressLine} {dropOffLocation?.cityName}{' '}
+                {dropOffLocation?.postalCode} {dropOffLocation?.stateProv?.value} {dropOffLocation?.countryName?.value}
+              </div>
+            </Col>
+          </Row>
+          <Radio.Group
+            defaultValue="accommodations"
+            buttonStyle="solid"
+            className={styles.radio}
+            onChange={handleSelectVehicleChange}
+          >
+            <Row>
+              {quotes.map((quote) => (
+                <Col lg={12} className={styles.column}>
+                  <Radio value={quote.vehicleDetails.vehicleCode}>
+                    <div>
+                      <div>{quote?.vehicleDetails?.vehicleName}</div>
+                      <div>{quote?.total?.totalAmountDescription}</div>
+                    </div>
+                  </Radio>
+                </Col>
+              ))}
+            </Row>
+          </Radio.Group>
+          <Row>
+            <Col>{selectVehicle && <Button onClick={handleViewQuote}>View Quotes</Button>}</Col>
+          </Row>
+        </div>
+      </Modal>
+      {/* )} */}
     </>
   );
 }

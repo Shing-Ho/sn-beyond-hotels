@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import history from 'store/history';
+import venueActions from 'store/venue/actions';
+import { getVenue, getLoading } from 'store/venue/selectors';
+
 import { ReactComponent as NightlifeWhiteIcon } from 'icons/dashboardIcons/NightlifeWhite.svg';
 import VenuesPage from './VenuesPage';
 
-export default function VenueNightlifesPage() {
+export default function VenueNightlifesPage({ match: { params } }) {
+  const dispatch = useDispatch();
+  const venue = useSelector(getVenue);
+  const loading = useSelector(getLoading);
+
+  useEffect(() => {
+    if (params.id) {
+      dispatch(venueActions.getVenue(params.id));
+      dispatch(venueActions.getVenueProductGroups(params.id));
+      dispatch(venueActions.getVenueProductsNightLife(params.id));
+    } else {
+      history.push(`${window.BASE_ROUTE || ''}/venues`);
+    }
+  }, []);
+
   const handlePublish = () => {
     // eslint-disable-next-line
     alert('on add product group');
@@ -61,6 +80,8 @@ export default function VenueNightlifesPage() {
       onAddDetails={handleAddDetails}
       onPaymentProviderSelection={handlePaymentProviderSelection}
       onAddContact={handleAddContact}
+      venue={venue}
+      loading={loading}
     />
   );
 }

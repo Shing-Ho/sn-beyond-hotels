@@ -10,6 +10,8 @@ const careyActions = createActions(
     SET_LOADING: undefined,
     SET_FAILURE: undefined,
     GET_CAREY_RATE_Inquiry: undefined,
+    BOOK_RESERVATION: undefined,
+    FIND_RESERVATION: undefined,
     CLEAR_STATE: undefined,
     CANCEL_RESERVATION: undefined,
   },
@@ -21,6 +23,26 @@ const getRateInquiry = (payload) => async (dispatch) => {
     dispatch(careyActions.setLoading(true));
     const data = await API.rateInquiry(payload);
     dispatch(careyActions.getCareyRateInquiry(data));
+  } catch (error) {
+    dispatch(careyActions.setFailure(error));
+  }
+};
+
+const bookReservation = (payload) => async (dispatch) => {
+  try {
+    dispatch(careyActions.setLoading(true));
+    const data = await API.bookReservation(payload);
+    dispatch(careyActions.bookReservation(data));
+  } catch (error) {
+    dispatch(careyActions.setFailure(error));
+  }
+};
+
+const findReservation = (payload) => async (dispatch) => {
+  try {
+    dispatch(careyActions.setLoading(true));
+    const data = await API.findReservation(payload);
+    dispatch(careyActions.findReservation(data));
   } catch (error) {
     dispatch(careyActions.setFailure(error));
   }
@@ -39,5 +61,7 @@ const cancelReservation = (payload) => async (dispatch) => {
 export default {
   ...careyActions,
   getRateInquiry,
+  bookReservation,
+  findReservation,
   cancelReservation,
 };

@@ -85,13 +85,6 @@ export const hotelReducer = handleActions(
       }),
     ],
     [
-      hotelActions.setTopFilters,
-      (state, action) => ({
-        ...state,
-        topFilters: action.payload,
-      }),
-    ],
-    [
       hotelActions.selectHotel,
       (state, action) => ({
         ...state,
@@ -139,7 +132,6 @@ export const hotelReducer = handleActions(
     hotels: [],
     filteredHotels: [],
     filters: {},
-    topFilters: {},
     count: 0,
     page: 1,
     pageSize: 10,
