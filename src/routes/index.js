@@ -43,8 +43,8 @@ export default function Routes() {
         {/* Venue routes */}
         <Route path={`${BASE_ROUTE}/venues/event`} exact component={VenueEventsPage} />
         <Route path={`${BASE_ROUTE}/venues/tour`} exact component={VenueToursPage} />
-        <Route path={`${BASE_ROUTE}/venues/night_life/:id`} exact component={VenueNightlifesPage} />
-        <Route path={`${BASE_ROUTE}/venues/add`} exact component={VenueContainer} />
+        <ProtectedRoute path={`${BASE_ROUTE}/venues/night_life/:id`} exact component={VenueNightlifesPage} />
+        <ProtectedRoute path={`${BASE_ROUTE}/venues/add`} exact component={VenueContainer} />
         <Redirect exact from={`${BASE_ROUTE}/venues`} to={`${BASE_ROUTE}/venues/add`} />
         {/* End of Vunue routes */}
 

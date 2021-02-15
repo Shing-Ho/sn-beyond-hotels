@@ -18,7 +18,7 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
       setVenueName(venue.name);
       setVenueTags(JSON.parse(venue.tags));
     }
-  }, [venue.name, venue.tags]);
+  }, [venue]);
 
   const handleVenueNameChange = (newName) => {
     setVenueName(newName);
@@ -47,7 +47,6 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
             value={venueName}
             placeholder="Add the name of the venue here..."
             maxLength={40}
-            isTrigger
             onChange={handleVenueNameChange}
           />
         </div>
