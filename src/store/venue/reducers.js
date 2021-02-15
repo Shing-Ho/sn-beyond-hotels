@@ -54,6 +54,22 @@ export const venueReducer = handleActions(
         productGroups: action.payload,
       }),
     ],
+    [
+      venueActions.setVenueProducts,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        products: action.payload,
+      }),
+    ],
+    [
+      venueActions.setProductMedia,
+      (state, action) => ({
+        ...state,
+        loading: false,
+        productMedia: action.payload,
+      }),
+    ],
   ]),
   {
     loading: false,
@@ -61,6 +77,8 @@ export const venueReducer = handleActions(
     venues: null,
     venue: null,
     productGroups: null,
+    products: null,
+    productMedia: null,
   },
 );
 

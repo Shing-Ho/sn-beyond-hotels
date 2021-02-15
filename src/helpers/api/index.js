@@ -71,10 +71,10 @@ export const getVenues = () => get(`venues`);
 export const getVenue = (id) => get(`venues/${id}`);
 export const createVenue = (payload) => post(`venues`, payload);
 export const updateVenue = (payload) => put(`venues/${payload.id}`, payload);
-export const uploadVenueMedia = (payload) =>
-  post(`venues/${payload.venue}/media`, payload.formData, { 'content-type': 'multipart/form-data' });
 
 // Venue media
+export const uploadVenueMedia = (payload) =>
+  post(`venues/${payload.venue}/media`, payload.formData, { 'content-type': 'multipart/form-data' });
 export const getVenueMedia = (id) => get(`venues/${id}/media`);
 export const updateVenueMediaOrder = (payload) => post(`venues/${payload.id}/media/order`, payload);
 export const removeVenueMedia = (payload) => remove(`venues/${payload.venue_id}/media/${payload.id}`);
@@ -84,3 +84,21 @@ export const getVenueProductGroups = (id) => get(`venues/${id}/product-group`);
 export const createVenueProductGroup = (payload) => post(`venues/${payload.venue}/product-group`, payload);
 export const updateVenueProductGroup = (payload) => put(`venues/${payload.venue}/product-group/${payload.id}`, payload);
 export const removeVenueProductGroup = (payload) => remove(`venues/${payload.venue}/product-group/${payload.id}`);
+export const updateVenueProductGroupOrder = (payload) => post(`venues/${payload.venue}/product-group/order`, payload);
+
+// Venue Product Nightlife
+export const getVenueProductsNightLife = (id) => get(`venues/${id}/product_nightlife`);
+export const createVenueProductNightLife = (payload) => post(`venues/${payload.venue}/product_nightlife`, payload);
+export const updateVenueProductNightLife = (payload) =>
+  put(`venues/${payload.venue}/product_nightlife/${payload.id}`, payload);
+export const removeVenueProductNightLife = (payload) =>
+  remove(`venues/${payload.venue}/product_nightlife/${payload.id}`);
+export const updateVenueProductNightLifeOrder = (payload) =>
+  post(`venues/${payload.venue}/product_nightlife/order`, payload);
+
+// Venue Product Nightlife Media
+export const getVenueProductsNightLifeMedia = (id) => get(`product_nightlife_media?product_id=${id}`);
+export const uploadVenueProductNightLifeMedia = (payload) =>
+  post(`product_nightlife_media`, payload.formData, { 'content-type': 'multipart/form-data' });
+export const removeVenueProductNightLifeMedia = (payload) => remove(`product_nightlife_media/${payload.id}`);
+export const updateVenueProductNightLifeMediaOrder = (payload) => post(`product_nightlife_media/order`, payload);

@@ -9,8 +9,9 @@ import { ReactComponent as SafetyIcon } from 'icons/Icon_SupMan_Safety.svg';
 import styles from './VenuesDetailHeader.module.scss';
 
 export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpdateVenue }) {
-  const [venueName, setVenueName] = useState('');
+  const [venueName, setVenueName] = useState((venue && venue.name) || '');
   const [venueTags, setVenueTags] = useState([]);
+  const debouncedFunction = useRef(_.debounce(onUpdateVenue, 1000));
 
   useEffect(() => {
     if (venue) {
@@ -19,22 +20,16 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
     }
   }, [venue]);
 
-  const debouncedFunction = useRef(
-    _.debounce((key) => {
-      if (venue && key !== '' && venueName !== key) {
-        onUpdateVenue(key, null);
-      }
-    }, 1000),
-  );
-
-  useEffect(() => debouncedFunction.current(venueName), [venueName]);
+  const handleVenueNameChange = (newName) => {
+    setVenueName(newName);
+    debouncedFunction.current(newName, null);
+  };
 
   const handleTags = (tags) => {
     if (venue) {
       onUpdateVenue(venue.name, JSON.stringify(tags));
     }
   };
-
   return (
     <div
       className={cx(styles.detailHeader, {
@@ -52,7 +47,8 @@ export default function VenuesDetailHeader({ onboarding, mainIcon, venue, onUpda
             value={venueName}
             placeholder="Add the name of the venue here..."
             maxLength={40}
-            onChange={setVenueName}
+            isTrigger
+            onChange={handleVenueNameChange}
           />
         </div>
       </div>

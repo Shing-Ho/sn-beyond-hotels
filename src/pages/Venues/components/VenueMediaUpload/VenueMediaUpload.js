@@ -55,10 +55,6 @@ export default function VenueMediaUpload({
   };
 
   const onRemove = (id) => {
-    // const temp = Object.assign([], venueMedia);
-    // temp.splice(index, 1);
-    // // setImages(temp);
-    // console.log(temp);
     onRemoveVenueMedia(id);
   };
 
@@ -101,16 +97,15 @@ export default function VenueMediaUpload({
         <div className={styles.listContainer}>
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
-                <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+              {(drop, snapshot) => (
+                <div {...drop.droppableProps} ref={drop.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                   {venueMedia.map((item, index) => (
                     <Draggable key={item.id} draggableId={`item_${item.id}`} index={index}>
-                      {(provided1) => (
+                      {(drag) => (
                         <div
-                          ref={provided1.innerRef}
-                          {...provided1.draggableProps}
-                          {...provided1.dragHandleProps}
-                          style={getItemStyle(provided1.draggableProps.style)}
+                          ref={drag.innerRef}
+                          {...drag.draggableProps}
+                          style={getItemStyle(drag.draggableProps.style)}
                         >
                           <div className={styles.imgItem}>
                             <div className={styles.imgItemLeft}>
@@ -121,7 +116,7 @@ export default function VenueMediaUpload({
                               <Button className={styles.trashIcon} onClick={() => onRemove(item.id)}>
                                 <TrashIcon width={20} height={20} />
                               </Button>
-                              <div className={styles.dragDiv}>
+                              <div className={styles.dragDiv} {...drag.dragHandleProps}>
                                 <DragIcon />
                               </div>
                             </div>
@@ -130,7 +125,7 @@ export default function VenueMediaUpload({
                       )}
                     </Draggable>
                   ))}
-                  {provided.placeholder}
+                  {drop.placeholder}
                 </div>
               )}
             </Droppable>

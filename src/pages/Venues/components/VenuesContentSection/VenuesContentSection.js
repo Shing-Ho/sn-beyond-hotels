@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { Button, Empty } from 'antd';
 import cx from 'classnames';
 
-// import venueActions from 'store/venue/actions';
-import { getProductGroups } from 'store/venue/selectors';
+import venueActions from 'store/venue/actions';
+import { getProductGroups, getProductsByGroup } from 'store/venue/selectors';
 
 import mentorImg from 'images/Icon_SupMan_Onboard_Arrow_Small.png';
 
@@ -20,16 +20,24 @@ import VenuesHotelDetailsSteps from '../VenuesHotelDetailsSteps/VenuesHotelDetai
 import ProductItem from '../ProductItem/ProductItem';
 import VenuesProductsDetails from '../VenuesProductsDetails/VenuesProductsDetails';
 import VenuesProductsContacts from '../VenuesProductsContacts/VenuesProductsContacts';
+import ProductList from '../ProductList/ProductList';
 
 import styles from './VenuesContentSection.module.scss';
 
 export default function VenuesContentSection({ productOnboarding, tabsOnboarding, venue }) {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('1');
   const [isProductGroupAdd, setIsProductGroupAdd] = useState(false);
-
   const productGroups = useSelector(getProductGroups);
+  const [venueGroups, setVenueGroups] = useState([]);
+
+  useEffect(() => {
+    if (productGroups) {
+      setVenueGroups(productGroups.sort((a, b) => a.order - b.order));
+    }
+  }, [productGroups]);
 
   useEffect(() => {
     setActiveTab(productOnboarding || tabsOnboarding ? '1' : activeTab);
@@ -40,6 +48,58 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
       setModalVisible(true);
     }
   }, [activeTab]);
+
+  const getProductsByGroupID = (id) => useSelector(getProductsByGroup(id));
+
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  const onDragEnd = (result) => {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+    const ordered = reorder(venueGroups, result.source.index, result.destination.index);
+
+    const orders = [];
+    if (ordered.length > 0) {
+      ordered.map((order) => orders.push(order.id));
+    }
+    const isSame =
+      ordered.length === venueGroups.length && ordered.every((element, index) => element === venueGroups[index]);
+
+    if (venue && orders.length > 0 && !isSame) {
+      const payload = {
+        venue: venue.id,
+        order: orders,
+      };
+      setVenueGroups(ordered);
+      dispatch(venueActions.updateVenueProductGroupOrder(payload));
+    }
+  };
+
+  const getListStyle = () => ({
+    background: 'transparent',
+    width: '100%',
+  });
+
+  const getItemStyle = (draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: 'none',
+    margin: `0 0 20px 0`,
+
+    // change background colour if dragging
+    background: 'transparent',
+    boxSizing: 'none',
+
+    // styles we need to apply on draggables
+    ...draggableStyle,
+  });
 
   return (
     <div className={styles.root}>
@@ -70,30 +130,47 @@ export default function VenuesContentSection({ productOnboarding, tabsOnboarding
               <ProductItem onboarding={productOnboarding} />
             </>
           )}
-          {productGroups && productGroups.length > 0 && (
-            <>
-              {productGroups.map((item) => (
-                <ProductsGroupCollapse
-                  key={item.id}
-                  header={<ProductsGroupCollapsedHeader title={item.name} amount={0} trash equal collapsed="close" />}
-                >
-                  <Button className={[styles.addBtn, styles.product]} onClick={() => setModalVisible(true)}>
-                    <i className="fa fa-plus" aria-hidden="true" /> Add Product
-                  </Button>
-                </ProductsGroupCollapse>
-              ))}
-            </>
+          {venueGroups && venueGroups.length > 0 && (
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="droppable">
+                {(drop, snapshot) => (
+                  <div {...drop.droppableProps} ref={drop.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                    {venueGroups.map((item, index) => (
+                      <Draggable key={item.id} draggableId={`item_${item.id}`} index={index}>
+                        {(drag) => (
+                          <div
+                            ref={drag.innerRef}
+                            {...drag.draggableProps}
+                            style={getItemStyle(drag.draggableProps.style)}
+                          >
+                            <ProductsGroupCollapse
+                              key={item.id}
+                              header={
+                                <ProductsGroupCollapsedHeader
+                                  title={item.name}
+                                  group={item}
+                                  venue={venue}
+                                  amount={getProductsByGroupID(item.id).length}
+                                  edit
+                                  trash
+                                  equal
+                                  {...{ drag }}
+                                />
+                              }
+                              collapsed="close"
+                            >
+                              <ProductList venue={venue} group={item} products={getProductsByGroupID(item.id)} />
+                            </ProductsGroupCollapse>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {drop.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           )}
-          {/* <ProductsGroupCollapse
-            onboarding={productOnboarding}
-            header={<ProductsGroupAdd onboarding={productOnboarding} trash equal />}
-            // collapsedHeader={<ProductsGroupCollapsedHeader title="Main" amount={0} trash equal />}
-          >
-            
-            <Button className={[styles.addBtn, styles.product]} onClick={() => setModalVisible(true)}>
-              <i className="fa fa-plus" aria-hidden="true" /> Add Product
-            </Button>
-          </ProductsGroupCollapse> */}
 
           {isProductGroupAdd && (
             <div className={styles.productsGroupAdd}>

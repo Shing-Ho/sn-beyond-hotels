@@ -124,7 +124,7 @@ export default function VenuesPage(props) {
         <VenuesUploadZone
           onboarding={onboarding === 2}
           handleUploadMedia={setShowVenueMedia}
-          images={venue.media || []}
+          images={(venue && venue.media) || []}
         />
         <div className={styles.container}>
           <Row justify="center">

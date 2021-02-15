@@ -16,6 +16,7 @@ export default function VenueNightlifesPage({ match: { params } }) {
     if (params.id) {
       dispatch(venueActions.getVenue(params.id));
       dispatch(venueActions.getVenueProductGroups(params.id));
+      dispatch(venueActions.getVenueProductsNightLife(params.id));
     } else {
       history.push(`${window.BASE_ROUTE || ''}/venues`);
     }

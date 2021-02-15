@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import cx from 'classnames';
-import _ from 'lodash';
 import Input from 'components/Input/Input';
 import venueActions from 'store/venue/actions';
 
@@ -25,14 +24,6 @@ export default function ProductsGroupAdd({
   const dispatch = useDispatch();
   const [groupName, setGroupName] = useState('');
 
-  const debouncedFunction = useRef(
-    _.debounce((name) => {
-      setGroupName(name);
-    }, 500),
-  );
-
-  useEffect(() => debouncedFunction.current(groupName), [groupName]);
-
   const onAddProductGroup = () => {
     if (venue && groupName !== '') {
       const payload = {
@@ -55,7 +46,7 @@ export default function ProductsGroupAdd({
           <p>Add similar products to Product Groups</p>
           <img src={mentorImg} alt="Arrow for mentoring" />
         </div>
-        <Input placeholder={placeholder} value={groupName} onChange={setGroupName} maxLength={30} />
+        <Input placeholder={placeholder} value={groupName} isTrigger onChange={setGroupName} maxLength={30} />
       </div>
       <div className={styles.actions}>
         {trash && (
